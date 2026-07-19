@@ -1,0 +1,873 @@
+<!--
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>科研管理系统</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #0a1f44, #0d2a4d);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .container {
+      text-align: center;
+      padding: 60px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      max-width: 600px;
+    }
+    .icon { font-size: 80px; margin-bottom: 30px; }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #00d4ff, #7b2cbf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.8;
+    }
+    .badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: rgba(0, 212, 255, 0.2);
+      border-radius: 20px;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #00d4ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🔬</div>
+    <h1>科研管理系统</h1>
+    <p>
+      本模块用于管理科研相关业务，包括：<br>
+      科研项目、论文发表、专利申请、经费管理等<br>
+      由其他团队开发的子系统页面将嵌入此处
+    </p>
+    <div class="badge">页面加载中，请稍候...</div>
+  </div>
+  <script>
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'auth') {
+        console.log('收到认证信息:', e.data.payload);
+      }
+    });
+  </script>
+</body>
+</html>
+!-->
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>院长随手看 - 政治学与公共管理学院科研系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f5f7fa 100%);
+            color: #333;
+        }
+
+        :root {
+            --main-blue: #0A2343;
+            --light-blue: #409EFF;
+            --gold: #D4AF37;
+            --green: #67C23A;
+            --red: #F56C6C;
+            --gray: #909399;
+            --gradient-blue: linear-gradient(135deg, #409EFF 0%, #0A2343 100%);
+            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
+            --gradient-green: linear-gradient(135deg, #85CE61 0%, #67C23A 100%);
+            --card-radius: 16px;
+            --card-shadow: 0 4px 20px rgba(10, 35, 67, 0.08);
+        }
+
+        .top-nav {
+            width: 100%;
+            height: 60px;
+            background: var(--main-blue);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+            .top-nav .logo-box {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+                .top-nav .logo-box img {
+                    height: 40px;
+                    width: auto;
+                }
+
+                .top-nav .logo-box .title-text {
+                    color: white;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+
+            .top-nav .search-box {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .top-nav .search-input {
+                width: 280px;
+                height: 36px;
+                border-radius: 18px;
+                border: none;
+                padding: 0 15px;
+                outline: none;
+                font-size: 14px;
+            }
+
+            .top-nav .user-info {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: white;
+                cursor: pointer;
+            }
+
+                .top-nav .user-info img {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 60px);
+            margin-top: 60px;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: var(--main-blue);
+            color: white;
+            padding: 20px 0;
+            height: calc(100vh - 60px);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            box-shadow: 2px 0 12px rgba(10,35,67,0.15);
+        }
+
+            .sidebar .menu-title {
+                padding: 10px 25px;
+                font-size: 14px;
+                color: rgba(255,255,255,0.6);
+                margin-top: 15px;
+            }
+
+            .sidebar .menu-item {
+            padding: 16px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            font-size: 15px;
+        }
+
+            .sidebar .menu-item:hover, .sidebar .menu-item.active {
+                background: linear-gradient(90deg, rgba(64,158,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
+                border-left: 3px solid var(--light-blue);
+                transform: translateX(3px);
+            }
+
+
+
+        .content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 30px;
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: bold;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-bottom: 25px;
+        }
+
+        .grid-6 {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .grid-2-1 {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .grid-1-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .grid-1 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--card-radius);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(64,158,255,0.1);
+            transition: 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .card:hover {
+                box-shadow: 0 6px 24px rgba(10,35,67,0.12);
+            }
+
+        .data-card {
+            padding: 24px;
+            background: #ffffff;
+            border-radius: var(--card-radius);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .data-card:nth-child(1) {
+                background: linear-gradient(135deg, rgba(64,158,255,0.05) 0%, rgba(10,35,67,0.02) 100%);
+                border: 1px solid rgba(64,158,255,0.2);
+            }
+
+            .data-card:nth-child(2) {
+                background: linear-gradient(135deg, rgba(212,175,55,0.05) 0%, rgba(255,215,0,0.02) 100%);
+                border: 1px solid rgba(212,175,55,0.2);
+            }
+
+            .data-card:nth-child(3) {
+                background: linear-gradient(135deg, rgba(103,194,58,0.05) 0%, rgba(133,206,97,0.02) 100%);
+                border: 1px solid rgba(103,194,58,0.2);
+            }
+
+            .data-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 80px;
+                height: 80px;
+                opacity: 0.1;
+                border-radius: 0 0 0 var(--card-radius);
+            }
+
+            .data-card:nth-child(1)::before {
+                background: var(--light-blue);
+            }
+
+            .data-card:nth-child(2)::before {
+                background: var(--gold);
+            }
+
+            .data-card:nth-child(3)::before {
+                background: var(--green);
+            }
+
+        .data-label {
+            font-size: 17px;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .data-label i {
+                font-size: 16px;
+            }
+
+        .data-card:nth-child(1) .data-label i {
+            color: var(--light-blue);
+        }
+
+        .data-card:nth-child(2) .data-label i {
+            color: var(--gold);
+        }
+
+        .data-card:nth-child(3) .data-label i {
+            color: var(--green);
+        }
+
+        .data-num {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .data-card:nth-child(1) .data-num {
+            color: var(--main-blue);
+        }
+
+        .data-card:nth-child(2) .data-num {
+            color: var(--gold);
+        }
+
+        .data-card:nth-child(3) .data-num {
+            color: var(--green);
+        }
+
+        .mini-chart {
+            width: 100%;
+            height: 40px;
+            margin-top: 8px;
+        }
+
+        .chart {
+            width: 100% !important;
+            height: 380px !important;
+            background: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .chart-wide {
+            width: 100% !important;
+            height: 300px !important;
+        }
+
+        .mini-card {
+            text-align: center;
+            padding: 18px 10px;
+            background: white;
+            border-radius: var(--card-radius);
+            box-shadow: var(--card-shadow);
+        }
+
+            .mini-card .label {
+                font-size: 14px;
+                color: #666;
+                margin-bottom: 8px;
+            }
+
+            .mini-card .value {
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .mini-card:nth-child(1) .value {
+                color: var(--main-blue);
+            }
+
+            .mini-card:nth-child(2) .value {
+                color: var(--light-blue);
+            }
+
+            .mini-card:nth-child(3) .value {
+                color: var(--gold);
+            }
+
+            .mini-card:nth-child(4) .value {
+                color: var(--green);
+            }
+
+            .mini-card:nth-child(5) .value {
+                color: var(--red);
+            }
+
+            .mini-card:nth-child(6) .value {
+                color: var(--gray);
+            }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--main-blue);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e8f1ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .card-title i {
+                color: var(--light-blue);
+            }
+
+        .submenu {
+            background: rgba(0,0,0,0.2);
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+            .submenu.open {
+                max-height: 280px;
+            }
+
+            .submenu .menu-item {
+                padding-left: 48px;
+                font-size: 14px;
+            }
+
+        .menu-item .fa-angle-down {
+            transition: transform 0.3s;
+            margin-left: auto;
+        }
+
+            .menu-item .fa-angle-down.rotate {
+                transform: rotate(180deg);
+            }
+
+        .analysis-content {
+            padding: 20px;
+            font-size: 15px;
+            line-height: 1.9;
+            color: #333;
+        }
+
+            .analysis-content h4 {
+                color: var(--main-blue);
+                margin-bottom: 15px;
+                font-size: 18px;
+            }
+
+            .analysis-content p {
+                margin-bottom: 10px;
+                padding-left: 10px;
+                border-left: 3px solid var(--light-blue);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <div class="logo-box">
+            <img src="https://img.icons8.com/fluency/96/ffffff/university.png" alt="logo">
+            <div class="title-text">政治学与公共管理学院</div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="搜索项目/成果/经费/学科">
+            <div class="user-info">
+                <img src="https://img.icons8.com/fluency/96/ffffff/user-male-circle.png" alt="用户">
+                <div>
+                    <button onclick="switchRole('admin')" id="btnAdmin" style="padding:3px 8px;background:#409EFF;color:white;border:none;border-radius:4px;">管理员</button>
+                    <button onclick="switchRole('teacher')" id="btnTeacher" style="padding:3px 8px;background:#666;color:white;border:none;border-radius:4px;margin-left:5px;">教师</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="menu-item active" onclick="location.href='index.html'">科研总览</div>
+            <div class="menu-item" onclick="location.href='科研项目.html'">科研项目</div>
+            <div class="menu-item" onclick="location.href='科研经费.html'">科研经费</div>
+            <div class="menu-item" onclick="location.href='科研成果.html'">科研成果</div>
+            <div class="menu-item" onclick="goToSmartAnalysis()">智能分析</div>
+            <div class="menu-item" onclick="toggleSubmenu(this)">学科分析 ▼</div>
+            <div class="submenu">
+                <div class="menu-item" onclick="location.href='科学社会主义系.html'">• 科学社会主义系</div>
+                <div class="menu-item" onclick="location.href='政治学系.html'">• 政治学系</div>
+                <div class="menu-item" onclick="location.href='国际政治系.html'">• 国际政治系</div>
+                <div class="menu-item" onclick="location.href='公共管理系.html'">• 公共管理系</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="page-title">
+                <i class="fa fa-dashboard" style="color:#409EFF"></i> 科研总览大屏
+            </div>
+
+            <div class="grid-container">
+                <div class="data-card">
+                    <div class="data-label"><i class="fa fa-folder-open"></i> 在研项目总数</div>
+                    <div class="data-num">68</div>
+                    <div id="mini-chart1" class="mini-chart"></div>
+                </div>
+                <div class="data-card">
+                    <div class="data-label"><i class="fa fa-money"></i> 科研经费总额</div>
+                    <div class="data-num">1860 万</div>
+                    <div id="mini-chart2" class="mini-chart"></div>
+                </div>
+                <div class="data-card">
+                    <div class="data-label"><i class="fa fa-trophy"></i> 科研成果总数</div>
+                    <div class="data-num">325</div>
+                    <div id="mini-chart3" class="mini-chart"></div>
+                </div>
+            </div>
+
+            <div class="grid-6">
+                <div class="mini-card">
+                    <div class="label">国家级项目</div>
+                    <div class="value">22</div>
+                </div>
+                <div class="mini-card">
+                    <div class="label">省部级项目</div>
+                    <div class="value">31</div>
+                </div>
+                <div class="mini-card">
+                    <div class="label">横向项目</div>
+                    <div class="value">15</div>
+                </div>
+                <div class="mini-card">
+                    <div class="label">CSSCI论文</div>
+                    <div class="value">186</div>
+                </div>
+                <div class="mini-card">
+                    <div class="label">专著/教材</div>
+                    <div class="value">42</div>
+                </div>
+                <div class="mini-card">
+                    <div class="label">在研率</div>
+                    <div class="value">78%</div>
+                </div>
+            </div>
+
+            <div class="grid-2-1">
+                <div class="card">
+                    <div class="card-title"><i class="fa fa-line-chart"></i> 近五年项目/经费趋势</div>
+                    <div id="chart1" class="chart"></div>
+                </div>
+                <div class="card">
+                    <div class="card-title"><i class="fa fa-bar-chart"></i> 教师项目数量TOP10</div>
+                    <div id="rankChart" class="chart"></div>
+                </div>
+            </div>
+
+            <div class="grid-1">
+                <div class="card">
+                    <div class="card-title"><i class="fa fa-pie-chart"></i> 子学科科研实力分析</div>
+                    <div id="chart_bubble" class="chart" style="height: 380px;"></div>
+                    <div style="margin-top:20px;"></div>
+                    <div class="analysis-content">
+                        <h4>📊 学科表现解读</h4>
+                        <p><strong>公共管理系</strong>：成果数量与学术影响力双高，团队规模最大，建议加强跨学科合作。</p>
+                        <p><strong>政治学系</strong>：CSSCI论文产出突出，学术影响力仅次于公共管理系。</p>
+                        <p><strong>国际政治系</strong>：横向项目与成果数量偏低，可拓展智库合作渠道。</p>
+                        <p><strong>科学社会主义系</strong>：整体表现平稳，需进一步提升成果影响力与经费规模。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 网络图 + 桑基图 并排一行 -->
+            <div class="grid-1-2">
+                <div class="card">
+                    <div class="card-title"><i class="fa fa-users"></i> 科研合作网络</div>
+                    <div id="chart_network" class="chart"></div>
+                </div>
+                <div class="card">
+                    <div class="card-title"><i class="fa fa-exchange"></i> 经费来源桑基图</div>
+                    <div id="chart_sankey" class="chart"></div>
+                </div>
+            </div>
+
+            <div class="grid-1">
+                <div class="card">
+                    <div class="card-title"><i class="fa fa-cloud"></i> 学院科研热点词云</div>
+                    <div id="wordCloud" class="chart-wide"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentRole = localStorage.getItem('userRole') || 'admin';
+        function switchRole(role) {
+            currentRole = role;
+            localStorage.setItem('userRole', role);
+            document.getElementById('btnAdmin').style.background = role === 'admin' ? '#409EFF' : '#666';
+            document.getElementById('btnTeacher').style.background = role === 'teacher' ? '#409EFF' : '#666';
+        }
+
+        window.onload = function () {
+            document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
+            document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
+            setActiveMenu();
+        };
+
+        function toggleSubmenu(el) {
+            const submenu = el.nextElementSibling;
+            const arrow = el.querySelector('.fa-angle-down');
+            submenu.classList.toggle('open');
+            arrow.classList.toggle('rotate');
+        }
+
+        function setActiveMenu() {
+            const url = window.location.href;
+            const items = document.querySelectorAll('.sidebar .menu-item');
+            items.forEach(item => {
+                const attr = item.getAttribute('onclick');
+                if (!attr) return;
+                if (attr.includes('index.html') && url.includes('index.html')) item.classList.add('active');
+                if (attr.includes('科研项目.html') && url.includes('科研项目.html')) item.classList.add('active');
+                if (attr.includes('科研经费.html') && url.includes('科研经费.html')) item.classList.add('active');
+                if (attr.includes('科研成果.html') && url.includes('科研成果.html')) item.classList.add('active');
+                if (attr.includes('科学社会主义系.html') && url.includes('科学社会主义系.html')) { item.classList.add('active'); item.closest('.submenu').classList.add('open'); item.closest('.submenu').previousElementSibling.querySelector('.fa-angle-down').classList.add('rotate'); }
+                if (attr.includes('政治学系.html') && url.includes('政治学系.html')) { item.classList.add('active'); item.closest('.submenu').classList.add('open'); item.closest('.submenu').previousElementSibling.querySelector('.fa-angle-down').classList.add('rotate'); }
+                if (attr.includes('国际政治系.html') && url.includes('国际政治系.html')) { item.classList.add('active'); item.closest('.submenu').classList.add('open'); item.closest('.submenu').previousElementSibling.querySelector('.fa-angle-down').classList.add('rotate'); }
+                if (attr.includes('公共管理系.html') && url.includes('公共管理系.html')) { item.classList.add('active'); item.closest('.submenu').classList.add('open'); item.closest('.submenu').previousElementSibling.querySelector('.fa-angle-down').classList.add('rotate'); }
+                if (attr.includes('智能分析管理员版.html') && url.includes('智能分析管理员版.html')) item.classList.add('active');
+                if (attr.includes('智能分析教师版.html') && url.includes('智能分析教师版.html')) item.classList.add('active');
+            });
+        }
+
+        function goToSmartAnalysis() {
+            location.href = currentRole === 'admin' ? '智能分析管理员版.html' : '智能分析教师版.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(() => {
+                const mini1 = echarts.init(document.getElementById('mini-chart1'));
+                mini1.setOption({
+                    xAxis: { show: false }, yAxis: { show: false },
+                    series: [{ type: 'line', data: [32, 45, 56, 62, 68], lineStyle: { color: '#0A2343' }, areaStyle: { color: 'rgba(64,158,255,0.1)' }, smooth: true }]
+                });
+                const mini2 = echarts.init(document.getElementById('mini-chart2'));
+                mini2.setOption({
+                    xAxis: { show: false }, yAxis: { show: false },
+                    series: [{ type: 'line', data: [850, 1120, 1480, 1650, 1860], lineStyle: { color: '#D4AF37' }, areaStyle: { color: 'rgba(212,175,55,0.1)' }, smooth: true }]
+                });
+                const mini3 = echarts.init(document.getElementById('mini-chart3'));
+                mini3.setOption({
+                    xAxis: { show: false }, yAxis: { show: false },
+                    series: [{ type: 'line', data: [180, 220, 260, 290, 325], lineStyle: { color: '#67C23A' }, areaStyle: { color: 'rgba(103,194,58,0.1)' }, smooth: true }]
+                });
+
+                const chart1 = echarts.init(document.getElementById('chart1'));
+                chart1.setOption({
+                    tooltip: { trigger: 'axis' },
+                    legend: { data: ['经费(万)', '项目数'], bottom: 5, left: 'center' },
+                    xAxis: { data: ['2020', '2021', '2022', '2023', '2024'] },
+                    yAxis: [{ type: 'value' }, { type: 'value', position: 'right' }],
+                    series: [
+                        { name: '经费(万)', type: 'line', data: [850, 1120, 1480, 1650, 1860], itemStyle: { color: '#409EFF' } },
+                        { name: '项目数', type: 'line', yAxisIndex: 1, data: [32, 45, 56, 62, 68], itemStyle: { color: '#D4AF37' } }
+                    ]
+                });
+
+                const chartBubble = echarts.init(document.getElementById('chart_bubble'));
+                chartBubble.setOption({
+                    tooltip: { trigger: 'item', formatter: p => `<div style="font-size:14px"><b>${p.name}</b><br/>成果：${p.value[0]}<br/>影响力：${p.value[1]}<br/>团队：${p.value[2]}人<br/>经费：${p.value[3]}万</div>` },
+                    grid: { left: '15%', right: '10%', top: '10%', bottom: '15%' },
+                    xAxis: { name: '成果数量', type: 'value', min: 0, max: 100 },
+                    yAxis: { name: '学术影响力', type: 'value', min: 0, max: 100 },
+                    visualMap: { type: 'continuous', dimension: 3, min: 50, max: 300, inRange: { color: ['#e0f7ff', '#409EFF', '#0A2343'] }, left: '1%', bottom: '15%' },
+                    series: [{
+                        type: 'scatter', symbolSize: val => val[2] / 1.5 + 25,
+                        data: [
+                            { name: '公共管理', value: [80, 90, 45, 280] },
+                            { name: '政治学', value: [75, 88, 38, 240] },
+                            { name: '国际政治', value: [55, 80, 28, 150] },
+                            { name: '科学社会主义', value: [40, 75, 22, 90] }
+                        ]
+                    }]
+                });
+
+                const rankChart = echarts.init(document.getElementById('rankChart'));
+                rankChart.setOption({
+                    tooltip: { trigger: 'axis' },
+                    grid: { left: '18%', right: '5%', top: '5%', bottom: '5%' },
+                    xAxis: { type: 'value', max: 12 },
+                    yAxis: { type: 'category', data: ['马教授', '孙教授', '吴教授', '周教授', '赵教授', '陈教授', '刘教授', '张教授', '李教授', '王教授'].reverse() },
+                    series: [{
+                        type: 'bar', data: [2, 3, 4, 5, 6, 7, 8, 9, 10, 12].reverse(),
+                        itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: '#409EFF' }, { offset: 1, color: '#0A2343' }]) }
+                    }]
+                });
+
+                // 网络图 100% 修复为原版可显示样式
+                const chartNetwork = echarts.init(document.getElementById('chart_network'));
+                chartNetwork.setOption({
+                    backgroundColor: '#ffffff',
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: function (params) {
+                            const projectNums = {
+                                '公管学院': '总合作项目数：160 项',
+                                '行政管理系': '合作项目数：46 项',
+                                '公共政策系': '合作项目数：40 项',
+                                '政治学系': '合作项目数：34 项',
+                                '省政府研究室': '合作项目数：18 项',
+                                '民政部智库': '合作项目数：15 项',
+                                '山东大学智库': '合作项目数：30 项',
+                                '兄弟高校公管院': '合作项目数：32 项'
+                            };
+                            return `<b>${params.name}</b><br/>${projectNums[params.name] || '合作项目数：0 项'}`;
+                        }
+                    },
+                    series: [{
+                        type: 'graph',
+                        layout: 'none',
+                        symbolSize: 50,
+                        roam: true,
+                        label: {
+                            show: true,
+                            fontSize: 11,
+                            color: 'white',
+                            fontWeight: 'bold',
+                            position: 'inside',
+                            formatter: function (params) {
+                                if (params.name.length > 4) {
+                                    return params.name.substring(0, 4) + '\n' + params.name.substring(4);
+                                }
+                                return params.name;
+                            }
+                        },
+                        data: [
+                            { name: '公管学院', x: 200, y: 200, itemStyle: { color: '#0A2343' } },
+                            { name: '行政管理系', x: 100, y: 100, itemStyle: { color: '#409EFF' } },
+                            { name: '公共政策系', x: 100, y: 300, itemStyle: { color: '#409EFF' } },
+                            { name: '政治学系', x: 300, y: 100, itemStyle: { color: '#409EFF' } },
+                            { name: '省政府研究室', x: 50, y: 50, itemStyle: { color: '#D4AF37' } },
+                            { name: '民政部智库', x: 50, y: 350, itemStyle: { color: '#D4AF37' } },
+                            { name: '山东大学智库', x: 350, y: 250, itemStyle: { color: '#67C23A' } },
+                            { name: '兄弟高校公管院', x: 350, y: 150, itemStyle: { color: '#67C23A' } }
+                        ],
+                        links: [
+                            { source: '公管学院', target: '行政管理系', value: 28 },
+                            { source: '公管学院', target: '公共政策系', value: 25 },
+                            { source: '公管学院', target: '政治学系', value: 22 },
+                            { source: '行政管理系', target: '省政府研究室', value: 18 },
+                            { source: '公共政策系', target: '民政部智库', value: 15 },
+                            { source: '公管学院', target: '山东大学智库', value: 30 },
+                            { source: '公管学院', target: '兄弟高校公管院', value: 20 },
+                            { source: '政治学系', target: '兄弟高校公管院', value: 12 }
+                        ],
+                        lineStyle: {
+                            color: 'rgba(10,35,67,0.3)',
+                            width: 2,
+                            curveness: 0.1
+                        }
+                    }]
+                });
+
+                // 桑基图
+                const chartSankey = echarts.init(document.getElementById('chart_sankey'));
+                chartSankey.setOption({
+                    tooltip: { trigger: 'item', formatter: '{b}：{c} 万元' },
+                    series: [{
+                        type: 'sankey',
+                        nodeWidth: 25,
+                        nodeGap: 8,
+                        data: [
+                            { name: '总经费' }, { name: '国家级社科' }, { name: '省部级社科' }, { name: '政府委托' }, { name: '横向合作' },
+                            { name: '公共管理' }, { name: '政治学' }, { name: '国际政治' }, { name: '科学社会主义' }
+                        ],
+                        links: [
+                            { source: '总经费', target: '国家级社科', value: 850 },
+                            { source: '总经费', target: '省部级社科', value: 520 },
+                            { source: '总经费', target: '政府委托', value: 380 },
+                            { source: '总经费', target: '横向合作', value: 110 },
+                            { source: '国家级社科', target: '公共管理', value: 420 },
+                            { source: '省部级社科', target: '政治学', value: 280 },
+                            { source: '政府委托', target: '公共管理', value: 350 },
+                            { source: '横向合作', target: '国际政治', value: 80 },
+                            { source: '横向合作', target: '科学社会主义', value: 30 }
+                        ]
+                    }]
+                });
+
+                const wordCloud = echarts.init(document.getElementById('wordCloud'));
+                wordCloud.setOption({
+                    series: [{
+                        type: 'wordCloud',
+                        gridSize: 10, sizeRange: [12, 55], rotationRange: [-60, 60],
+                        shape: 'circle', left: 0, top: 0, width: '100%', height: '100%',
+                        textStyle: {
+                            color: function () {
+                                const colors = ['#409EFF', '#D4AF37', '#67C23A', '#13C2C2', '#F56C6C', '#9254DE', '#FF7875'];
+                                return colors[Math.floor(Math.random() * colors.length)];
+                            }
+                        },
+                        data: [
+                            { name: '数字政府', value: 120 }, { name: '公共政策', value: 110 },
+                            { name: '社区治理', value: 100 }, { name: '应急管理', value: 95 },
+                            { name: '乡村振兴', value: 90 }, { name: '营商环境', value: 85 },
+                            { name: '大数据治理', value: 80 }, { name: '公共服务', value: 75 },
+                            { name: '政府改革', value: 70 }, { name: '基层治理', value: 65 },
+                            { name: '治理现代化', value: 60 }, { name: '政策评估', value: 55 },
+                            { name: '社会治理', value: 50 }, { name: '行政体制改革', value: 45 },
+                            { name: '数字治理', value: 40 }, { name: '公共管理创新', value: 35 },
+                            { name: '跨部门协同', value: 30 }, { name: '智慧治理', value: 28 },
+                            { name: '社会政策', value: 25 }, { name: '地方治理', value: 22 },
+                            { name: '政府治理能力', value: 20 }, { name: '政策执行', value: 18 },
+                            { name: '公共行政', value: 15 }, { name: '行政改革', value: 12 },
+                            { name: '基层公共管理', value: 10 }, { name: '政府创新', value: 9 },
+                            { name: '公共服务供给', value: 8 }, { name: '治理工具', value: 7 },
+                            { name: '数字经济治理', value: 6 }, { name: '政府数字化转型', value: 5 },
+                            { name: '马克思主义', value: 60 }, { name: '中国特色社会主义', value: 110 }, { name: '国家治理', value: 100 },
+                            { name: '政党治理', value: 95 }, { name: '中国式现代化', value: 90 }, { name: '共同富裕', value: 85 }
+                        ]
+                    }]
+                });
+
+                window.addEventListener('resize', () => {
+                    chart1.resize(); chartBubble.resize(); chartNetwork.resize(); chartSankey.resize();
+                    mini1.resize(); mini2.resize(); mini3.resize(); rankChart.resize(); wordCloud.resize();
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>

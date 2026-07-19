@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>政治学与公共管理学院 - 科研系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f5f7fa 100%);
+            color: #333;
+        }
+
+        :root {
+            --main-blue: #0A2343;
+            --light-blue: #409EFF;
+            --gold: #D4AF37;
+            --green: #67C23A;
+            --red: #F56C6C;
+            --gray: #909399;
+            --card-radius: 16px;
+            --card-shadow: 0 4px 20px rgba(10, 35, 67, 0.08);
+        }
+
+        /* 修改后的顶部导航栏：参考科研成果页面的逻辑 */
+        .top-nav {
+            width: 100%;
+            height: 60px;
+            background: var(--main-blue);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+            .top-nav .logo-box {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+                .top-nav .logo-box img {
+                    height: 40px;
+                    width: auto;
+                }
+
+                .top-nav .logo-box .title-text {
+                    color: white;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+
+            /* 搜索框和用户信息区域：放在右侧，不再占中间 */
+            .top-nav .search-box {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .top-nav .search-input {
+                width: 280px; /* 缩小到只占右半部分 */
+                height: 36px;
+                border-radius: 18px;
+                border: none;
+                padding: 0 15px;
+                outline: none;
+                font-size: 14px;
+            }
+
+            .top-nav .user-info {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: white;
+                cursor: pointer;
+            }
+
+                .top-nav .user-info img {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 60px);
+            margin-top: 60px;
+        }
+        .search-result-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.search-result-item:hover {
+    background: #f5f9ff;
+}
+.search-result-item .type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #fff;
+    margin-right: 8px;
+}
+.badge-project { background: #409EFF; }
+.badge-achievement { background: #67C23A; }
+.badge-teacher { background: #E6A23C; }
+.search-result-item .title {
+    font-weight: 500;
+    color: #333;
+}
+.search-result-item .sub {
+    font-size: 13px;
+    color: #888;
+    margin-left: 10px;
+}
+
+        .sidebar {
+            width: 240px;
+            background: var(--main-blue);
+            color: white;
+            padding: 20px 0;
+            height: calc(100vh - 60px);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            box-shadow: 2px 0 12px rgba(10,35,67,0.15);
+        }
+
+            .sidebar .menu-title {
+                padding: 10px 25px;
+                font-size: 14px;
+                color: rgba(255,255,255,0.6);
+                margin-top: 15px;
+            }
+
+            .sidebar .menu-item {
+                padding: 14px 25px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                transition: 0.3s;
+                border-left: 3px solid transparent;
+            }
+
+                .sidebar .menu-item:hover {
+                    background: rgba(255,255,255,0.15);
+                    border-left: 3px solid var(--gold);
+                }
+
+                .sidebar .menu-item.active {
+                    background: rgba(255,255,255,0.15);
+                    border-left: 3px solid var(--gold);
+                }
+
+        .content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #409EFF 0%, #0A2343 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--card-radius);
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 15px;
+            border: 1px solid rgba(64,158,255,0.1);
+            transition: 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .card:hover {
+                box-shadow: 0 6px 24px rgba(10,35,67,0.12);
+            }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--main-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f1ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .card-title i {
+                color: var(--light-blue);
+            }
+
+        .chart {
+            width: 100% !important;
+            height: 350px !important;
+            background: #fff;
+        }
+
+        /* 让饼图卡片更宽，不再等宽 */
+        .grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 15px;
+        }
+
+        .grid-three {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 12px 18px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(64,158,255,0.1);
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--main-blue);
+        }
+
+        .filter-select {
+            height: 38px;
+            padding: 0 15px;
+            border: 1px solid #dcdfe6;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            min-width: 150px;
+        }
+
+        .btn {
+            height: 38px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 8px;
+            background: var(--light-blue);
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .btn:hover {
+                opacity: 0.9;
+            }
+
+        .stat-card {
+            background: linear-gradient(135deg, #eaf4ff, #ffffff);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(64,158,255,0.1);
+        }
+
+            .stat-card .icon {
+                font-size: 22px;
+                color: var(--light-blue);
+                margin-bottom: 5px;
+            }
+
+            .stat-card .num {
+                font-size: 28px;
+                font-weight: bold;
+                color: var(--light-blue);
+                margin: 8px 0;
+            }
+
+            .stat-card .label {
+                color: var(--gray);
+                font-size: 14px;
+            }
+
+        .table-container {
+            height: 280px;
+            overflow-y: auto;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .result-table th, .result-table td {
+                padding: 10px;
+                border: 1px solid #eee;
+                text-align: center;
+                font-size: 14px;
+                white-space: nowrap;
+            }
+
+            .result-table th {
+                background: #f5f7fa;
+                color: var(--main-blue);
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+
+        .submenu {
+            background: rgba(0,0,0,0.2);
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+            .submenu.open {
+                max-height: 280px;
+            }
+
+            .submenu .menu-item {
+                padding-left: 48px;
+                font-size: 14px;
+            }
+
+        .menu-item .fa-angle-down {
+            transition: transform 0.3s;
+            margin-left: auto;
+        }
+
+            .menu-item .fa-angle-down.rotate {
+                transform: rotate(180deg);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+    <div class="logo-box"><img src="https://img.icons8.com/fluency/96/ffffff/university.png" alt="logo"><div class="title-text">政治学与公共管理学院</div></div>
+    <div class="search-box" style="position: relative;">
+    <input type="text" class="search-input" id="searchInput" placeholder="搜索我的分析/项目/成果">
+    <div id="searchResults" style="position:absolute; top:45px; left:0; width:100%; background:white; border:1px solid #ddd; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.15); max-height:400px; overflow-y:auto; display:none; z-index:999;"></div>
+    <div class="user-info">
+        <img src="https://img.icons8.com/fluency/96/ffffff/user-male-circle.png" alt="avatar">
+        <div><button onclick="switchRole('admin')" id="btnAdmin" style="padding:3px 8px;background:#409EFF;color:white;border:none;border-radius:4px;">管理员</button>
+        <button onclick="switchRole('teacher')" id="btnTeacher" style="padding:3px 8px;background:#666;color:white;border:none;border-radius:4px;margin-left:5px;">教师</button></div>
+    </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <div class="menu-item" onclick="location.href='/'"><i class="fa fa-dashboard"></i> 科研总览</div>
+        <div class="menu-item" onclick="location.href='/project/'"><i class="fa fa-folder-open"></i> 科研项目</div>
+        <div class="menu-item" onclick="location.href='/fund/'"><i class="fa fa-money"></i> 科研经费</div>
+        <div class="menu-item" onclick="location.href='/achievement/'"><i class="fa fa-trophy"></i> 科研成果</div>
+        <div class="menu-item" onclick="goToSmartAnalysis()"><i class="fa fa-lightbulb-o"></i> 智能分析</div>
+        <div class="menu-item active" onclick="toggleSubmenu(this)"><i class="fa fa-book"></i> 学科分析 <i class="fa fa-angle-down rotate"></i></div>
+        <div class="submenu open">
+            <div class="menu-item active" onclick="location.href='/dept/science/'"><i class="fa fa-angle-right"></i> 科学社会主义系</div>
+            <div class="menu-item" onclick="location.href='/dept/political/'"><i class="fa fa-angle-right"></i> 政治学系</div>
+            <div class="menu-item" onclick="location.href='/dept/international/'"><i class="fa fa-angle-right"></i> 国际政治系</div>
+            <div class="menu-item" onclick="location.href='/dept/public/'"><i class="fa fa-angle-right"></i> 公共管理系</div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="page-title"><i class="fa fa-university"></i> 科学社会主义系 - 学科分析</div>
+
+        <div class="grid-three">
+            <div class="stat-card"><div class="icon"><i class="fa fa-users"></i></div><div class="label">教师数</div><div class="num" id="teacherCount">--</div></div>
+            <div class="stat-card"><div class="icon"><i class="fa fa-folder-open"></i></div><div class="label">项目数</div><div class="num" id="projectCount">--</div></div>
+            <div class="stat-card"><div class="icon"><i class="fa fa-money"></i></div><div class="label">经费总额（万元）</div><div class="num" id="fundTotal">--</div></div>
+            <div class="stat-card"><div class="icon"><i class="fa fa-file-text"></i></div><div class="label">成果数</div><div class="num" id="achievementCount">--</div></div>
+            <div class="stat-card"><div class="icon"><i class="fa fa-flag"></i></div><div class="label">国家级项目占比</div><div class="num" id="nationalRatio">--</div></div>
+            <div class="stat-card"><div class="icon"><i class="fa fa-line-chart"></i></div><div class="label">青年教师产出率</div><div class="num" id="youngOutput">--</div></div>
+        </div>
+
+        <div class="filter-bar">
+            <div class="filter-item">年份：<select class="filter-select" id="year">
+                <option value="all">全部年份</option>
+                <option>2021</option><option>2022</option><option>2023</option><option>2024</option><option>2025</option>
+            </select></div>
+            <button class="btn" onclick="refreshCharts()"><i class="fa fa-search"></i> 查询</button>
+        </div>
+
+        <div class="grid">
+            <div class="card"><div class="card-title"><i class="fa fa-pie-chart"></i> 成果类型占比</div><div id="pie-type" class="chart"></div></div>
+            <div class="card"><div class="card-title"><i class="fa fa-bar-chart"></i> 课题级别分布</div><div id="bar-level" class="chart"></div></div>
+        </div>
+
+        <div class="card"><div class="card-title"><i class="fa fa-cloud"></i> 研究方向词云</div><div id="wordcloud" class="chart"></div></div>
+        <div class="card"><div class="card-title"><i class="fa fa-line-chart"></i> 年度成果趋势（2021-2025）</div><div id="line-trend" class="chart"></div></div>
+        <div class="card"><div class="card-title"><i class="fa fa-bubble-chart"></i> 教师绩效气泡图</div><div id="bubble-teacher" class="chart"></div></div>
+
+        <div class="card"><div class="card-title"><i class="fa fa-table"></i> 重点理论成果一览</div>
+            <div class="table-container">
+                <table class="result-table">
+                    <thead><tr><th>序号</th><th>成果名称</th><th>负责人</th><th>类型</th><th>年份</th></tr></thead>
+                    <tbody id="achievementsTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom:0;"><div class="card-title"><i class="fa fa-tasks"></i> 国家级项目进度跟踪</div>
+            <div class="table-container">
+                <table class="result-table">
+                    <thead><tr><th>项目名称</th><th>负责人</th><th>级别</th><th>进度</th><th>状态</th></tr></thead>
+                    <tbody id="projectsTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentRole = localStorage.getItem('userRole') || 'admin';
+    function switchRole(role) {
+        currentRole = role;
+        localStorage.setItem('userRole', role);
+        document.getElementById('btnAdmin').style.background = role === 'admin' ? '#409EFF' : '#666';
+        document.getElementById('btnTeacher').style.background = role === 'teacher' ? '#409EFF' : '#666';
+        window.location.href = role === 'admin' ? '/analysis/admin/' : '/analysis/teacher/';
+    }
+    function goToSmartAnalysis() {
+        window.location.href = currentRole === 'admin' ? '/analysis/admin/' : '/analysis/teacher/';
+    }
+    function toggleSubmenu(el) {
+        const sub = el.nextElementSibling;
+        const arrow = el.querySelector('.fa-angle-down');
+        sub.classList.toggle('open');
+        arrow.classList.toggle('rotate');
+    }
+
+    let pieType, barLevel, wordcloud, lineTrend, bubbleTeacher;
+
+    async function loadData() {
+        const year = document.getElementById('year').value;
+        const url = `/api/dept/science?year=${year}`;
+        try {
+            const res = await fetch(url);
+            const data = await res.json();
+
+            // 顶部卡片
+            document.getElementById('teacherCount').innerText = data.stat_cards.teacher_count;
+            document.getElementById('projectCount').innerText = data.stat_cards.project_count;
+            document.getElementById('fundTotal').innerText = data.stat_cards.total_fund;
+            document.getElementById('achievementCount').innerText = data.stat_cards.achievement_count;
+            document.getElementById('nationalRatio').innerText = data.stat_cards.national_ratio + '%';
+            document.getElementById('youngOutput').innerText = '+' + data.stat_cards.young_output_rate + '%';
+
+            // 饼图
+            pieType.setOption({
+                tooltip: { trigger: 'item' },
+                legend: { bottom: 0, left: 'center', data: data.pie_data.map(d => d.name) },
+                series: [{ type: 'pie', radius: ['40%','70%'], label: { formatter: '{b}' }, data: data.pie_data, color: ['#409EFF','#D4AF37','#67C23A','#13C2C2','#F56C6C'] }]
+            });
+
+            // 柱状图
+            barLevel.setOption({
+                tooltip: { trigger: 'axis' },
+                grid: { left: '10%', right: '10%', bottom: '15%' },
+                xAxis: { type: 'category', data: data.bar_categories },
+                yAxis: { type: 'value' },
+                series: [{ type: 'bar', data: data.bar_values.map((val,i) => ({ value: val, itemStyle: { color: ['#409EFF','#D4AF37','#67C23A'][i] } })) }]
+            });
+
+            // 词云
+            wordcloud.setOption({
+                series: [{ type: 'wordCloud', shape: 'circle', gridSize: 10, sizeRange: [15,45], rotationRange: [-20,20], left:0, top:0, width:'100%', height:'100%', data: data.wordcloud_data, textStyle: { color: () => ['#409EFF','#D4AF37','#67C23A','#13C2C2','#F56C6C','#9254DE','#FF7875'][Math.floor(Math.random()*7)] } }]
+            });
+
+            // 折线图
+            lineTrend.clear();
+            lineTrend.setOption({
+                tooltip: { trigger: 'axis' },
+                legend: { data: data.trend_series.map(s => s.name), top: 0 },
+                xAxis: { type: 'category', data: data.trend_years },
+                yAxis: { type: 'value', name: '成果数量', min: 0 },
+                series: data.trend_series.map(s => ({ name: s.name, type: 'line', data: s.data, smooth: true, lineStyle: { width: 2 }, symbol: 'circle', symbolSize: 6 }))
+            });
+
+            // 气泡图
+            bubbleTeacher.setOption({
+                tooltip: { trigger: 'item', formatter: p => `${p.data.name}<br/>科研：${p.data.value[0]}<br/>教学：${p.data.value[1]}<br/>综合得分：${p.data.value[2]}` },
+                grid: { left: '10%', right: '10%', top: '10%', bottom: '10%' },
+                xAxis: { name: '科研能力', type: 'value', min: 50, max: 100 },
+                yAxis: { name: '教学质量', type: 'value', min: 50, max: 100 },
+                series: [{ type: 'scatter', symbolSize: val => val[2]/1.8, data: data.bubble_data.map((item,idx) => ({ name: item.name, value: item.value, itemStyle: { color: ['#409EFF','#D4AF37','#67C23A','#13C2C2','#F56C6C','#9254DE','#FF7875'][idx%7] } })) }]
+            });
+
+            // 重点理论成果表格
+            const achievementsBody = document.getElementById('achievementsTableBody');
+            if (achievementsBody) {
+                achievementsBody.innerHTML = '';
+                data.achievements_table.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${row.序号}</td><td>${row.成果名称}</td><td>${row.负责人}</td><td>${row.类型}</td><td>${row.年份}</td>`;
+                    achievementsBody.appendChild(tr);
+                });
+            }
+
+            // 国家级项目进度表格
+            const projectsBody = document.getElementById('projectsTableBody');
+            if (projectsBody) {
+                projectsBody.innerHTML = '';
+                data.projects_table.forEach(proj => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${proj.项目名称}</td><td>${proj.负责人}</td><td>${proj.级别}</td><td>${proj.进度}</td><td>${proj.状态}</td>`;
+                    projectsBody.appendChild(tr);
+                });
+            }
+
+        } catch (err) {
+            console.error('加载科学社会主义系数据失败', err);
+        }
+    }
+
+    function refreshCharts() { loadData(); }
+
+    window.onload = function() {
+        document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
+        document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
+        pieType = echarts.init(document.getElementById('pie-type'));
+        barLevel = echarts.init(document.getElementById('bar-level'));
+        wordcloud = echarts.init(document.getElementById('wordcloud'));
+        lineTrend = echarts.init(document.getElementById('line-trend'));
+        bubbleTeacher = echarts.init(document.getElementById('bubble-teacher'));
+        loadData();
+    };
+</script>
+<script src="/static/js/search.js"></script>
+</body>
+</html>

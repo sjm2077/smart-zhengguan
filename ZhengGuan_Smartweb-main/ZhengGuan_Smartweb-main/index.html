@@ -1,0 +1,1317 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>智慧政管数据系统</title>
+<!--大屏-->
+<link type="text/css" href="css/public.css" rel="stylesheet">
+<link type="text/css" href="css/icon.css" rel="stylesheet">
+<link type="text/css" href="css/index.css" rel="stylesheet">
+<link type="text/css" href="css/test.css" rel="stylesheet">
+<script type="text/javascript">
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 768 * 100 + 'px';
+</script>
+<script src="https://registry.npmmirror.com/jquery/3.7.1/files/dist/jquery.min.js"></script>
+<script src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
+<script src="js/marked.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script>
+    console.log('ECharts Loaded:', echarts.version); // 确认 ECharts 加载成功
+</script>
+<script src="https://registry.npmmirror.com/echarts-gl/2/files/dist/echarts-gl.min.js"></script>
+<script>
+    console.log('ECharts GL Loaded:', echarts.gl); // 检查 ECharts GL 加载
+</script>
+<script src="https://registry.npmmirror.com/echarts/4.9.0/files/map/js/world.js"></script>
+<script>
+    console.log('World Map Loaded'); // 检查 World.js 是否加载成功
+</script>
+
+</head>
+
+<body>
+	<div class="bg">
+		<div class="title">智慧政管全景平台</div>
+		<div class="leftMain">
+			<div class="leftMain_top">
+				<div class="leftMain_topIn">
+					<ul>
+						<li>
+							<div class="liIn">
+								<h3>近六年科研论文总数</h3>
+								<div style="display: flex; justify-content: space-between; align-items: center;">
+									<p class="shu"><span class="shu2">268</span><i>篇</i></p>
+									<span id="paperchart" style="width: 70%; height:50%;"></span>
+								</div>
+								<script>
+									// 定义年份和数量
+									const data = [
+										{ year: 2019, count: 34 },
+										{ year: 2020, count: 23 },
+										{ year: 2021, count: 42 },
+										{ year: 2022, count: 48 },
+										{ year: 2023, count: 66 },
+										{ year: 2024, count: 55 },
+									];
+
+									// 提取年份和论文数量
+									const years = data.map(item => item.year);
+									const counts = data.map(item => item.count);
+
+									// 基于准备好的 DOM，初始化 echarts 实例
+									var chart = echarts.init(document.getElementById('paperchart'));
+
+									// 指定图表的配置项和数据
+									var option = {
+										tooltip: {
+											trigger: 'item',
+											backgroundColor: 'rgba(24,141,240,0.4)', // 蓝色半透明背景
+											textStyle: {
+												color: '#ffffff', // 白色字体
+												fontWeight: 'bold'
+											},
+											formatter: function (params) {
+												return `
+												<div style="padding: 8px; line-height: 1.5;">
+													<span>年份: ${params.name}</span><br>
+													<span>论文数量: ${params.value} 篇</span>
+												</div>
+											`;
+											}
+										},
+										xAxis: {
+											type: 'category',
+											data: years,
+											show: false  // 隐藏横轴
+										},
+										yAxis: {
+											type: 'value',
+											show: false  // 隐藏纵轴
+										},
+										grid: {
+											bottom: '1%',  // 去掉底部空隙，紧贴容器底部
+											top: '5%'
+										},
+										series: [{
+											name: '年度发表论文数量',
+											type: 'bar',  // 'line' for line chart
+											data: counts,
+											itemStyle: {
+												color: '#57A8D9'  // Bar color
+											},
+											emphasis: {
+												itemStyle: {
+													color: '#F66A64'  // Hover color
+												}
+											},
+											barWidth: '50%',  // Bar width
+										}]
+									};
+
+									// 使用刚指定的配置项和数据显示图表
+									chart.setOption(option);
+								</script>
+								<span class="border_bg_leftTop"></span>
+								<span class="border_bg_rightTop"></span>
+								<span class="border_bg_leftBottom"></span>
+								<span class="border_bg_rightBottom"></span>
+							</div>
+						</li>
+						<li>
+							<div class="liIn">
+								<h3 style="margin-right:-0.2rem">近六年科研项目总数</h3>
+								<div style="display: flex; justify-content: space-between; align-items: center;">
+
+									<p class="shu"><span class="shu2">96</span><i>项</i></p>
+									<span id="projectchart" style="width: 70%; height:50%;"></span>
+								</div>
+
+
+								<script>
+									const data2 = [
+										['年份', '科研项目'],
+										[2019, 12],
+										[2020, 15],
+										[2021, 14],
+										[2022, 18],
+										[2023, 17],
+										[2024, 20]
+									];
+
+									// 提取数据
+									const years2 = data2.slice(1).map(item => item[0]); // 年份
+									const counts2 = data2.slice(1).map(item => item[1]); // 科研项目数据
+
+									// 初始化 ECharts 实例
+									var chart2 = echarts.init(document.getElementById('projectchart'));
+
+									// 配置项
+									var option2 = {
+										tooltip: {
+											trigger: 'axis',
+											backgroundColor: 'rgba(24,141,240,0.4)', // 蓝色半透明背景
+											textStyle: {
+												color: '#ffffff', // 白色字体
+												fontWeight: 'bold'
+											},
+											axisPointer: {
+												type: 'line',
+												lineStyle: {
+													color: '#57A8D9'
+												}
+											},
+											formatter: function (params) {
+												return `
+							<div style="padding: 8px; line-height: 1.5;">
+								<span>年份: ${params[0].name}</span><br>
+								<span>科研项目: ${params[0].value}</span>
+							</div>
+						`;
+											}
+										},
+										xAxis: {
+											type: 'category',
+											data: years2,
+											axisLine: {
+												lineStyle: {
+													color: '#ccc'
+												}
+											},
+											show: false
+										},
+										yAxis: {
+											type: 'value',
+											axisLine: {
+												lineStyle: {
+													color: '#ccc'
+												}
+											},
+											show: false
+										},
+										grid: {
+											bottom: '0%',
+											top: '20%'
+										},
+										series: [{
+											name: '科研项目',
+											type: 'line',
+											data: counts2,
+											smooth: true,
+											symbol: 'circle',
+											symbolSize: 5,
+											itemStyle: {
+												color: '#57A8D9', // 线条和点的颜色
+												borderColor: '#ffffff',
+												borderWidth: 2
+											},
+											lineStyle: {
+												width: 3
+											},
+											emphasis: {
+												itemStyle: {
+													color: '#F66A64', // 悬停颜色
+													borderColor: '#ffffff',
+													borderWidth: 2
+												}
+											}
+										}]
+									};
+
+									// 渲染图表
+									chart2.setOption(option2);
+
+								</script>
+								<span class="border_bg_leftTop"></span>
+								<span class="border_bg_rightTop"></span>
+								<span class="border_bg_leftBottom"></span>
+								<span class="border_bg_rightBottom"></span>
+							</div>
+						</li>
+						<li>
+							<div class="liIn">
+								<h3>近六年科研经费合计</h3>
+								<div style="display: flex; justify-content: space-between; align-items: center;">
+									<p class="shu"><span class="shu3">3010</span><i>万元</i></p>
+									<span id="feetchart" style="width: 60%; height:50%;"></span>
+								</div>
+								<script>
+									// 定义年份和数量
+									const data3 = [
+										{ year: 2019, count: 46 },
+										{ year: 2020, count: 48 },
+										{ year: 2021, count: 51 },
+										{ year: 2022, count: 49 },
+										{ year: 2023, count: 52 },
+										{ year: 2024, count: 55 },
+									];
+
+									// 提取年份和论文数量
+									const years3 = data3.map(item => item.year);
+									const counts3 = data3.map(item => item.count);
+
+									// 基于准备好的 DOM，初始化 echarts 实例
+									var chart3 = echarts.init(document.getElementById('feetchart'));
+
+									// 指定图表的配置项和数据显示
+									var option3 = {
+										tooltip: {
+											trigger: 'item',
+											backgroundColor: 'rgba(24,141,240,0.4)', // 蓝色半透明背景
+											textStyle: {
+												color: '#ffffff', // 白色字体
+												fontWeight: 'bold'
+											},
+											formatter: function (params) {
+												return `
+							<div style="padding: 8px; line-height: 1.5;">
+								<span>年份: ${params.name}</span><br>
+								<span>科研经费: ${params.value}0万元</span>
+							</div>
+						`;
+											}
+										},
+										xAxis: {
+											type: 'category',
+											data: years3,
+											show: false  // 隐藏横轴
+										},
+										yAxis: {
+											type: 'value',
+											show: false  // 隐藏纵轴
+										},
+										grid: {
+											bottom: '1%',  // 去掉底部空隙，紧贴容器底部
+											top: '5%'
+										},
+										series: [{
+											name: '年度科研经费',
+											type: 'bar',
+											data: counts3,
+											itemStyle: {
+												color: '#57A8D9'  // 柱子颜色
+											},
+											emphasis: {
+												itemStyle: {
+													color: '#F66A64'  // 悬停颜色
+												}
+											},
+											barWidth: '50%',  // 柱状宽度
+										}]
+									};
+
+									// 使用刚指定的配置项和数据显示图表
+									chart3.setOption(option3);
+								</script>
+								<span class="border_bg_leftTop"></span>
+								<span class="border_bg_rightTop"></span>
+								<span class="border_bg_leftBottom"></span>
+								<span class="border_bg_rightBottom"></span>
+							</div>
+						</li>
+						<li>
+							<div class="liIn">
+								<h3>2024年教师总人数</h3>
+								<div style="display: flex; justify-content: space-between; align-items: center;">
+									<p class="shu"><span class="shu4">103</span><i>人</i></p>
+									<span id="teachertchart" style="width: 70%; height:50%;"></span>
+								</div>
+								<script>
+									const data4 = [
+										['年份', '教师人数'],
+										[2019, 94],
+										[2020, 95],
+										[2021, 97],
+										[2022, 105],
+										[2023, 102],
+										[2024, 103]
+									];
+
+									// 提取数据
+									const years4 = data4.slice(1).map(item => item[0]); // 年份
+									const counts4 = data4.slice(1).map(item => item[1]); // 数据
+
+									// 初始化 ECharts 实例
+									var chart4 = echarts.init(document.getElementById('teachertchart'));
+
+									// 配置项
+									var option4 = {
+										tooltip: {
+											trigger: 'axis',
+											backgroundColor: 'rgba(24,141,240,0.4)', // 蓝色半透明背景
+											textStyle: {
+												color: '#ffffff', // 白色字体
+												fontWeight: 'bold'
+											},
+											axisPointer: {
+												type: 'line',
+												lineStyle: {
+													color: '#57A8D9'
+												}
+											},
+											formatter: function (params) {
+												return `
+							<div style="padding: 8px; line-height: 1.5;">
+								<span>年份: ${params[0].name}</span><br>
+								<span>教师人数: ${params[0].value}</span>
+							</div>
+						`;
+											}
+										},
+										xAxis: {
+											type: 'category',
+											data: years4,
+											axisLine: {
+												lineStyle: {
+													color: '#ccc'
+												}
+											},
+											show: false
+										},
+										yAxis: {
+											type: 'value',
+											axisLine: {
+												lineStyle: {
+													color: '#ccc'
+												}
+											},
+											show: false
+										},
+										grid: {
+											bottom: '0%',
+											top: '30%'
+										},
+										series: [{
+											name: '教师人数',
+											type: 'line',
+											data: counts4,
+											smooth: true,
+											symbol: 'circle',
+											symbolSize: 5,
+											itemStyle: {
+												color: '#57A8D9', // 线条和点的颜色
+												borderColor: '#ffffff',
+												borderWidth: 2
+											},
+											lineStyle: {
+												width: 3
+											},
+											emphasis: {
+												itemStyle: {
+													color: '#F66A64', // 悬停颜色
+													borderColor: '#ffffff',
+													borderWidth: 2
+												}
+											}
+										}]
+									};
+
+									// 渲染图表
+									chart4.setOption(option4);
+
+								</script>
+								<span class="border_bg_leftTop"></span>
+								<span class="border_bg_rightTop"></span>
+								<span class="border_bg_leftBottom"></span>
+								<span class="border_bg_rightBottom"></span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="leftMain_middle">
+				<div class="leftMain_middle_left">
+					<div class="leftMain_middle_leftIn">
+						<h3>培养经历</h3>
+						<!-- 地图容器 -->
+						<div class="biaoge" id="chartmain" style="width: 100%; height: 31vh; background-color: transparent;"></div>
+						<script>
+							var dom = document.getElementById('chartmain');
+							var myMap = echarts.init(dom, null, {
+								renderer: 'canvas',
+								useDirtyRect: false
+							});
+
+							myMap.showLoading();
+
+							fetch('teachers.json')
+								.then(response => response.json())
+								.then(data => {
+									myMap.hideLoading();
+
+									function getInstitutionCoords(institution) {
+										return institution ? [institution.longitude, institution.latitude] : null;
+									}
+
+									var routes = data.teachers.map(teacher => {
+										const institutions = [
+											teacher.undergraduate,
+											teacher.graduate,
+											teacher.doctorate,
+											teacher["other institutions"]
+										];
+
+										const validRoutes = institutions
+											.map(getInstitutionCoords)
+											.filter(coords => coords !== null);
+
+										return validRoutes.length > 1 ? validRoutes : null;
+									}).filter(route => route !== null);
+
+									var points = data.teachers.flatMap(teacher => {
+										const institutions = [
+											teacher.undergraduate,
+											teacher.graduate,
+											teacher.doctorate,
+											teacher["other institutions"]
+										];
+
+										return institutions
+											.filter(inst => inst !== null)
+											.map(inst => ({
+												value: [inst.longitude, inst.latitude],
+												name: inst.name || 'Unknown'
+											}));
+									});
+
+									myMap.setOption({
+										backgroundColor: 'transparent',
+										tooltip: {
+											show: true,
+											trigger: 'item',
+											formatter: function (params) {
+												return params.data && params.data.name
+													? `院校: ${params.data.name}`
+													: 'Unknown';
+											},
+											backgroundColor: 'rgba(24,141,240,0.4)',
+											textStyle: { color: '#ffffff' }
+										},
+										geo3D: {
+											map: 'world',
+											environment: 'none',
+											shading: 'realistic',
+											realisticMaterial: { roughness: 0.6, metalness: 0.2 },
+											light: {
+												main: { intensity: 2, alpha: 50, beta: 10 },
+												ambient: { intensity: 0.4 }
+											},
+											viewControl: {
+												distance: 15,
+												alpha: 50,
+												beta: 0,
+												panMouseButton: 'left',
+												rotateMouseButton: 'right'
+											},
+											itemStyle: {
+												color: 'rgb(24,141,240)',
+												opacity: 0.8
+											},
+											regionHeight: 1.5
+										},
+										series: [
+											{
+												type: 'lines3D',
+												coordinateSystem: 'geo3D',
+												effect: {
+													show: true,
+													trailWidth: 1,
+													trailOpacity: 0.8,
+													trailLength: 0.5,
+													constantSpeed: 6
+												},
+												blendMode: 'lighter',
+												lineStyle: {
+													width: 1,
+													opacity: 1,
+													color: 'rgb(255,0,0)'
+												},
+												data: routes
+											},
+											{
+												type: 'scatter3D',
+												coordinateSystem: 'geo3D',
+												symbolSize: 8,
+												itemStyle: {
+													color: 'rgba(255,255,255,0.7)',
+													opacity: 1
+												},
+												data: points
+											}
+										]
+									});
+								})
+								.catch(error => {
+									console.error('Error loading teachers.json:', error);
+									myMap.hideLoading();
+								});
+
+							window.addEventListener('resize', myMap.resize);
+						</script>
+
+						<style>
+							/* 设置背景为透明 */
+							.biaoge {
+								background: transparent;
+							}
+
+							/* 页面和容器背景透明 */
+							body,
+							html {
+								margin: 0;
+								height: 100%;
+								overflow: hidden;
+								background: transparent;
+							}
+
+							#chartmain {
+								height: 100%;
+								background: transparent;
+							}
+						</style>
+
+						<span class="border_bg_leftTop"></span>
+						<span class="border_bg_rightTop"></span>
+						<span class="border_bg_leftBottom"></span>
+						<span class="border_bg_rightBottom"></span>
+					</div>
+				</div>
+
+
+
+				<div class="leftMain_middle_right">
+					<div class="leftMain_middle_rightIn">
+						<h3>主要研究</h3>
+						<div id="main"></div>
+
+						<script>
+							const wordFrequencies = {
+								"治理": 400, "发展": 338, "中国": 314, "社会": 294, "制度": 240, "政治": 237, "研究": 218, "政策": 213, "国家": 202, "新": 202, "重要": 160, "政府": 160, "影响": 155, "组织": 142, "建设": 139, "全球": 137, "体系": 137, "现代化": 137, "理论": 136, "on": 134, "实现": 130, "并": 130, "国际": 126, "过程": 124, "城市": 122, "政党": 121, "也": 120, "技术": 119, "is": 117, "通过": 115, "关系": 114, "机制": 114, "for": 114, "安全": 113, "问题": 110, "分析": 109, "with": 104, "能力": 103, "创新": 101, "实践": 100, "基层": 98, "The": 97, "乡村": 97, "社会主义": 97, "进行": 96, "数字": 96, "路径": 94, "以及": 93, "战略": 93, "推进": 92, "经济": 92, "能源": 91, "基于": 90, "转型": 88, "提升": 87, "推动": 87, "构建": 86, "基础": 84, "时代": 82, "我国": 81, "具有": 81, "共同体": 81, "话语": 81, "将": 80, "风险": 79, "气候": 79, "成为": 78, "提供": 77, "不同": 77, "作为": 77, "作用": 76, "党": 76, "世界": 75, "居民": 75, "主要": 74, "模式": 74, "合作": 73, "参与": 73, "has": 73, "需要": 73, "竞争": 72, "而": 72, "发现": 71, "study": 70, "层面": 70, "之间": 70, "逻辑": 69, "地区": 68, "因素": 68, "空间": 68, "形成": 67, "服务": 67, "传统": 67, "美国": 67, "China": 67, "危机": 66, "文化": 65, "领域": 64, "方面": 64, "历史": 63, "人类": 63, "this": 62, "核心": 61, "from": 61, "urban": 61, "理念": 60, "主体": 60, "结构": 60, "公共服务": 60, "到": 59, "框架": 59, "目标": 59, "between": 59, "着": 59, "绿色": 59, "地方": 58, "development": 58, "their": 58, "行为": 57, "不断": 57, "水平": 57, "型": 57, "全面": 57, "清洁": 57, "知识": 57, "提出": 56, "存在": 56, "有": 56, "可": 56, "于": 55, "方式": 54, "视角": 54, "不": 54, "管理": 54, "工作": 54, "人民": 53, "民主": 53, "回应": 52, "更": 52, "维度": 52, "价值": 52, "新型": 50,
+							};
+
+							const tags = Object.keys(wordFrequencies).map(word => {
+								const tag = document.createElement("div");
+								tag.className = "tag";
+								tag.textContent = word;
+								const frequency = wordFrequencies[word] || 1;
+								tag.style.fontSize = `${5 + frequency / 5}px`;
+								tag.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`; // 随机荧光颜色
+								document.getElementById('main').appendChild(tag);
+								return tag;
+							});
+
+							tags.forEach(tag => {
+								const radius = 200;
+								const angleA = Math.random() * Math.PI * 2;
+								const angleB = Math.acos((Math.random() * 2) - 1);
+								tag.x = radius * Math.sin(angleB) * Math.cos(angleA);
+								tag.y = radius * Math.sin(angleB) * Math.sin(angleA);
+								tag.z = radius * Math.cos(angleB);
+							});
+
+							let angleX = 0.01;
+							let angleY = 0.01;
+
+							function rotate() {
+								const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+								const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+
+								tags.forEach(tag => {
+									let { x, y, z } = tag;
+
+									// Rotate around X axis
+									const tempY = y * cosX - z * sinX;
+									z = y * sinX + z * cosX;
+									y = tempY;
+
+									// Rotate around Y axis
+									const tempX = x * cosY - z * sinY;
+									z = x * sinY + z * cosY;
+									x = tempX;
+
+									tag.x = x;
+									tag.y = y;
+									tag.z = z;
+
+									const scale = 200 / (z + 400);
+									tag.style.transform = `translate(${x * scale}px, ${y * scale}px) scale(${scale})`;
+									tag.style.opacity = scale / 0.8; // 根据深度调整透明度
+								});
+
+								requestAnimationFrame(rotate);
+							}
+
+							rotate();
+						</script>
+
+						<style>
+							#main {
+								position: relative;
+								width: 80%;
+								height: 30vh;
+								perspective: 100px;
+							}
+
+							.tag {
+								position: absolute;
+								top: 40%;
+								left: 50%;
+								transform-origin: center;
+								white-space: nowrap;
+								color: rgba(255, 255, 255, 0.8);
+								/* 默认白色带透明度 */
+								text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6);
+								/* 荧光发光效果 */
+								font-family: 'Arial', sans-serif;
+								/* 更现代的字体 */
+								transition: color 0.3s, text-shadow 0.3s;
+							}
+
+							/* 鼠标悬停动态效果 */
+							.tag:hover {
+								color: rgba(0, 255, 255, 1);
+								/* 鼠标悬停时变亮 */
+								text-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.9);
+							}
+						</style>
+						<span class="border_bg_leftTop"></span>
+						<span class="border_bg_rightTop"></span>
+						<span class="border_bg_leftBottom"></span>
+						<span class="border_bg_rightBottom"></span>
+					</div>
+				</div>
+			</div>
+			<div class="leftMain_middle">
+				<div class="leftMain_middle_left">
+					<div class="leftMain_middle_leftInn">
+						<h3>智慧问答</h3>
+					  <style>
+						body {
+						  font-family: Arial, sans-serif;
+						  background: #f5f5f5;
+						  display: flex;
+						  justify-content: center;
+						  align-items: center;
+						  flex-direction: column;
+						  margin:0;
+						  margin-top: 0;
+						  justify-content: flex-start;
+
+						}
+
+						#chatable-wrapper {
+						  width:90%;
+						  height:160px;
+						  background: rgba(0, 255, 255, 0.2); /* 半透明蓝绿色 */
+						  border-radius: 20px;
+						  padding: 15px;
+						  display: flex;
+						  flex-direction: column;
+						  justify-content: flex-end;
+						  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+						  margin-left: 25px; /* 向右移动聊天框 */
+						}
+
+						#chatable {
+							overflow-y:scroll;
+							flex:1;
+						}
+
+						.chat-message {
+						  margin-bottom: 15px;
+						  max-width: 70%;
+						  padding: 10px;
+						  border-radius: 10px;
+						  font-size: 8px;
+						  position: relative;
+						  word-wrap: break-word;
+						}
+
+						.user-message {
+						  background: #3eca3e;
+						  color: white;
+						  align-self: flex-end;
+						  margin-left: auto;
+						  font-size:0.07rem;
+						}
+
+						.bot-message {
+						  background: #1E90FF;
+						  color: white;
+						  align-self: flex-start;
+						  font-size: 0.07rem;
+						}
+
+						.chat-message::after {
+						  content: '';
+						  position: absolute;
+						  width: 0;
+						  height: 0;
+						  border-left: 10px solid transparent;
+						  border-right: 10px solid transparent;
+						}
+
+						.user-message::after {
+						  bottom: -10px;
+						  right: 10px;
+						  border-top: 10px solid #3eca3e;
+						}
+
+						.bot-message::after {
+						  bottom: -10px;
+						  left: 10px;
+						  border-top: 10px solid #1E90FF;
+						}
+
+						.input-container {
+						  width: 95%;
+						  max-width: 600px;
+						  max-height:100px;
+						  display:flex;
+						  justify-content: space-between;
+						  align-items: center;
+						  margin-top: 10px;
+						  margin-left: 20px;
+						}
+
+						input[type="text"] {
+						  width: 90%;
+						  padding: 10px;
+						  border: 1px solid #ccc;
+						  border-radius: 5px;
+						  font-size: 16px;
+						  background-color: #f5f5f5;
+						}
+
+						input[type="text"]:focus {
+						  outline: none;
+						  border-color: #1E90FF;
+						}
+
+						button {
+						  background-color: #1E90FF;
+						  border: none;
+						  border-radius: 50%;
+						  width: 50px;
+						  height: 50px;
+						  color: white;
+						  font-size: 30px;
+						  cursor: pointer;
+						}
+
+						button:hover {
+						  background-color: #1C86EE;
+						}
+						 </style>
+
+						 <div id="chatable-wrapper">
+						   <div id="chatable" style="height:300px;overflow-y:auto;"></div>
+						 </div>
+						 <div class="input-container">
+						   <input type="text" id="userInput" placeholder="输入您的问题..." onkeydown="if(event.key === 'Enter') sendMessage()">
+						   <button onclick="sendMessage()">➤</button>
+						 </div>
+
+					  <span class="border_bg_leftTop"></span>
+					  <span class="border_bg_rightTop"></span>
+					  <span class="border_bg_leftBottom"></span>
+					  <span class="border_bg_rightBottom"></span>
+				</div>
+			</div>
+
+			<script type="text/javascript">
+			  const chatable = document.getElementById('chatable');
+			  const userInput = document.getElementById('userInput');
+
+			  function sendMessage() {
+				const userMessage = userInput.value.trim();
+				if (userMessage) {
+				  displayMessage(userMessage, 'user');
+				  userInput.value = '';
+
+				  fetchBaiduModelResponse(userMessage);
+				}
+			  }
+
+			  function displayMessage(message, sender) {
+				const messageDiv = document.createElement('div');
+				messageDiv.classList.add('chat-message', sender === 'user' ? 'user-message' : 'bot-message');
+				messageDiv.innerHTML = message;
+				chatable.appendChild(messageDiv);
+				chatable.scrollTop = chatable.scrollHeight;  // 滚动到底部
+			  }
+
+			  async function fetchBaiduModelResponse(userMessage) {
+				const query = userMessage;
+				axios.get('http://localhost:3000/getAnswer', {
+				  params: { query }
+				})
+				.then(response => {
+				  const botReply = response.data.answer;
+				  if (botReply) {
+					displayMessage(botReply, 'bot');
+				  }
+				})
+				.catch(error => {
+				  console.error("Error:", error);
+				  displayMessage('请求失败', 'bot');
+				});
+			  }
+			</script>
+
+				<div class="leftMain_middle_right">
+					<div class="leftMain_middle_rightIn">
+						<h3>师资力量</h3>
+						<div class="biaoge_pai">
+							<ul>
+								<!-- Professor -->
+								<li class="liIn">
+									<div class="liIn_left"><span class="zi">教授</span></div>
+									<div class="liIn_line-container">
+										<div class="liIn_line">
+											<div class="line_lineIn doctor" style="width:73%;"><span>73%</span>
+												<div class="tooltip">博士 27人</div>
+											</div>
+											<div class="line_lineIn master" style="width:27%;"><span>27%</span>
+												<div class="tooltip">硕士 10人</div>
+											</div>
+										</div>
+										<span class="bar-label">37</span>
+									</div>
+								</li>
+								<!-- Associate Professor -->
+								<li class="liIn">
+									<div class="liIn_left"><span class="zi">副教授</span></div>
+									<div class="liIn_line-container">
+										<div class="liIn_line">
+											<div class="line_lineIn doctor" style="width:63.33%;"><span>63.33%</span>
+												<div class="tooltip">博士 19人</div>
+											</div>
+											<div class="line_lineIn master" style="width:33.33%;"><span>33.33%</span>
+												<div class="tooltip">硕士 10人</div>
+											</div>
+											<div class="line_lineIn bachelor" style="width:3.33%;"><span>3%</span>
+												<div class="tooltip">学士 1人</div>
+											</div>
+										</div>
+										<span class="bar-label">30</span>
+									</div>
+								</li>
+								<!-- Researcher -->
+								<li class="liIn">
+									<div class="liIn_left"><span class="zi">副研究员</span></div>
+									<div class="liIn_line-container">
+										<div class="liIn_line">
+											<div class="line_lineIn doctor" style="width:100%;"><span>100%</span>
+												<div class="tooltip">博士 1人</div>
+											</div>
+										</div>
+										<span class="bar-label">1</span>
+									</div>
+								</li>
+								<!-- Lecturer -->
+								<li class="liIn">
+									<div class="liIn_left"><span class="zi">讲师</span></div>
+									<div class="liIn_line-container">
+										<div class="liIn_line">
+											<div class="line_lineIn doctor" style="width:40%;"><span>40%</span>
+												<div class="tooltip">博士 2人</div>
+											</div>
+											<div class="line_lineIn master" style="width:40%;"><span>40%</span>
+												<div class="tooltip">硕士 2人</div>
+											</div>
+											<div class="line_lineIn bachelor" style="width:20%;"><span>20%</span>
+												<div class="tooltip">学士 1人</div>
+											</div>
+										</div>
+										<span class="bar-label">5</span>
+									</div>
+								</li>
+								<!-- Assistant Researcher -->
+								<li class="liIn">
+									<div class="liIn_left"><span class="zi">助理研究员</span></div>
+									<div class="liIn_line-container">
+										<div class="liIn_line">
+											<div class="line_lineIn doctor" style="width:62.5%;"><span>62.5%</span>
+												<div class="tooltip">博士 10人</div>
+											</div>
+											<div class="line_lineIn master" style="width:25%;"><span>25%</span>
+												<div class="tooltip">硕士 4人</div>
+											</div>
+											<div class="line_lineIn bachelor" style="width:12.5%;"><span>12.5%</span>
+												<div class="tooltip">学士 2人</div>
+											</div>
+										</div>
+										<span class="bar-label">16</span>
+									</div>
+								</li>
+								<!-- Postdoc -->
+								<li class="liIn">
+									<div class="liIn_left"><span class="zi">博士后</span></div>
+									<div class="liIn_line-container">
+										<div class="liIn_line">
+											<div class="line_lineIn doctor" style="width:100%;"><span>100%</span>
+												<div class="tooltip">博士 14人</div>
+											</div>
+										</div>
+										<span class="bar-label">14</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+						<span class="border_bg_leftTop"></span>
+						<span class="border_bg_rightTop"></span>
+						<span class="border_bg_leftBottom"></span>
+						<span class="border_bg_rightBottom"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="rightMain">
+			<div class="rightMain_top">
+				<div class="rightMain_topIn">
+					<h3>绩效成绩总览</h3>
+					<div class="scrollable-table">
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Score</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+						<style>
+							table {
+								width: 100%;
+								border-collapse: collapse;
+								margin: 0 auto;
+								font-size: 14px;
+								text-align: left;
+								color: #fff;
+								border: 1px solid rgba(14, 253, 255, 0.5);
+							}
+
+							th,
+							td {
+								padding: 8px;
+								border: 1px solid rgba(14, 253, 255, 0.3);
+							}
+
+							th {
+								background-color: #05D1FC;
+								color: #fff;
+								line-height: 1.2;
+							}
+
+							tr:hover {
+								background-color: rgba(14, 253, 255, 1);
+
+							}
+
+							.scrollable-table {
+								overflow: hidden;
+								max-height: 390px;
+								position: relative;
+							}
+
+							.scrollable-table tbody {
+								display: block;
+								animation: scroll 110s linear infinite;
+							}
+
+							.scrollable-table thead {
+								display: table-header-group;
+								/* 确保thead是表头布局 */
+								position: sticky;
+								/* 固定在滚动容器顶部 */
+								top: 100;
+								z-index: 2;
+							}
+
+							.scrollable-table thead,
+							.scrollable-table tbody tr {
+								display: table;
+								width: 100%;
+								table-layout: fixed;
+							}
+
+							@keyframes scroll {
+								0% {
+									transform: translateY(0);
+								}
+
+								100% {
+									transform: translateY(-100%);
+								}
+							}
+						</style>
+						<script>
+							// 从score.json中读取数据
+							async function loadData() {
+								try {
+
+									const response = await fetch('score.json');
+									const data = await response.json();
+									const tableBody = document.querySelector('table tbody');
+									tableBody.innerHTML = '';
+
+									data.forEach(item => {
+										const row = document.createElement('tr');
+										const nameCell = document.createElement('td');
+										nameCell.textContent = item.name;
+										const scoreCell = document.createElement('td');
+										scoreCell.textContent = item.score;
+										row.appendChild(nameCell);
+										row.appendChild(scoreCell);
+										tableBody.appendChild(row);
+									});
+								} catch (error) {
+									console.error('Error loading data:', error);
+								}
+							}
+							window.onload = loadData;
+						</script>
+					</div>
+					<span class="border_bg_leftTop"></span>
+					<span class="border_bg_rightTop"></span>
+					<span class="border_bg_leftBottom"></span>
+					<span class="border_bg_rightBottom"></span>
+				</div>
+			</div>
+
+			<div class="rightMain_bottom">
+				<div class="rightMain_bottomIn" style="width: 100%; height: 34vh; ">
+					<h3>绩效指标分析</h3>
+					<div id="chartleida" style="width: 100%; height: 100%; position: relative; top: -20px;"></div>
+					<span class="border_bg_leftTop"></span>
+					<span class="border_bg_rightTop"></span>
+					<span class="border_bg_leftBottom"></span>
+					<span class="border_bg_rightBottom"></span>
+				</div>
+			</div>
+
+			<script>
+				// 初始化 ECharts 图表
+				var chart = echarts.init(document.querySelector(".rightMain_bottomIn #chartleida"));
+
+				// 示例数据
+				var average_data = [1.9, 19.7, 21.1, 0.4, 1.1, 3.8];
+				var individual_data = {
+					'Tom': [0.0, 10.2, 30.0, 0.0, 0.0, 11.8],
+					'Jack': [0.0, 27.2, 16.0, 0.0, 0.0, 5.9],
+					'亓**': [0.0, 49.3, 16.1, 0.0, 1.6, 0.0],
+					'俞**': [4.8, 10.0, 14.1, 1.0, 1.0, 0.0],
+					'倪**': [0.0, 6.8, 23.1, 0.0, 0.5, 0.5],
+					'农**': [0.0, 19.9, 10.8, 0.0, 1.6, 9.7],
+					'冷**': [2.6, 28.7, 16.5, 0.0, 2.1, 2.1],
+					'刘**': [1.9, 24.2, 6.3, 0.5, 0.0, 0.0],
+					'刘**': [3.4, 28.7, 34.6, 1.1, 2.7, 9.6],
+					'刘**': [0.0, 9.0, 29.1, 0.0, 2.6, 5.3],
+					'刘**': [0.0, 21.9, 23.5, 0.0, 0.0, 9.6],
+					'刘**': [0.0, 20.0, 1.6, 2.7, 0.0, 2.7],
+					'刘**': [0.0, 25.8, 16.1, 0.0, 0.0, 1.1],
+					'叶**': [0.0, 34.9, 20.1, 0.0, 0.0, 0.0],
+					'吕**': [3.5, 23.3, 10.6, 0.0, 0.0, 2.6],
+					'吴**': [0.0, 40.3, 30.7, 0.0, 0.0, 0.0],
+					'唐**': [0.0, 9.6, 46.5, 0.0, 0.0, 5.9],
+					'姜**': [0.0, 31.3, 20.7, 0.0, 0.0, 1.1],
+					'孔**': [0.0, 9.5, 10.5, 0.0, 0.0, 1.1],
+					'孔**': [0.0, 32.2, 23.1, 0.0, 2.7, 1.1],
+					'孙**': [5.2, 34.2, 32.1, 1.1, 0.0, 0.5],
+					'季**': [3.8, 22.0, 22.6, 0.0, 0.0, 1.6],
+					'展**': [7.6, 19.3, 37.4, 0.0, 1.1, 2.7],
+					'庞**': [0.0, 19.2, 22.4, 0.0, 0.0, 6.4],
+					'张**': [0.0, 13.9, 20.9, 0.0, 3.2, 0.0],
+					'张**': [0.0, 12.2, 39.9, 0.0, 10.6, 4.3],
+					'张**': [3.5, 10.1, 34.5, 1.1, 1.1, 11.7],
+					'张**': [2.1, 14.4, 16.6, 1.6, 0.0, 4.3],
+					'徐**': [6.5, 16.4, 18.5, 1.1, 0.0, 1.6],
+					'方**': [0.0, 8.8, 2.1, 0.0, 1.5, 3.6],
+					'方**': [0.0, 13.4, 21.4, 2.7, 0.0, 0.5],
+					'曹**': [0.0, 32.0, 44.8, 1.1, 0.0, 1.1],
+					'朱**': [2.1, 13.2, 12.1, 0.0, 0.0, 2.6],
+					'朱**': [6.2, 20.3, 8.0, 2.7, 4.3, 8.5],
+					'朱**': [0.0, 29.7, 17.5, 0.0, 1.6, 4.2],
+					'李**': [1.5, 11.4, 10.8, 2.2, 1.6, 0.5],
+					'李**': [0.0, 18.3, 10.7, 0.0, 0.0, 0.0],
+					'李**': [0.0, 22.3, 19.7, 0.0, 0.0, 8.0],
+					'李**': [0.0, 12.7, 26.4, 0.0, 0.5, 15.3],
+					'李**': [4.1, 42.3, 5.4, 0.0, 0.0, 3.2],
+					'李**': [0.0, 38.2, 31.8, 2.7, 13.3, 1.1],
+					'李**': [0.0, 9.9, 10.5, 0.0, 0.0, 2.6],
+					'李**': [5.2, 14.0, 15.1, 0.5, 1.1, 0.0],
+					'李**': [3.4, 26.1, 37.3, 0.0, 2.1, 0.0],
+					'李**': [1.8, 5.9, 2.7, 0.0, 0.0, 1.6],
+					'李**': [0.0, 43.1, 6.9, 0.0, 0.0, 0.0],
+					'李**': [3.2, 7.5, 44.3, 0.0, 0.0, 8.0],
+					'李**': [0.0, 21.9, 31.1, 0.0, 0.0, 0.0],
+					'李**': [8.8, 27.6, 18.6, 0.0, 0.0, 1.1],
+					'杨**': [0.0, 41.2, 14.2, 0.0, 0.5, 1.1],
+					'杨**': [4.5, 5.8, 6.9, 0.0, 1.1, 11.7],
+					'楚**': [2.4, 3.2, 21.3, 1.1, 0.0, 1.1],
+					'楼**': [3.8, 14.6, 6.5, 1.1, 0.0, 1.1],
+					'江**': [0.0, 9.5, 32.3, 0.0, 0.0, 4.2],
+					'法**': [0.0, 11.8, 21.5, 0.0, 2.7, 8.0],
+					'滕**': [7.2, 15.4, 21.2, 0.5, 0.0, 10.6],
+					'王**': [2.5, 14.8, 10.6, 0.0, 0.0, 0.0],
+					'王**': [2.6, 52.7, 36.2, 2.1, 5.3, 1.1],
+					'王**': [2.8, 7.5, 32.6, 0.0, 0.5, 1.6],
+					'王**': [0.0, 6.3, 22.7, 0.0, 0.0, 0.0],
+					'王**': [2.0, 20.2, 31.9, 1.6, 0.0, 5.3],
+					'王**': [0.0, 43.2, 22.4, 0.0, 5.3, 8.0],
+					'王**': [0.0, 5.8, 15.8, 0.0, 2.6, 6.8],
+					'王**': [0.0, 11.9, 13.5, 0.0, 0.0, 1.6],
+					'王**': [1.5, 8.7, 8.7, 0.0, 2.2, 0.0],
+					'王**': [2.1, 7.5, 1.6, 1.1, 0.0, 3.7],
+					'由**': [0.0, 2.7, 45.2, 0.0, 0.0, 11.2],
+					'白**': [0.0, 14.9, 3.7, 0.0, 0.0, 13.3],
+					'盛**': [0.0, 13.8, 39.7, 0.0, 0.0, 1.6],
+					'秦**': [0.0, 7.4, 18.5, 0.0, 3.2, 0.0],
+					'程**': [0.0, 21.3, 10.6, 0.0, 0.5, 0.5],
+					'米**': [3.9, 48.8, 10.6, 0.0, 1.1, 1.6],
+					'罗**': [0.0, 44.7, 8.0, 0.0, 0.0, 13.3],
+					'胡**': [0.0, 10.2, 30.5, 0.0, 2.7, 2.7],
+					'臧**': [2.7, 4.2, 23.8, 1.6, 0.0, 2.6],
+					'蒋**': [0.0, 53.5, 10.6, 2.6, 0.0, 4.2],
+					'褚**': [0.0, 10.6, 31.3, 0.0, 1.6, 0.5],
+					'谢**': [1.4, 3.8, 15.2, 0.0, 0.0, 0.5],
+					'费**': [9.2, 16.9, 21.1, 0.0, 0.0, 4.8],
+					'贾**': [3.6, 18.0, 23.9, 0.0, 0.0, 0.5],
+					'赵**': [0.0, 11.7, 42.6, 1.1, 2.7, 8.0],
+					'赵**': [0.0, 12.7, 9.0, 0.0, 1.1, 5.3],
+					'赵**': [3.4, 19.0, 29.0, 0.0, 0.0, 1.6],
+					'边**': [0.0, 16.5, 38.8, 0.0, 0.5, 3.2],
+					'邢**': [5.1, 19.1, 44.5, 1.6, 0.0, 2.7],
+					'郄**': [2.1, 20.6, 30.1, 0.0, 2.6, 9.5],
+					'郑**': [10.6, 23.0, 5.3, 0.0, 0.0, 8.0],
+					'郭**': [1.4, 18.7, 41.7, 2.1, 0.0, 1.1],
+					'金**': [5.8, 24.6, 20.9, 0.0, 0.0, 2.7],
+					'金**': [4.5, 22.9, 9.0, 0.0, 0.0, 0.5],
+					'钟**': [0.0, 20.8, 36.2, 0.0, 0.0, 0.0],
+					'陈**': [3.8, 18.6, 24.0, 0.0, 1.6, 0.0],
+					'陈**': [3.3, 31.4, 24.0, 0.0, 0.0, 13.3],
+					'霍**': [5.4, 3.2, 8.0, 0.0, 1.1, 5.3],
+					'韩**': [5.7, 10.7, 42.7, 0.0, 2.1, 12.8],
+					'韩**': [0.0, 24.6, 18.7, 1.1, 1.1, 0.5],
+					'马**': [0.0, 8.4, 9.5, 0.0, 7.9, 4.2],
+					'马**': [2.9, 12.2, 2.7, 0.0, 3.2, 0.0],
+					'马**': [6.2, 19.8, 13.4, 0.0, 0.0, 10.7],
+					'高**': [0.0, 4.9, 6.5, 0.0, 0.5, 8.1],
+					'黄**': [0.0, 39.0, 39.0, 0.0, 0.0, 1.1],
+					'黄**': [0.0, 21.7, 28.0, 0.0, 5.3, 0.0],
+					'黄**': [6.1, 28.6, 19.1, 2.6, 0.5, 1.1],
+				};
+
+				// 配置选项
+				var option = {
+					tooltip: { trigger: 'item' },
+					radar: {
+						indicator: [
+							{ name: '教学', max: 12 },
+							{ name: '科研论文', max: 55 },
+							{ name: '科研项目', max: 50 },
+							{ name: '兼职工作', max: 3 },
+							{ name: '荣誉表彰', max: 15 },
+							{ name: '教育成果', max: 16 }
+						], name: {
+							textStyle: {
+								color: '#ffffff', // 修改周围文字颜色（指标名称颜色）
+								fontSize: 12 // 调整文字大小
+							}
+						},
+						axisLine: {
+							lineStyle: {
+								color: '#ffffff' // 雷达图轴线的颜色
+							}
+						},
+						splitLine: {
+							lineStyle: {
+								color: 'rgba(0, 255, 255, 0.5)' // 雷达图网格线的颜色
+							}
+						}
+					},
+					series: [
+						{
+							name: '能力展示',
+							type: 'radar',
+							data: [
+								{
+									value: average_data,
+									name: '平均分',
+									lineStyle: { color: '#ffffff', opacity: 0.5 },
+									areaStyle: { color: 'rgba(47, 85, 84, 0.1)' }
+								}
+							],
+							symbolSize: 8, // 设置小点的大小
+							itemStyle: {
+								color: '#e7feb8' // 修改小点的颜色
+							},
+						}
+					]
+				};
+
+				// 初始化图表
+				chart.setOption(option);
+
+				// 自动轮播逻辑
+				var teacherNames = Object.keys(individual_data);
+				var currentIndex = 0;
+
+				function updateChart() {
+					var teacherName = teacherNames[currentIndex];
+					var teacherData = individual_data[teacherName];
+
+					option.series[0].data = [
+						{
+							value: average_data,
+							name: '平均分',
+							lineStyle: { color: '#11E5FC', opacity: 0.5 },
+							areaStyle: { color: '#E7FEB8' },
+							itemStyle: { color: '#e7feb8' }//修改平均分的点颜色，更好区分一点
+						},
+						{
+							value: teacherData,
+							name: teacherName,
+							lineStyle: { color: '#0EF9FE', width: 3 },
+							areaStyle: { color: '#D890FA' },
+							itemStyle: { color: '#8FF9F8' }
+						}
+					];
+
+					// 更新图表
+					chart.setOption(option);
+
+					// 更新索引
+					currentIndex = (currentIndex + 1) % teacherNames.length;
+				}
+
+				// 设置定时器
+				setInterval(updateChart, 3500);
+			</script>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	<!--大屏-->
+	<!--数字增长累加动画-->
+	<script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+	<script src="js/jquery.numscroll.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".shu1").numScroll();
+		$(".shu2").numScroll();
+		$(".shu3").numScroll();
+		$(".shu4").numScroll();
+		$(".shu5").numScroll();
+		$(".shu6").numScroll();
+
+		/*$(".num2").numScroll({
+			time:5000
+		});*/
+	</script>
+	<!--大屏-->
+</body>
+
+</html>

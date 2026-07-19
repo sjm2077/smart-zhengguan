@@ -1,0 +1,1045 @@
+{
+  "teachers": [
+    {
+      "name": "郭春生",
+      "undergraduate": {
+        "name": "北京师范大学",
+        "longitude": 116.332,
+        "latitude": 39.9544
+      },
+      "graduate": {
+        "name": "河北师范学院",
+        "longitude": 115.5122,
+        "latitude": 38.978
+      },
+      "doctorate": {
+        "name": "中国社会科学院",
+        "longitude": 116.3883,
+        "latitude": 39.9282
+      },
+      "other institutions": null
+    },
+    {
+      "name": "蒋　锐",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李　宏",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李亚洲",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "刘玉安",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "臧秀玲",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "张淑兰",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "赵　婷",
+      "undergraduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "graduate": {
+        "name": "中国人民大学",
+        "longitude": 116.3473,
+        "latitude": 39.961
+      },
+      "doctorate": {
+        "name": "中国人民大学",
+        "longitude": 116.3473,
+        "latitude": 39.961
+      },
+      "other institutions": "澳大利亚国立大学"
+    },
+    {
+      "name": "吕连仁",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "王鹏权",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "金淑霞",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "庞 敏",
+      "undergraduate": {
+        "name": "华南师范大学",
+        "longitude": 113.3676,
+        "latitude": 23.1622
+      },
+      "graduate": {
+        "name": "复旦大学",
+        "longitude": 121.507,
+        "latitude": 31.302
+      },
+      "doctorate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "other institutions": null
+    },
+    {
+      "name": "杨春林",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "刘鑫",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "胡志伟",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "楚成亚",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "方　雷",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李济时",
+      "undergraduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "graduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "doctorate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "other institutions": "青岛大学师范学院"
+    },
+    {
+      "name": "李　振",
+      "undergraduate": {
+        "name": "南京理工大学",
+        "longitude": 118.7963,
+        "latitude": 32.025
+      },
+      "graduate": {
+        "name": "南京大学",
+        "longitude": 118.796,
+        "latitude": 32.0603
+      },
+      "doctorate": {
+        "name": "香港中文大学",
+        "longitude": 114.217,
+        "latitude": 22.3959
+      },
+      "other institutions": "上海交通大学、重庆大学"
+    },
+    {
+      "name": "唐　睿",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "王　成",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "法 帅",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "other institutions": null
+    },
+    {
+      "name": "刘　琳",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "Mattias G. Ottervik",
+      "undergraduate": {
+        "name": "耶鲁大学",
+        "longitude": -72.9223,
+        "latitude": 41.3163
+      },
+      "graduate": {
+        "name": "哥德堡大学",
+        "longitude": 11.9746,
+        "latitude": 57.7089
+      },
+      "doctorate": {
+        "name": "香港大学",
+        "longitude": 114.1628,
+        "latitude": 22.2797
+      },
+      "other institutions": "山东大学"
+    },
+    {
+      "name": "王军洋",
+      "undergraduate": {
+        "name": "太原理工大学",
+        "longitude": 112.5495,
+        "latitude": 37.8628
+      },
+      "graduate": {
+        "name": "苏州大学",
+        "longitude": 120.5853,
+        "latitude": 31.2989
+      },
+      "doctorate": {
+        "name": "复旦大学",
+        "longitude": 121.507,
+        "latitude": 31.302
+      },
+      "other institutions": "多伦多大学"
+    },
+    {
+      "name": "吴心喆",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "杜伦大学",
+        "longitude": -1.5755,
+        "latitude": 54.7764
+      },
+      "other institutions": null
+    },
+    {
+      "name": "徐会平",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "钟 诚",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "孔令伟",
+      "undergraduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "graduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "doctorate": {
+        "name": "南开大学",
+        "longitude": 117.18,
+        "latitude": 39.1408
+      },
+      "other institutions": "韩国岭南大学国际教育院"
+    },
+    {
+      "name": "叶紫蒙",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "白江波",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "由迪",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李昕蕾",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "黄登学",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李慧明",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "other institutions": "柏林自由大学"
+    },
+    {
+      "name": "刘昌明",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "秦亚青",
+      "undergraduate": {
+        "name": "山东师范大学",
+        "longitude": 117.1571,
+        "latitude": 36.6829
+      },
+      "graduate": {
+        "name": "北京外国语大学",
+        "longitude": 116.3489,
+        "latitude": 39.9658
+      },
+      "doctorate": {
+        "name": "美国密苏里大学",
+        "longitude": -92.3341,
+        "latitude": 38.9519
+      },
+      "other institutions": "美国密苏里大学"
+    },
+    {
+      "name": "马荣久",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "盛 力",
+      "undergraduate": {
+        "name": "北京大学",
+        "longitude": 116.4074,
+        "latitude": 39.9042
+      },
+      "graduate": {
+        "name": "德国弗莱堡大学",
+        "longitude": 7.8421,
+        "latitude": 47.9936
+      },
+      "doctorate": null,
+      "other institutions": "德国弗莱堡大学"
+    },
+    {
+      "name": "王学玉",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "朱贵昌",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "方炯升",
+      "undergraduate": {
+        "name": "复旦大学",
+        "longitude": 121.507,
+        "latitude": 31.302
+      },
+      "graduate": {
+        "name": "复旦大学",
+        "longitude": 121.507,
+        "latitude": 31.302
+      },
+      "doctorate": {
+        "name": "复旦大学",
+        "longitude": 121.507,
+        "latitude": 31.302
+      },
+      "other institutions": null
+    },
+    {
+      "name": "黄　栋",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "倪保志",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "展妍男",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "赵玙佳",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "米雪",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "阿姆斯特丹自由大学",
+        "longitude": 4.8811,
+        "latitude": 52.3584
+      },
+      "other institutions": null
+    },
+    {
+      "name": "王薪喜",
+      "undergraduate": {
+        "name": "兰州大学",
+        "longitude": 103.6177,
+        "latitude": 36.0569
+      },
+      "graduate": {
+        "name": "上海交通大学",
+        "longitude": 121.4825,
+        "latitude": 31.2001
+      },
+      "doctorate": {
+        "name": "清华大学",
+        "longitude": 116.329,
+        "latitude": 40.0056
+      },
+      "other institutions": null
+    },
+    {
+      "name": "霍文乐",
+      "undergraduate": {
+        "name": "内蒙古科技大学",
+        "longitude": 111.6385,
+        "latitude": 40.8165
+      },
+      "graduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李文正",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "农羽青",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "王硕",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "曹现强",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "韩自强",
+      "undergraduate": {
+        "name": "北京师范大学",
+        "longitude": 116.332,
+        "latitude": 39.9544
+      },
+      "graduate": {
+        "name": "北京师范大学",
+        "longitude": 116.332,
+        "latitude": 39.9544
+      },
+      "doctorate": {
+        "name": "特拉华大学",
+        "longitude": -75.749,
+        "latitude": 39.6838
+      },
+      "other institutions": "四川大学"
+    },
+    {
+      "name": "姜　杰",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "孔令栋",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李 辉",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "吉林大学",
+        "longitude": 125.3245,
+        "latitude": 43.8868
+      },
+      "other institutions": null
+    },
+    {
+      "name": "李延伟",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "马　奔",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "马永驰",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "哈尔滨工业大学",
+        "longitude": 126.6424,
+        "latitude": 45.7559
+      },
+      "other institutions": null
+    },
+    {
+      "name": "孙宗锋",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "中山大学",
+        "longitude": 113.359,
+        "latitude": 23.1327
+      },
+      "other institutions": null
+    },
+    {
+      "name": "滕玉成",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "王佃利",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "邢占军",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "张 乐",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "南京大学",
+        "longitude": 118.796,
+        "latitude": 32.0603
+      },
+      "other institutions": null
+    },
+    {
+      "name": "张天舒",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "韩丽华",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "黄　晴",
+      "undergraduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "graduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "doctorate": {
+        "name": "伦敦大学国王学院",
+        "longitude": -0.0904,
+        "latitude": 51.5108
+      },
+      "other institutions": null
+    },
+    {
+      "name": "季丽新",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李　广",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "楼苏萍",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "浙江大学",
+        "longitude": 120.1517,
+        "latitude": 30.2728
+      },
+      "other institutions": null
+    },
+    {
+      "name": "王　怡",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "王元亮",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "俞少宾",
+      "undergraduate": {
+        "name": "中国矿业大学",
+        "longitude": 117.205,
+        "latitude": 34.187
+      },
+      "graduate": {
+        "name": "南开大学",
+        "longitude": 117.18,
+        "latitude": 39.1408
+      },
+      "doctorate": {
+        "name": "新加坡国立大学",
+        "longitude": 103.7764,
+        "latitude": 1.2966
+      },
+      "other institutions": "高丽大学"
+    },
+    {
+      "name": "刘     浩",
+      "undergraduate": {
+        "name": "华中师范大学",
+        "longitude": 114.3632,
+        "latitude": 30.5134
+      },
+      "graduate": null,
+      "doctorate": {
+        "name": "北京大学",
+        "longitude": 116.4074,
+        "latitude": 39.9042
+      },
+      "other institutions": null
+    },
+    {
+      "name": "刘华兴",
+      "undergraduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "graduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "doctorate": {
+        "name": "伯明翰大学",
+        "longitude": -1.5486,
+        "latitude": 52.3963
+      },
+      "other institutions": null
+    },
+    {
+      "name": "费立国",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "哈尔滨工业大学",
+        "longitude": 126.6424,
+        "latitude": 45.7559
+      },
+      "other institutions": null
+    },
+    {
+      "name": "程 龙",
+      "undergraduate": {
+        "name": "华中农业大学",
+        "longitude": 114.364,
+        "latitude": 30.5158
+      },
+      "graduate": {
+        "name": "华中农业大学",
+        "longitude": 114.364,
+        "latitude": 30.5158
+      },
+      "doctorate": {
+        "name": "昆士兰大学",
+        "longitude": 153.0187,
+        "latitude": -27.4979
+      },
+      "other institutions": null
+    },
+    {
+      "name": "冷安丽",
+      "undergraduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "graduate": null,
+      "doctorate": {
+        "name": "美国斯坦福大学",
+        "longitude": -122.1697,
+        "latitude": 37.4275
+      },
+      "other institutions": null
+    },
+    {
+      "name": "陈仁兴",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "新加坡国立大学李光耀公共政策学院",
+        "longitude": 103.7764,
+        "latitude": 1.2966
+      },
+      "other institutions": "中国人民大学"
+    },
+    {
+      "name": "郄子君",
+      "undergraduate": {
+        "name": "大连理工大学",
+        "longitude": 121.6079,
+        "latitude": 38.904
+      },
+      "graduate": null,
+      "doctorate": {
+        "name": "大连理工大学",
+        "longitude": 121.6079,
+        "latitude": 38.904
+      },
+      "other institutions": null
+    },
+    {
+      "name": "高　原",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "张健彬",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "郑国栋",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "Yunsoo Lee",
+      "undergraduate": {
+        "name": "高丽大学",
+        "longitude": 126.996,
+        "latitude": 37.5821
+      },
+      "graduate": null,
+      "doctorate": {
+        "name": "罗格斯大学",
+        "longitude": -74.4451,
+        "latitude": 40.5015
+      },
+      "other institutions": null
+    },
+    {
+      "name": "陈静",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "褚 雷",
+      "undergraduate": {
+        "name": "武汉大学",
+        "longitude": 114.4005,
+        "latitude": 30.5455
+      },
+      "graduate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "doctorate": {
+        "name": "山东大学",
+        "longitude": 117.019,
+        "latitude": 36.6685
+      },
+      "other institutions": null
+    },
+    {
+      "name": "李欢欢",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李梦丹",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "杨    志",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "南京大学",
+        "longitude": 118.796,
+        "latitude": 32.0603
+      },
+      "other institutions": null
+    },
+    {
+      "name": "赵志华",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "西安交通大学",
+        "longitude": 108.956,
+        "latitude": 34.2009
+      },
+      "other institutions": null
+    },
+    {
+      "name": "罗聪",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "边琦",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "亓子龙",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "朱林旭",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "江玮滢",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "朱靖琰",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李进涛",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "金澄",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "贾小云",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "李爽",
+      "undergraduate": {
+        "name": "黑龙江大学",
+        "longitude": 126.6329,
+        "latitude": 45.7475
+      },
+      "graduate": {
+        "name": "西南大学",
+        "longitude": 106.493,
+        "latitude": 29.9733
+      },
+      "doctorate": {
+        "name": "奈梅亨大学",
+        "longitude": 5.845,
+        "latitude": 51.8424
+      },
+      "other institutions": null
+    },
+    {
+      "name": "王乙杰",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": null,
+      "other institutions": null
+    },
+    {
+      "name": "谢东虹",
+      "undergraduate": null,
+      "graduate": null,
+      "doctorate": {
+        "name": "普林斯顿大学",
+        "longitude": -74.6553,
+        "latitude": 40.343
+      },
+      "other institutions": "中国人民大学"
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to HTML Table</title>
+    <style>
+        #tableContainer {
+            width: 100%;
+            height: 500px;
+            overflow: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #5c7bd9;
+            color: white;
+        }
+
+        td {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #eaeaea;
+        }
+    </style>
+</head>
+
+<body>
+    <h3 style="text-align: center;">老师与对应绩效得分</h3>
+    <div id="tableContainer">
+        <table id="output"></table>
+    </div>
+    <script>
+
+        const csvData = `
+        Name,Score
+        MattiasG.Ottervik,97
+        YunsooLee,92
+        亓子龙,125
+        俞少宾,59
+        倪保志,59
+        农羽青,78
+        冷安丽,98
+        刘华兴,63
+        刘昌明,150
+        刘浩,87
+        刘玉安,103
+        刘琳,50
+        刘鑫,80
+        叶紫蒙,104
+        吕连仁,76
+        吴心喆,134
+        唐睿,116
+        姜杰,100
+        孔令伟,40
+        孔令栋,110
+        孙宗锋,137
+        季丽新,93
+        展妍男,127
+        庞敏,90
+        张乐,71
+        张健彬,126
+        张天舒,117
+        张淑兰,73
+        徐会平,83
+        方炯升,31
+        方雷,71
+        曹现强,148
+        朱林旭,57
+        朱贵昌,94
+        朱靖琰,100
+        李亚洲,52
+        李宏,54
+        李广,94
+        李延伟,104
+        李慧明,103
+        李振,164
+        李文正,44
+        李昕蕾,67
+        李梦丹,129
+        李欢欢,22
+        李济时,94
+        李爽,118
+        李辉,99
+        李进涛,106
+        杨志,108
+        杨春林,56
+        楚成亚,55
+        楼苏萍,50
+        江玮滢,87
+        法帅,82
+        滕玉成,104
+        王乙杰,53
+        王佃利,188
+        王元亮,84
+        王军洋,55
+        王学玉,115
+        王怡,148
+        王成,59
+        王硕,50
+        王薪喜,39
+        王鹏权,30
+        由迪,111
+        白江波,60
+        盛力,104
+        秦亚青,55
+        程龙,62
+        米雪,124
+        罗聪,124
+        胡志伟,86
+        臧秀玲,66
+        蒋锐,134
+        褚雷,83
+        谢东虹,39
+        费立国,98
+        贾小云,87
+        赵婷,124
+        赵志华,53
+        赵玙佳,100
+        边琦,111
+        邢占军,138
+        郄子君,123
+        郑国栋,88
+        郭春生,122
+        金淑霞,101
+        金澄,70
+        钟诚,107
+        陈仁兴,90
+        陈静,135
+        霍文乐,43
+        韩丽华,139
+        韩自强,86
+        马奔,57
+        马永驰,39
+        马荣久,94
+        高原,37
+        黄晴,148
+        黄栋,104
+        黄登学,110
+    `;
+
+        const output = document.getElementById('output');
+        const lines = csvData.trim().split('\n');
+        const headers = lines[0].split(',');
+        const data = lines.slice(1).map(line => line.split(','));
+
+        output.innerHTML = `
+        <thead>
+          <tr>
+            ${headers.map(header => `<th style="text-align: center; vertical-align: middle;">${header}</th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          ${data.map(row => `
+            <tr>
+              ${row.map(cell => `<td style="text-align: center; vertical-align: middle;">${cell}</td>`).join('')}
+            </tr>
+          `).join('')}
+        </tbody>
+      `;
+    </script>
+</body>
+
+</html>

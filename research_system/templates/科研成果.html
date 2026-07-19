@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科研成果 - 政治学与公共管理学院科研系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f5f7fa 100%);
+            color: #333;
+        }
+
+        :root {
+            --main-blue: #0A2343;
+            --light-blue: #409EFF;
+            --gold: #D4AF37;
+            --green: #67C23A;
+            --red: #F56C6C;
+            --orange: #E6A23C;
+            --gray: #909399;
+            --purple: #9C27B0;
+            --cyan: #17A2B8;
+            --gradient-blue: linear-gradient(135deg, #409EFF 0%, #0A2343 100%);
+            --card-radius: 16px;
+            --card-shadow: 0 4px 20px rgba(10, 35, 67, 0.08);
+        }
+
+        .top-nav {
+            width: 100%;
+            height: 60px;
+            background: var(--main-blue);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+            .top-nav .logo-box {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+                .top-nav .logo-box img {
+                    height: 40px;
+                    width: auto;
+                }
+
+                .top-nav .logo-box .title-text {
+                    color: white;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+
+            .top-nav .search-box {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .top-nav .search-input {
+                width: 280px;
+                height: 36px;
+                border-radius: 18px;
+                border: none;
+                padding: 0 15px;
+                outline: none;
+                font-size: 14px;
+            }
+
+            .top-nav .user-info {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: white;
+                cursor: pointer;
+            }
+
+                .top-nav .user-info img {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 60px);
+            margin-top: 60px;
+        }
+        .search-result-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.search-result-item:hover {
+    background: #f5f9ff;
+}
+.search-result-item .type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #fff;
+    margin-right: 8px;
+}
+.badge-project { background: #409EFF; }
+.badge-achievement { background: #67C23A; }
+.badge-teacher { background: #E6A23C; }
+.search-result-item .title {
+    font-weight: 500;
+    color: #333;
+}
+.search-result-item .sub {
+    font-size: 13px;
+    color: #888;
+    margin-left: 10px;
+}
+
+        .sidebar {
+            width: 240px;
+            background: var(--main-blue);
+            color: white;
+            padding: 20px 0;
+            height: calc(100vh - 60px);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            box-shadow: 2px 0 12px rgba(10,35,67,0.15);
+        }
+
+
+            .sidebar .menu-title {
+                padding: 10px 25px;
+                font-size: 14px;
+                color: rgba(255,255,255,0.6);
+                margin-top: 15px;
+            }
+
+            .sidebar .menu-item {
+                padding: 14px 25px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                transition: 0.3s;
+                border-left: 3px solid transparent;
+            }
+
+                .sidebar .menu-item:hover, .sidebar .menu-item.active {
+                    background: rgba(255,255,255,0.15);
+                    border-left: 3px solid var(--gold);
+                }
+
+        .content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 30px;
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: bold;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--card-radius);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+            border: 1px solid rgba(64,158,255,0.1);
+            transition: 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .card:hover {
+                box-shadow: 0 6px 24px rgba(10,35,67,0.12);
+            }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--main-blue);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e8f1ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .card-title i {
+                color: var(--light-blue);
+            }
+
+        .chart-full {
+            width: 100% !important;
+            height: 420px !important;
+            background: #fff;
+        }
+
+        .chart-small {
+            width: 100% !important;
+            height: 350px !important;
+            background: #fff;
+        }
+
+        .rank-container {
+            max-height: 420px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+
+        .rank-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .rank-table th, .rank-table td {
+                border: 1px solid #eee;
+                padding: 12px 8px;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            .rank-table th {
+                background: #f5f7fa;
+                color: var(--main-blue);
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+
+            .rank-table tr:nth-child(even) {
+                background: #fafafa;
+            }
+
+        .filter-bar-small {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            width: fit-content;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--main-blue);
+        }
+
+        .filter-select {
+            height: 32px;
+            padding: 0 12px;
+            border: 1px solid #dcdfe6;
+            border-radius: 6px;
+            outline: none;
+            font-size: 13px;
+            min-width: 120px;
+        }
+
+        .btn {
+            height: 32px;
+            padding: 0 16px;
+            border: none;
+            border-radius: 6px;
+            background: #409EFF;
+            color: white;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+            .btn:hover {
+                opacity: 0.9;
+            }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #dcdfe6;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f5f7fa;
+        }
+
+        .submenu {
+            background: rgba(0,0,0,0.2);
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+            .submenu.open {
+                max-height: 280px;
+            }
+
+            .submenu .menu-item {
+                padding-left: 48px;
+                font-size: 14px;
+            }
+
+        .menu-item .fa-angle-down {
+            transition: transform 0.3s;
+            margin-left: auto;
+        }
+
+            .menu-item .fa-angle-down.rotate {
+                transform: rotate(180deg);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <div class="logo-box">
+            <img src="https://img.icons8.com/fluency/96/ffffff/university.png" alt="学院logo">
+            <div class="title-text">政治学与公共管理学院</div>
+        </div>
+       <div class="search-box" style="position: relative;">
+    <input type="text" class="search-input" id="searchInput" placeholder="搜索我的分析/项目/成果">
+    <div id="searchResults" style="position:absolute; top:45px; left:0; width:100%; background:white; border:1px solid #ddd; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.15); max-height:400px; overflow-y:auto; display:none; z-index:999;"></div>
+    <div class="user-info">
+        <img src="https://img.icons8.com/fluency/96/ffffff/user-male-circle.png" alt="avatar">
+        <div><button onclick="switchRole('admin')" id="btnAdmin" style="padding:3px 8px;background:#409EFF;color:white;border:none;border-radius:4px;">管理员</button>
+        <button onclick="switchRole('teacher')" id="btnTeacher" style="padding:3px 8px;background:#666;color:white;border:none;border-radius:4px;margin-left:5px;">教师</button></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+    <div class="menu-item" onclick="location.href='/'">
+        <i class="fa fa-dashboard"></i> 科研总览
+    </div>
+    <div class="menu-item" onclick="location.href='/project/'">
+        <i class="fa fa-folder-open"></i> 科研项目
+    </div>
+    <div class="menu-item" onclick="location.href='/fund/'">
+        <i class="fa fa-money"></i> 科研经费
+    </div>
+    <div class="menu-item" onclick="location.href='/achievement/'">
+        <i class="fa fa-trophy"></i> 科研成果
+    </div>
+    <div class="menu-item" onclick="goToSmartAnalysis()">
+        <i class="fa fa-lightbulb-o"></i> 智能分析
+    </div>
+
+    <!-- 子学科菜单 -->
+    <div class="menu-item" onclick="toggleSubmenu(this)">
+        <i class="fa fa-book"></i> 学科分析
+        <i class="fa fa-angle-down" style="margin-left:auto;"></i>
+    </div>
+    <div class="submenu">
+        <div class="menu-item" onclick="location.href='/dept/science/'">
+            <i class="fa fa-angle-right"></i> 科学社会主义系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/political/'">
+            <i class="fa fa-angle-right"></i> 政治学系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/international/'">
+            <i class="fa fa-angle-right"></i> 国际政治系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/public/'">
+            <i class="fa fa-angle-right"></i> 公共管理系
+        </div>
+    </div>
+</div>
+
+        <div class="content">
+            <div class="page-title">
+                <i class="fa fa-trophy" style="color:#409EFF"></i> 科研成果管理
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fa fa-circle-o"></i> 成果分类分布气泡图</div>
+                <div class="filter-bar-small">
+                    <div class="filter-item">
+                        年份筛选：
+                        <select class="filter-select" id="bubbleYearFilter">
+                            <option value="all">全部年份</option>
+                            <option value="2024">2024年</option>
+                            <option value="2023">2023年</option>
+                            <option value="2022">2022年</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        学科筛选：
+                        <select class="filter-select" id="bubbleSubFilter">
+                            <option value="all">全部学科</option>
+                            <option value="行政管理">行政管理</option>
+                            <option value="公共政策">公共政策</option>
+                            <option value="政治学理论">政治学理论</option>
+                            <option value="社会保障">社会保障</option>
+                            <option value="国际关系">国际关系</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="refreshBubbleChart()"><i class="fa fa-search"></i> 查询</button>
+                </div>
+                <div id="bubbleChart" class="chart-small"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fa fa-bar-chart"></i> 按学科/年份成果统计</div>
+                <div id="resultBarChart" class="chart-full"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fa fa-list-alt"></i> 高影响力成果榜单（脱敏汇总）</div>
+                <div class="rank-container">
+                    <table class="rank-table" id="topTable">
+                        <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>成果类型</th>
+                                <th>所属学科</th>
+                                <th>级别/收录</th>
+                                <th>年度</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topTableBody">
+                            <tr><td colspan="5" style="text-align:center;">加载中...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fa fa-cloud"></i> 成果词云（关键词/期刊/研究方向）</div>
+                <div id="wordCloudChart" class="chart-full"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==============================================
+        // 全局身份管理
+        // ==============================================
+        let currentRole = localStorage.getItem('userRole') || 'admin';
+
+        function switchRole(role) {
+    currentRole = role;
+    localStorage.setItem('userRole', role);
+    document.getElementById('btnAdmin').style.background = role === 'admin' ? '#409EFF' : '#666';
+    document.getElementById('btnTeacher').style.background = role === 'teacher' ? '#409EFF' : '#666';
+
+    // 跳转到对应的智能分析页面（或首页，根据需求）
+    if (role === 'admin') {
+        window.location.href = '/analysis/admin/';
+    } else {
+        window.location.href = '/analysis/teacher/';
+    }
+}
+
+        function toggleSubmenu(el) {
+            const submenu = el.nextElementSibling;
+            const arrow = el.querySelector('.fa-angle-down');
+            submenu.classList.toggle('open');
+            arrow.classList.toggle('rotate');
+        }
+
+        function setActiveMenu() {
+            const url = window.location.href;
+            const items = document.querySelectorAll('.sidebar .menu-item');
+            items.forEach(item => {
+                const attr = item.getAttribute('onclick');
+                if (!attr) return;
+                if (attr.includes("/") && url.includes('/')) {
+                    if (attr.includes("'/'") && url.endsWith('/')) item.classList.add('active');
+                    if (attr.includes("'/project/'") && url.includes('/project/')) item.classList.add('active');
+                    if (attr.includes("'/fund/'") && url.includes('/fund/')) item.classList.add('active');
+                    if (attr.includes("'/achievement/'") && url.includes('/achievement/')) item.classList.add('active');
+                }
+            });
+        }
+
+        function goToSmartAnalysis() {
+    const role = localStorage.getItem('userRole') || 'admin';
+    if (role === 'admin') {
+        window.location.href = '/analysis/admin/';
+    } else {
+        window.location.href = '/analysis/teacher/';
+    }
+}
+
+        // ==============================================
+        // 科研成果页面动态加载
+        // ==============================================
+        let bubbleChart, resultBarChart, wordCloudChart;
+
+        // 1. 气泡图
+        function refreshBubbleChart() {
+            const year = document.getElementById('bubbleYearFilter').value;
+            const subject = document.getElementById('bubbleSubFilter').value;
+            fetch(`/api/achievement/bubble?year=${year}&subject=${subject}`)
+                .then(res => res.json())
+                .then(data => {
+                    const chartData = data.data.map(item => ({
+                        name: item.name,
+                        value: item.value,
+                        itemStyle: { color: item.color || '#409EFF' }
+                    }));
+                    bubbleChart.setOption({
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: params => `${params.name}<br>学术影响力：${params.value[0]}<br>应用价值：${params.value[1]}<br>成果数量：${params.value[2]} 项`
+                        },
+                        xAxis: { type: 'value', name: '学术影响' },
+                        yAxis: { type: 'value', name: '应用价值' },
+                        series: [{
+                            type: 'scatter',
+                            symbolSize: val => Math.max(val[2] / 3, 8),
+                            data: chartData,
+                            label: { show: true, position: 'top', formatter: '{b}' }
+                        }],
+                        grid: { left: '10%', right: '15%', top: '15%', bottom: '20%' }
+                    });
+                })
+                .catch(err => console.error('气泡图加载失败', err));
+        }
+
+        // 2. 柱状图
+        function refreshBarChart() {
+            fetch('/api/achievement/bar?years=2022,2023,2024')
+                .then(res => res.json())
+                .then(data => {
+                    resultBarChart.setOption({
+                        tooltip: { trigger: 'axis' },
+                        legend: { data: ['2022', '2023', '2024'], top: 0 },
+                        xAxis: { type: 'category', data: data.subjects },
+                        yAxis: { type: 'value', name: '成果数量（项）' },
+                        series: data.series
+                    });
+                })
+                .catch(err => console.error('柱状图加载失败', err));
+        }
+
+        // 3. 高影响力成果榜单
+        function refreshTopTable() {
+            fetch('/api/achievement/top?limit=20')
+                .then(res => res.json())
+                .then(data => {
+                    const tbody = document.getElementById('topTableBody');
+                    tbody.innerHTML = '';
+                    data.data.forEach(item => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${item.rank}</td>
+                            <td>${item.type}</td>
+                            <td>${item.subject}</td>
+                            <td>${item.level}</td>
+                            <td>${item.year}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                })
+                .catch(err => {
+                    console.error('榜单加载失败', err);
+                    document.getElementById('topTableBody').innerHTML = '<tr><td colspan="5" style="text-align:center;">加载失败</td></tr>';
+                });
+        }
+
+        // 4. 词云图
+        function refreshWordCloud() {
+            fetch('/api/achievement/wordcloud')
+                .then(res => res.json())
+                .then(data => {
+                    wordCloudChart.setOption({
+                        tooltip: { trigger: 'item', formatter: '{b}: {c} 篇/项' },
+                        series: [{
+                            type: 'wordCloud',
+                            gridSize: 10,
+                            sizeRange: [12, 55],
+                            rotationRange: [-60, 60],
+                            shape: 'circle',
+                            left: 0,
+                            top: 0,
+                            width: '100%',
+                            height: '100%',
+                            textStyle: {
+                                fontWeight: 'bold',
+                                color: () => ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#9C27B0'][Math.floor(Math.random() * 5)]
+                            },
+                            data: data.data
+                        }]
+                    });
+                })
+                .catch(err => console.error('词云加载失败', err));
+        }
+
+        // 页面加载
+        window.onload = function () {
+            document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
+            document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
+            setActiveMenu();
+
+            bubbleChart = echarts.init(document.getElementById('bubbleChart'));
+            resultBarChart = echarts.init(document.getElementById('resultBarChart'));
+            wordCloudChart = echarts.init(document.getElementById('wordCloudChart'));
+
+            refreshBubbleChart();
+            refreshBarChart();
+            refreshTopTable();
+            refreshWordCloud();
+
+            window.addEventListener('resize', () => {
+                bubbleChart.resize();
+                resultBarChart.resize();
+                wordCloudChart.resize();
+            });
+        };
+    </script>
+<script src="/static/js/search.js"></script>
+</body>
+</html>

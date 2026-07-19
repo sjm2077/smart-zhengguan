@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科研经费 - 政治学与公共管理学院科研系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f5f7fa 100%);
+            color: #333;
+        }
+
+        :root {
+            --main-blue: #0A2343;
+            --light-blue: #409EFF;
+            --gold: #D4AF37;
+            --green: #67C23A;
+            --red: #F56C6C;
+            --orange: #E6A23C;
+            --gray: #909399;
+            --gradient-blue: linear-gradient(135deg, #409EFF 0%, #0A2343 100%);
+            --card-radius: 16px;
+            --card-shadow: 0 4px 20px rgba(10, 35, 67, 0.08);
+        }
+
+        .top-nav {
+            width: 100%;
+            height: 60px;
+            background: var(--main-blue);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+            .top-nav .logo-box {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+                .top-nav .logo-box img {
+                    height: 40px;
+                    width: auto;
+                }
+
+                .top-nav .logo-box .title-text {
+                    color: white;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+
+            .top-nav .search-box {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .top-nav .search-input {
+                width: 280px;
+                height: 36px;
+                border-radius: 18px;
+                border: none;
+                padding: 0 15px;
+                outline: none;
+                font-size: 14px;
+            }
+
+            .top-nav .user-info {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: white;
+                cursor: pointer;
+            }
+
+                .top-nav .user-info img {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 60px);
+            margin-top: 60px;
+        }
+        .search-result-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.search-result-item:hover {
+    background: #f5f9ff;
+}
+.search-result-item .type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #fff;
+    margin-right: 8px;
+}
+.badge-project { background: #409EFF; }
+.badge-achievement { background: #67C23A; }
+.badge-teacher { background: #E6A23C; }
+.search-result-item .title {
+    font-weight: 500;
+    color: #333;
+}
+.search-result-item .sub {
+    font-size: 13px;
+    color: #888;
+    margin-left: 10px;
+}
+
+        .sidebar {
+            width: 240px;
+            background: var(--main-blue);
+            color: white;
+            padding: 20px 0;
+            height: calc(100vh - 60px);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            box-shadow: 2px 0 12px rgba(10,35,67,0.15);
+        }
+
+            .sidebar .menu-title {
+                padding: 10px 25px;
+                font-size: 14px;
+                color: rgba(255,255,255,0.6);
+                margin-top: 15px;
+            }
+
+            .sidebar .menu-item {
+                padding: 14px 25px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                transition: 0.3s;
+                border-left: 3px solid transparent;
+            }
+
+                .sidebar .menu-item:hover, .sidebar .menu-item.active {
+                    background: rgba(255,255,255,0.15);
+                    border-left: 3px solid var(--gold);
+                }
+
+        .content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 30px;
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: bold;
+            background: var(--gradient-blue);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--card-radius);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+            border: 1px solid rgba(64,158,255,0.1);
+            transition: 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .card:hover {
+                box-shadow: 0 6px 24px rgba(10,35,67,0.12);
+            }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--main-blue);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e8f1ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 50px;
+            box-sizing: border-box;
+        }
+
+            .card-title i {
+                color: var(--light-blue);
+            }
+
+        .chart {
+            width: 100% !important;
+            height: 380px !important;
+            background: #fff;
+            position: relative;
+            z-index: 10;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--main-blue);
+        }
+
+        .filter-select {
+            height: 38px;
+            padding: 0 15px;
+            border: 1px solid #dcdfe6;
+            border-radius: 6px;
+            outline: none;
+            font-size: 14px;
+            min-width: 140px;
+            transition: 0.2s;
+        }
+
+            .filter-select:focus {
+                border-color: var(--light-blue);
+            }
+
+        .btn {
+            height: 38px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 6px;
+            background: #409EFF;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+
+            .btn:hover {
+                opacity: 0.9;
+            }
+
+        .btn-success {
+            background: #67C23A;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .data-card {
+            background: white;
+            border-radius: var(--card-radius);
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--light-blue);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+            .data-card .label {
+                font-size: 14px;
+                color: var(--gray);
+            }
+
+            .data-card .value {
+                font-size: 24px;
+                font-weight: bold;
+                color: var(--main-blue);
+            }
+
+            .data-card .trend {
+                font-size: 13px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+
+        .trend-up {
+            color: var(--green);
+        }
+
+        .trend-down {
+            color: var(--red);
+        }
+
+        .submenu {
+            background: rgba(0,0,0,0.2);
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+            .submenu.open {
+                max-height: 280px;
+            }
+
+            .submenu .menu-item {
+                padding-left: 48px;
+                font-size: 14px;
+            }
+
+        .menu-item .fa-angle-down {
+            transition: transform 0.3s;
+        }
+
+            .menu-item .fa-angle-down.rotate {
+                transform: rotate(180deg);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <div class="logo-box">
+            <img src="https://img.icons8.com/fluency/96/ffffff/university.png" alt="学院logo">
+            <div class="title-text">政治学与公共管理学院</div>
+        </div>
+       <div class="search-box" style="position: relative;">
+    <input type="text" class="search-input" id="searchInput" placeholder="搜索我的分析/项目/成果">
+    <div id="searchResults" style="position:absolute; top:45px; left:0; width:100%; background:white; border:1px solid #ddd; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.15); max-height:400px; overflow-y:auto; display:none; z-index:999;"></div>
+    <div class="user-info">
+        <img src="https://img.icons8.com/fluency/96/ffffff/user-male-circle.png" alt="avatar">
+        <div><button onclick="switchRole('admin')" id="btnAdmin" style="padding:3px 8px;background:#409EFF;color:white;border:none;border-radius:4px;">管理员</button>
+        <button onclick="switchRole('teacher')" id="btnTeacher" style="padding:3px 8px;background:#666;color:white;border:none;border-radius:4px;margin-left:5px;">教师</button></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+    <div class="menu-item" onclick="location.href='/'">
+        <i class="fa fa-dashboard"></i> 科研总览
+    </div>
+    <div class="menu-item" onclick="location.href='/project/'">
+        <i class="fa fa-folder-open"></i> 科研项目
+    </div>
+    <div class="menu-item" onclick="location.href='/fund/'">
+        <i class="fa fa-money"></i> 科研经费
+    </div>
+    <div class="menu-item" onclick="location.href='/achievement/'">
+        <i class="fa fa-trophy"></i> 科研成果
+    </div>
+    <div class="menu-item" onclick="goToSmartAnalysis()">
+        <i class="fa fa-lightbulb-o"></i> 智能分析
+    </div>
+
+    <!-- 子学科菜单 -->
+    <div class="menu-item" onclick="toggleSubmenu(this)">
+        <i class="fa fa-book"></i> 学科分析
+        <i class="fa fa-angle-down" style="margin-left:auto;"></i>
+    </div>
+    <div class="submenu">
+        <div class="menu-item" onclick="location.href='/dept/science/'">
+            <i class="fa fa-angle-right"></i> 科学社会主义系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/political/'">
+            <i class="fa fa-angle-right"></i> 政治学系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/international/'">
+            <i class="fa fa-angle-right"></i> 国际政治系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/public/'">
+            <i class="fa fa-angle-right"></i> 公共管理系
+        </div>
+    </div>
+</div>
+
+        <div class="content">
+            <div class="page-title">
+                <i class="fa fa-money" style="color:#409EFF"></i> 科研经费管理
+            </div>
+
+            <div class="data-grid">
+                <div class="data-card">
+                    <div class="label">累计到账金额</div>
+                    <div class="value">加载中...</div>
+                    <div class="trend trend-up"><i class="fa fa-arrow-up"></i> 加载中...</div>
+                </div>
+                <div class="data-card" style="border-left-color: var(--green)">
+                    <div class="label">预算执行率</div>
+                    <div class="value">加载中...</div>
+                    <div class="trend trend-up"><i class="fa fa-arrow-up"></i> 加载中...</div>
+                </div>
+                <div class="data-card" style="border-left-color: var(--orange)">
+                    <div class="label">经费结余</div>
+                    <div class="value">加载中...</div>
+                    <div class="trend trend-down"><i class="fa fa-arrow-down"></i> 加载中...</div>
+                </div>
+                <div class="data-card" style="border-left-color: var(--gold)">
+                    <div class="label">增长趋势</div>
+                    <div class="value">加载中...</div>
+                    <div class="trend trend-up"><i class="fa fa-line-chart"></i> 加载中...</div>
+                </div>
+            </div>
+
+            <div class="filter-bar">
+                <div class="filter-item">
+                    年度筛选：
+                    <select class="filter-select" id="yearFilter">
+                        <option value="2025">2025年</option>
+                        <option value="2024">2024年</option>
+                        <option value="2023">2023年</option>
+                        <option value="2022">2022年</option>
+                        <option value="2021">2021年</option>
+                        <option value="all">全部年份</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    学科筛选：
+                    <select class="filter-select" id="subjectFilter">
+                        <option value="all">全部学科</option>
+                        <option value="行政管理">行政管理</option>
+                        <option value="公共政策">公共政策</option>
+                        <option value="政治学理论">政治学理论</option>
+                        <option value="社会保障">社会保障</option>
+                        <option value="国际关系">国际关系</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="filterData()"><i class="fa fa-search"></i> 查询</button>
+                <button class="btn btn-success" onclick="exportTable()"><i class="fa fa-download"></i> 导出数据</button>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-title"><i class="fa fa-exchange"></i> 经费来源流向（来源→学科→个人）</div>
+                    <div id="sankeyChart" class="chart"></div>
+                </div>
+                <div class="card">
+                    <div class="card-title"><i class="fa fa-dashboard"></i> 年度预算执行仪表盘</div>
+                    <div id="gaugeChart" class="chart"></div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-title"><i class="fa fa-bar-chart"></i> 近三年经费支出对比</div>
+                    <div id="barChart" class="chart"></div>
+                </div>
+                <div class="card">
+                    <div class="card-title"><i class="fa fa-pie-chart"></i> 各学科经费分配占比</div>
+                    <div id="ringChart" class="chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==============================================
+        // 全局身份管理
+        // ==============================================
+        let currentRole = localStorage.getItem('userRole') || 'admin';
+
+        function switchRole(role) {
+    currentRole = role;
+    localStorage.setItem('userRole', role);
+    document.getElementById('btnAdmin').style.background = role === 'admin' ? '#409EFF' : '#666';
+    document.getElementById('btnTeacher').style.background = role === 'teacher' ? '#409EFF' : '#666';
+
+    // 跳转到对应的智能分析页面（或首页，根据需求）
+    if (role === 'admin') {
+        window.location.href = '/analysis/admin/';
+    } else {
+        window.location.href = '/analysis/teacher/';
+    }
+}
+
+        function toggleSubmenu(el) {
+            const submenu = el.nextElementSibling;
+            const arrow = el.querySelector('.fa-angle-down');
+            submenu.classList.toggle('open');
+            arrow.classList.toggle('rotate');
+        }
+
+        function setActiveMenu() {
+            const url = window.location.href;
+            const items = document.querySelectorAll('.sidebar .menu-item');
+            items.forEach(item => {
+                const clickAttr = item.getAttribute('onclick');
+                if (!clickAttr) return;
+                if (clickAttr.includes("科研总览") && url.includes('/fund/')) item.classList.add('active');
+                if (clickAttr.includes("科研项目") && url.includes('/project/')) item.classList.add('active');
+                if (clickAttr.includes("科研经费") && url.includes('/fund/')) item.classList.add('active');
+                if (clickAttr.includes("科研成果") && url.includes('/achievement/')) item.classList.add('active');
+            });
+        }
+
+        function goToSmartAnalysis() {
+    const role = localStorage.getItem('userRole') || 'admin';
+    if (role === 'admin') {
+        window.location.href = '/analysis/admin/';
+    } else {
+        window.location.href = '/analysis/teacher/';
+    }
+}
+
+        // ==============================================
+        // 经费页面图表与数据加载
+        // ==============================================
+        let sankeyChart, gaugeChart, barChart, ringChart;
+
+        function initCharts() {
+            sankeyChart = echarts.init(document.getElementById('sankeyChart'));
+            gaugeChart = echarts.init(document.getElementById('gaugeChart'));
+            barChart = echarts.init(document.getElementById('barChart'));
+            ringChart = echarts.init(document.getElementById('ringChart'));
+            window.addEventListener('resize', () => {
+                sankeyChart.resize();
+                gaugeChart.resize();
+                barChart.resize();
+                ringChart.resize();
+            });
+        }
+
+        // 获取当前筛选条件
+        function getFilters() {
+            return {
+                year: document.getElementById('yearFilter').value,
+                subject: document.getElementById('subjectFilter').value
+            };
+        }
+
+        // 刷新所有图表
+        function refreshData() {
+            const { year, subject } = getFilters();
+
+            // 1. 顶部卡片
+            fetch(`/api/fund/overview?year=${year}`)
+    .then(res => res.json())
+    .then(data => {
+        // 累计到账金额
+        document.querySelector('.data-card:nth-child(1) .value').innerText = `¥ ${data.total_amount} 万`;
+        const trend1 = document.querySelector('.data-card:nth-child(1) .trend');
+        trend1.innerHTML = `<i class="fa fa-arrow-up"></i> 同比增长 ${data.growth_rate}%`;
+        trend1.className = data.growth_rate >= 0 ? 'trend trend-up' : 'trend trend-down';
+        // 预算执行率
+        document.querySelector('.data-card:nth-child(2) .value').innerText = `${data.execution_rate} %`;
+        const trend2 = document.querySelector('.data-card:nth-child(2) .trend');
+        trend2.innerHTML = `<i class="fa fa-arrow-up"></i> 较上期提升 ${(data.execution_rate - 70).toFixed(1)}%`;  // 模拟值，可调整
+        // 经费结余
+        document.querySelector('.data-card:nth-child(3) .value').innerHTML = `¥ ${data.surplus} 万`;
+// 补上下面的趋势更新（即使不显示趋势，也要覆盖掉“加载中...”）
+const trend3 = document.querySelector('.data-card:nth-child(3) .trend');
+trend3.innerHTML = `<i class="fa fa-arrow-down"></i> 结余较去年同期减少 2.5%`;  // 具体数值可自行从后端获取或简单模拟
+        // 增长趋势（第四张卡片）
+        document.querySelector('.data-card:nth-child(4) .value').innerText = data.growth_rate >= 0 ? '稳步上升' : '有所下降';
+        const trend4 = document.querySelector('.data-card:nth-child(4) .trend');
+        trend4.innerHTML = data.growth_rate >= 0
+            ? `<i class="fa fa-arrow-up"></i> 同比增长 ${data.growth_rate}%`
+            : `<i class="fa fa-arrow-down"></i> 同比下降 ${Math.abs(data.growth_rate)}%`;
+        trend4.className = data.growth_rate >= 0 ? 'trend trend-up' : 'trend trend-down';
+    })
+    .catch(err => console.error('加载经费概览失败', err));
+
+            // 2. 桑基图
+            fetch(`/api/fund/sankey?year=${year}&subject=${subject}`)
+                .then(res => res.json())
+                .then(data => {
+                    sankeyChart.setOption({
+                        tooltip: { trigger: 'item', formatter: '{b}: {c}万元' },
+                        series: [{
+                            type: 'sankey',
+                            layout: 'vertical',
+                            data: data.nodes,
+                            links: data.links,
+                            lineStyle: { color: 'gradient', curveness: 0.5 }
+                        }]
+                    });
+                })
+                .catch(err => console.error('加载桑基图失败', err));
+
+            // 3. 仪表盘
+            fetch(`/api/fund/gauge?year=${year}&subject=${subject}`)
+                .then(res => res.json())
+                .then(data => {
+                    gaugeChart.setOption({
+                        tooltip: { formatter: '{b}：{c}%' },
+                        series: [{
+                            name: '预算执行',
+                            type: 'gauge',
+                            radius: '75%',
+                            detail: { formatter: '{value}%', fontSize: 24, color: '#0A2343' },
+                            data: [{ value: data.value, name: '执行率' }],
+                            axisLine: {
+                                lineStyle: {
+                                    width: 15,
+                                    color: [[0.3, '#67C23A'], [0.7, '#409EFF'], [1, '#F56C6C']]
+                                }
+                            },
+                            pointer: { width: 4 },
+                            title: { fontSize: 16, color: '#0A2343' }
+                        }]
+                    });
+                })
+                .catch(err => console.error('加载仪表盘失败', err));
+
+            // 4. 近三年经费支出柱状图
+            fetch(`/api/fund/expense-bar?subject=${subject}`)
+                .then(res => res.json())
+                .then(data => {
+                    barChart.setOption({
+                        tooltip: { trigger: 'axis' },
+                        legend: { data: ['设备费', '业务费', '劳务费'] },
+                        grid: { left: '3%', right: '4%', bottom: '5%', containLabel: true },
+                        xAxis: { type: 'category', data: data.years.map(y => y + '年') },
+                        yAxis: { type: 'value', name: '经费（万元）' },
+                        color: ['#409EFF', '#D4AF37', '#67C23A'],
+                        series: [
+                            { name: '设备费', type: 'bar', data: data.device },
+                            { name: '业务费', type: 'bar', data: data.business },
+                            { name: '劳务费', type: 'bar', data: data.labor }
+                        ]
+                    });
+                })
+                .catch(err => console.error('加载柱状图失败', err));
+
+            // 5. 环形图（各学科经费分配）
+            fetch(`/api/fund/dept-ring?year=${year}`)
+                .then(res => res.json())
+                .then(data => {
+                    ringChart.setOption({
+                        tooltip: { trigger: 'item', formatter: '{b}: {c}万元 ({d}%)' },
+                        legend: {
+                            orient: 'horizontal',
+                            bottom: '5%',
+                            left: 'center',
+                            itemGap: 20,
+                            textStyle: { fontSize: 14, color: '#333' },
+                            formatter: name => name
+                        },
+                        color: ['#2E86AB', '#67C23A', '#E6A23C', '#909399', '#F56C6C'],
+                        series: [{
+                            name: '经费分配',
+                            type: 'pie',
+                            radius: ['40%', '70%'],
+                            center: ['50%', '40%'],
+                            data: data.data,
+                            label: { show: true, position: 'outside', formatter: '{b}', fontSize: 14 },
+                            labelLine: { length: 15, length2: 10 },
+                            itemStyle: { borderWidth: 2, borderColor: '#fff' }
+                        }]
+                    });
+                })
+                .catch(err => console.error('加载环形图失败', err));
+        }
+
+        // 筛选按钮事件
+        function filterData() {
+            refreshData();
+        }
+
+        // 导出（占位）
+        function exportTable() {
+            alert('导出功能开发中');
+        }
+
+        // 页面加载
+        window.onload = function () {
+            document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
+            document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
+            setActiveMenu();
+            initCharts();
+            refreshData();
+        };
+    </script>
+<script src="/static/js/search.js"></script>
+</body>
+</html>

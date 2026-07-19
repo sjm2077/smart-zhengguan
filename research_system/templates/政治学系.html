@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>政治学系 - 政治学与公共管理学院科研系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f5f7fa 100%);
+            color: #333;
+        }
+
+        :root {
+            --main-blue: #0A2343;
+            --light-blue: #409EFF;
+            --gold: #D4AF37;
+            --green: #67C23A;
+            --red: #F56C6C;
+            --gray: #909399;
+            --card-radius: 16px;
+            --card-shadow: 0 4px 20px rgba(10, 35, 67, 0.08);
+        }
+
+        .top-nav {
+            width: 100%;
+            height: 60px;
+            background: var(--main-blue);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .top-nav .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-nav .logo-box img {
+            height: 40px;
+            width: auto;
+        }
+
+        .top-nav .logo-box .title-text {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .top-nav .search-box {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-nav .search-input {
+            width: 280px;
+            height: 36px;
+            border-radius: 18px;
+            border: none;
+            padding: 0 15px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .top-nav .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .top-nav .user-info img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 60px);
+            margin-top: 60px;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: var(--main-blue);
+            color: white;
+            padding: 20px 0;
+            height: calc(100vh - 60px);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            box-shadow: 2px 0 12px rgba(10,35,67,0.15);
+        }
+
+        .sidebar .menu-title {
+            padding: 10px 25px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 15px;
+        }
+
+        .sidebar .menu-item {
+            padding: 14px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar .menu-item:hover {
+            background: rgba(255,255,255,0.15);
+            border-left: 3px solid var(--gold);
+        }
+
+        .sidebar .menu-item.active {
+            background: rgba(255,255,255,0.15);
+            border-left: 3px solid var(--gold);
+        }
+
+        .submenu {
+            background: rgba(0,0,0,0.2);
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+        .submenu.open {
+            max-height: 280px;
+        }
+
+        .submenu .menu-item {
+            padding-left: 48px;
+            font-size: 14px;
+        }
+
+        .menu-item .fa-angle-down {
+            transition: transform 0.3s;
+            margin-left: auto;
+        }
+
+        .menu-item .fa-angle-down.rotate {
+            transform: rotate(180deg);
+        }
+
+        .content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .search-result-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.search-result-item:hover {
+    background: #f5f9ff;
+}
+.search-result-item .type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #fff;
+    margin-right: 8px;
+}
+.badge-project { background: #409EFF; }
+.badge-achievement { background: #67C23A; }
+.badge-teacher { background: #E6A23C; }
+.search-result-item .title {
+    font-weight: 500;
+    color: #333;
+}
+.search-result-item .sub {
+    font-size: 13px;
+    color: #888;
+    margin-left: 10px;
+}
+
+        .page-title {
+            font-size: 26px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #409EFF 0%, #0A2343 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--card-radius);
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 15px;
+            border: 1px solid rgba(64,158,255,0.1);
+            transition: 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 24px rgba(10,35,67,0.12);
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--main-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f1ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title i {
+            color: var(--light-blue);
+        }
+
+        .chart-full {
+            width: 100% !important;
+            height: 380px !important;
+            background: #fff;
+        }
+
+        .chart-half-ring {
+            width: 100% !important;
+            height: 350px !important;
+            background: #fff;
+        }
+
+        .chart-half-bar {
+            width: 100% !important;
+            height: 350px !important;
+            background: #fff;
+        }
+
+        /* 修改为 1.3 : 0.7 比例，扩大环形图区域 */
+        .grid-two {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 15px;
+        }
+
+        .grid-three {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom:15px;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom:15px;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 12px 18px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(64,158,255,0.1);
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--main-blue);
+        }
+
+        .filter-select {
+            height: 38px;
+            padding: 0 15px;
+            border: 1px solid #dcdfe6;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            min-width: 150px;
+        }
+
+        .btn {
+            height: 38px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 8px;
+            background: var(--light-blue);
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #eaf4ff, #ffffff);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(64,158,255,0.1);
+        }
+
+        .stat-card .icon {
+            font-size: 22px;
+            color: var(--light-blue);
+            margin-bottom: 5px;
+        }
+
+        .stat-card .num {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--light-blue);
+            margin: 8px 0;
+        }
+
+        .stat-card .label {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* 代表性成果：固定高度 + 滑动滚动条 */
+        .table-normal {
+            height: 280px;
+            overflow-y: auto;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        /* 项目进度：保留自动滚动 */
+        .table-auto-scroll {
+            height: 280px;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            position: relative;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .result-table th, .result-table td {
+            padding: 10px;
+            border: 1px solid #eee;
+            text-align: center;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .result-table th {
+            background: #f5f7fa;
+            color: var(--main-blue);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .scroll-table-wrapper {
+            animation: scrollUp 20s linear infinite;
+        }
+
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-nav">
+    <div class="logo-box">
+        <img src="https://img.icons8.com/fluency/96/ffffff/university.png" alt="logo">
+        <div class="title-text">政治学与公共管理学院</div>
+    </div>
+    <div class="search-box" style="position: relative;">
+    <input type="text" class="search-input" id="searchInput" placeholder="搜索我的分析/项目/成果">
+    <div id="searchResults" style="position:absolute; top:45px; left:0; width:100%; background:white; border:1px solid #ddd; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.15); max-height:400px; overflow-y:auto; display:none; z-index:999;"></div>
+    <div class="user-info">
+        <img src="https://img.icons8.com/fluency/96/ffffff/user-male-circle.png" alt="avatar">
+        <div><button onclick="switchRole('admin')" id="btnAdmin" style="padding:3px 8px;background:#409EFF;color:white;border:none;border-radius:4px;">管理员</button>
+        <button onclick="switchRole('teacher')" id="btnTeacher" style="padding:3px 8px;background:#666;color:white;border:none;border-radius:4px;margin-left:5px;">教师</button></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+    <div class="menu-item" onclick="location.href='/'">
+        <i class="fa fa-dashboard"></i> 科研总览
+    </div>
+    <div class="menu-item" onclick="location.href='/project/'">
+        <i class="fa fa-folder-open"></i> 科研项目
+    </div>
+    <div class="menu-item" onclick="location.href='/fund/'">
+        <i class="fa fa-money"></i> 科研经费
+    </div>
+    <div class="menu-item" onclick="location.href='/achievement/'">
+        <i class="fa fa-trophy"></i> 科研成果
+    </div>
+    <div class="menu-item" onclick="goToSmartAnalysis()">
+        <i class="fa fa-lightbulb-o"></i> 智能分析
+    </div>
+
+    <div class="menu-item active" onclick="toggleSubmenu(this)">
+        <i class="fa fa-book"></i> 学科分析
+        <i class="fa fa-angle-down rotate"></i>
+    </div>
+    <div class="submenu open">
+        <div class="menu-item " onclick="location.href='/dept/science/'">
+            <i class="fa fa-angle-right"></i> 科学社会主义系
+        </div>
+        <div class="menu-item active" onclick="location.href='/dept/political/'">
+            <i class="fa fa-angle-right"></i> 政治学系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/international/'">
+            <i class="fa fa-angle-right"></i> 国际政治系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/public/'">
+            <i class="fa fa-angle-right"></i> 公共管理系
+        </div>
+    </div>
+</div>
+    <div class="content">
+            <div class="page-title"><i class="fa fa-university"></i> 政治学系 - 学科分析</div>
+
+            <!-- 顶部6个统计卡片（添加id以便JS更新） -->
+            <div class="grid-three">
+                <div class="stat-card"><div class="icon"><i class="fa fa-users"></i></div><div class="label">全系教师数</div><div class="num" id="teacherCount">--</div></div>
+                <div class="stat-card"><div class="icon"><i class="fa fa-folder-open"></i></div><div class="label">在研科研项目</div><div class="num" id="projectCount">--</div></div>
+                <div class="stat-card"><div class="icon"><i class="fa fa-money"></i></div><div class="label">累计经费(万元)</div><div class="num" id="fundTotal">--</div></div>
+                <div class="stat-card"><div class="icon"><i class="fa fa-file-text"></i></div><div class="label">学术成果总数</div><div class="num" id="achievementCount">--</div></div>
+                <div class="stat-card"><div class="icon"><i class="fa fa-flag"></i></div><div class="label">省部级以上占比</div><div class="num" id="highLevelRatio">--</div></div>
+                <div class="stat-card"><div class="icon"><i class="fa fa-line-chart"></i></div><div class="label">核心期刊增速</div><div class="num" id="csciGrowth">--</div></div>
+            </div>
+
+            <!-- 经费趋势图 -->
+            <div class="card">
+                <div class="card-title"><i class="fa fa-line-chart"></i> 近五年科研经费年度趋势</div>
+                <div class="filter-bar">
+                    <div class="filter-item">项目类型：<select class="filter-select" id="fundType">
+                        <option value="all">全部项目类型</option>
+                        <option value="national">国家级项目</option>
+                        <option value="provincial">省部级项目</option>
+                        <option value="school">校级项目</option>
+                        <option value="horizontal">横向项目</option>
+                    </select></div>
+                    <button class="btn" onclick="refreshFundChart()"><i class="fa fa-search"></i> 查询</button>
+                </div>
+                <div id="fundLineChart" class="chart-full"></div>
+            </div>
+
+            <!-- 年份筛选 -->
+            <div class="card">
+                <div class="card-title"><i class="fa fa-calendar"></i> 年份数据筛选</div>
+                <div class="filter-bar">
+                    <div class="filter-item">年份筛选：<select class="filter-select" id="year">
+                        <option value="all">全部年份</option>
+                        <option>2021</option><option>2022</option><option>2023</option><option>2024</option><option>2025</option>
+                    </select></div>
+                    <button class="btn" onclick="refreshMainCharts()"><i class="fa fa-search"></i> 查询</button>
+                </div>
+            </div>
+
+            <!-- 环形图 + 柱状图 -->
+            <div class="grid-two">
+                <div class="card"><div class="card-title"><i class="fa fa-pie-chart"></i> 学术成果结构环形图</div><div id="ringChart" class="chart-half-ring"></div></div>
+                <div class="card"><div class="card-title"><i class="fa fa-bar-chart"></i> 成果来源层级分布</div><div id="sourceBarChart" class="chart-half-bar"></div></div>
+            </div>
+
+            <!-- 雷达图 -->
+            <div class="card"><div class="card-title"><i class="fa fa-radar"></i> 五大研究方向维度实力雷达图</div><div id="radarChart" class="chart-full"></div></div>
+
+            <!-- 词云图 -->
+            <div class="card"><div class="card-title"><i class="fa fa-cloud"></i> 政治学系研究热点词云</div><div id="wordCloudChart" class="chart-full"></div></div>
+
+            <!-- 代表性学术著作与核心论文表格 -->
+            <div class="card">
+                <div class="card-title"><i class="fa fa-book"></i> 代表性学术著作与核心论文</div>
+                <div class="table-normal">
+                    <table class="result-table">
+                        <thead><tr><th>序号</th><th>成果名称</th><th>负责人</th><th>成果类型</th><th>年度</th></tr></thead>
+                        <tbody id="achievementsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 项目进度表格（普通滚动条） -->
+            <div class="card" style="margin-bottom:0;">
+                <div class="card-title"><i class="fa fa-tasks"></i> 智库咨询与横向及省部级项目进度</div>
+                <div class="table-normal">
+                    <table class="result-table">
+                        <thead><tr><th>项目名称</th><th>负责人</th><th>项目类型</th><th>进度</th><th>状态</th></tr></thead>
+                        <tbody id="projectsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentRole = localStorage.getItem('userRole') || 'admin';
+        let fundLineChart, ringChart, sourceBarChart, radarChart, wordCloudChart;
+        let currentFundData = {};
+
+    function switchRole(role) {
+    currentRole = role;
+    localStorage.setItem('userRole', role);
+    document.getElementById('btnAdmin').style.background = role === 'admin' ? '#409EFF' : '#666';
+    document.getElementById('btnTeacher').style.background = role === 'teacher' ? '#409EFF' : '#666';
+
+    // 跳转到对应的智能分析页面（或首页，根据需求）
+    if (role === 'admin') {
+        window.location.href = '/analysis/admin/';
+    } else {
+        window.location.href = '/analysis/teacher/';
+    }
+}
+
+    function goToSmartAnalysis() {
+    const role = localStorage.getItem('userRole') || 'admin';
+    if (role === 'admin') {
+        window.location.href = '/analysis/admin/';
+    } else {
+        window.location.href = '/analysis/teacher/';
+    }
+}
+    function toggleSubmenu(el) {
+        const sub = el.nextElementSibling;
+        const arrow = el.querySelector('.fa-angle-down');
+        sub.classList.toggle('open');
+        arrow.classList.toggle('rotate');
+    }
+
+    function refreshFundChart() {
+            const type = document.getElementById('fundType').value;
+            const years = [2021,2022,2023,2024,2025];
+            let data = [];
+            if (type === 'all') data = currentFundData.all;
+            else if (type === 'national') data = currentFundData.national;
+            else if (type === 'provincial') data = currentFundData.provincial;
+            else if (type === 'school') data = currentFundData.school;
+            else if (type === 'horizontal') data = currentFundData.horizontal;
+            fundLineChart.setOption({
+                tooltip: { trigger: 'axis' },
+                xAxis: { type: 'category', data: years },
+                yAxis: { type: 'value', name: '经费(万元)' },
+                series: [{ type: 'line', data: data, smooth: true, lineStyle: { color: '#409EFF' }, areaStyle: { color: 'rgba(64,158,255,0.2)' } }]
+            });
+        }
+
+        async function loadAllData() {
+            const year = document.getElementById('year').value;
+            const url = `/api/dept/political?year=${year}`;
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+
+                document.getElementById('teacherCount').innerText = data.stat_cards.teacher_count;
+                document.getElementById('projectCount').innerText = data.stat_cards.project_count;
+                document.getElementById('fundTotal').innerText = data.stat_cards.total_fund;
+                document.getElementById('achievementCount').innerText = data.stat_cards.achievement_count;
+                document.getElementById('highLevelRatio').innerText = data.stat_cards.high_level_ratio + '%';
+                document.getElementById('csciGrowth').innerText = (data.stat_cards.csci_growth >= 0 ? '+' : '') + data.stat_cards.csci_growth + '%';
+
+                currentFundData = data.fund_trend;
+                refreshFundChart();
+
+                ringChart.setOption({
+                    tooltip: { trigger: 'item' },
+                    series: [{ type: 'pie', radius: ['35%','65%'], data: data.ring_data, label: { show: true, formatter: '{b}' } }]
+                });
+
+                sourceBarChart.setOption({
+                    tooltip: { trigger: 'axis' },
+                    xAxis: { type: 'category', data: data.bar_categories },
+                    yAxis: { type: 'value' },
+                    series: [{ type: 'bar', data: data.bar_values, itemStyle: { color: (params) => ['#409EFF','#D4AF37','#67C23A'][params.dataIndex] } }]
+                });
+
+                radarChart.setOption({
+                    radar: { indicator: [
+                        { name:'政治思想研究', max:100 }, { name:'比较政治制度', max:100 },
+                        { name:'政党政治研究', max:100 }, { name:'民主与治理', max:100 },
+                        { name:'智库政策研究', max:100 }
+                    ] },
+                    series: [{ type: 'radar', data: [{ value: data.radar_data, name: '政治学系综合实力' }], areaStyle: { color: 'rgba(64,158,255,0.2)' } }]
+                });
+
+                wordCloudChart.setOption({
+                    series: [{ type: 'wordCloud', gridSize: 6, sizeRange: [8,55], rotationRange: [-60,60], shape: 'circle', data: data.wordcloud_data, textStyle: { color: () => ['#409EFF','#D4AF37','#67C23A','#F56C6C','#9C27B0','#17A2B8','#FF9800'][Math.floor(Math.random()*7)] } }]
+                });
+
+                const achBody = document.getElementById('achievementsTableBody');
+                achBody.innerHTML = '';
+                data.achievements_table.forEach(row => {
+                    achBody.innerHTML += `<tr><td>${row.序号}</td><td>${row.成果名称}</td><td>${row.负责人}</td><td>${row.成果类型}</td><td>${row.年度}</td></tr>`;
+                });
+
+                const projBody = document.getElementById('projectsTableBody');
+                projBody.innerHTML = '';
+                data.projects_table.forEach(proj => {
+                    projBody.innerHTML += `<tr><td>${proj.项目名称}</td><td>${proj.负责人}</td><td>${proj.项目类型}</td><td>${proj.进度}</td><td>${proj.状态}</td></tr>`;
+                });
+
+            } catch (err) {
+                console.error('加载政治学系数据失败', err);
+            }
+        }
+
+        function refreshMainCharts() {
+            loadAllData();
+        }
+
+        window.onload = function() {
+            document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
+            document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
+            fundLineChart = echarts.init(document.getElementById('fundLineChart'));
+            ringChart = echarts.init(document.getElementById('ringChart'));
+            sourceBarChart = echarts.init(document.getElementById('sourceBarChart'));
+            radarChart = echarts.init(document.getElementById('radarChart'));
+            wordCloudChart = echarts.init(document.getElementById('wordCloudChart'));
+            loadAllData();
+        };
+    </script>
+<script src="/static/js/search.js"></script>
+</body>
+</html>

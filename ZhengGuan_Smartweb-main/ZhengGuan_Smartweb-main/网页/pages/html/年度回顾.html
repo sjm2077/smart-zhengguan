@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts Dashboard</title>
+    <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css">
+    <link rel="stylesheet" href="https://code.highcharts.com/dashboards/css/dashboards.css">
+    <link rel="stylesheet" href="https://code.highcharts.com/dashboards/css/datagrid.css">
+    <style>
+        @import url("https://code.highcharts.com/css/highcharts.css");
+        @import url("https://code.highcharts.com/dashboards/css/dashboards.css");
+        @import url("https://code.highcharts.com/dashboards/css/datagrid.css");
+
+        /* Colors */
+        :root {
+            --highcharts-dashboards-green:  #566ee6;
+            --highcharts-dashboards-orange: #feaa61;
+            --highcharts-dashboards-green-transparent: #20d17e30;
+        }
+
+        /* General */
+        .highcharts-dashboards,
+        .highcharts-dashboards-wrapper {
+            background-color: transparent;
+        }
+
+        .highcharts-background {
+            fill: transparent; 
+        }
+
+        .highcharts-color-0 {
+            stroke: var(--highcharts-dashboards-green);
+            fill: var(--highcharts-dashboards-green);
+        }
+
+        .highcharts-color-1 {
+            stroke: var(--highcharts-dashboards-orange);
+            fill: var(--highcharts-dashboards-orange);
+        }
+
+        /* Rows and cells */
+        .highcharts-dashboards-row#row-1 {
+            background-color: var(--highcharts-neutral-color-5);
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        .highcharts-dashboards-cell>.highcharts-dashboards-component {
+            background-color: var(--highcharts-neutral-color-0);
+            border-radius: 20px;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Components general */
+        .highcharts-dashboards-component-title {
+            padding-left: 10px;
+            font-size: 0.8rem;
+            font-weight: 100;
+        }
+
+        .highcharts-dashboards-component-subtitle {
+            font-size: 0.8rem;
+            font-weight: 100;
+            padding-left: 20px;
+            color: var(--highcharts-dashboards-green);
+        }
+
+        .highcharts-dashboards-component-kpi-value {
+            padding-left: 20px;
+            font-weight: bold;
+        }
+
+        /* Components specific */
+        #dashboard-row-1-cell-2 .highcharts-dashboards-component-subtitle {
+            color: var(--highcharts-dashboards-orange);
+        }
+
+        #dashboard-row-1-cell-2 .highcharts-color-0 {
+            stroke: var(--highcharts-dashboards-orange);
+            fill: var(--highcharts-dashboards-orange);
+        }
+
+        #dashboard-row-1-cell-3 .highcharts-dashboards-component-content {
+            text-align: center;
+        }
+
+        #dashboard-row-2-cell-1 .highcharts-color-0 .highcharts-area {
+            fill-opacity: 1;
+            fill: url(#gradient-0);
+        }
+
+        #dashboard-row-3-cell-1 .highcharts-color-0 {
+            stroke: var(--highcharts-dashboards-orange);
+            fill: var(--highcharts-dashboards-orange);
+        }
+
+        #dashboard-row-3-cell-3 .highcharts-datagrid-container {
+            border: none;
+            font-weight: 100;
+        }
+
+        .highcharts-datagrid-container table {
+            border: 0;
+        }
+
+        .highcharts-datagrid-container tbody {
+            background-color: var(--highcharts-neutral-color-0);
+        }
+
+        .highcharts-datagrid-container {
+            background-color: transparent;
+        }
+
+        #dashboard-row-3-cell-3 .highcharts-datagrid-table th {
+            background-color: var(--highcharts-neutral-color-0);
+        }
+
+        #dashboard-row-3-cell-3 .highcharts-datagrid-row {
+            background-color: var(--highcharts-neutral-color-0);
+        }
+
+        #dashboard-row-3-cell-3 .highcharts-datagrid-hovered-column {
+            background: none;
+        }
+
+        #dashboard-row-3-cell-3 .highcharts-datagrid-hovered-row td {
+            background: var(--highcharts-dashboards-green-transparent);
+        }
+
+        /* Custom classes and ids */
+        #saving-button {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            background-color: var(--highcharts-dashboards-orange);
+            cursor: pointer;
+        }
+
+        /* Gradient  */
+        #gradient-0 stop {
+            stop-color: var(--highcharts-dashboards-green);
+        }
+
+        #gradient-0 stop[offset="0"] {
+            stop-opacity: 0.75;
+        }
+
+        #gradient-0 stop[offset="1"] {
+            stop-opacity: 0;
+        }
+
+        #dashboard-row-1-cell-1,
+        #dashboard-row-1-cell-2,
+        #dashboard-row-1-cell-3 {
+            height: 200px;
+        }
+
+        #dashboard-row-3-cell-1,
+        #dashboard-row-3-cell-2,
+        #dashboard-row-3-cell-3 {
+            height: 285px;
+        }
+
+        #dashboard-row-3-cell-1,
+        #dashboard-row-3-cell-2 {
+            flex: 1 1 20%;
+        }
+
+        #dashboard-row-3-cell-3 {
+            flex: 1 1 60%;
+        }
+
+        /* LARGE */
+        @media (max-width: 1200px) {
+            #dashboard-row-1-cell-1,
+            #dashboard-row-1-cell-2,
+            #dashboard-row-1-cell-3 {
+                flex: 1 1 33.333%;
+            }
+
+            #dashboard-row-3-cell-1,
+            #dashboard-row-3-cell-2 {
+                flex: 1 1 20%;
+            }
+
+            #dashboard-row-3-cell-3 {
+                flex: 1 1 60%;
+            }
+        }
+
+        /* MEDIUM */
+        @media (max-width: 992px) {
+            #dashboard-row-1-cell-1,
+            #dashboard-row-1-cell-2,
+            #dashboard-row-1-cell-3 {
+                flex: 1 1 50%;
+            }
+
+            #dashboard-row-3-cell-1,
+            #dashboard-row-3-cell-2 {
+                flex: 1 1 50%;
+            }
+
+            #dashboard-row-3-cell-3 {
+                flex: 1 1 100%;
+            }
+        }
+
+        /* SMALL */
+        @media (max-width: 576px) {
+            #dashboard-row-1-cell-1,
+            #dashboard-row-1-cell-2,
+            #dashboard-row-1-cell-3 {
+                flex: 1 1 50%;
+            }
+
+            #dashboard-row-3-cell-1,
+            #dashboard-row-3-cell-2,
+            #dashboard-row-3-cell-3 {
+                flex: 1 1 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script src="https://code.highcharts.com/dashboards/datagrid.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/dashboards/dashboards.js"></script>
+    <script src="https://code.highcharts.com/dashboards/modules/layout.js"></script>
+
+    <script>
+        const data = [
+            ['年份', '论文', '科研项目', '资金', '研究新生'],
+            [2019, 62, 12, 460, 6600],
+            [2020, 65, 13, 480, 6800],
+            [2021, 69, 14, 500, 7000],
+            [2022, 72, 15, 525, 7200],
+            [2023, 76, 17, 557, 7500]
+        ];
+    
+
+        Highcharts.setOptions({
+            chart: {
+                styledMode: true
+            },
+            credits: {
+                enabled: false 
+            }
+        });
+    
+        Dashboards.board('container', {
+            dataPool: {
+                connectors: [{
+                    id: 'newData',
+                    type: 'JSON',
+                    options: {
+                        firstRowAsNames: true,
+                        data: data
+                    }
+                }]
+            },
+            gui: {
+                layouts: [{
+                    rows: [{
+                        id: 'row-1',
+                        cells: [{
+                            id: 'dashboard-row-1-cell-1'
+                        }, {
+                            id: 'dashboard-row-1-cell-2'
+                        }]
+                    }, {
+                        cells: [{
+                            id: 'dashboard-row-2-cell-1'
+                        }]
+                    }, {
+                        cells: [{
+                            id: 'dashboard-row-3-cell-1'
+                        }, {
+                            id: 'dashboard-row-3-cell-2'
+                        }, {
+                            id: 'dashboard-row-3-cell-3'
+                        }]
+                    }]
+                }]
+            },
+            components: [
+                {
+                    type: 'KPI',
+                    renderTo: 'dashboard-row-1-cell-1',
+                    title: '论文总数',
+                    value: data.slice(1).reduce((sum, row) => sum + row[1], 0),
+                    valueFormat: '{value} 篇',
+                    subtitle: '每年论文数量趋势',
+                    linkedValueTo: {
+                        enabled: false
+                    },
+                    chartOptions: {
+                        chart: {
+                            type: 'line'
+                        },
+                        xAxis: {
+                            categories: data.slice(1).map(row => row[0])
+                        },
+                        yAxis: {
+                            title: {
+                                text: '论文数量'
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key} 年</span><br/>',
+                            pointFormat: '<b>论文数量:</b> {point.y} 篇'
+                        },
+                        series: [{
+                            name: '论文数量',
+                            data: data.slice(1).map(row => row[1])
+                        }]
+                    }
+                },
+                {
+                    type: 'KPI',
+                    renderTo: 'dashboard-row-1-cell-2',
+                    title: '科研项目总数',
+                    value: data.slice(1).reduce((sum, row) => sum + row[2], 0),
+                    valueFormat: '{value} 项',
+                    subtitle: '每年科研项目趋势',
+                    linkedValueTo: {
+                        enabled: false
+                    },
+                    chartOptions: {
+                        chart: {
+                            type: 'line'
+                        },
+                        xAxis: {
+                            categories: data.slice(1).map(row => row[0])
+                        },
+                        yAxis: {
+                            title: {
+                                text: '科研项目数量'
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key} 年</span><br/>',
+                            pointFormat: '<b>科研项目数量:</b> {point.y} 项'
+                        },
+                        series: [{
+                            name: '科研项目数量',
+                            data: data.slice(1).map(row => row[2])
+                        }]
+                    }
+                },
+                {
+                    type: 'Highcharts',
+                    renderTo: 'dashboard-row-2-cell-1',
+                    title: '科研经费和研究新生数量',
+                    chartOptions: {
+                        chart: {
+                            type: 'column'
+                        },
+                        xAxis: {
+                            categories: data.slice(1).map(row => row[0])
+                        },
+                        yAxis: [{
+                            title: {
+                                text: '科研经费 (单位: 万)'
+                            }
+                        }, {
+                            title: {
+                                text: '研究新生 (单位: 人)',
+                                opposite: true
+                            }
+                        }],
+                        tooltip: {
+                            shared: true
+                        },
+                        series: [{
+                            name: '科研经费',
+                            data: data.slice(1).map(row => row[3]),
+                            yAxis: 0
+                        }, {
+                            name: '研究新生',
+                            data: data.slice(1).map(row => row[4]),
+                            yAxis: 1
+                        }]
+                    }
+                },
+                {
+                    type: 'KPI',
+                    renderTo: 'dashboard-row-3-cell-1',
+                    title: '科研经费最高年度',
+                    value: Math.max(...data.slice(1).map(row => row[3])),
+                    valueFormat: '{value} 万',
+                    subtitle: `年份: ${data.slice(1).reduce((maxRow, row) => (row[3] > maxRow[3] ? row : maxRow))[0]}`,
+                    linkedValueTo: {
+                        enabled: false
+                    },
+                    chartOptions: {
+                        series: [{
+                            type: 'pie',
+                            data: data.slice(1).map(row => ({
+                                name: `${row[0]}年`,
+                                y: row[3]
+                            }))
+                        }]
+                    }
+                },
+                {
+                    type: 'KPI',
+                    renderTo: 'dashboard-row-3-cell-2',
+                    title: '研究新生总人数',
+                    value: data.slice(1).reduce((sum, row) => sum + row[4], 0),
+                    valueFormat: '{value} 人',
+                    subtitle: '每年研究新生趋势',
+                    linkedValueTo: {
+                        enabled: false
+                    },
+                    chartOptions: {
+                        chart: {
+                            type: 'area' // 改为面积图
+                        },
+                        xAxis: {
+                            categories: data.slice(1).map(row => row[0])
+                        },
+                        yAxis: {
+                            title: {
+                                text: '研究新生人数'
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key} 年</span><br/>',
+                            pointFormat: '<b>研究新生人数:</b> {point.y} 人'
+                        },
+                        series: [{
+                            name: '研究新生人数',
+                            data: data.slice(1).map(row => row[4])
+                        }]
+                    }
+                },
+                {
+                    renderTo: 'dashboard-row-3-cell-3',
+                    connector: {
+                        id: 'newData'
+                    },
+                    title: '年度科研数据表格',
+                    type: 'DataGrid',
+                    dataGridOptions: {
+                        credits: {
+                            enabled: false
+                        }
+                    }
+                }
+            ]
+        }, true);
+    </script>
+    
+
+</body>
+
+</html>

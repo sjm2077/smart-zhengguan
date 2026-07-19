@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科研智能分析 - 管理员版</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f5f7fa 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        :root {
+            --main-blue: #0A2343;
+            --light-blue: #409EFF;
+            --gold: #D4AF37;
+            --green: #67C23A;
+            --red: #F56C6C;
+            --orange: #E6A23C;
+            --gray: #909399;
+            --purple: #9C27B0;
+            --cyan: #17A2B8;
+            --card-radius: 16px;
+            --card-shadow: 0 8px 24px rgba(10, 35, 67, 0.08);
+            --card-shadow-hover: 0 12px 32px rgba(10, 35, 67, 0.12);
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            width: 100%;
+            height: 60px;
+            background: var(--main-blue);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+            .top-nav .logo-box {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+                .top-nav .logo-box img {
+                    height: 42px;
+                }
+
+                .top-nav .logo-box .title-text {
+                    color: white;
+                    font-size: 18px;
+                    font-weight: bold;
+                    letter-spacing: 0.5px;
+                }
+
+            .top-nav .search-box {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .top-nav .search-input {
+                width: 280px;
+                height: 36px;
+                border-radius: 18px;
+                border: none;
+                padding: 0 15px;
+                outline: none;
+                font-size: 14px;
+                background: rgba(255,255,255,0.15);
+                color: white;
+                transition: all 0.3s;
+            }
+
+                .top-nav .search-input::placeholder {
+                    color: rgba(255,255,255,0.6);
+                }
+
+                .top-nav .search-input:focus {
+                    background: rgba(255,255,255,0.25);
+                    box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+                }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+        .search-result-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.search-result-item:hover {
+    background: #f5f9ff;
+}
+.search-result-item .type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #fff;
+    margin-right: 8px;
+}
+.badge-project { background: #409EFF; }
+.badge-achievement { background: #67C23A; }
+.badge-teacher { background: #E6A23C; }
+.search-result-item .title {
+    font-weight: 500;
+    color: #333;
+}
+.search-result-item .sub {
+    font-size: 13px;
+    color: #888;
+    margin-left: 10px;
+}
+
+            .user-info:hover {
+                background: rgba(255,255,255,0.15);
+                transform: translateY(-1px);
+            }
+
+            .user-info img {
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                border: 2px solid rgba(255,255,255,0.8);
+            }
+
+        /* 布局容器 */
+        .container {
+            display: flex;
+            min-height: calc(100vh - 64px);
+            margin-top: 64px;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 250px;
+            background: var(--main-blue);
+            color: white;
+            padding: 24px 0;
+            height: calc(100vh - 64px);
+            position: fixed;
+            top: 64px;
+            left: 0;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+        }
+
+            .sidebar .menu-item {
+                padding: 15px 28px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                transition: all 0.25s ease;
+                border-left: 3px solid transparent;
+                font-size: 15px;
+            }
+
+                .sidebar .menu-item:hover {
+                    background: rgba(255,255,255,0.12);
+                    border-left: 3px solid var(--gold);
+                    padding-left: 32px;
+                }
+
+                .sidebar .menu-item.active {
+                    background: rgba(255,255,255,0.15);
+                    border-left: 3px solid var(--gold);
+                    font-weight: 500;
+                }
+
+        /* 主内容区 */
+        .content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 32px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #409EFF 0%, #0A2343 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: white;
+            border-radius: var(--card-radius);
+            padding: 18px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 28px;
+            border: 1px solid rgba(64,158,255,0.08);
+            transition: all 0.3s ease;
+        }
+
+            .card:hover {
+                box-shadow: var(--card-shadow-hover);
+                transform: translateY(-2px);
+            }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--main-blue);
+            margin-bottom: 22px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #e8f1ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .card-title i {
+                color: var(--light-blue);
+                font-size: 16px;
+            }
+
+        /* 图表尺寸 */
+        .chart-full {
+            width: 100% !important;
+            height: 520px !important;
+        }
+
+        .chart-half {
+            width: 100% !important;
+            height: 460px !important;
+        }
+
+        .chart-quarter {
+            width: 100% !important;
+            height: 420px !important;
+        }
+
+        /* 网格布局 */
+        .grid-box-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .grid-box-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .grid-box-new {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 28px;
+        }
+
+        .grid-box-new-top {
+            grid-row: 1;
+        }
+
+        .grid-box-new-bottom {
+            grid-row: 2;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        /* 预警卡片 */
+        .warn-card {
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: all 0.2s;
+        }
+
+            .warn-card:hover {
+                transform: translateX(4px);
+            }
+
+        .bg-green {
+            background: #f6ffed;
+            border: 1px solid #b7eb8f;
+        }
+
+        .bg-yellow {
+            background: #fffbe6;
+            border: 1px solid #ffeeba;
+        }
+
+        .bg-red {
+            background: #fff2f0;
+            border: 1px solid #ffccc7;
+        }
+
+        .warn-card i {
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        /* 表格 */
+        .project-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+            .project-table th, .project-table td {
+                border: 1px solid #f0f2f5;
+                padding: 14px;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            .project-table th {
+                background: #f8f9fa;
+                font-weight: bold;
+                color: var(--main-blue);
+            }
+
+            .project-table tr:hover {
+                background: #f9fcff;
+            }
+
+        .high-risk {
+            background: #ffeef0 !important;
+            color: var(--red) !important;
+            font-weight: bold;
+        }
+
+        /* 筛选栏 */
+        .filter-bar {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 24px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .resource-filter-bar {
+            width: 100%;
+            background: #f8f9fa;
+            padding: 18px 24px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid #e9ecef;
+        }
+
+        .filter-select {
+            height: 38px;
+            padding: 0 16px;
+            border: 1px solid #dcdfe6;
+            border-radius: 8px;
+            outline: none;
+            min-width: 160px;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+            .filter-select:focus {
+                border-color: var(--light-blue);
+                box-shadow: 0 0 0 2px rgba(64,158,255,0.1);
+            }
+
+        .btn {
+            height: 38px;
+            padding: 0 24px;
+            border: none;
+            border-radius: 8px;
+            background: var(--light-blue);
+            color: white;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+            .btn:hover {
+                background: #337ecc;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(64,158,255,0.2);
+            }
+
+        /* 分析报告 */
+        .analysis-report {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 24px;
+            margin-top: 24px;
+            border-left: 4px solid var(--light-blue);
+            line-height: 1.7;
+        }
+
+        .report-title {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: var(--main-blue);
+        }
+
+        .report-content {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333;
+            white-space: pre-line;
+        }
+
+        .teacher-hide {
+            display: none !important;
+        }
+
+        /* 遮罩层 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+            display: none;
+        }
+
+        /* 地图弹窗 */
+        .map-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 580px;
+            max-width: 90vw;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            z-index: 1000;
+            padding: 24px;
+            display: none;
+            animation: popupFade 0.3s ease;
+        }
+
+        @keyframes popupFade {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .map-popup-title {
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 18px;
+            color: var(--main-blue);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+        }
+
+        .map-popup-content {
+            font-size: 14px;
+            line-height: 1.7;
+            max-height: 65vh;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .map-popup-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #999;
+            transition: all 0.2s;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+            .map-popup-close:hover {
+                color: var(--red);
+                background: #f5f5f5;
+            }
+
+        .popup-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed #eee;
+        }
+
+            .popup-item:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+
+        .popup-item-title {
+            font-weight: bold;
+            color: var(--light-blue);
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 1600px) {
+            .grid-box-2, .grid-box-new-bottom {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-full {
+                height: 480px !important;
+            }
+
+            .chart-half {
+                height: 440px !important;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .content {
+                margin-left: 220px;
+            }
+
+            .grid-box-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-nav .search-input {
+                width: 200px;
+            }
+
+            .sidebar {
+                width: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .grid-box-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .map-popup {
+                width: 95vw;
+            }
+        }
+        /* 子学科折叠菜单 */
+        .submenu {
+            background: rgba(0,0,0,0.2);
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+            .submenu.open {
+                max-height: 280px;
+            }
+
+            .submenu .menu-item {
+                padding-left: 48px;
+                font-size: 14px;
+            }
+
+        .menu-item .fa-angle-down {
+            transition: transform 0.3s;
+        }
+
+            .menu-item .fa-angle-down.rotate {
+                transform: rotate(180deg);
+            }
+    </style>
+</head>
+<body>
+
+    <!-- 遮罩层 -->
+    <div class="overlay" id="overlay"></div>
+
+    <div class="top-nav">
+        <div class="logo-box">
+            <img src="https://img.icons8.com/fluency/96/ffffff/university.png" alt="logo">
+            <div class="title-text">政治学与公共管理学院</div>
+        </div>
+        <div class="search-box" style="position: relative;">
+    <input type="text" class="search-input" id="searchInput" placeholder="搜索我的分析/项目/成果">
+    <div id="searchResults" style="position:absolute; top:45px; left:0; width:100%; background:white; border:1px solid #ddd; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.15); max-height:400px; overflow-y:auto; display:none; z-index:999;"></div>
+    <div class="user-info">
+        <img src="https://img.icons8.com/fluency/96/ffffff/user-male-circle.png" alt="avatar">
+        <div><button onclick="switchRole('admin')" id="btnAdmin" style="padding:3px 8px;background:#409EFF;color:white;border:none;border-radius:4px;">管理员</button>
+        <button onclick="switchRole('teacher')" id="btnTeacher" style="padding:3px 8px;background:#666;color:white;border:none;border-radius:4px;margin-left:5px;">教师</button></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+    <div class="menu-item" onclick="location.href='/'">
+        <i class="fa fa-dashboard"></i> 科研总览
+    </div>
+    <div class="menu-item" onclick="location.href='/project/'">
+        <i class="fa fa-folder-open"></i> 科研项目
+    </div>
+    <div class="menu-item" onclick="location.href='/fund/'">
+        <i class="fa fa-money"></i> 科研经费
+    </div>
+    <div class="menu-item" onclick="location.href='/achievement/'">
+        <i class="fa fa-trophy"></i> 科研成果
+    </div>
+    <div class="menu-item active" onclick="goToSmartAnalysis()">
+        <i class="fa fa-lightbulb-o"></i> 智能分析
+    </div>
+
+    <div class="menu-item" onclick="toggleSubmenu(this)">
+        <i class="fa fa-book"></i> 学科分析
+        <i class="fa fa-angle-down"></i>
+    </div>
+    <div class="submenu">
+        <div class="menu-item" onclick="location.href='/dept/science/'">
+            <i class="fa fa-angle-right"></i> 科学社会主义系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/political/'">
+            <i class="fa fa-angle-right"></i> 政治学系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/international/'">
+            <i class="fa fa-angle-right"></i> 国际政治系
+        </div>
+        <div class="menu-item" onclick="location.href='/dept/public/'">
+            <i class="fa fa-angle-right"></i> 公共管理系
+        </div>
+    </div>
+</div>
+
+        <!-- 主内容区 -->
+        <div class="content">
+            <div class="page-title"><i class="fa fa-lightbulb-o"></i> 科研智能分析中心（管理员版）</div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fa fa-bar-chart"></i> 全院科研绩效 - 多维度气泡图
+                    <span style="font-size:12px; font-weight:normal; margin-left:18px; color:#666;">气泡大小=综合得分 | X轴=科研能力 | Y轴=教学质量</span>
+                </div>
+                <div class="filter-bar">
+                    <select class="filter-select" id="scoreYear" onchange="refreshBubbleChart()">
+                        <option value="all">全部年份（近5年平均值）</option>
+                        <option value="2024">2024年度</option>
+                        <option value="2023">2023年度</option>
+                        <option value="2022">2022年度</option>
+                        <option value="2021">2021年度</option>
+                        <option value="2020">2020年度</option>
+                    </select>
+                    <button class="btn" onclick="generateAnalysisReport()">生成分析报告</button>
+                </div>
+                <div id="perfBubble" class="chart-full"></div>
+                <div id="analysisReport" class="analysis-report" style="display:none;">
+                    <div class="report-title">【<span id="reportYear">2024</span>年度】全院科研绩效分析报告</div>
+                    <div class="report-content" id="reportContent"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fa fa-sort-amount-desc"></i> 全院教师教学/科研/服务得分排行</div>
+                <div class="filter-bar">
+                    <select class="filter-select" id="rankYear" onchange="refreshRankChart()">
+                        <option value="2024">2024年度</option>
+                        <option value="2023">2023年度</option>
+                        <option value="2022">2022年度</option>
+                        <option value="2021">2021年度</option>
+                        <option value="2020">2020年度</option>
+                    </select>
+                </div>
+                <div id="scoreRank" class="chart-full"></div>
+            </div>
+
+            <div class="grid-box-new">
+                <div class="grid-box-new-top">
+                    <div class="card">
+                        <div class="card-title">
+                            <i class="fa fa-thermometer-three-quarters"></i> 教师晋升概率热力图
+                            <span style="font-size:12px; font-weight:normal; margin-left:18px; color:#666;">颜色越深=晋升概率越高</span>
+                        </div>
+                        <div class="filter-bar">
+                            <select class="filter-select" id="heatYear" onchange="refreshHeatChart()">
+                                <option value="2024">2024年度</option>
+                                <option value="2023">2023年度</option>
+                                <option value="2022">2022年度</option>
+                                <option value="2021">2021年度</option>
+                                <option value="2020">2020年度</option>
+                            </select>
+                        </div>
+                        <div id="promoteHeat" class="chart-half"></div>
+                    </div>
+                </div>
+
+                <div class="grid-box-new-bottom">
+                    <div class="card">
+                        <div class="card-title"><i class="fa fa-line-chart"></i> 全院年度绩效趋势</div>
+                        <div id="scoreTrend" class="chart-quarter"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title"><i class="fa fa-history"></i> 全院发展轨迹分析</div>
+                        <div id="developLine" class="chart-quarter"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fa fa-exclamation-circle"></i> 教师发展状态综合分析</div>
+                <div class="grid-box-2">
+                    <div class="warn-card bg-green">
+                        <i class="fa fa-check-circle"></i>
+                        <div><strong>优秀稳定（8人）</strong><br>张教授、李教授、王教授、刘教授、赵教授、孙教授、周教授、吴教授<br>特征：综合得分≥85，连续3年稳定增长</div>
+                    </div>
+                    <div class="warn-card bg-yellow">
+                        <i class="fa fa-eye"></i>
+                        <div><strong>需关注（5人）</strong><br>郑老师、钱老师、冯老师、陈老师、褚老师<br>特征：综合得分60-85，增长趋势放缓</div>
+                    </div>
+                    <div class="warn-card bg-red">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        <div><strong>需帮扶（3人）</strong><br>卫老师、蒋老师、沈老师<br>特征：综合得分＜60，连续2年下滑</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fa fa-pie-chart"></i> 学科资源分析</div>
+                <div class="resource-filter-bar">
+                    <label style="font-weight: bold; color: var(--main-blue);">数据年份：</label>
+                    <select class="filter-select" id="resourceCommonYear" onchange="refreshAllResourceCharts()">
+                        <option value="2024">2024年度</option>
+                        <option value="2023">2023年度</option>
+                        <option value="2022">2022年度</option>
+                        <option value="2021">2021年度</option>
+                        <option value="2020">2020年度</option>
+                    </select>
+                    <span style="color: #666; font-size: 14px;">※ 选择年份后，下方饼图/柱状图将同步更新</span>
+                </div>
+
+                <div class="grid-box-2">
+                    <div>
+                        <h4 style="margin-bottom: 15px; color: var(--main-blue); font-size:16px;">学科资源分配占比</h4>
+                        <div id="resourcePie" class="chart-half"></div>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 15px; color: var(--main-blue); font-size:16px;">资源投入产出对比</h4>
+                        <div id="resourceBar" class="chart-half"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <h4 style="margin-bottom: 15px; color: var(--main-blue); font-size:16px;">资源配置智能建议</h4>
+                    <div id="resourceAdvice"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fa fa-tachometer"></i> 全院科研整体进度（红黄绿预警）</div>
+                <div id="progressGauge" class="chart-full" style="height: 350px !important;"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fa fa-bell"></i> 风险项目预警</div>
+                <table class="project-table">
+                    <tr><th>项目编号</th><th>负责人</th><th>项目名称</th><th>计划完成时间</th><th>当前状态</th><th>进度</th></tr>
+                    <tr><td>XM202401</td><td>张教授</td><td>公共政策优化研究</td><td>2024-12-31</td><td>正常</td><td>78%</td></tr>
+                    <tr class="high-risk"><td>XM202402</td><td>陈老师</td><td>基层治理创新研究</td><td>2024-10-30</td><td>进度滞后</td><td>32%</td></tr>
+                    <tr class="high-risk"><td>XM202405</td><td>蒋老师</td><td>社会保障体系研究</td><td>2024-09-30</td><td>逾期风险</td><td>25%</td></tr>
+                    <tr><td>XM202408</td><td>王教授</td><td>行政管理效率研究</td><td>2024-11-30</td><td>正常</td><td>91%</td></tr>
+                    <tr><td>XM202410</td><td>赵教授</td><td>国际关系理论研究</td><td>2024-12-15</td><td>正常</td><td>85%</td></tr>
+                    <tr class="high-risk"><td>XM202412</td><td>沈老师</td><td>政治学理论创新</td><td>2024-08-15</td><td>已逾期</td><td>45%</td></tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fa fa-map-marker"></i> 实验室/科研平台分布</div>
+                <div id="gisMap" class="chart-full" style="height:620px !important;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 地图弹窗 -->
+    <div class="map-popup" id="mapPopup">
+        <span class="map-popup-close" onclick="closeMapPopup()">&times;</span>
+        <div class="map-popup-title" id="popupTitle">北京市科研平台详情</div>
+        <div class="map-popup-content" id="popupContent"></div>
+    </div>
+
+    <script>
+    // ==================== 全局身份管理 ====================
+    let currentRole = localStorage.getItem('userRole') || 'admin';
+
+    function switchRole(role) {
+        currentRole = role;
+        localStorage.setItem('userRole', role);
+        document.getElementById('btnAdmin').style.background = role === 'admin' ? '#409EFF' : '#666';
+        document.getElementById('btnTeacher').style.background = role === 'teacher' ? '#409EFF' : '#666';
+        window.location.href = role === 'admin' ? '/analysis/admin/' : '/analysis/teacher/';
+    }
+
+    function toggleSubmenu(el) {
+        const submenu = el.nextElementSibling;
+        const arrow = el.querySelector('.fa-angle-down');
+        submenu.classList.toggle('open');
+        arrow.classList.toggle('rotate');
+    }
+
+    function setActiveMenu() {
+        const path = window.location.pathname;
+        document.querySelectorAll('.sidebar .menu-item').forEach(item => {
+            item.classList.remove('active');
+            const onclick = item.getAttribute('onclick') || '';
+            if (path === '/' && onclick.includes("location.href='/'")) item.classList.add('active');
+            if (path === '/project/' && onclick.includes("location.href='/project/'")) item.classList.add('active');
+            if (path === '/fund/' && onclick.includes("location.href='/fund/'")) item.classList.add('active');
+            if (path === '/achievement/' && onclick.includes("location.href='/achievement/'")) item.classList.add('active');
+            if (path === '/analysis/admin/' && onclick.includes("goToSmartAnalysis()")) item.classList.add('active');
+        });
+    }
+
+    function goToSmartAnalysis() {
+        const role = localStorage.getItem('userRole') || 'admin';
+        window.location.href = role === 'admin' ? '/analysis/admin/' : '/analysis/teacher/';
+    }
+
+    // ==================== 图表实例 ====================
+    let perfBubble, scoreRank, promoteHeat, scoreTrend, developLine, resourcePie, resourceBar, progressGauge, gisMap;
+    let overlay = document.getElementById('overlay');
+
+const mapData = {
+    '北京市': { labs: [{ name: '国家治理现代化实验室', type: '重点实验室', director: '张教授', projects: ['国家治理体系研究', '公共政策评估'] }, { name: '数字政府研究实验室', type: '重点实验室', director: '李教授', projects: ['数字政府建设', '政务服务优化'] }, { name: '基层治理创新实验室', type: '重点实验室', director: '王教授', projects: ['基层治理模式', '社区治理创新'] }], platforms: [{ name: '公共政策研究中心', type: '科研平台', director: '刘教授', projects: ['政策效果评估', '政策制定流程'] }] },
+    '上海市': { labs: [{ name: '长三角治理研究实验室', type: '重点实验室', director: '赵教授', projects: ['区域协同治理', '长三角一体化'] }, { name: '城市治理创新实验室', type: '重点实验室', director: '孙教授', projects: ['智慧城市', '城市管理优化'] }], platforms: [] },
+    '山东省': { labs: [{ name: '黄河流域治理实验室', type: '重点实验室', director: '周教授', projects: ['流域生态治理', '黄河文化保护'] }, { name: '乡村振兴研究实验室', type: '重点实验室', director: '吴教授', projects: ['乡村治理', '农村公共服务'] }, { name: '基层党建与治理实验室', type: '重点实验室', director: '郑教授', projects: ['党建引领治理', '基层党组织建设'] }, { name: '公共服务均等化实验室', type: '重点实验室', director: '钱教授', projects: ['基本公共服务', '服务均等化'] }, { name: '应急管理研究实验室', type: '重点实验室', director: '冯教授', projects: ['应急管理体系', '风险防控'] }], platforms: [{ name: '公共管理研究中心', type: '科研平台', director: '陈教授', projects: ['公共管理理论', '治理能力现代化'] }] },
+    '江苏省': { labs: [{ name: '社会治理创新实验室', type: '重点实验室', director: '褚教授', projects: ['社会治理', '矛盾化解机制'] }], platforms: [] },
+    '浙江省': { labs: [], platforms: [{ name: '数字治理研究中心', type: '科研平台', director: '卫教授', projects: ['数字治理', '数据安全'] }] },
+    '广东省': { labs: [], platforms: [{ name: '粤港澳治理研究中心', type: '科研平台', director: '蒋教授', projects: ['区域治理', '粤港澳合作'] }] },
+    '四川省': { labs: [], platforms: [{ name: '西部治理研究中心', type: '科研平台', director: '沈教授', projects: ['西部发展', '乡村振兴'] }] }
+};
+
+function openMapPopup(city) {
+    const p = document.getElementById('mapPopup'), d = mapData[city];
+    const total = d.labs.length + d.platforms.length;
+    document.getElementById('popupTitle').innerText = `${city}科研平台详情（总计${total}个）`;
+    let html = '';
+    if (d.labs.length) {
+        html += `<div class="popup-item"><div class="popup-item-title">✅ 重点实验室（${d.labs.length}个）</div><ul style="margin:5px 0 0 20px;">`;
+        d.labs.forEach(i => { html += `<li><strong>名称：</strong>${i.name}<br><strong>负责人：</strong>${i.director}</li>`; });
+        html += '</ul></div>';
+    }
+    if (d.platforms.length) {
+        html += `<div class="popup-item"><div class="popup-item-title">🔬 科研平台（${d.platforms.length}个）</div><ul style="margin:5px 0 0 20px;">`;
+        d.platforms.forEach(i => { html += `<li><strong>名称：</strong>${i.name}<br><strong>负责人：</strong>${i.director}</li>`; });
+        html += '</ul></div>';
+    }
+    if (!d.labs.length && !d.platforms.length) html = '<div style="text-align:center; color:#666;">暂无数据</div>';
+    document.getElementById('popupContent').innerHTML = html;
+    p.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+function closeMapPopup() {
+    document.getElementById('mapPopup').style.display = 'none';
+    overlay.style.display = 'none';
+}
+
+function renderGISMap() {
+    if (!gisMap) {
+        console.error('gisMap 未初始化');
+        return;
+    }
+    // 使用 ECharts 地图内置的省份简称
+    const mapSeriesData = [
+        { name: '北京', value: 4, labsCount: 3, platformsCount: 1 },
+        { name: '上海', value: 2, labsCount: 2, platformsCount: 0 },
+        { name: '山东', value: 6, labsCount: 5, platformsCount: 1 },
+        { name: '江苏', value: 1, labsCount: 1, platformsCount: 0 },
+        { name: '浙江', value: 1, labsCount: 0, platformsCount: 1 },
+        { name: '广东', value: 1, labsCount: 0, platformsCount: 1 },
+        { name: '四川', value: 1, labsCount: 0, platformsCount: 1 }
+    ];
+    gisMap.setOption({
+        backgroundColor: '#fff',
+        tooltip: { trigger: 'item', formatter: params => {
+            const cityData = mapSeriesData.find(item => item.name === params.name);
+            return cityData ? `${params.name}<br>科研平台总数量：${cityData.value}个<br>实验室：${cityData.labsCount}个<br>科研平台：${cityData.platformsCount}个` : `${params.name}<br>暂无平台数据`;
+        } },
+        geo: { map: 'china', roam: true, zoom: 1.2, label: { show: true, fontSize: 12, color: '#333' }, itemStyle: { areaColor: '#e8f4f8', borderColor: '#409EFF', borderWidth: 1 }, emphasis: { itemStyle: { areaColor: '#b3d9e8' } } },
+        series: [{ name: '科研平台数量', type: 'map', geoIndex: 0, data: mapSeriesData, label: { show: true }, emphasis: { label: { color: '#0A2343' }, itemStyle: { areaColor: '#409EFF' } } }]
+    });
+    gisMap.off('click');
+    gisMap.on('click', params => {
+        let cityKey = params.name;
+        // 将简称映射到 mapData 中的全称
+        const mapFull = { '北京':'北京市', '上海':'上海市', '山东':'山东省', '江苏':'江苏省', '浙江':'浙江省', '广东':'广东省', '四川':'四川省' };
+        cityKey = mapFull[cityKey] || cityKey;
+        if (mapData[cityKey]) {
+            openMapPopup(cityKey);
+        } else {
+            document.getElementById('popupTitle').innerText = `${params.name}科研平台详情`;
+            document.getElementById('popupContent').innerHTML = '<div style="text-align:center; color:#666;">暂无实验室/科研平台数据</div>';
+            document.getElementById('mapPopup').style.display = 'block';
+            overlay.style.display = 'block';
+        }
+    });
+}
+
+    // ==================== API 调用函数 ====================
+    async function refreshBubbleChart() {
+        const year = document.getElementById('scoreYear').value;
+        const res = await fetch(`/api/admin/perf-bubble?year=${year}`);
+        const data = await res.json();
+         const colorPalette = [
+        '#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#9C27B0',
+        '#17A2B8', '#FF9800', '#795548', '#607D8B', '#3F51B5',
+        '#009688', '#FF5722', '#8BC34A', '#E91E63', '#00BCD4'
+    ];
+    const chartData = data.data.map((d, idx) => ({
+        name: d.name,
+        value: d.value,
+        itemStyle: { color: colorPalette[idx % colorPalette.length] }
+    }));
+        perfBubble.setOption({
+            tooltip: {
+                trigger: 'item',
+                formatter: params => `${params.name}<br>科研能力：${params.value[0]}<br>教学质量：${params.value[1]}<br>综合得分：${params.value[2]}`
+            },
+            xAxis: { type: 'value', name: '科研能力', min: 50, max: 100 },
+            yAxis: { type: 'value', name: '教学质量', min: 50, max: 100 },
+            series: [{
+                type: 'scatter',
+                symbolSize: val => val[2] / 1.5,
+                data: chartData,
+                label: { show: true, position: 'top', formatter: '{b}' }
+            }],
+            grid: { left: '12%', right: '10%', top: '10%', bottom: '20%' }
+        });
+    }
+
+    async function refreshRankChart() {
+        const year = document.getElementById('rankYear').value;
+        const res = await fetch(`/api/admin/rank?year=${year}`);
+        const data = await res.json();
+        scoreRank.setOption({
+            tooltip: { trigger: 'axis' },
+            legend: { data: ['教学得分', '科研得分', '服务得分'] },
+            xAxis: { data: data.names },
+            yAxis: { type: 'value', min: 0, max: 100 },
+            series: [
+                { name: '教学得分', type: 'bar', data: data.teach, itemStyle: { color: '#409EFF' } },
+                { name: '科研得分', type: 'bar', data: data.research, itemStyle: { color: '#67C23A' } },
+                { name: '服务得分', type: 'bar', data: data.service, itemStyle: { color: '#E6A23C' } }
+            ]
+        });
+    }
+
+    async function refreshHeatChart() {
+        const year = document.getElementById('heatYear').value;
+        const res = await fetch(`/api/admin/heat?year=${year}`);
+        const data = await res.json();
+        promoteHeat.setOption({
+            tooltip: { trigger: 'item' },
+            xAxis: { type: 'category', data: data.xAxis },
+            yAxis: { type: 'category', data: data.yAxis },
+            visualMap: { min: 0, max: 100, inRange: { color: ['#F0F8FF','#E0F7FA','#B2EBF2','#80DEEA','#4DD0E1','#26C6DA'] } },
+            series: [{ type: 'heatmap', data: data.data }]
+        });
+    }
+
+    async function renderTrendCharts() {
+        // 绩效趋势（按月）
+        const trendRes = await fetch('/api/admin/trend');
+        const trendData = await trendRes.json();
+        scoreTrend.setOption({
+            tooltip: { trigger: 'axis' },
+            legend: { data: ['全院平均得分'] },
+            xAxis: { data: trendData.months },
+            yAxis: { type: 'value', min: 60, max: 90 },
+            series: [{ name: '全院平均得分', type: 'line', smooth: true, data: trendData.scores, itemStyle: { color: '#409EFF' } }]
+        });
+        // 发展轨迹
+        const devRes = await fetch('/api/admin/develop');
+        const devData = await devRes.json();
+        developLine.setOption({
+            tooltip: { trigger: 'axis' },
+            legend: { data: ['科研规模', '成果数量', '经费总额'] },
+            xAxis: { data: devData.years },
+            yAxis: { type: 'value' },
+            series: [
+                { name: '科研规模', type: 'line', data: devData.scale, itemStyle: { color: '#409EFF' } },
+                { name: '成果数量', type: 'line', data: devData.achievements, itemStyle: { color: '#67C23A' } },
+                { name: '经费总额', type: 'line', data: devData.funds, itemStyle: { color: '#E6A23C' } }
+            ]
+        });
+    }
+
+    async function refreshAllResourceCharts() {
+    const year = document.getElementById('resourceCommonYear').value;
+    const res = await fetch(`/api/admin/resource?year=${year}`);
+    const data = await res.json();
+    resourcePie.setOption({
+        tooltip: { trigger: 'item' },
+        legend: { orient: 'horizontal', bottom: 0, data: data.subjects },
+        series: [{ type: 'pie', radius: ['30%','70%'], data: data.pieData }]
+    });
+    resourceBar.setOption({
+        tooltip: { trigger: 'axis' },
+        legend: { data: ['资源投入', '成果产出'] },
+        xAxis: { data: data.subjects },
+        yAxis: { type: 'value' },
+        series: [
+            { name: '资源投入', type: 'bar', data: data.input, itemStyle: { color: '#409EFF' } },
+            { name: '成果产出', type: 'bar', data: data.output, itemStyle: { color: '#67C23A' } }
+        ]
+    });
+    // 修复语法错误：使用三元运算符代替 if
+    const ratios = data.input.map((inp, idx) => inp ? data.output[idx] / inp : 0);
+    const high = data.subjects.filter((_, i) => ratios[i] > 0.9);
+    const mid = data.subjects.filter((_, i) => ratios[i] >= 0.7 && ratios[i] <= 0.9);
+    const low = data.subjects.filter((_, i) => ratios[i] < 0.7);
+    let adviceHtml = '<div class="grid-box-2">';
+    if (high.length) adviceHtml += `<div class="warn-card bg-green"><i class="fa fa-thumbs-up"></i><div>推荐：加大${high.join('、')}投入</div></div>`;
+    if (mid.length) adviceHtml += `<div class="warn-card bg-yellow"><i class="fa fa-lightbulb-o"></i><div>观察：${mid.join('、')}保持现状</div></div>`;
+    if (low.length) adviceHtml += `<div class="warn-card bg-red"><i class="fa fa-wrench"></i><div>优化：${low.join('、')}利用率偏低</div></div>`;
+    document.getElementById('resourceAdvice').innerHTML = adviceHtml + '</div>';
+}
+
+    async function renderProgressGauge() {
+        const res = await fetch('/api/admin/progress-gauge');
+        const data = await res.json();
+        progressGauge.setOption({
+            tooltip: { formatter: '{a} <br/>{b} : {c}%' },
+            series: [{
+                name: '科研进度',
+                type: 'gauge',
+                radius: '80%',
+                startAngle: 90, endAngle: -270,
+                min: 0, max: 100,
+                axisLine: { lineStyle: { width: 20, color: [[0.3, '#F56C6C'], [0.7, '#E6A23C'], [1, '#67C23A']] }, offsetCenter: [0, '5%'] },
+                pointer: { length: '55%', width: 5, itemStyle: { color: '#0A2343' }, offsetCenter: [0, '5%'] },
+                axisTick: { length: 10, lineStyle: { color: '#333', width: 2 }, offsetCenter: [0, '5%'] },
+                splitLine: { length: 18, lineStyle: { color: '#333', width: 3 }, offsetCenter: [0, '5%'] },
+                axisLabel: { color: '#333', fontSize: 16, distance: 25, offsetCenter: [0, '5%'] },
+                title: { fontSize: 16, offsetCenter: [0, '-20%'] },
+                detail: { fontSize: 30, fontWeight: 'bold', color: '#0A2343', offsetCenter: [0, '15%'], formatter: '{value}%' },
+                data: [{ value: data.value, name: '全院科研进度' }]
+            }]
+        });
+    }
+
+    async function loadRiskProjects() {
+        const res = await fetch('/api/admin/risk-projects');
+        const data = await res.json();
+        const tableBody = document.querySelector('.project-table tbody');
+        if (!data.data.length) {
+            tableBody.innerHTML = '<td><td colspan="6">暂无风险项目</td></tr>';
+            return;
+        }
+        let html = '';
+        data.data.forEach(p => {
+            const riskClass = p.risk_level === '高' ? 'high-risk' : '';
+            html += `<tr class="${riskClass}">
+                        <td>${p.project_no}</td>
+                        <td>${p.leader}</td>
+                        <td>${p.project_name}</td>
+                        <td>${p.end_date}</td>
+                        <td>${p.status}</td>
+                        <td>${p.progress}%</td>
+                     </tr>`;
+        });
+        tableBody.innerHTML = html;
+    }
+
+
+
+    async function generateAnalysisReport() {
+    const yearSelect = document.getElementById('scoreYear');
+    const year = yearSelect.value === 'all' ? '近5年平均' : yearSelect.value + '年度';
+    const yearParam = yearSelect.value === 'all' ? 'all' : yearSelect.value;
+
+    // 显示报告区域并提示加载中
+    document.getElementById('analysisReport').style.display = 'block';
+    document.getElementById('reportYear').innerText = year;
+    document.getElementById('reportContent').innerHTML = '正在生成分析报告，请稍候...';
+
+    try {
+        // 并发请求所需数据
+        const [rankRes, trendRes, developRes, perfRes] = await Promise.all([
+            fetch(`/api/admin/rank?year=${yearParam === 'all' ? '2024' : yearParam}`),
+            fetch('/api/admin/trend'),
+            fetch('/api/admin/develop'),
+            fetch(`/api/admin/perf-bubble?year=${yearParam}`)
+        ]);
+
+        const rankData = await rankRes.json();
+        const trendData = await trendRes.json();
+        const developData = await developRes.json();
+        const perfData = await perfRes.json();
+
+        // 计算全院平均综合得分
+        let avgScore = 0;
+        if (perfData.data && perfData.data.length > 0) {
+            const total = perfData.data.reduce((sum, item) => sum + item.value[2], 0);
+            avgScore = (total / perfData.data.length).toFixed(1);
+        }
+
+        // 找出得分最高的前三名教师
+        const topTeachers = perfData.data.sort((a,b) => b.value[2] - a.value[2]).slice(0,3);
+        const topNames = topTeachers.map(t => t.name).join('、');
+
+        // 找出科研/教学得分最低的教师（短板）
+        const weakResearch = perfData.data.sort((a,b) => a.value[0] - b.value[0])[0];
+        const weakTeaching = perfData.data.sort((a,b) => a.value[1] - b.value[1])[0];
+
+        // 获取资源数据以找出短板学科（需要额外请求）
+        let weakSubject = '';
+        try {
+            const resourceRes = await fetch(`/api/admin/resource?year=${yearParam === 'all' ? '2024' : yearParam}`);
+            const resourceData = await resourceRes.json();
+            if (resourceData.subjects && resourceData.input && resourceData.output) {
+                const ratios = resourceData.input.map((inp, idx) => inp ? resourceData.output[idx] / inp : 0);
+                const minRatioIdx = ratios.indexOf(Math.min(...ratios));
+                weakSubject = resourceData.subjects[minRatioIdx] || '';
+            }
+        } catch(e) { console.warn('获取资源数据失败', e); }
+
+        // 计算经费和成果增长率（从发展轨迹）
+        const lastYear = developData.years[developData.years.length - 1];
+        const firstYear = developData.years[0];
+        const fundGrowth = ((developData.funds[developData.funds.length-1] - developData.funds[0]) / developData.funds[0] * 100).toFixed(1);
+        const achGrowth = ((developData.achievements[developData.achievements.length-1] - developData.achievements[0]) / developData.achievements[0] * 100).toFixed(1);
+
+        // 获取全院整体进度
+        let progressGaugeValue = 78; // 默认值
+        try {
+            const gaugeRes = await fetch('/api/admin/progress-gauge');
+            const gaugeData = await gaugeRes.json();
+            progressGaugeValue = gaugeData.value;
+        } catch(e) {}
+
+        // 生成报告内容
+        const reportText = `
+1. 整体绩效：全院教师综合得分均值为 ${avgScore} 分，其中 ${topNames} 表现突出，综合得分均超过85分；
+2. 短板分析：${weakSubject ? weakSubject + '学科' : '部分学科'}资源投入产出比较低，需优化资源配置；科研能力相对较弱的教师为 ${weakResearch?.name || ''}，教学质量有待提升的教师为 ${weakTeaching?.name || ''}；
+3. 发展建议：对得分低于60分的教师制定一对一帮扶计划，重点提升科研项目申报和成果转化能力；同时关注 ${weakSubject} 学科的资源分配；
+4. 进度预警：当前全院科研整体进度 ${progressGaugeValue}%，需重点关注进度低于50%的风险项目，督促负责人加快进度。
+近五年经费总额增长 ${fundGrowth}%，成果数量增长 ${achGrowth}%，整体发展态势良好。
+        `.trim();
+
+        document.getElementById('reportContent').innerText = reportText;
+
+    } catch (error) {
+        console.error('生成报告失败', error);
+        document.getElementById('reportContent').innerHTML = '报告生成失败，请稍后重试。';
+    }
+}
+    // 地图数据（静态）
+    // 页面初始化
+        // 页面初始化
+window.onload = function() {
+        document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
+        document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
+        setActiveMenu();
+
+        // 初始化图表容器
+        try {
+            perfBubble = echarts.init(document.getElementById('perfBubble'));
+            scoreRank = echarts.init(document.getElementById('scoreRank'));
+            promoteHeat = echarts.init(document.getElementById('promoteHeat'));
+            scoreTrend = echarts.init(document.getElementById('scoreTrend'));
+            developLine = echarts.init(document.getElementById('developLine'));
+            resourcePie = echarts.init(document.getElementById('resourcePie'));
+            resourceBar = echarts.init(document.getElementById('resourceBar'));
+            progressGauge = echarts.init(document.getElementById('progressGauge'));
+            gisMap = echarts.init(document.getElementById('gisMap'));
+            console.log('所有图表容器初始化成功');
+        } catch(e) { console.error('图表初始化失败', e); }
+
+        // 加载数据
+        Promise.allSettled([
+            refreshBubbleChart(),
+            refreshRankChart(),
+            refreshHeatChart(),
+            renderTrendCharts(),
+            refreshAllResourceCharts(),
+            renderProgressGauge(),
+            loadRiskProjects(),
+            renderGISMap()
+        ]).then(results => {
+            results.forEach((result, idx) => {
+                if (result.status === 'rejected') console.error(`第${idx+1}个图表加载失败:`, result.reason);
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            [perfBubble, scoreRank, promoteHeat, scoreTrend, developLine, resourcePie, resourceBar, progressGauge, gisMap].forEach(chart => chart?.resize());
+        });
+    };
+
+
+</script>
+<script src="/static/js/search.js"></script>
+</body>
+</html>

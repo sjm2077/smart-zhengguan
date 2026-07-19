@@ -1,0 +1,29 @@
+# 第三方依赖包，绝对不上传
+node_modules/
+# 打包输出文件夹
+dist/
+# 本地缓存文件
+.trae/
+# 系统无关文件
+.DS_Store
+# 编辑器配置
+.idea/
+.vscode/
+# 忽略大型文档压缩包
+*.zip
+*.pptx
+*.pdf
+*.rar
+*.7z
+# 数据库/密钥配置
+*.env
+config.js
+server.js（如果只用来存密钥建议单独拆分）
+# 表格、文档、压缩包
+*.xlsx
+*.docx
+*.pptx
+*.zip
+*.rar
+*.pdf
+

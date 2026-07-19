@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雷达图展示</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      /* padding: 20px; */
+    }
+
+    #chart {
+      width: 420px;
+      height: 400px;
+      margin-left: 0;
+    }
+
+    select {
+      margin: 20px;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h3 style="text-align: center;margin-left:-4rem;">具体小分雷达图</h3>
+  <div>
+    <label for="personSelect">选择展示的人:</label>
+    <select id="personSelect">
+      <option value="average">平均分</option>
+      <option value="MattiasG.Ottervik">MattiasG.Ottervik</option>
+      <option value="YunsooLee">YunsooLee</option>
+      <option value="亓子龙">亓子龙</option>
+      <option value="俞少宾">俞少宾</option>
+      <option value="倪保志">倪保志</option>
+      <option value="农羽青">农羽青</option>
+      <option value="冷安丽">冷安丽</option>
+      <option value="刘华兴">刘华兴</option>
+      <option value="刘昌明">刘昌明</option>
+      <option value="刘浩">刘浩</option>
+      <option value="刘玉安">刘玉安</option>
+      <option value="刘琳">刘琳</option>
+      <option value="刘鑫">刘鑫</option>
+      <option value="叶紫蒙">叶紫蒙</option>
+      <option value="吕连仁">吕连仁</option>
+      <option value="吴心喆">吴心喆</option>
+      <option value="唐睿">唐睿</option>
+      <option value="姜杰">姜杰</option>
+      <option value="孔令伟">孔令伟</option>
+      <option value="孔令栋">孔令栋</option>
+      <option value="孙宗锋">孙宗锋</option>
+      <option value="季丽新">季丽新</option>
+      <option value="展妍男">展妍男</option>
+      <option value="庞敏">庞敏</option>
+      <option value="张乐">张乐</option>
+      <option value="张健彬">张健彬</option>
+      <option value="张天舒">张天舒</option>
+      <option value="张淑兰">张淑兰</option>
+      <option value="徐会平">徐会平</option>
+      <option value="方炯升">方炯升</option>
+      <option value="方雷">方雷</option>
+      <option value="曹现强">曹现强</option>
+      <option value="朱林旭">朱林旭</option>
+      <option value="朱贵昌">朱贵昌</option>
+      <option value="朱靖琰">朱靖琰</option>
+      <option value="李亚洲">李亚洲</option>
+      <option value="李宏">李宏</option>
+      <option value="李广">李广</option>
+      <option value="李延伟">李延伟</option>
+      <option value="李慧明">李慧明</option>
+      <option value="李振">李振</option>
+      <option value="李文正">李文正</option>
+      <option value="李昕蕾">李昕蕾</option>
+      <option value="李梦丹">李梦丹</option>
+      <option value="李欢欢">李欢欢</option>
+      <option value="李济时">李济时</option>
+      <option value="李爽">李爽</option>
+      <option value="李辉">李辉</option>
+      <option value="李进涛">李进涛</option>
+      <option value="杨志">杨志</option>
+      <option value="杨春林">杨春林</option>
+      <option value="楚成亚">楚成亚</option>
+      <option value="楼苏萍">楼苏萍</option>
+      <option value="江玮滢">江玮滢</option>
+      <option value="法帅">法帅</option>
+      <option value="滕玉成">滕玉成</option>
+      <option value="王乙杰">王乙杰</option>
+      <option value="王佃利">王佃利</option>
+      <option value="王元亮">王元亮</option>
+      <option value="王军洋">王军洋</option>
+      <option value="王学玉">王学玉</option>
+      <option value="王怡">王怡</option>
+      <option value="王成">王成</option>
+      <option value="王硕">王硕</option>
+      <option value="王薪喜">王薪喜</option>
+      <option value="王鹏权">王鹏权</option>
+      <option value="由迪">由迪</option>
+      <option value="白江波">白江波</option>
+      <option value="盛力">盛力</option>
+      <option value="秦亚青">秦亚青</option>
+      <option value="程龙">程龙</option>
+      <option value="米雪">米雪</option>
+      <option value="罗聪">罗聪</option>
+      <option value="胡志伟">胡志伟</option>
+      <option value="臧秀玲">臧秀玲</option>
+      <option value="蒋锐">蒋锐</option>
+      <option value="褚雷">褚雷</option>
+      <option value="谢东虹">谢东虹</option>
+      <option value="费立国">费立国</option>
+      <option value="贾小云">贾小云</option>
+      <option value="赵婷">赵婷</option>
+      <option value="赵志华">赵志华</option>
+      <option value="赵玙佳">赵玙佳</option>
+      <option value="边琦">边琦</option>
+      <option value="邢占军">邢占军</option>
+      <option value="郄子君">郄子君</option>
+      <option value="郑国栋">郑国栋</option>
+      <option value="郭春生">郭春生</option>
+      <option value="金淑霞">金淑霞</option>
+      <option value="金澄">金澄</option>
+      <option value="钟诚">钟诚</option>
+      <option value="陈仁兴">陈仁兴</option>
+      <option value="陈静">陈静</option>
+      <option value="霍文乐">霍文乐</option>
+      <option value="韩丽华">韩丽华</option>
+      <option value="韩自强">韩自强</option>
+      <option value="马奔">马奔</option>
+      <option value="马永驰">马永驰</option>
+      <option value="马荣久">马荣久</option>
+      <option value="高原">高原</option>
+      <option value="黄晴">黄晴</option>
+      <option value="黄栋">黄栋</option>
+      <option value="黄登学">黄登学</option>
+
+      <!-- Add options for other people here -->
+    </select>
+  </div>
+  <div id="chart"></div>
+
+  <script>
+    var chart = echarts.init(document.getElementById('chart'));
+
+    // 示例数据：6个维度的得分
+    var average_data = [3.6, 37.0, 39.7, 0.8, 2.1, 7.0];
+
+    var individual_data = {
+      'MattiasG.Ottervik': [0.0, 19.0, 56.0, 0.0, 0.0, 22.0],
+      'YunsooLee': [0.0, 51.0, 30.0, 0.0, 0.0, 11.0],
+      '亓子龙': [0.0, 92.0, 30.0, 0.0, 3.0, 0.0],
+      '俞少宾': [9.2, 19.0, 27.0, 2.0, 2.0, 0.0],
+      '倪保志': [0.0, 13.0, 44.0, 0.0, 1.0, 1.0],
+      '农羽青': [0.0, 37.0, 20.0, 0.0, 3.0, 18.0],
+      '冷安丽': [4.8, 54.0, 31.0, 0.0, 4.0, 4.0],
+      '刘华兴': [3.6, 46.0, 12.0, 1.0, 0.0, 0.0],
+      '刘昌明': [6.4, 54.0, 65.0, 2.0, 5.0, 18.0],
+      '刘浩': [0.0, 17.0, 55.0, 0.0, 5.0, 10.0],
+      '刘玉安': [0.0, 41.0, 44.0, 0.0, 0.0, 18.0],
+      '刘琳': [0.0, 37.0, 3.0, 5.0, 0.0, 5.0],
+      '刘鑫': [0.0, 48.0, 30.0, 0.0, 0.0, 2.0],
+      '叶紫蒙': [0.0, 66.0, 38.0, 0.0, 0.0, 0.0],
+      '吕连仁': [6.6, 44.0, 20.0, 0.0, 0.0, 5.0],
+      '吴心喆': [0.0, 76.0, 58.0, 0.0, 0.0, 0.0],
+      '唐睿': [0.0, 18.0, 87.0, 0.0, 0.0, 11.0],
+      '姜杰': [0.0, 59.0, 39.0, 0.0, 0.0, 2.0],
+      '孔令伟': [0.0, 18.0, 20.0, 0.0, 0.0, 2.0],
+      '孔令栋': [0.0, 60.0, 43.0, 0.0, 5.0, 2.0],
+      '孙宗锋': [9.7, 64.0, 60.0, 2.0, 0.0, 1.0],
+      '季丽新': [7.1, 41.0, 42.0, 0.0, 0.0, 3.0],
+      '展妍男': [14.1, 36.0, 70.0, 0.0, 2.0, 5.0],
+      '庞敏': [0.0, 36.0, 42.0, 0.0, 0.0, 12.0],
+      '张乐': [0.0, 26.0, 39.0, 0.0, 6.0, 0.0],
+      '张健彬': [0.0, 23.0, 75.0, 0.0, 20.0, 8.0],
+      '张天舒': [6.6, 19.0, 65.0, 2.0, 2.0, 22.0],
+      '张淑兰': [3.9, 27.0, 31.0, 3.0, 0.0, 8.0],
+      '徐会平': [12.2, 31.0, 35.0, 2.0, 0.0, 3.0],
+      '方炯升': [0.0, 17.0, 4.0, 0.0, 3.0, 7.0],
+      '方雷': [0.0, 25.0, 40.0, 5.0, 0.0, 1.0],
+      '曹现强': [0.0, 60.0, 84.0, 2.0, 0.0, 2.0],
+      '朱林旭': [3.9, 25.0, 23.0, 0.0, 0.0, 5.0],
+      '朱贵昌': [11.7, 38.0, 15.0, 5.0, 8.0, 16.0],
+      '朱靖琰': [0.0, 56.0, 33.0, 0.0, 3.0, 8.0],
+      '李亚洲': [2.7, 21.0, 20.0, 4.0, 3.0, 1.0],
+      '李宏': [0.0, 34.0, 20.0, 0.0, 0.0, 0.0],
+      '李广': [0.0, 42.0, 37.0, 0.0, 0.0, 15.0],
+      '李延伟': [0.0, 24.0, 50.0, 0.0, 1.0, 29.0],
+      '李慧明': [7.7, 79.0, 10.0, 0.0, 0.0, 6.0],
+      '李振': [0.0, 72.0, 60.0, 5.0, 25.0, 2.0],
+      '李文正': [0.0, 19.0, 20.0, 0.0, 0.0, 5.0],
+      '李昕蕾': [9.7, 26.0, 28.0, 1.0, 2.0, 0.0],
+      '李梦丹': [6.4, 49.0, 70.0, 0.0, 4.0, 0.0],
+      '李欢欢': [3.3, 11.0, 5.0, 0.0, 0.0, 3.0],
+      '李济时': [0.0, 81.0, 13.0, 0.0, 0.0, 0.0],
+      '李爽': [5.9, 14.0, 83.0, 0.0, 0.0, 15.0],
+      '李辉': [0.0, 41.0, 58.0, 0.0, 0.0, 0.0],
+      '李进涛': [16.6, 52.0, 35.0, 0.0, 0.0, 2.0],
+      '杨志': [0.0, 78.0, 27.0, 0.0, 1.0, 2.0],
+      '杨春林': [8.5, 11.0, 13.0, 0.0, 2.0, 22.0],
+      '楚成亚': [4.5, 6.0, 40.0, 2.0, 0.0, 2.0],
+      '楼苏萍': [7.1, 27.0, 12.0, 2.0, 0.0, 2.0],
+      '江玮滢': [0.0, 18.0, 61.0, 0.0, 0.0, 8.0],
+      '法帅': [0.0, 22.0, 40.0, 0.0, 5.0, 15.0],
+      '滕玉成': [13.6, 29.0, 40.0, 1.0, 0.0, 20.0],
+      '王乙杰': [4.8, 28.0, 20.0, 0.0, 0.0, 0.0],
+      '王佃利': [4.9, 99.0, 68.0, 4.0, 10.0, 2.0],
+      '王元亮': [5.1, 14.0, 61.0, 0.0, 1.0, 3.0],
+      '王军洋': [0.0, 12.0, 43.0, 0.0, 0.0, 0.0],
+      '王学玉': [3.7, 38.0, 60.0, 3.0, 0.0, 10.0],
+      '王怡': [0.0, 81.0, 42.0, 0.0, 10.0, 15.0],
+      '王成': [0.0, 11.0, 30.0, 0.0, 5.0, 13.0],
+      '王硕': [0.0, 22.0, 25.0, 0.0, 0.0, 3.0],
+      '王薪喜': [2.7, 16.0, 16.0, 0.0, 4.0, 0.0],
+      '王鹏权': [4.0, 14.0, 3.0, 2.0, 0.0, 7.0],
+      '由迪': [0.0, 5.0, 85.0, 0.0, 0.0, 21.0],
+      '白江波': [0.0, 28.0, 7.0, 0.0, 0.0, 25.0],
+      '盛力': [0.0, 26.0, 75.0, 0.0, 0.0, 3.0],
+      '秦亚青': [0.0, 14.0, 35.0, 0.0, 6.0, 0.0],
+      '程龙': [0.0, 40.0, 20.0, 0.0, 1.0, 1.0],
+      '米雪': [7.4, 92.0, 20.0, 0.0, 2.0, 3.0],
+      '罗聪': [0.0, 84.0, 15.0, 0.0, 0.0, 25.0],
+      '胡志伟': [0.0, 19.0, 57.0, 0.0, 5.0, 5.0],
+      '臧秀玲': [5.1, 8.0, 45.0, 3.0, 0.0, 5.0],
+      '蒋锐': [0.0, 101.0, 20.0, 5.0, 0.0, 8.0],
+      '褚雷': [0.0, 20.0, 59.0, 0.0, 3.0, 1.0],
+      '谢东虹': [2.6, 7.0, 28.0, 0.0, 0.0, 1.0],
+      '费立国': [17.4, 32.0, 40.0, 0.0, 0.0, 9.0],
+      '贾小云': [6.7, 34.0, 45.0, 0.0, 0.0, 1.0],
+      '赵婷': [0.0, 22.0, 80.0, 2.0, 5.0, 15.0],
+      '赵志华': [0.0, 24.0, 17.0, 0.0, 2.0, 10.0],
+      '赵玙佳': [6.4, 36.0, 55.0, 0.0, 0.0, 3.0],
+      '边琦': [0.0, 31.0, 73.0, 0.0, 1.0, 6.0],
+      '邢占军': [9.7, 36.0, 84.0, 3.0, 0.0, 5.0],
+      '郄子君': [3.9, 39.0, 57.0, 0.0, 5.0, 18.0],
+      '郑国栋': [19.9, 43.0, 10.0, 0.0, 0.0, 15.0],
+      '郭春生': [2.6, 35.0, 78.0, 4.0, 0.0, 2.0],
+      '金淑霞': [10.9, 46.0, 39.0, 0.0, 0.0, 5.0],
+      '金澄': [8.5, 43.0, 17.0, 0.0, 0.0, 1.0],
+      '钟诚': [0.0, 39.0, 68.0, 0.0, 0.0, 0.0],
+      '陈仁兴': [7.1, 35.0, 45.0, 0.0, 3.0, 0.0],
+      '陈静': [6.2, 59.0, 45.0, 0.0, 0.0, 25.0],
+      '霍文乐': [10.2, 6.0, 15.0, 0.0, 2.0, 10.0],
+      '韩丽华': [10.7, 20.0, 80.0, 0.0, 4.0, 24.0],
+      '韩自强': [0.0, 46.0, 35.0, 2.0, 2.0, 1.0],
+      '马奔': [0.0, 16.0, 18.0, 0.0, 15.0, 8.0],
+      '马永驰': [5.4, 23.0, 5.0, 0.0, 6.0, 0.0],
+      '马荣久': [11.6, 37.0, 25.0, 0.0, 0.0, 20.0],
+      '高原': [0.0, 9.0, 12.0, 0.0, 1.0, 15.0],
+      '黄晴': [0.0, 73.0, 73.0, 0.0, 0.0, 2.0],
+      '黄栋': [0.0, 41.0, 53.0, 0.0, 10.0, 0.0],
+      '黄登学': [11.6, 54.0, 36.0, 5.0, 1.0, 2.0],
+
+      // Add other individuals' data here
+    };
+
+    // 雷达图配置
+    var option = {
+      title: {
+        // text: '具体分数展示',
+        // subtext: '具体分数展示',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item'
+      },
+      radar: {
+        indicator: [
+          { name: '教学', max: 20 },
+          { name: '科研论文', max: 110 },
+          { name: '科研项目', max: 90 },
+          { name: '兼职工作', max: 5 },
+          { name: '荣誉表彰', max: 25 },
+          { name: '教育成果', max: 30 }
+        ]
+        // center: ['25%', '50%']
+      },
+      series: [
+        {
+          name: '能力展示',
+          type: 'radar',
+          data: [
+            {
+              value: average_data,
+              name: '平均分',
+              lineStyle: {
+                color: '#2f4554',
+                opacity: 0.5
+              },
+              areaStyle: {
+                color: 'rgba(47, 85, 84, 0.1)'
+              }
+            }
+          ]
+        }
+      ]
+    };
+
+    // 初始化图表
+    chart.setOption(option);
+
+    // 监听选择栏变化
+    document.getElementById('personSelect').addEventListener('change', function (event) {
+      var selectedPerson = event.target.value;
+
+      if (selectedPerson === 'average') {
+        // 显示平均分
+        option.series[0].data = [{
+          value: average_data,
+          name: '平均分',
+          lineStyle: {
+            color: '#2f4554',
+            opacity: 0.5
+          },
+          areaStyle: {
+            color: 'rgba(47, 85, 84, 0.1)'
+          }
+        }];
+      } else {
+        // 显示个人分数，同时保留平均分
+        var personData = individual_data[selectedPerson];
+        option.series[0].data = [
+          {
+            value: average_data,
+            name: '平均分',
+            lineStyle: {
+              color: '#2f4554',
+              opacity: 0.5
+            },
+            areaStyle: {
+              color: 'rgba(47, 85, 84, 0.1)'
+            }
+          },
+          {
+            value: personData,
+            name: selectedPerson,
+            lineStyle: {
+              color: '#ff7f50',
+              width: 3
+            },
+            areaStyle: {
+              color: 'rgba(255, 127, 80, 0.3)'
+            }
+          }
+        ];
+      }
+
+      chart.setOption(option);
+    });
+  </script>
+</body>
+
+</html>

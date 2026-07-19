@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>培养经历</title>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
+    <style>
+        #container {
+        height: 500px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    </style>
+</head>
+<body>
+
+<div id="container"></div>
+
+<script>
+(async () => {
+    const topology = await fetch(
+        'https://code.highcharts.com/mapdata/custom/world.topo.json'
+    ).then(response => response.json());
+
+    const data = [
+        { name: '北京师范大学', value: 3, coordinates: [116.332, 39.9544], region: 'Asia' },
+        { name: '河北师范学院', value: 1, coordinates: [115.5122, 38.978], region: 'Asia' },
+        { name: '中国社会科学院', value: 1, coordinates: [116.3883, 39.9282], region: 'Asia' },
+        { name: '山东大学', value: 18, coordinates: [117.019, 36.6685], region: 'Asia' },
+        { name: '中国人民大学', value: 4, coordinates: [116.3473, 39.961], region: 'Asia' },
+        { name: '复旦大学', value: 5, coordinates: [121.507, 31.302], region: 'Asia' },
+        { name: '香港中文大学', value: 1, coordinates: [114.217, 22.3959], region: 'Asia' },
+        { name: '上海交通大学', value: 1, coordinates: [121.4825, 31.2001], region: 'Asia' },
+        { name: '重庆大学', value: 1, coordinates: [106.5705, 29.563], region: 'Asia' },
+        { name: '澳大利亚国立大学', value: 1, coordinates: [149.115, -35.3035], region: 'Oceania' },
+        { name: '华南师范大学', value: 1, coordinates: [113.3676, 23.1622], region: 'Asia' },
+        { name: '青岛大学师范学院', value: 1, coordinates: [120.3821, 36.0865], region: 'Asia' },
+        { name: '南京理工大学', value: 1, coordinates: [118.7963, 32.025], region: 'Asia' },
+        { name: '南京大学', value: 3, coordinates: [118.796, 32.0603], region: 'Asia' },
+        { name: '香港大学', value: 1, coordinates: [114.1628, 22.2797], region: 'Asia' },
+        { name: '耶鲁大学', value: 1, coordinates: [-72.9223, 41.3163], region: 'North America' },
+        { name: '哥德堡大学', value: 1, coordinates: [11.9746, 57.7089], region: 'Europe' },
+        { name: '太原理工大学', value: 1, coordinates: [112.5495, 37.8628], region: 'Asia' },
+        { name: '苏州大学', value: 1, coordinates: [120.5853, 31.2989], region: 'Asia' },
+        { name: '多伦多大学', value: 1, coordinates: [-79.3957, 43.6629], region: 'North America' },
+        { name: '杜伦大学', value: 1, coordinates: [-1.5755, 54.7764], region: 'Europe' },
+        { name: '南开大学', value: 2, coordinates: [117.18, 39.1408], region: 'Asia' },
+        { name: '韩国岭南大学国际教育院', value: 1, coordinates: [128.1025, 35.1444], region: 'Asia' },
+        { name: '柏林自由大学', value: 1, coordinates: [13.2906, 52.4574], region: 'Europe' },
+        { name: '山东师范大学', value: 1, coordinates: [117.1571, 36.6829], region: 'Asia' },
+        { name: '北京外国语大学', value: 1, coordinates: [116.3489, 39.9658], region: 'Asia' },
+        { name: '美国密苏里大学', value: 2, coordinates: [-92.3341, 38.9519], region: 'North America' },
+        { name: '北京大学', value: 2, coordinates: [116.4074, 39.9042], region: 'Asia' },
+        { name: '德国弗莱堡大学', value: 2, coordinates: [7.8421, 47.9936], region: 'Europe' },
+        { name: '阿姆斯特丹自由大学', value: 1, coordinates: [4.8811, 52.3584], region: 'Europe' },
+        { name: '兰州大学', value: 1, coordinates: [103.6177, 36.0569], region: 'Asia' },
+        { name: '清华大学', value: 1, coordinates: [116.329, 40.0056], region: 'Asia' },
+        { name: '内蒙古科技大学', value: 1, coordinates: [111.6385, 40.8165], region: 'Asia' },
+        { name: '特拉华大学', value: 1, coordinates: [-75.749, 39.6838], region: 'North America' },
+        { name: '四川大学', value: 1, coordinates: [104.0666, 30.6502], region: 'Asia' },
+        { name: '吉林大学', value: 1, coordinates: [125.3245, 43.8868], region: 'Asia' },
+        { name: '哈尔滨工业大学', value: 2, coordinates: [126.6424, 45.7559], region: 'Asia' },
+        { name: '中山大学', value: 1, coordinates: [113.359, 23.1327], region: 'Asia' },
+        { name: '伦敦大学国王学院', value: 1, coordinates: [-0.0904, 51.5108], region: 'Europe' },
+        { name: '浙江大学', value: 1, coordinates: [120.1517, 30.2728], region: 'Asia' },
+        { name: '中国矿业大学', value: 1, coordinates: [117.205, 34.187], region: 'Asia' },
+        { name: '新加坡国立大学', value: 1, coordinates: [103.7764, 1.2966], region: 'Asia' },
+        { name: '高丽大学', value: 2, coordinates: [126.996, 37.5821], region: 'Asia' },
+        { name: '华中师范大学', value: 1, coordinates: [114.3632, 30.5134], region: 'Asia' },
+        { name: '伯明翰大学', value: 1, coordinates: [-1.5486, 52.3963], region: 'Europe' },
+        { name: '华中农业大学', value: 2, coordinates: [114.364, 30.5158], region: 'Asia' },
+        { name: '昆士兰大学', value: 1, coordinates: [153.0187, -27.4979], region: 'Oceania' },
+        { name: '美国斯坦福大学', value: 1, coordinates: [-122.1697, 37.4275], region: 'North America' },
+        { name: '新加坡国立大学李光耀公共政策学院', value: 1, coordinates: [103.48, 1.18], region: 'Asia' },
+        { name: '大连理工大学', value: 2, coordinates: [121.6079, 38.904], region: 'Asia' },
+        { name: '罗格斯大学', value: 1, coordinates: [-74.4451, 40.5015], region: 'North America' },
+        { name: '武汉大学', value: 1, coordinates: [114.4005, 30.5455], region: 'Asia' },
+        { name: '西安交通大学', value: 1, coordinates: [108.956, 34.2009], region: 'Asia' },
+        { name: '黑龙江大学', value: 1, coordinates: [126.6329, 45.7475], region: 'Asia' },
+        { name: '西南大学', value: 1, coordinates: [106.493, 29.9733], region: 'Asia' },
+        { name: '奈梅亨大学', value: 1, coordinates: [5.845, 51.8424], region: 'Europe' },
+        { name: '普林斯顿大学', value: 1, coordinates: [-74.6553, 40.343], region: 'North America' }
+    ];
+    
+    const regionColors = {
+        'Asia':'#1aa7ee',
+        'Africa':'#ffc502',
+        'North America':'#4328e7',
+        'South America':'#9654e5',
+        'Europe':'#ff6283',
+        'Oceania':'#ff8800',
+        'Other':'007d8e'
+    };
+
+    const seriesData = data.map(item => ({
+        name: item.name,
+        z: item.value,
+        geometry: {
+            type: 'Point',
+            coordinates: item.coordinates
+        },
+        color: regionColors[item.region]
+    }));
+
+    Highcharts.mapChart('container', {
+        chart: {
+            map: topology,
+            mapView: {
+                projection: {
+                    name: 'Miller'
+                },
+                center: [116, 39],
+                zoom: 3
+            },
+        },
+        title: {
+            text: '培养经历',
+        },
+        subtitle: {
+            text: '基于山大政管老师的数据'
+        },
+        accessibility: {
+            description: '培养经历'
+        },
+        legend: {
+            enabled: false
+        },
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        series: [{
+            name: '背景地图',
+            type: 'map',
+            color: '#E3EBE7', 
+            borderColor:'#FFFFFF',
+            nullColor: '#E8F0EC',
+            enableMouseTracking: false,
+            states: {
+                inactive: {
+                    opacity: 1
+                }
+            }
+        }, 
+        {
+            type: 'mapbubble',
+            name: '数量',
+            joinBy: ['name', 'name'],
+            data: seriesData,
+            minSize: '1%',
+            maxSize: '3%',
+            tooltip: {
+                useHTML: true,
+                pointFormat: '{point.name}: {point.z}',
+                shared: false
+            }
+        }]
+    });
+
+})();
+</script>
+
+</body>
+</html>
