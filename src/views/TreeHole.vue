@@ -169,6 +169,9 @@
 
       <!-- 课程评价 -->
       <div v-if="activeTab === 'course'" class="course-section">
+        <p class="news-note">
+          课程名称为政管学院常见课程示例；教师姓名一栏留空，等教学系统课程库接入后自动带出（不编造教师姓名）。
+        </p>
         <div class="course-search">
           <input 
             v-model="courseSearch" 
@@ -202,7 +205,7 @@
             <div class="course-header">
               <div class="course-info">
                 <h4 class="course-name">{{ course.name }}</h4>
-                <span class="course-teacher">{{ course.teacher }}</span>
+                <span class="course-teacher">{{ course.teacher || '待接入教学系统课程库' }}</span>
               </div>
               <div class="course-rating">
                 <span class="avg-rating">{{ course.avgRating }}</span>
@@ -296,10 +299,19 @@
         </div>
       </div>
 
-      <!-- 新闻播报 -->
+      <!-- 新闻播报（官网真实通知公告） -->
       <div v-if="activeTab === 'news'" class="news-section">
+        <div class="news-toolbar">
+          <input v-model="newsKeyword" placeholder="搜索官网通知标题（如：奖学金、推免、答辩）" class="search-input" />
+          <button class="news-refresh" @click="loadNews">刷新官网通知</button>
+        </div>
+        <p class="news-note">
+          数据来源：学院官网通知公告 {{ newsTotal }} 条，点击卡片跳转官网原文
+          <span v-if="newsLoading">（加载中…）</span>
+          <span v-if="newsError" class="news-error">{{ newsError }}</span>
+        </p>
         <div class="news-list">
-          <a v-for="news in newsItems" :key="news.id" :href="news.link" target="_blank" class="news-card" :class="news.category">
+          <a v-for="news in newsItems" :key="news.id" :href="news.link" target="_blank" rel="noopener" class="news-card" :class="news.category">
             <div class="news-image">
               <span class="news-icon">{{ news.icon }}</span>
             </div>
@@ -310,7 +322,7 @@
               <div class="news-footer">
                 <span class="news-source">{{ news.source }}</span>
                 <span class="news-time">{{ news.time }}</span>
-                <span class="news-views">👁️ {{ news.views }}</span>
+                <span v-if="news.views" class="news-views">👁️ {{ news.views }}</span>
               </div>
             </div>
           </a>
@@ -321,7 +333,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 
 const activeTab = ref('mood')
 const tabs = [
@@ -334,14 +346,71 @@ const tabs = [
   { key: 'news', label: '新闻播报', icon: '📰' }
 ]
 
+// 新闻播报：直接读学院官网通知公告（真实数据 + 原文链接）
+const newsItems = ref([])
+const newsKeyword = ref('')
+const newsTotal = ref(0)
+const newsLoading = ref(false)
+const newsError = ref('')
+
+const NEWS_ICON = {
+  '招聘': '💼', '公示': '📋', '学位': '🎓', '招生': '📝',
+  '奖助': '🏅', '学术': '🎙️', 'notice': '📢'
+}
+
+const loadNews = async () => {
+  newsLoading.value = true
+  newsError.value = ''
+  try {
+    const q = newsKeyword.value.trim()
+    const res = await fetch(`/api-research/api/real/pspa-notices?limit=24${q ? '&q=' + encodeURIComponent(q) : ''}`)
+    if (!res.ok) throw new Error('HTTP ' + res.status)
+    const json = await res.json()
+    newsTotal.value = json.total || 0
+    newsItems.value = (json.data || []).map(n => ({
+      id: n.id,
+      category: n.category,
+      categoryLabel: n.categoryLabel,
+      icon: NEWS_ICON[n.category] || '📢',
+      title: n.title,
+      summary: n.has_body ? '官网原文已采集正文，可点击查看完整公告' : '官网原文（仅标题可采集）',
+      source: '政管学院官网',
+      time: n.date,
+      link: n.url
+    }))
+    if (!newsItems.value.length) newsError.value = '没有匹配的官网通知'
+  } catch (e) {
+    newsError.value = '官网通知加载失败（需启动科研后端 8888）'
+  } finally {
+    newsLoading.value = false
+  }
+}
+
+// 树洞内容持久化：用户自己发布的帖子存本地，刷新后不丢（真实用户数据，不是写死演示）
+const STORE_PREFIX = 'treehole:'
+const loadLocal = (key, fallback) => {
+  try {
+    const raw = localStorage.getItem(STORE_PREFIX + key)
+    if (raw) return JSON.parse(raw)
+  } catch (e) { /* 忽略损坏数据 */ }
+  return fallback
+}
+const saveLocal = (key, value) => {
+  try {
+    localStorage.setItem(STORE_PREFIX + key, JSON.stringify(value))
+  } catch (e) { /* 容量满时静默失败 */ }
+}
+
 // 心情分享
 const moodTags = ['开心', '平静', '焦虑', '沮丧', '兴奋', '感动']
 const newPost = ref({ content: '', mood: '' })
-const moodPosts = ref([
-  { id: 1, avatar: '👻', time: '10分钟前', mood: '焦虑', moodType: 'negative', content: '最近论文进度很慢，导师催了好几次，压力有点大...', likes: 23, comforts: 15, comments: 8, showComments: false, newComment: '', commentList: [{ id: 1, avatar: '🤗', text: '加油！一步一步来，相信你能完成的！' }] },
-  { id: 2, avatar: '🎉', time: '30分钟前', mood: '开心', moodType: 'positive', content: '终于拿到了心仪公司的offer！四年的努力终于有了回报，感谢所有帮助过我的人！', likes: 156, comforts: 89, comments: 42, showComments: false, newComment: '', commentList: [] },
-  { id: 3, avatar: '🌙', time: '1小时前', mood: '平静', moodType: 'neutral', content: '今晚在图书馆看书，窗外月光很美。虽然学习很累，但偶尔的小确幸让人心安。', likes: 67, comforts: 32, comments: 18, showComments: false, newComment: '', commentList: [] }
-])
+const MOOD_SEED = [
+  { id: 1, demo: true, avatar: '👻', time: '示例', mood: '焦虑', moodType: 'negative', content: '最近论文进度很慢，导师催了好几次，压力有点大...（示例内容，可删除）', likes: 23, comforts: 15, comments: 8, showComments: false, newComment: '', commentList: [{ id: 1, avatar: '🤗', text: '加油！一步一步来，相信你能完成的！' }] },
+  { id: 2, demo: true, avatar: '🎉', time: '示例', mood: '开心', moodType: 'positive', content: '终于完成了开题报告，感谢同门帮忙改了三遍。（示例内容，可删除）', likes: 56, comforts: 39, comments: 12, showComments: false, newComment: '', commentList: [] },
+  { id: 3, demo: true, avatar: '🌙', time: '示例', mood: '平静', moodType: 'neutral', content: '今晚在图书馆看书，窗外月光很美。虽然学习很累，但偶尔的小确幸让人心安。（示例内容，可删除）', likes: 67, comforts: 32, comments: 18, showComments: false, newComment: '', commentList: [] }
+]
+const moodPosts = ref(loadLocal('mood', MOOD_SEED))
+watch(moodPosts, v => saveLocal('mood', v), { deep: true })
 
 const publishPost = () => {
   if (!newPost.value.content.trim()) return
@@ -382,12 +451,14 @@ const reviewCategories = [
   { key: 'facility', label: '设施', icon: '🏫' }
 ]
 
-const reviews = ref([
-  { id: 1, category: 'food', target: '一食堂二楼川菜窗口', rating: 4, content: '辣子鸡做得不错，分量也够，阿姨态度好。就是有时候排队太久。', tags: ['分量足', '味道好', '排队久'], time: '2小时前', likes: 45 },
-  { id: 2, category: 'library', target: '图书馆三楼自习区', rating: 5, content: '环境很好，安静舒适，空调给力。座位预约系统也很方便。', tags: ['环境好', '安静', '座位系统'], time: '3小时前', likes: 78 },
-  { id: 3, category: 'dorm', target: 'A栋宿舍楼', rating: 3, content: '网络经常断，洗澡水有时候不热。但位置好，离教学楼近。', tags: ['位置好', '网络差', '洗澡问题'], time: '5小时前', likes: 23 },
-  { id: 4, category: 'facility', target: '体育馆羽毛球馆', rating: 4, content: '场地宽敞，设施齐全，预约方便。周末人比较多需要提前预约。', tags: ['设施齐全', '场地好', '需预约'], time: '1天前', likes: 56 }
-])
+const REVIEW_SEED = [
+  { id: 1, demo: true, category: 'food', target: '一食堂二楼川菜窗口', rating: 4, content: '辣子鸡做得不错，分量也够，阿姨态度好。就是有时候排队太久。（示例内容）', tags: ['分量足', '味道好', '排队久'], time: '示例', likes: 45 },
+  { id: 2, demo: true, category: 'library', target: '图书馆三楼自习区', rating: 5, content: '环境很好，安静舒适，空调给力。座位预约系统也很方便。（示例内容）', tags: ['环境好', '安静', '座位系统'], time: '示例', likes: 78 },
+  { id: 3, demo: true, category: 'dorm', target: 'A栋宿舍楼', rating: 3, content: '网络经常断，洗澡水有时候不热。但位置好，离教学楼近。（示例内容）', tags: ['位置好', '网络差', '洗澡问题'], time: '示例', likes: 23 },
+  { id: 4, demo: true, category: 'facility', target: '体育馆羽毛球馆', rating: 4, content: '场地宽敞，设施齐全，预约方便。周末人比较多需要提前预约。（示例内容）', tags: ['设施齐全', '场地好', '需预约'], time: '示例', likes: 56 }
+]
+const reviews = ref(loadLocal('reviews', REVIEW_SEED))
+watch(reviews, v => saveLocal('reviews', v), { deep: true })
 
 const filteredReviews = computed(() => {
   if (reviewCategory.value === 'all') return reviews.value
@@ -418,11 +489,13 @@ const publishReview = () => {
 }
 
 // 暖心鼓励
-const warmItems = ref([
-  { id: 1, type: 'quote', quote: '你今天的努力，是幸运的伏笔。当下的付出，是明日的花开。', author: '匿名温暖者', fires: 156, rainbows: 89 },
-  { id: 2, type: 'encourage', quote: '不要因为走得太远，而忘记为什么出发。', author: '一位学长', fires: 234, rainbows: 178 },
-  { id: 3, type: 'story', quote: '去年考研失败的我，今年终于上岸了。所以，永远不要放弃希望！', author: '上岸的鱼', fires: 567, rainbows: 423 }
-])
+const WARM_SEED = [
+  { id: 1, demo: true, type: 'quote', quote: '你今天的努力，是幸运的伏笔。当下的付出，是明日的花开。', author: '匿名温暖者（示例）', fires: 156, rainbows: 89 },
+  { id: 2, demo: true, type: 'encourage', quote: '不要因为走得太远，而忘记为什么出发。', author: '一位学长（示例）', fires: 234, rainbows: 178 },
+  { id: 3, demo: true, type: 'story', quote: '去年考研失败的我，今年终于上岸了。所以，永远不要放弃希望！', author: '上岸的鱼（示例）', fires: 567, rainbows: 423 }
+]
+const warmItems = ref(loadLocal('warm', WARM_SEED))
+watch(warmItems, v => saveLocal('warm', v), { deep: true })
 
 const newWarm = ref({ content: '' })
 const addWarm = () => {
@@ -440,12 +513,14 @@ const addWarm = () => {
 
 // 课程评价
 const courseSearch = ref('')
-const courses = ref([
-  { id: 1, name: '行政管理学', teacher: '张明辉教授', avgRating: 4.8, tags: ['干货满满', '互动性强', '考核合理'], evals: 56, students: 120 },
-  { id: 2, name: '政治学原理', teacher: '王教授', avgRating: 4.5, tags: ['理论扎实', '作业适中', '推荐选修'], evals: 42, students: 85 },
-  { id: 3, name: '公共政策分析', teacher: '李教授', avgRating: 4.2, tags: ['案例分析多', '小组作业', '需要预习'], evals: 38, students: 90 },
-  { id: 4, name: '统计学方法', teacher: '陈教授', avgRating: 4.6, tags: ['实用性强', '难度适中', '考试开卷'], evals: 45, students: 75 }
-])
+const COURSE_SEED = [
+  { id: 1, demo: true, name: '行政管理学', teacher: '', avgRating: 4.8, tags: ['干货满满', '互动性强', '考核合理'], evals: 56, students: 120 },
+  { id: 2, demo: true, name: '政治学原理', teacher: '', avgRating: 4.5, tags: ['理论扎实', '作业适中', '推荐选修'], evals: 42, students: 85 },
+  { id: 3, demo: true, name: '公共政策分析', teacher: '', avgRating: 4.2, tags: ['案例分析多', '小组作业', '需要预习'], evals: 38, students: 90 },
+  { id: 4, demo: true, name: '统计学方法', teacher: '', avgRating: 4.6, tags: ['实用性强', '难度适中', '考试开卷'], evals: 45, students: 75 }
+]
+const courses = ref(loadLocal('courses', COURSE_SEED))
+watch(courses, v => saveLocal('courses', v), { deep: true })
 
 const filteredCourses = computed(() => {
   if (!courseSearch.value.trim()) return courses.value
@@ -522,17 +597,9 @@ const joinTeam = (team) => {
   alert('已发送申请，请等待队长审核！')
 }
 
-// 新闻播报（真实数据，点击查看原文）
-const newsItems = ref([
-  { id: 1, category: 'academic', categoryLabel: '学术动态', icon: '🎓', title: '山东大学巴基斯坦研究中心揭牌仪式举行', summary: '巴基斯坦驻华大使、山东大学校长等出席揭牌仪式，标志着中巴学术合作迈上新台阶。', source: '山大视点', time: '2026-06-20', views: 2156, link: 'https://www.view.sdu.edu.cn/info/1003/209162.htm' },
-  { id: 2, category: 'academic', categoryLabel: '学术动态', icon: '📜', title: '中国国际共产主义运动史学会2025年年会在山东大学举办', summary: '年会以"中华民族伟大复兴与当代世界社会主义"为主题，来自全国高校的百余位学者参会研讨。', source: '政管学院', time: '2026-06-18', views: 1890, link: 'https://pspa.sdu.edu.cn/info/1081/17780.htm' },
-  { id: 3, category: 'academic', categoryLabel: '学术动态', icon: '🌏', title: '上合组织国家科教与经贸融合论坛在山东大学举办', summary: '来自上合组织成员国的专家学者齐聚山大，共商科教合作与经贸融合新路径。', source: '山大视点', time: '2026-06-15', views: 1678, link: 'https://www.view.sdu.edu.cn/info/1003/205454.htm' },
-  { id: 4, category: 'notice', categoryLabel: '通知公告', icon: '📢', title: '政管学院博士后招聘启事（随时受理申请）', summary: '政治学与公共管理学院面向海内外公开招聘博士后研究人员，待遇优厚，随时受理申请。', source: '政管学院', time: '2026-06-10', views: 3456, link: 'https://pspa.sdu.edu.cn/info/1201/17536.htm' },
-  { id: 5, category: 'notice', categoryLabel: '通知公告', icon: '📋', title: '2026年剑南春强国青年奖学金拟推荐人选公示', summary: '经学院评审，现将2026年剑南春强国青年奖学金拟推荐人选予以公示，接受师生监督。', source: '政管学院', time: '2026-06-16', views: 2890, link: 'https://pspa.sdu.edu.cn/info/1049/18808.htm' },
-  { id: 6, category: 'award', categoryLabel: '科研动态', icon: '🏆', title: '边琦：知识·行为·制度——我国地方政府危机学习模式与进阶路径', summary: '政管学院边琦老师在权威期刊发表论文，深入剖析我国地方政府危机学习的内在机制与演进路径。', source: '政管学院', time: '2026-06-12', views: 1234, link: 'https://pspa.sdu.edu.cn/info/1030/18804.htm' },
-  { id: 7, category: 'award', categoryLabel: '科研动态', icon: '📄', title: '李慧明 宋建新：欧盟竞争力战略中的工业脱碳行动', summary: '论文系统分析了欧盟工业脱碳的战略考量、实施路径及其对华影响，具有重要政策参考价值。', source: '政管学院', time: '2026-05-26', views: 987, link: 'https://pspa.sdu.edu.cn/info/1030/18739.htm' },
-  { id: 8, category: 'activity', categoryLabel: '校园生活', icon: '🎉', title: '政管学院在2025级本科生军训工作中斩获佳绩', summary: '政管学院2025级本科生在军训中表现突出，荣获多项表彰，展现了良好的精神风貌。', source: '政管学院', time: '2025-09-22', views: 1567, link: 'https://pspa.sdu.edu.cn/info/1048/17683.htm' }
-])
+onMounted(() => {
+  loadNews()
+})
 </script>
 
 <style scoped>
@@ -1307,6 +1374,54 @@ const newsItems = ref([
 
 .news-card.award {
   border-color: rgba(82, 196, 26, 0.3);
+}
+
+/* 官网通知分类（后端按标题自动归类） */
+.news-card.招聘 { border-color: rgba(255, 77, 79, 0.35); }
+.news-card.公示 { border-color: rgba(250, 173, 20, 0.35); }
+.news-card.学位 { border-color: rgba(123, 44, 191, 0.35); }
+.news-card.招生 { border-color: rgba(0, 212, 255, 0.35); }
+.news-card.奖助 { border-color: rgba(82, 196, 26, 0.35); }
+.news-card.学术 { border-color: rgba(114, 46, 209, 0.35); }
+
+.news-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.news-toolbar .search-input {
+  flex: 1;
+}
+
+.news-refresh {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(123, 44, 191, 0.3));
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  border-radius: 12px;
+  color: #00d4ff;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.news-refresh:hover {
+  background: rgba(0, 212, 255, 0.25);
+  color: #fff;
+}
+
+.news-note {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.news-note .news-error {
+  color: #ff7875;
+  margin-left: 8px;
 }
 
 /* 发布卡片通用样式 */

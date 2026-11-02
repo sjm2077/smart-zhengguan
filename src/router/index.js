@@ -48,6 +48,12 @@ const routes = [
         meta: { title: '研究生管理', icon: '🎓', roles: ['dean', 'admin', 'yjs'] }
       },
       {
+        path: 'knowledge',
+        name: 'Knowledge',
+        component: () => import('../views/Knowledge.vue'),
+        meta: { title: '知识库问答', icon: '🧠', roles: ['dean', 'admin', 'jw', 'ky', 'rs', 'yjs', 'student'] }
+      },
+      {
         path: 'warning',
         name: 'Warning',
         component: () => import('../views/Warning.vue'),
@@ -93,14 +99,20 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
-  
+  authStore.checkAuth();
+
   if (to.meta.public) {
+    // 已登录再访问登录页：直接进大屏
+    if (authStore.isLoggedIn) {
+      next('/dashboard');
+      return;
+    }
     next();
     return;
   }
 
   if (!authStore.isLoggedIn) {
-    next('/login');
+    next({ path: '/login', query: to.fullPath !== '/dashboard' ? { redirect: to.fullPath } : {} });
     return;
   }
 

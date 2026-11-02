@@ -11,6 +11,27 @@
             整合教务、科研、师资、研究生等多维度数据，<br>
             为学院管理层提供一站式数据可视化决策平台
           </p>
+
+          <div class="leader-board">
+            <div class="leader-board-title">
+              <span>🏛️ 学院现任领导 · 官网岗位对照</span>
+              <span class="leader-source">来源 psap 官网 /xygk/xrld.htm</span>
+            </div>
+            <div v-if="leaderLoading" class="leader-loading">正在读取官网岗位信息…</div>
+            <div v-else-if="leaderError" class="leader-loading error">{{ leaderError }}</div>
+            <div v-else class="leader-list">
+              <div v-for="(l, i) in leaders.slice(0, 6)" :key="i" class="leader-item">
+                <span class="leader-post">{{ l.post }}</span>
+                <span class="leader-name">{{ l.name }}</span>
+                <span class="leader-duty">{{ truncate(l.duty, 18) }}</span>
+              </div>
+            </div>
+            <p class="leader-note">
+              以上为官网公开的职务与分工，用于对照平台内的角色权限；
+              <b>登录账号为演示账号，不是任何真实教师的个人账号</b>。
+            </p>
+          </div>
+
           <div class="feature-list">
             <div class="feature-item">
               <span class="feature-icon">📊</span>
@@ -82,7 +103,7 @@
 
           <div class="demo-accounts">
             <p>演示账号：dean / admin / jw / ky / rs / yjs / student</p>
-            <p>密码：123456</p>
+            <p>密码：123456（演示口令，非真实口令）</p>
           </div>
         </div>
       </div>
@@ -92,11 +113,12 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import VerifyCode from '../components/VerifyCode.vue'
 
 const router = useRouter()
+const route = useRoute()
 const authStore = useAuthStore()
 
 const particleCanvas = ref(null)
@@ -229,7 +251,8 @@ const handleLogin = async () => {
   
   try {
     await authStore.login(formData.value)
-    router.push('/')
+    const redirect = route.query.redirect
+    router.push(redirect || '/dashboard')
   } catch (error) {
     errorMsg.value = error.message
     triggerShake()
@@ -237,6 +260,30 @@ const handleLogin = async () => {
     formData.value.captcha = ''
   } finally {
     loading.value = false
+  }
+}
+
+const leaderLoading = ref(true)
+const leaderError = ref('')
+const leaders = ref([])
+
+const truncate = (text, n) => {
+  if (!text) return '（官网未列出分工）'
+  return text.length > n ? text.slice(0, n) + '…' : text
+}
+
+// 官网 /xygk/xrld.htm 的现任领导职务与分工（公开信息）
+const loadLeaders = async () => {
+  try {
+    const res = await fetch('/api-research/api/real/pspa-leaders')
+    if (!res.ok) throw new Error('HTTP ' + res.status)
+    const json = await res.json()
+    leaders.value = json.data || []
+    if (!leaders.value.length) leaderError.value = '官网岗位信息为空（后端未运行时无法展示）'
+  } catch (e) {
+    leaderError.value = '官网岗位信息暂不可用（需启动科研后端 8888）'
+  } finally {
+    leaderLoading.value = false
   }
 }
 
@@ -252,8 +299,9 @@ const handleResize = () => {
 }
 
 onMounted(() => {
+  loadLeaders()
   if (authStore.isLoggedIn) {
-    router.push('/')
+    router.push('/dashboard')
     return
   }
   initParticles()
@@ -335,7 +383,86 @@ onUnmounted(() => {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.8;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
+}
+
+.leader-board {
+  width: 100%;
+  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.leader-board-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  color: #00d4ff;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.leader-source {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.leader-loading {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 6px 0;
+}
+
+.leader-loading.error {
+  color: #ff7875;
+}
+
+.leader-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.leader-item {
+  display: grid;
+  grid-template-columns: 110px 60px 1fr;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.leader-post {
+  color: rgba(0, 212, 255, 0.85);
+}
+
+.leader-name {
+  color: #fff;
+  font-weight: 600;
+}
+
+.leader-duty {
+  color: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leader-note {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.leader-note b {
+  color: rgba(255, 149, 0, 0.9);
+  font-weight: 600;
 }
 
 .feature-list {

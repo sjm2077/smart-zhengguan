@@ -1,0 +1,897 @@
+{
+  "audit_type": "project_no_origin_diagnostic",
+  "read_only": true,
+  "database_write_performed": false,
+  "model": "api.Project",
+  "database_table": "api_project",
+  "primary_key_field": "id",
+  "project_total": 377,
+  "project_pk_min": 148,
+  "project_pk_max": 526,
+  "project_no_blank_count": 299,
+  "project_no_nonblank_count": 78,
+  "blank_project_no_pk_min": 228,
+  "blank_project_no_pk_max": 526,
+  "blank_project_no_pk_contiguous": true,
+  "all_numbered_records_have_pk_before_blank_block": true,
+  "project_no_existing_value_samples": [
+    {
+      "id": 148,
+      "project_no": "XM202117951",
+      "project_name": "科学社会主义系2021年度分析机制",
+      "leader": "蒋老师",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 149,
+      "project_no": "XM202117921",
+      "project_name": "科学社会主义系2021年度评估分析",
+      "leader": "孙教授",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 150,
+      "project_no": "XM202217480",
+      "project_name": "科学社会主义系2022年度评估分析",
+      "leader": "蒋老师",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 151,
+      "project_no": "XM202217105",
+      "project_name": "科学社会主义系2022年度评估分析",
+      "leader": "郑老师",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 152,
+      "project_no": "XM202217484",
+      "project_name": "科学社会主义系2022年度路径研究",
+      "leader": "蒋老师",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 153,
+      "project_no": "XM202217417",
+      "project_name": "科学社会主义系2022年度研究分析",
+      "leader": "赵教授",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 154,
+      "project_no": "XM202317753",
+      "project_name": "科学社会主义系2023年度分析机制",
+      "leader": "褚老师",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 155,
+      "project_no": "XM202317969",
+      "project_name": "科学社会主义系2023年度机制评估",
+      "leader": "郑老师",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 156,
+      "project_no": "XM202317651",
+      "project_name": "科学社会主义系2023年度分析评估",
+      "leader": "刘教授",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 158,
+      "project_no": "XM202417134",
+      "project_name": "科学社会主义系2024年度机制分析",
+      "leader": "孙教授",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 159,
+      "project_no": "XM202417835",
+      "project_name": "科学社会主义系2024年度机制路径",
+      "leader": "郑老师",
+      "department": "科学社会主义系"
+    },
+    {
+      "id": 160,
+      "project_no": "XM202417175",
+      "project_name": "科学社会主义系2024年度评估分析",
+      "leader": "刘教授",
+      "department": "科学社会主义系"
+    }
+  ],
+  "blank_project_no_samples": [
+    {
+      "id": 228,
+      "project_no": "",
+      "project_name": "科技创新的对策研究",
+      "leader": "Yunsoo Lee",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2021-07-22",
+      "end_date": "2022-07-14"
+    },
+    {
+      "id": 229,
+      "project_no": "",
+      "project_name": "法治建设的实践研究",
+      "leader": "黄靖",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2024-11-20",
+      "end_date": "2026-10-16"
+    },
+    {
+      "id": 230,
+      "project_no": "",
+      "project_name": "产业政策的创新研究",
+      "leader": "王佃利",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2024-10-19",
+      "end_date": "2027-08-06"
+    },
+    {
+      "id": 231,
+      "project_no": "",
+      "project_name": "国际贸易的评估研究",
+      "leader": "赵均佳",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2022-01-01",
+      "end_date": "2023-06-05"
+    },
+    {
+      "id": 232,
+      "project_no": "",
+      "project_name": "公共卫生的路径研究",
+      "leader": "李延伟",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2022-11-13",
+      "end_date": "2024-05-12"
+    },
+    {
+      "id": 233,
+      "project_no": "",
+      "project_name": "人工智能治理的评估研究",
+      "leader": "展妍男",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2022-11-17",
+      "end_date": "2023-12-16"
+    },
+    {
+      "id": 234,
+      "project_no": "",
+      "project_name": "共同富裕的对策研究",
+      "leader": "刘琳",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2023-07-12",
+      "end_date": "2026-12-19"
+    },
+    {
+      "id": 235,
+      "project_no": "",
+      "project_name": "金融监管的对策研究",
+      "leader": "马荣久",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2024-10-20",
+      "end_date": "2026-09-01"
+    },
+    {
+      "id": 236,
+      "project_no": "",
+      "project_name": "公共服务的实践研究",
+      "leader": "张淑兰",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2024-02-02",
+      "end_date": "2026-08-23"
+    },
+    {
+      "id": 237,
+      "project_no": "",
+      "project_name": "住房保障的模式研究",
+      "leader": "李亚洲",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2024-01-18",
+      "end_date": "2025-07-19"
+    },
+    {
+      "id": 238,
+      "project_no": "",
+      "project_name": "教育政策的演进研究",
+      "leader": "黄晴",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2023-05-25",
+      "end_date": "2025-11-01"
+    },
+    {
+      "id": 239,
+      "project_no": "",
+      "project_name": "数据安全的路径研究",
+      "leader": "米雪",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2023-06-02",
+      "end_date": "2024-01-13"
+    }
+  ],
+  "boundary_and_tail_samples": [
+    {
+      "id": 215,
+      "project_no": "XM202320128",
+      "project_name": "公共管理系2023年度分析机制",
+      "leader": "陈老师",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2023-08-22",
+      "end_date": "2025-11-05"
+    },
+    {
+      "id": 216,
+      "project_no": "XM202420347",
+      "project_name": "公共管理系2024年度分析研究",
+      "leader": "吴教授",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2024-03-11",
+      "end_date": "2027-06-28"
+    },
+    {
+      "id": 217,
+      "project_no": "XM202420543",
+      "project_name": "公共管理系2024年度分析路径",
+      "leader": "吴教授",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2022-04-25",
+      "end_date": "2025-09-05"
+    },
+    {
+      "id": 218,
+      "project_no": "XM202420445",
+      "project_name": "公共管理系2024年度机制路径",
+      "leader": "沈老师",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-06-18",
+      "end_date": "2027-09-02"
+    },
+    {
+      "id": 219,
+      "project_no": "XM202420697",
+      "project_name": "公共管理系2024年度评估分析",
+      "leader": "钱老师",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2022-09-02",
+      "end_date": "2023-03-05"
+    },
+    {
+      "id": 220,
+      "project_no": "XM202520362",
+      "project_name": "公共管理系2025年度研究机制",
+      "leader": "钱老师",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2025-02-23",
+      "end_date": "2026-12-21"
+    },
+    {
+      "id": 221,
+      "project_no": "XM202520819",
+      "project_name": "公共管理系2025年度机制评估",
+      "leader": "吴教授",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2023-03-03",
+      "end_date": "2024-09-12"
+    },
+    {
+      "id": 222,
+      "project_no": "XM202520758",
+      "project_name": "公共管理系2025年度研究分析",
+      "leader": "陈老师",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2025-03-10",
+      "end_date": "2026-10-28"
+    },
+    {
+      "id": 223,
+      "project_no": "XM202670001",
+      "project_name": "公共政策优化研究",
+      "leader": "张教授",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2025-01-01",
+      "end_date": "2027-12-31"
+    },
+    {
+      "id": 224,
+      "project_no": "XM202670002",
+      "project_name": "数字政府评估体系构建",
+      "leader": "张教授",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2025-01-01",
+      "end_date": "2027-12-31"
+    },
+    {
+      "id": 225,
+      "project_no": "XM202670003",
+      "project_name": "乡村振兴战略实施路径",
+      "leader": "张教授",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2025-01-01",
+      "end_date": "2027-12-31"
+    },
+    {
+      "id": 226,
+      "project_no": "XM202670004",
+      "project_name": "基层治理能力现代化",
+      "leader": "张教授",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2025-01-01",
+      "end_date": "2027-12-31"
+    },
+    {
+      "id": 227,
+      "project_no": "XM202670005",
+      "project_name": "社会保障体系完善研究",
+      "leader": "张教授",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2025-01-01",
+      "end_date": "2027-12-31"
+    },
+    {
+      "id": 228,
+      "project_no": "",
+      "project_name": "科技创新的对策研究",
+      "leader": "Yunsoo Lee",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2021-07-22",
+      "end_date": "2022-07-14"
+    },
+    {
+      "id": 229,
+      "project_no": "",
+      "project_name": "法治建设的实践研究",
+      "leader": "黄靖",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2024-11-20",
+      "end_date": "2026-10-16"
+    },
+    {
+      "id": 230,
+      "project_no": "",
+      "project_name": "产业政策的创新研究",
+      "leader": "王佃利",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2024-10-19",
+      "end_date": "2027-08-06"
+    },
+    {
+      "id": 231,
+      "project_no": "",
+      "project_name": "国际贸易的评估研究",
+      "leader": "赵均佳",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2022-01-01",
+      "end_date": "2023-06-05"
+    },
+    {
+      "id": 232,
+      "project_no": "",
+      "project_name": "公共卫生的路径研究",
+      "leader": "李延伟",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2022-11-13",
+      "end_date": "2024-05-12"
+    },
+    {
+      "id": 233,
+      "project_no": "",
+      "project_name": "人工智能治理的评估研究",
+      "leader": "展妍男",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2022-11-17",
+      "end_date": "2023-12-16"
+    },
+    {
+      "id": 234,
+      "project_no": "",
+      "project_name": "共同富裕的对策研究",
+      "leader": "刘琳",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2023-07-12",
+      "end_date": "2026-12-19"
+    },
+    {
+      "id": 235,
+      "project_no": "",
+      "project_name": "金融监管的对策研究",
+      "leader": "马荣久",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2024-10-20",
+      "end_date": "2026-09-01"
+    },
+    {
+      "id": 236,
+      "project_no": "",
+      "project_name": "公共服务的实践研究",
+      "leader": "张淑兰",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2024-02-02",
+      "end_date": "2026-08-23"
+    },
+    {
+      "id": 237,
+      "project_no": "",
+      "project_name": "住房保障的模式研究",
+      "leader": "李亚洲",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2024-01-18",
+      "end_date": "2025-07-19"
+    },
+    {
+      "id": 238,
+      "project_no": "",
+      "project_name": "教育政策的演进研究",
+      "leader": "黄晴",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2023-05-25",
+      "end_date": "2025-11-01"
+    },
+    {
+      "id": 239,
+      "project_no": "",
+      "project_name": "数据安全的路径研究",
+      "leader": "米雪",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2023-06-02",
+      "end_date": "2024-01-13"
+    },
+    {
+      "id": 240,
+      "project_no": "",
+      "project_name": "老龄化的评估研究",
+      "leader": "王元亮",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-08-19",
+      "end_date": "2026-03-28"
+    },
+    {
+      "id": 515,
+      "project_no": "",
+      "project_name": "城市管理的实践研究",
+      "leader": "高原",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-03-14",
+      "end_date": "2027-06-03"
+    },
+    {
+      "id": 516,
+      "project_no": "",
+      "project_name": "中国式现代化的实践研究",
+      "leader": "王成",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2021-01-21",
+      "end_date": "2023-03-25"
+    },
+    {
+      "id": 517,
+      "project_no": "",
+      "project_name": "碳中和的模式研究",
+      "leader": "刘琳",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2021-04-14",
+      "end_date": "2022-02-20"
+    },
+    {
+      "id": 518,
+      "project_no": "",
+      "project_name": "环境治理的机制研究",
+      "leader": "郑子君",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2023-10-09",
+      "end_date": "2024-05-06"
+    },
+    {
+      "id": 519,
+      "project_no": "",
+      "project_name": "对外开放的创新研究",
+      "leader": "钟诚",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2024-12-06",
+      "end_date": "2026-11-09"
+    },
+    {
+      "id": 520,
+      "project_no": "",
+      "project_name": "公共卫生的机制研究",
+      "leader": "楚成亚",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2024-11-28",
+      "end_date": "2026-12-19"
+    },
+    {
+      "id": 521,
+      "project_no": "",
+      "project_name": "儿童福利的对策研究",
+      "leader": "王元亮",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2022-06-05",
+      "end_date": "2023-06-03"
+    },
+    {
+      "id": 522,
+      "project_no": "",
+      "project_name": "区域协调的评估研究",
+      "leader": "王军洋",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2024-11-12",
+      "end_date": "2027-03-17"
+    },
+    {
+      "id": 523,
+      "project_no": "",
+      "project_name": "就业促进的对策研究",
+      "leader": "刘华兴",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2022-01-20",
+      "end_date": "2025-11-18"
+    },
+    {
+      "id": 524,
+      "project_no": "",
+      "project_name": "一带一路的机制研究",
+      "leader": "朱林旭",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2024-09-01",
+      "end_date": "2027-10-25"
+    },
+    {
+      "id": 525,
+      "project_no": "",
+      "project_name": "全球治理的创新研究",
+      "leader": "王军洋",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2022-02-05",
+      "end_date": "2024-12-28"
+    },
+    {
+      "id": 526,
+      "project_no": "",
+      "project_name": "国际贸易的机制研究",
+      "leader": "叶紫蒙",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2021-12-28",
+      "end_date": "2024-01-18"
+    }
+  ],
+  "pk_range_summaries": {
+    "pk_1_227": {
+      "pk_min": 148,
+      "pk_max": 227,
+      "record_count": 78,
+      "blank_project_no_count": 0,
+      "nonblank_project_no_count": 78,
+      "project_type_counts": {
+        "横向": 19,
+        "省部级": 15,
+        "校级": 17,
+        "国家级": 27
+      },
+      "status_counts": {
+        "立项": 21,
+        "结题": 11,
+        "审核中": 20,
+        "在研": 26
+      },
+      "department_counts": {
+        "科学社会主义系": 21,
+        "政治学系": 20,
+        "国际政治系": 16,
+        "公共管理系": 21
+      },
+      "project_name_nonempty_count": 78,
+      "leader_nonempty_count": 78,
+      "start_date_nonempty_count": 78,
+      "end_date_nonempty_count": 78
+    },
+    "pk_228_526": {
+      "pk_min": 228,
+      "pk_max": 526,
+      "record_count": 299,
+      "blank_project_no_count": 299,
+      "nonblank_project_no_count": 0,
+      "project_type_counts": {
+        "横向": 73,
+        "国家级": 60,
+        "省部级": 92,
+        "校级": 74
+      },
+      "status_counts": {
+        "结题": 68,
+        "审核中": 75,
+        "立项": 81,
+        "在研": 75
+      },
+      "department_counts": {
+        "公共管理系": 127,
+        "政治学系": 62,
+        "国际政治系": 68,
+        "科学社会主义系": 42
+      },
+      "project_name_nonempty_count": 299,
+      "leader_nonempty_count": 299,
+      "start_date_nonempty_count": 299,
+      "end_date_nonempty_count": 299
+    },
+    "pk_220_240_boundary": {
+      "pk_min": 220,
+      "pk_max": 240,
+      "record_count": 21,
+      "blank_project_no_count": 13,
+      "nonblank_project_no_count": 8,
+      "project_type_counts": {
+        "省部级": 5,
+        "国家级": 11,
+        "横向": 3,
+        "校级": 2
+      },
+      "status_counts": {
+        "立项": 3,
+        "在研": 9,
+        "结题": 3,
+        "审核中": 6
+      },
+      "department_counts": {
+        "公共管理系": 8,
+        "科学社会主义系": 6,
+        "政治学系": 2,
+        "国际政治系": 5
+      },
+      "project_name_nonempty_count": 21,
+      "leader_nonempty_count": 21,
+      "start_date_nonempty_count": 21,
+      "end_date_nonempty_count": 21
+    },
+    "pk_515_526_tail": {
+      "pk_min": 515,
+      "pk_max": 526,
+      "record_count": 12,
+      "blank_project_no_count": 12,
+      "nonblank_project_no_count": 0,
+      "project_type_counts": {
+        "校级": 3,
+        "省部级": 2,
+        "横向": 3,
+        "国家级": 4
+      },
+      "status_counts": {
+        "立项": 3,
+        "审核中": 4,
+        "结题": 1,
+        "在研": 4
+      },
+      "department_counts": {
+        "公共管理系": 5,
+        "政治学系": 7
+      },
+      "project_name_nonempty_count": 12,
+      "leader_nonempty_count": 12,
+      "start_date_nonempty_count": 12,
+      "end_date_nonempty_count": 12
+    }
+  },
+  "blank_project_title_suffix_counts": {
+    "的对策研究": 41,
+    "的实践研究": 40,
+    "的创新研究": 34,
+    "的评估研究": 33,
+    "的路径研究": 32,
+    "的模式研究": 41,
+    "的演进研究": 42,
+    "的机制研究": 36
+  },
+  "blank_project_duplicate_name_groups_count": 87,
+  "blank_project_duplicate_name_records_count": 209,
+  "possible_timestamp_or_source_fields": [],
+  "model_fields": [
+    {
+      "name": "id",
+      "attname": "id",
+      "type": "BigAutoField",
+      "null": false,
+      "blank": true,
+      "max_length": null,
+      "is_relation": false
+    },
+    {
+      "name": "project_no",
+      "attname": "project_no",
+      "type": "CharField",
+      "null": false,
+      "blank": false,
+      "max_length": 50,
+      "is_relation": false
+    },
+    {
+      "name": "project_name",
+      "attname": "project_name",
+      "type": "CharField",
+      "null": false,
+      "blank": false,
+      "max_length": 200,
+      "is_relation": false
+    },
+    {
+      "name": "leader",
+      "attname": "leader_id",
+      "type": "ForeignKey",
+      "null": false,
+      "blank": false,
+      "max_length": null,
+      "is_relation": true
+    },
+    {
+      "name": "dept",
+      "attname": "dept_id",
+      "type": "ForeignKey",
+      "null": true,
+      "blank": false,
+      "max_length": null,
+      "is_relation": true
+    },
+    {
+      "name": "project_type",
+      "attname": "project_type",
+      "type": "CharField",
+      "null": false,
+      "blank": false,
+      "max_length": 10,
+      "is_relation": false
+    },
+    {
+      "name": "fund_amount",
+      "attname": "fund_amount",
+      "type": "DecimalField",
+      "null": false,
+      "blank": false,
+      "max_length": null,
+      "is_relation": false
+    },
+    {
+      "name": "start_date",
+      "attname": "start_date",
+      "type": "DateField",
+      "null": false,
+      "blank": false,
+      "max_length": null,
+      "is_relation": false
+    },
+    {
+      "name": "end_date",
+      "attname": "end_date",
+      "type": "DateField",
+      "null": false,
+      "blank": false,
+      "max_length": null,
+      "is_relation": false
+    },
+    {
+      "name": "status",
+      "attname": "status",
+      "type": "CharField",
+      "null": false,
+      "blank": false,
+      "max_length": 10,
+      "is_relation": false
+    },
+    {
+      "name": "actual_progress",
+      "attname": "actual_progress",
+      "type": "IntegerField",
+      "null": false,
+      "blank": false,
+      "max_length": null,
+      "is_relation": false
+    },
+    {
+      "name": "subject",
+      "attname": "subject",
+      "type": "CharField",
+      "null": true,
+      "blank": true,
+      "max_length": 50,
+      "is_relation": false
+    }
+  ],
+  "interpretation_note": "本报告只提供分布和字段证据。连续主键段集中缺失编号可能提示同批导入/生成，但不能单独证明记录是演示数据，也不能据此决定正式编号。"
+}

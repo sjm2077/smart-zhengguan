@@ -484,6 +484,212 @@
             0% { transform: translateY(0); }
             100% { transform: translateY(-50%); }
         }
+    
+/* ===== 学科分析页面统一优化：沿用科研系统现有视觉规范 ===== */
+body {
+    min-width: 320px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #f0f7ff 0%, #f5f7fa 100%);
+}
+.container {
+    display: flex;
+    position: relative;
+    top: 60px;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    min-height: calc(100vh - 60px);
+    margin-top: 0;
+}
+.sidebar {
+    width: 240px;
+    min-width: 240px;
+    height: calc(100vh - 60px);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    overflow-y: auto;
+    z-index: 100;
+}
+.content {
+    flex: 1;
+    min-width: 0;
+    margin-left: 240px;
+    padding: 24px;
+    height: auto;
+    overflow: visible;
+}
+.page-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    line-height: 1.35;
+}
+.grid-three {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.stat-card {
+    min-width: 0;
+    min-height: 138px;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #eaf4ff 0%, #ffffff 100%);
+    border: 1px solid rgba(64, 158, 255, 0.16);
+    box-shadow: 0 4px 18px rgba(10, 35, 67, 0.07);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(10, 35, 67, 0.11);
+}
+.stat-card .icon {
+    font-size: 23px;
+    margin-bottom: 7px;
+}
+.stat-card .num {
+    font-size: 34px;
+    line-height: 1.25;
+    font-weight: 700;
+    margin: 5px 0 4px;
+    overflow-wrap: anywhere;
+}
+.stat-card .label {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    color: #65748a;
+}
+.card, .combined-card {
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(64, 158, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(10, 35, 67, 0.07);
+    background: #fff;
+}
+.card-title {
+    font-size: 17px;
+    line-height: 1.45;
+    margin-bottom: 16px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid #e8f1ff;
+}
+.chart-full, .chart, .chart-half, .chart-half-ring, .chart-half-bar {
+    width: 100% !important;
+    min-width: 0;
+    height: 340px !important;
+    background: #fff;
+}
+.chart-half {
+    height: 310px !important;
+}
+.filter-bar {
+    gap: 12px;
+    margin-bottom: 18px;
+    padding: 14px 18px;
+    border-radius: 12px;
+}
+.filter-select {
+    background: #fff;
+    min-width: 145px;
+}
+.btn {
+    justify-content: center;
+    transition: background .2s ease, transform .2s ease;
+}
+.btn:hover {
+    background: #2f8ee5;
+    transform: translateY(-1px);
+}
+.grid, .grid-two {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+    gap: 16px;
+    align-items: stretch;
+}
+.grid-stack {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+.flex-row {
+    gap: 16px;
+    align-items: stretch;
+}
+.w-40, .w-60 {
+    min-width: 0;
+}
+.table-container, .table-normal, .table-wrap {
+    max-width: 100%;
+    overflow: auto;
+    border: 1px solid #e8edf5;
+    border-radius: 10px;
+}
+.result-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.result-table th, .result-table td {
+    padding: 12px 14px;
+    border-right: 1px solid #edf0f5;
+    border-bottom: 1px solid #edf0f5;
+    line-height: 1.5;
+}
+.result-table th {
+    background: #f2f7ff;
+    color: #0A2343;
+    font-weight: 600;
+}
+.result-table tbody tr:nth-child(even) {
+    background: #fbfdff;
+}
+.result-table tbody tr:hover {
+    background: #f0f7ff;
+}
+.feature-panel {
+    border: 1px solid #e3efff;
+}
+@media (max-width: 1200px) {
+    .content { padding: 20px; }
+    .grid-three { gap: 12px; }
+    .stat-card .num { font-size: 30px; }
+    .grid, .grid-two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+@media (max-width: 900px) {
+    .sidebar {
+        width: 200px;
+        min-width: 200px;
+    }
+    .content { margin-left: 200px; padding: 16px; }
+    .grid-three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid, .grid-two, .grid-stack { grid-template-columns: minmax(0, 1fr); }
+    .chart-full, .chart, .chart-half, .chart-half-ring, .chart-half-bar { height: 300px !important; }
+}
+@media (max-width: 620px) {
+    .top-nav { padding: 0 12px; }
+    .top-nav .logo-box .title-text { font-size: 14px; }
+    .top-nav .logo-box img { height: 32px; }
+    .top-nav .search-input { width: 150px; }
+    .sidebar { display: none; }
+    .content { margin-left: 0; padding: 14px; }
+    .page-title { font-size: 22px; }
+    .grid-three { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .stat-card { min-height: 120px; padding: 16px 10px; }
+    .stat-card .num { font-size: 27px; }
+    .stat-card .label { font-size: 12px; }
+    .card, .combined-card { padding: 15px; }
+    .filter-bar { align-items: stretch; }
+    .filter-item { flex-wrap: wrap; }
+}
+
     </style>
 </head>
 <body>
@@ -503,7 +709,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 
     <div class="container">
         <div class="sidebar">
@@ -660,68 +866,23 @@
                                 <th>发布年份</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr><td>1</td><td>数字政府建设中的治理效能研究</td><td>王教授</td><td>核心期刊论文</td><td>2024</td></tr>
-                            <tr><td>2</td><td>社区网格化治理模式创新研究</td><td>李教授</td><td>研究报告</td><td>2023</td></tr>
-                            <tr><td>3</td><td>突发公共卫生事件应急管理机制</td><td>张教授</td><td>CSSCI论文</td><td>2024</td></tr>
-                            <tr><td>4</td><td>地方政府债务风险治理研究</td><td>刘教授</td><td>专著</td><td>2022</td></tr>
-                            <tr><td>5</td><td>大数据时代公共政策评估方法</td><td>赵教授</td><td>核心期刊论文</td><td>2023</td></tr>
-                            <tr><td>6</td><td>基层治理中的数字鸿沟问题探析</td><td>陈教授</td><td>研究报告</td><td>2024</td></tr>
-                            <tr><td>7</td><td>乡村振兴战略中的公共服务供给</td><td>吴教授</td><td>CSSCI论文</td><td>2022</td></tr>
-                            <tr><td>8</td><td>智慧城市背景下的城市治理转型</td><td>郑教授</td><td>专著</td><td>2023</td></tr>
-                            <tr><td>9</td><td>公共政策执行偏差的成因与对策</td><td>周教授</td><td>核心期刊论文</td><td>2024</td></tr>
-                            <tr><td>10</td><td>公共部门人力资源管理改革研究</td><td>马教授</td><td>研究报告</td><td>2023</td></tr>
-                        </tbody>
+                        <tbody id="achievementsTableBody"></tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- 项目进度表 - 表头固定 + 内容自动循环滚动 -->
             <div class="card" style="margin-bottom:0;">
-                <div class="card-title"><i class="fa fa-tasks"></i> 政府合作&在研项目进度</div>
-                <div class="scroll-table-wrap">
+                <div class="card-title"><i class="fa fa-tasks"></i> 政府合作与在研项目进度</div>
+                <div class="table-wrap">
                     <table class="result-table">
-                        <thead>
-                            <tr>
-                                <th>项目名称</th>
-                                <th>负责人</th>
-                                <th>项目类型</th>
-                                <th>进度</th>
-                                <th>状态</th>
-                            </tr>
-                        </thead>
+                        <thead><tr><th>项目名称</th><th>负责人</th><th>项目类型</th><th>进度</th><th>状态</th></tr></thead>
+                        <tbody id="projectsTableBody"></tbody>
                     </table>
-                    <div class="scroll-table-body">
-                        <div class="scroll-content">
-                            <table class="result-table">
-                                <tbody>
-                                    <tr><td>某市数字政务平台优化研究</td><td>王教授</td><td>地方政府合作项目</td><td>90%</td><td>进行中</td></tr>
-                                    <tr><td>社区治理现代化路径研究</td><td>李教授</td><td>省部级课题</td><td>75%</td><td>进行中</td></tr>
-                                    <tr><td>应急管理体系建设评估</td><td>张教授</td><td>横向委托项目</td><td>100%</td><td>已结题</td></tr>
-                                    <tr><td>公共服务均等化政策评估</td><td>刘教授</td><td>国家级课题</td><td>60%</td><td>进行中</td></tr>
-                                    <tr><td>地方政府营商环境优化研究</td><td>赵教授</td><td>地方政府合作项目</td><td>85%</td><td>进行中</td></tr>
-                                    <tr><td>智慧城市治理模式创新研究</td><td>陈教授</td><td>省部级课题</td><td>50%</td><td>进行中</td></tr>
-                                    <tr><td>乡村振兴公共服务供给研究</td><td>吴教授</td><td>横向委托项目</td><td>100%</td><td>已结题</td></tr>
-                                </tbody>
-                            </table>
-                            <!-- 复制表格实现无缝滚动 -->
-                            <table class="result-table">
-                                <tbody>
-                                    <tr><td>某市数字政务平台优化研究</td><td>王教授</td><td>地方政府合作项目</td><td>90%</td><td>进行中</td></tr>
-                                    <tr><td>社区治理现代化路径研究</td><td>李教授</td><td>省部级课题</td><td>75%</td><td>进行中</td></tr>
-                                    <tr><td>应急管理体系建设评估</td><td>张教授</td><td>横向委托项目</td><td>100%</td><td>已结题</td></tr>
-                                    <tr><td>公共服务均等化政策评估</td><td>刘教授</td><td>国家级课题</td><td>60%</td><td>进行中</td></tr>
-                                    <tr><td>地方政府营商环境优化研究</td><td>赵教授</td><td>地方政府合作项目</td><td>85%</td><td>进行中</td></tr>
-                                    <tr><td>智慧城市治理模式创新研究</td><td>陈教授</td><td>省部级课题</td><td>50%</td><td>进行中</td></tr>
-                                    <tr><td>乡村振兴公共服务供给研究</td><td>吴教授</td><td>横向委托项目</td><td>100%</td><td>已结题</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
+            </div>
         </div>
-    </div>
+    
 
     <script>
         let currentRole = localStorage.getItem('userRole') || 'admin';
@@ -774,6 +935,7 @@
         const url = `/api/dept/public?year=${year}`;
         try {
             const res = await fetch(url);
+            if (!res.ok) throw new Error(`请求失败：${res.status}`);
             const data = await res.json();
 
             // 顶部卡片
@@ -856,17 +1018,25 @@
 
             // 代表性成果表格
             const achBody = document.getElementById('achievementsTableBody');
-            achBody.innerHTML = '';
-            data.achievements_table.forEach(row => {
-                achBody.innerHTML += `<tr><td>${row.序号}</td><td>${row.成果名称}</td><td>${row.负责人}</td><td>${row.成果类型}</td><td>${row.发布年份}</td></tr>`;
-            });
+            if (achBody) achBody.innerHTML = '';
+            if (achBody && Array.isArray(data.achievements_table) && data.achievements_table.length) {
+                data.achievements_table.forEach(row => {
+                    achBody.insertAdjacentHTML('beforeend', `<tr><td>${row.序号 ?? ''}</td><td>${row.成果名称 ?? ''}</td><td>${row.负责人 ?? ''}</td><td>${row.成果类型 ?? ''}</td><td>${row.发布年份 ?? ''}</td></tr>`);
+                });
+            } else if (achBody) {
+                achBody.innerHTML = '<tr><td colspan="5">暂无数据</td></tr>';
+            }
 
             // 政府合作项目表格
             const projBody = document.getElementById('projectsTableBody');
-            projBody.innerHTML = '';
-            data.projects_table.forEach(proj => {
-                projBody.innerHTML += `<tr><td>${proj.项目名称}</td><td>${proj.负责人}</td><td>${proj.项目类型}</td><td>${proj.进度}</td><td>${proj.状态}</td></tr>`;
-            });
+            if (projBody) projBody.innerHTML = '';
+            if (projBody && Array.isArray(data.projects_table) && data.projects_table.length) {
+                data.projects_table.forEach(proj => {
+                    projBody.insertAdjacentHTML('beforeend', `<tr><td>${proj.项目名称 ?? ''}</td><td>${proj.负责人 ?? ''}</td><td>${proj.项目类型 ?? ''}</td><td>${proj.进度 ?? ''}</td><td>${proj.状态 ?? ''}</td></tr>`);
+                });
+            } else if (projBody) {
+                projBody.innerHTML = '<tr><td colspan="5">暂无数据</td></tr>';
+            }
 
             // 智能分析文本
             document.getElementById('ai-summary').innerText = data.analysis.summary;
@@ -892,8 +1062,9 @@
         resultCompareChart = echarts.init(document.getElementById('resultCompareChart'));
         loadAllData();
         window.addEventListener('resize', () => {
-            lineTrendChart.resize(); barDirChart.resize(); pieSourceChart.resize();
-            radarChart.resize(); wordCloudChart.resize(); resultCompareChart.resize();
+            [lineTrendChart, barDirChart, pieSourceChart, radarChart, wordCloudChart, resultCompareChart].forEach(chart => {
+                if (chart) chart.resize();
+            });
         });
     };
 </script>

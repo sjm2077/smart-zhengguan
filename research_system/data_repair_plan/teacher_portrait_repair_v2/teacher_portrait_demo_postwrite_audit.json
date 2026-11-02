@@ -1,0 +1,15 @@
+{
+  "report_title": "教师画像模拟数据写入后独立复核",
+  "status": "PASS",
+  "database_write": false,
+  "data_source": "TEACHER_PORTRAIT_DEMO_V1",
+  "current_counts": {
+    "teachers_total": 104,
+    "projects_total": 377,
+    "teacher_score_records_total": 520,
+    "teacher_score_demo_records": 435,
+    "cooperation_records_total": 72,
+    "cooperation_demo_records": 44
+  },
+  "errors": []
+}

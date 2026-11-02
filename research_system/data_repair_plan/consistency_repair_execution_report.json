@@ -1,0 +1,5191 @@
+{
+  "audit_date": "2026-10-25",
+  "mode": "EXECUTE",
+  "database_write_performed": true,
+  "rules": [
+    "结束日期早于审计日期且状态非结题：状态改为结题，进度改为100。",
+    "进度100但结束日期尚未到：状态改为审核中，保留结束日期与进度。",
+    "预警日期晚于项目结束日期：改为项目结束日前14天，必要时不早于项目开始日期。",
+    "关联项目本轮结题：预警标记为已解决，建议措施更新为项目已结题、预警关闭并归档。",
+    "不修改教师、负责人、系别、项目名称、项目编号、起止日期、经费，不新增或删除记录。"
+  ],
+  "project_total": 377,
+  "risk_warning_total": 17,
+  "project_candidate_count": 242,
+  "project_close_count": 241,
+  "project_review_count": 1,
+  "project_field_change_count": 242,
+  "audited_late_warning_count": 9,
+  "warning_record_change_count": 13,
+  "warning_date_adjustment_count": 9,
+  "warning_resolution_count": 13,
+  "project_changes": [
+    {
+      "project_id": 148,
+      "project_no": "XM202117951",
+      "project_name": "科学社会主义系2021年度分析机制",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 91,
+        "end_date": "2021-06-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2021-06-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 151,
+      "project_no": "XM202217105",
+      "project_name": "科学社会主义系2022年度评估分析",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 55,
+        "end_date": "2023-10-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-10-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 152,
+      "project_no": "XM202217484",
+      "project_name": "科学社会主义系2022年度路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 49,
+        "end_date": "2024-07-08"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-07-08"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 153,
+      "project_no": "XM202217417",
+      "project_name": "科学社会主义系2022年度研究分析",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 32,
+        "end_date": "2021-03-14"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2021-03-14"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 154,
+      "project_no": "XM202317753",
+      "project_name": "科学社会主义系2023年度分析机制",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 55,
+        "end_date": "2024-06-19"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-06-19"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 155,
+      "project_no": "XM202317969",
+      "project_name": "科学社会主义系2023年度机制评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 26,
+        "end_date": "2024-05-14"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-05-14"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 156,
+      "project_no": "XM202317651",
+      "project_name": "科学社会主义系2023年度分析评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 24,
+        "end_date": "2024-06-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-06-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 158,
+      "project_no": "XM202417134",
+      "project_name": "科学社会主义系2024年度机制分析",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 91,
+        "end_date": "2025-11-01"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-11-01"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 159,
+      "project_no": "XM202417835",
+      "project_name": "科学社会主义系2024年度机制路径",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 53,
+        "end_date": "2023-12-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-12-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 160,
+      "project_no": "XM202417175",
+      "project_name": "科学社会主义系2024年度评估分析",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 34,
+        "end_date": "2024-06-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-06-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 161,
+      "project_no": "XM202517665",
+      "project_name": "科学社会主义系2025年度研究分析",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 45,
+        "end_date": "2026-06-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-06-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 162,
+      "project_no": "XM202517564",
+      "project_name": "科学社会主义系2025年度分析机制",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 79,
+        "end_date": "2026-06-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-06-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 166,
+      "project_no": "XM202118460",
+      "project_name": "政治学系2021年度评估路径",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 42,
+        "end_date": "2022-05-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-05-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 167,
+      "project_no": "XM202118304",
+      "project_name": "政治学系2021年度机制评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 76,
+        "end_date": "2020-01-23"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2020-01-23"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 168,
+      "project_no": "XM202118886",
+      "project_name": "政治学系2021年度路径评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 27,
+        "end_date": "2021-07-12"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2021-07-12"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 169,
+      "project_no": "XM202118232",
+      "project_name": "政治学系2021年度研究评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 18,
+        "end_date": "2022-03-26"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-03-26"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 170,
+      "project_no": "XM202218890",
+      "project_name": "政治学系2022年度研究评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 61,
+        "end_date": "2025-03-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-03-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 172,
+      "project_no": "XM202218669",
+      "project_name": "政治学系2022年度研究机制",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 71,
+        "end_date": "2025-02-14"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-02-14"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 174,
+      "project_no": "XM202318118",
+      "project_name": "政治学系2023年度评估路径",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 73,
+        "end_date": "2025-01-02"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-01-02"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 176,
+      "project_no": "XM202318256",
+      "project_name": "政治学系2023年度路径分析",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 68,
+        "end_date": "2024-05-10"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-05-10"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 178,
+      "project_no": "XM202418461",
+      "project_name": "政治学系2024年度路径评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 5,
+        "end_date": "2025-07-24"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-07-24"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 181,
+      "project_no": "XM202418337",
+      "project_name": "政治学系2024年度分析研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 44,
+        "end_date": "2025-04-14"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-04-14"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 182,
+      "project_no": "XM202518475",
+      "project_name": "政治学系2025年度机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 75,
+        "end_date": "2026-03-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-03-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 186,
+      "project_no": "XM202119499",
+      "project_name": "国际政治系2021年度机制评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 85,
+        "end_date": "2021-07-04"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2021-07-04"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 187,
+      "project_no": "XM202119902",
+      "project_name": "国际政治系2021年度研究机制",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 40,
+        "end_date": "2022-11-09"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-11-09"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 190,
+      "project_no": "XM202219900",
+      "project_name": "国际政治系2022年度路径评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 24,
+        "end_date": "2022-04-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-04-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 191,
+      "project_no": "XM202219662",
+      "project_name": "国际政治系2022年度路径分析",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 5,
+        "end_date": "2025-10-18"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-10-18"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 192,
+      "project_no": "XM202319665",
+      "project_name": "国际政治系2023年度机制评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 53,
+        "end_date": "2023-09-25"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-09-25"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 193,
+      "project_no": "XM202319913",
+      "project_name": "国际政治系2023年度路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 81,
+        "end_date": "2022-12-01"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-12-01"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 194,
+      "project_no": "XM202319545",
+      "project_name": "国际政治系2023年度分析评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 6,
+        "end_date": "2026-04-04"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-04-04"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 195,
+      "project_no": "XM202419284",
+      "project_name": "国际政治系2024年度机制路径",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 92,
+        "end_date": "2024-12-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-12-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 196,
+      "project_no": "XM202419683",
+      "project_name": "国际政治系2024年度机制评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 74,
+        "end_date": "2023-09-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-09-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 197,
+      "project_no": "XM202419980",
+      "project_name": "国际政治系2024年度路径评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 74,
+        "end_date": "2026-08-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-08-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 198,
+      "project_no": "XM202519409",
+      "project_name": "国际政治系2025年度评估路径",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 5,
+        "end_date": "2024-08-17"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-08-17"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 199,
+      "project_no": "XM202519679",
+      "project_name": "国际政治系2025年度机制评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 68,
+        "end_date": "2025-07-06"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-07-06"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 200,
+      "project_no": "XM202519658",
+      "project_name": "国际政治系2025年度机制分析",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 56,
+        "end_date": "2026-09-24"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-09-24"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 202,
+      "project_no": "XM202120358",
+      "project_name": "公共管理系2021年度机制评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 100,
+        "end_date": "2023-02-22"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-02-22"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 203,
+      "project_no": "XM202120509",
+      "project_name": "公共管理系2021年度分析评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 22,
+        "end_date": "2024-01-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-01-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 204,
+      "project_no": "XM202120142",
+      "project_name": "公共管理系2021年度研究分析",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 15,
+        "end_date": "2022-11-10"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-11-10"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 205,
+      "project_no": "XM202120449",
+      "project_name": "公共管理系2021年度评估机制",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 73,
+        "end_date": "2021-12-01"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2021-12-01"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 207,
+      "project_no": "XM202220190",
+      "project_name": "公共管理系2022年度评估机制",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 82,
+        "end_date": "2024-12-23"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-12-23"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 209,
+      "project_no": "XM202220324",
+      "project_name": "公共管理系2022年度评估路径",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 23,
+        "end_date": "2024-10-23"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-10-23"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 210,
+      "project_no": "XM202220967",
+      "project_name": "公共管理系2022年度分析机制",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 29,
+        "end_date": "2023-03-19"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-03-19"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 211,
+      "project_no": "XM202320752",
+      "project_name": "公共管理系2023年度路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 95,
+        "end_date": "2026-07-22"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-07-22"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 212,
+      "project_no": "XM202320737",
+      "project_name": "公共管理系2023年度研究评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 24,
+        "end_date": "2022-11-24"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-11-24"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 213,
+      "project_no": "XM202320632",
+      "project_name": "公共管理系2023年度机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 78,
+        "end_date": "2024-02-09"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-02-09"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 214,
+      "project_no": "XM202320865",
+      "project_name": "公共管理系2023年度评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 84,
+        "end_date": "2022-03-18"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-03-18"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 215,
+      "project_no": "XM202320128",
+      "project_name": "公共管理系2023年度分析机制",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 12,
+        "end_date": "2025-11-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-11-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 219,
+      "project_no": "XM202420697",
+      "project_name": "公共管理系2024年度评估分析",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 55,
+        "end_date": "2023-03-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-03-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 221,
+      "project_no": "XM202520819",
+      "project_name": "公共管理系2025年度机制评估",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 68,
+        "end_date": "2024-09-12"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-09-12"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 229,
+      "project_no": "IMP-2024-000229",
+      "project_name": "法治建设的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 21,
+        "end_date": "2026-10-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-10-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 231,
+      "project_no": "IMP-2022-000231",
+      "project_name": "国际贸易的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 58,
+        "end_date": "2023-06-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-06-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 232,
+      "project_no": "IMP-2022-000232",
+      "project_name": "公共卫生的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 33,
+        "end_date": "2024-05-12"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-05-12"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 235,
+      "project_no": "IMP-2024-000235",
+      "project_name": "金融监管的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 78,
+        "end_date": "2026-09-01"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-09-01"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 236,
+      "project_no": "IMP-2024-000236",
+      "project_name": "公共服务的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 54,
+        "end_date": "2026-08-23"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-08-23"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 237,
+      "project_no": "IMP-2024-000237",
+      "project_name": "住房保障的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 89,
+        "end_date": "2025-07-19"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-07-19"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 239,
+      "project_no": "IMP-2023-000239",
+      "project_name": "数据安全的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 78,
+        "end_date": "2024-01-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-01-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 240,
+      "project_no": "IMP-2023-000240",
+      "project_name": "老龄化的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 36,
+        "end_date": "2026-03-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-03-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 241,
+      "project_no": "IMP-2024-000241",
+      "project_name": "人工智能治理的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 4,
+        "end_date": "2026-10-14"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-10-14"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 242,
+      "project_no": "IMP-2023-000242",
+      "project_name": "法治建设的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 35,
+        "end_date": "2026-04-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-04-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 243,
+      "project_no": "IMP-2023-000243",
+      "project_name": "文化自信的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 6,
+        "end_date": "2024-05-17"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-05-17"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 244,
+      "project_no": "IMP-2022-000244",
+      "project_name": "一带一路的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 0,
+        "end_date": "2025-10-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-10-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 246,
+      "project_no": "IMP-2023-000246",
+      "project_name": "数字政府的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 70,
+        "end_date": "2024-01-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-01-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 247,
+      "project_no": "IMP-2022-000247",
+      "project_name": "就业促进的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 24,
+        "end_date": "2023-02-10"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-02-10"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 248,
+      "project_no": "IMP-2023-000248",
+      "project_name": "住房保障的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 86,
+        "end_date": "2025-02-02"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-02-02"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 249,
+      "project_no": "IMP-2023-000249",
+      "project_name": "就业促进的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 83,
+        "end_date": "2026-08-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-08-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 250,
+      "project_no": "IMP-2023-000250",
+      "project_name": "就业促进的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 46,
+        "end_date": "2026-04-02"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-04-02"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 251,
+      "project_no": "IMP-2023-000251",
+      "project_name": "社区服务的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 21,
+        "end_date": "2026-07-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-07-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 253,
+      "project_no": "IMP-2024-000253",
+      "project_name": "对外开放的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 74,
+        "end_date": "2026-06-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-06-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 255,
+      "project_no": "IMP-2023-000255",
+      "project_name": "老龄化的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 72,
+        "end_date": "2024-05-06"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-05-06"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 257,
+      "project_no": "IMP-2024-000257",
+      "project_name": "对外开放的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 12,
+        "end_date": "2025-05-27"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-05-27"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 258,
+      "project_no": "IMP-2021-000258",
+      "project_name": "碳中和的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 97,
+        "end_date": "2023-03-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-03-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 259,
+      "project_no": "IMP-2023-000259",
+      "project_name": "公共卫生的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 57,
+        "end_date": "2024-08-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-08-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 260,
+      "project_no": "IMP-2023-000260",
+      "project_name": "数据安全的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 25,
+        "end_date": "2026-08-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-08-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 263,
+      "project_no": "IMP-2022-000263",
+      "project_name": "环境治理的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 83,
+        "end_date": "2025-04-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-04-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 264,
+      "project_no": "IMP-2023-000264",
+      "project_name": "乡村振兴的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 84,
+        "end_date": "2025-09-09"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-09-09"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 265,
+      "project_no": "IMP-2021-000265",
+      "project_name": "全球治理的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 92,
+        "end_date": "2023-06-27"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-06-27"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 267,
+      "project_no": "IMP-2021-000267",
+      "project_name": "碳中和的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 51,
+        "end_date": "2023-05-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-05-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 269,
+      "project_no": "IMP-2022-000269",
+      "project_name": "教育政策的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 72,
+        "end_date": "2023-12-18"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-12-18"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 271,
+      "project_no": "IMP-2022-000271",
+      "project_name": "区域协调的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 77,
+        "end_date": "2023-04-27"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-04-27"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 273,
+      "project_no": "IMP-2021-000273",
+      "project_name": "应急管理的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 9,
+        "end_date": "2023-09-09"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-09-09"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 274,
+      "project_no": "IMP-2023-000274",
+      "project_name": "对外开放的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 49,
+        "end_date": "2024-12-02"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-12-02"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 277,
+      "project_no": "IMP-2023-000277",
+      "project_name": "应急管理的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 58,
+        "end_date": "2026-08-04"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-08-04"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 278,
+      "project_no": "IMP-2021-000278",
+      "project_name": "乡村振兴的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 27,
+        "end_date": "2022-11-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-11-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 279,
+      "project_no": "IMP-2022-000279",
+      "project_name": "儿童福利的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 7,
+        "end_date": "2024-10-19"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-10-19"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 284,
+      "project_no": "IMP-2023-000284",
+      "project_name": "共同富裕的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 97,
+        "end_date": "2024-02-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-02-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 285,
+      "project_no": "IMP-2023-000285",
+      "project_name": "产业政策的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 35,
+        "end_date": "2026-10-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-10-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 286,
+      "project_no": "IMP-2023-000286",
+      "project_name": "公共卫生的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 52,
+        "end_date": "2024-09-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-09-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 287,
+      "project_no": "IMP-2022-000287",
+      "project_name": "文化自信的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 22,
+        "end_date": "2024-03-25"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-03-25"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 288,
+      "project_no": "IMP-2022-000288",
+      "project_name": "住房保障的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 0,
+        "end_date": "2025-10-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-10-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 290,
+      "project_no": "IMP-2024-000290",
+      "project_name": "公共卫生的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 72,
+        "end_date": "2026-07-06"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-07-06"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 291,
+      "project_no": "IMP-2021-000291",
+      "project_name": "文化自信的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 20,
+        "end_date": "2022-11-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-11-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 292,
+      "project_no": "IMP-2023-000292",
+      "project_name": "公共服务的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 24,
+        "end_date": "2024-06-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-06-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 294,
+      "project_no": "IMP-2023-000294",
+      "project_name": "对外开放的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 50,
+        "end_date": "2024-10-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-10-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 295,
+      "project_no": "IMP-2021-000295",
+      "project_name": "碳中和的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 6,
+        "end_date": "2023-02-01"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-02-01"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 296,
+      "project_no": "IMP-2021-000296",
+      "project_name": "科技创新的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 30,
+        "end_date": "2024-09-07"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-09-07"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 297,
+      "project_no": "IMP-2021-000297",
+      "project_name": "科技创新的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 77,
+        "end_date": "2024-08-04"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-08-04"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 298,
+      "project_no": "IMP-2021-000298",
+      "project_name": "数字政府的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 81,
+        "end_date": "2023-06-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-06-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 299,
+      "project_no": "IMP-2021-000299",
+      "project_name": "数据安全的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 80,
+        "end_date": "2022-07-22"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-07-22"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 301,
+      "project_no": "IMP-2022-000301",
+      "project_name": "科技创新的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 88,
+        "end_date": "2025-08-12"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-08-12"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 302,
+      "project_no": "IMP-2021-000302",
+      "project_name": "金融监管的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 77,
+        "end_date": "2022-08-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-08-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 306,
+      "project_no": "IMP-2022-000306",
+      "project_name": "就业促进的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 67,
+        "end_date": "2023-11-24"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-11-24"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 307,
+      "project_no": "IMP-2023-000307",
+      "project_name": "应急管理的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 26,
+        "end_date": "2024-09-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-09-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 308,
+      "project_no": "IMP-2022-000308",
+      "project_name": "公共卫生的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 51,
+        "end_date": "2023-03-27"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-03-27"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 311,
+      "project_no": "IMP-2021-000311",
+      "project_name": "区域协调的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 22,
+        "end_date": "2023-06-02"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-06-02"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 312,
+      "project_no": "IMP-2022-000312",
+      "project_name": "区域协调的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 37,
+        "end_date": "2024-02-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-02-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 313,
+      "project_no": "IMP-2022-000313",
+      "project_name": "碳中和的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 14,
+        "end_date": "2024-08-24"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-08-24"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 319,
+      "project_no": "IMP-2023-000319",
+      "project_name": "碳中和的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 1,
+        "end_date": "2025-03-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-03-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 324,
+      "project_no": "IMP-2021-000324",
+      "project_name": "金融监管的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 32,
+        "end_date": "2022-06-06"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-06-06"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 325,
+      "project_no": "IMP-2021-000325",
+      "project_name": "教育政策的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 54,
+        "end_date": "2023-01-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-01-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 326,
+      "project_no": "IMP-2021-000326",
+      "project_name": "对外开放的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 82,
+        "end_date": "2023-12-09"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-12-09"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 327,
+      "project_no": "IMP-2022-000327",
+      "project_name": "文化自信的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 58,
+        "end_date": "2025-12-11"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-12-11"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 328,
+      "project_no": "IMP-2021-000328",
+      "project_name": "乡村振兴的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 36,
+        "end_date": "2022-07-04"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-07-04"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 329,
+      "project_no": "IMP-2022-000329",
+      "project_name": "老龄化的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 12,
+        "end_date": "2023-01-01"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-01-01"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 330,
+      "project_no": "IMP-2023-000330",
+      "project_name": "乡村振兴的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 24,
+        "end_date": "2025-01-12"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-01-12"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 331,
+      "project_no": "IMP-2024-000331",
+      "project_name": "数据安全的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 71,
+        "end_date": "2026-09-18"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-09-18"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 332,
+      "project_no": "IMP-2021-000332",
+      "project_name": "全球治理的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 12,
+        "end_date": "2023-10-24"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-10-24"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 334,
+      "project_no": "IMP-2022-000334",
+      "project_name": "就业促进的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 51,
+        "end_date": "2025-12-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-12-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 335,
+      "project_no": "IMP-2022-000335",
+      "project_name": "社区服务的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 13,
+        "end_date": "2025-05-06"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-05-06"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 340,
+      "project_no": "IMP-2021-000340",
+      "project_name": "公共服务的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 3,
+        "end_date": "2024-05-07"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-05-07"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 341,
+      "project_no": "IMP-2024-000341",
+      "project_name": "数据安全的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 53,
+        "end_date": "2026-04-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-04-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 342,
+      "project_no": "IMP-2023-000342",
+      "project_name": "金融监管的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 23,
+        "end_date": "2024-05-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-05-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 345,
+      "project_no": "IMP-2021-000345",
+      "project_name": "城市管理的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 32,
+        "end_date": "2022-12-23"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-12-23"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 347,
+      "project_no": "IMP-2022-000347",
+      "project_name": "环境治理的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 13,
+        "end_date": "2023-05-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-05-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 348,
+      "project_no": "IMP-2023-000348",
+      "project_name": "社会保障的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 85,
+        "end_date": "2025-03-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-03-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 349,
+      "project_no": "IMP-2022-000349",
+      "project_name": "住房保障的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 4,
+        "end_date": "2023-05-22"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-05-22"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 350,
+      "project_no": "IMP-2023-000350",
+      "project_name": "全球治理的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 64,
+        "end_date": "2025-03-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-03-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 352,
+      "project_no": "IMP-2023-000352",
+      "project_name": "中国式现代化的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 35,
+        "end_date": "2024-06-23"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-06-23"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 354,
+      "project_no": "IMP-2021-000354",
+      "project_name": "数字政府的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 54,
+        "end_date": "2022-04-02"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-04-02"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 355,
+      "project_no": "IMP-2023-000355",
+      "project_name": "数字政府的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 68,
+        "end_date": "2026-09-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-09-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 356,
+      "project_no": "IMP-2023-000356",
+      "project_name": "就业促进的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 24,
+        "end_date": "2026-09-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-09-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 360,
+      "project_no": "IMP-2021-000360",
+      "project_name": "产业政策的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 77,
+        "end_date": "2024-05-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-05-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 361,
+      "project_no": "IMP-2022-000361",
+      "project_name": "科技创新的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 8,
+        "end_date": "2025-04-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-04-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 362,
+      "project_no": "IMP-2023-000362",
+      "project_name": "社区服务的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 42,
+        "end_date": "2024-01-02"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-01-02"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 364,
+      "project_no": "IMP-2022-000364",
+      "project_name": "城市管理的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 88,
+        "end_date": "2025-04-10"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-04-10"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 365,
+      "project_no": "IMP-2023-000365",
+      "project_name": "应急管理的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 38,
+        "end_date": "2025-04-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-04-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 366,
+      "project_no": "IMP-2022-000366",
+      "project_name": "法治建设的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 63,
+        "end_date": "2025-10-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-10-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 367,
+      "project_no": "IMP-2021-000367",
+      "project_name": "对外开放的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 60,
+        "end_date": "2024-03-08"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-03-08"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 371,
+      "project_no": "IMP-2024-000371",
+      "project_name": "国际贸易的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 89,
+        "end_date": "2025-11-09"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-11-09"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 372,
+      "project_no": "IMP-2021-000372",
+      "project_name": "共同富裕的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 33,
+        "end_date": "2023-02-17"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-02-17"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 373,
+      "project_no": "IMP-2022-000373",
+      "project_name": "共同富裕的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 5,
+        "end_date": "2025-06-10"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-06-10"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 376,
+      "project_no": "IMP-2023-000376",
+      "project_name": "数据安全的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 45,
+        "end_date": "2026-09-10"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-09-10"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 377,
+      "project_no": "IMP-2021-000377",
+      "project_name": "国际贸易的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 54,
+        "end_date": "2024-01-07"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-01-07"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 379,
+      "project_no": "IMP-2022-000379",
+      "project_name": "一带一路的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 27,
+        "end_date": "2023-07-04"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-07-04"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 382,
+      "project_no": "IMP-2023-000382",
+      "project_name": "人工智能治理的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 21,
+        "end_date": "2025-07-02"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-07-02"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 383,
+      "project_no": "IMP-2024-000383",
+      "project_name": "对外开放的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 14,
+        "end_date": "2025-02-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-02-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 384,
+      "project_no": "IMP-2022-000384",
+      "project_name": "乡村振兴的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 71,
+        "end_date": "2025-08-26"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-08-26"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 385,
+      "project_no": "IMP-2023-000385",
+      "project_name": "全球治理的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 73,
+        "end_date": "2024-03-12"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-03-12"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 386,
+      "project_no": "IMP-2022-000386",
+      "project_name": "国际贸易的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 76,
+        "end_date": "2023-02-02"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-02-02"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 387,
+      "project_no": "IMP-2023-000387",
+      "project_name": "教育政策的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 92,
+        "end_date": "2026-10-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-10-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 388,
+      "project_no": "IMP-2024-000388",
+      "project_name": "中国式现代化的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 49,
+        "end_date": "2026-04-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-04-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 389,
+      "project_no": "IMP-2022-000389",
+      "project_name": "住房保障的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 9,
+        "end_date": "2024-10-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-10-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 390,
+      "project_no": "IMP-2022-000390",
+      "project_name": "国际贸易的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 9,
+        "end_date": "2025-04-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-04-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 391,
+      "project_no": "IMP-2024-000391",
+      "project_name": "应急管理的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 53,
+        "end_date": "2026-06-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-06-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 392,
+      "project_no": "IMP-2022-000392",
+      "project_name": "公共服务的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 15,
+        "end_date": "2025-07-24"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-07-24"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 393,
+      "project_no": "IMP-2021-000393",
+      "project_name": "环境治理的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 93,
+        "end_date": "2024-07-07"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-07-07"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 396,
+      "project_no": "IMP-2024-000396",
+      "project_name": "城市管理的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 6,
+        "end_date": "2025-03-25"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-03-25"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 397,
+      "project_no": "IMP-2023-000397",
+      "project_name": "社区服务的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 64,
+        "end_date": "2025-02-09"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-02-09"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 398,
+      "project_no": "IMP-2021-000398",
+      "project_name": "儿童福利的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 96,
+        "end_date": "2023-03-24"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-03-24"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 399,
+      "project_no": "IMP-2024-000399",
+      "project_name": "老龄化的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 15,
+        "end_date": "2026-01-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-01-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 400,
+      "project_no": "IMP-2022-000400",
+      "project_name": "老龄化的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 60,
+        "end_date": "2024-10-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-10-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 401,
+      "project_no": "IMP-2023-000401",
+      "project_name": "基层治理的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 48,
+        "end_date": "2025-02-18"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-02-18"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 402,
+      "project_no": "IMP-2023-000402",
+      "project_name": "国际贸易的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 1,
+        "end_date": "2025-11-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-11-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 404,
+      "project_no": "IMP-2021-000404",
+      "project_name": "教育政策的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 20,
+        "end_date": "2023-01-22"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-01-22"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 405,
+      "project_no": "IMP-2022-000405",
+      "project_name": "区域协调的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 28,
+        "end_date": "2023-01-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-01-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 407,
+      "project_no": "IMP-2023-000407",
+      "project_name": "数据安全的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 44,
+        "end_date": "2024-10-23"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-10-23"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 408,
+      "project_no": "IMP-2023-000408",
+      "project_name": "老龄化的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 85,
+        "end_date": "2025-08-22"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-08-22"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 409,
+      "project_no": "IMP-2021-000409",
+      "project_name": "数字政府的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 5,
+        "end_date": "2022-09-17"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-09-17"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 411,
+      "project_no": "IMP-2022-000411",
+      "project_name": "金融监管的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 7,
+        "end_date": "2023-05-04"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-05-04"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 412,
+      "project_no": "IMP-2022-000412",
+      "project_name": "全球治理的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 80,
+        "end_date": "2023-08-01"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-08-01"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 415,
+      "project_no": "IMP-2022-000415",
+      "project_name": "儿童福利的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 22,
+        "end_date": "2025-09-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-09-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 416,
+      "project_no": "IMP-2024-000416",
+      "project_name": "金融监管的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 87,
+        "end_date": "2026-08-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-08-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 417,
+      "project_no": "IMP-2021-000417",
+      "project_name": "公共卫生的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 40,
+        "end_date": "2024-12-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-12-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 418,
+      "project_no": "IMP-2021-000418",
+      "project_name": "应急管理的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 2,
+        "end_date": "2022-05-11"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-05-11"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 420,
+      "project_no": "IMP-2023-000420",
+      "project_name": "基层治理的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 7,
+        "end_date": "2025-08-23"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-08-23"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 421,
+      "project_no": "IMP-2023-000421",
+      "project_name": "法治建设的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 15,
+        "end_date": "2026-04-27"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-04-27"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 424,
+      "project_no": "IMP-2023-000424",
+      "project_name": "碳中和的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 23,
+        "end_date": "2025-01-17"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-01-17"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 425,
+      "project_no": "IMP-2024-000425",
+      "project_name": "教育政策的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 44,
+        "end_date": "2026-10-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-10-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 426,
+      "project_no": "IMP-2024-000426",
+      "project_name": "共同富裕的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 2,
+        "end_date": "2026-03-12"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-03-12"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 429,
+      "project_no": "IMP-2022-000429",
+      "project_name": "碳中和的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 86,
+        "end_date": "2023-02-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-02-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 430,
+      "project_no": "IMP-2022-000430",
+      "project_name": "一带一路的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 86,
+        "end_date": "2025-08-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-08-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 431,
+      "project_no": "IMP-2022-000431",
+      "project_name": "国际贸易的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 98,
+        "end_date": "2025-05-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-05-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 432,
+      "project_no": "IMP-2022-000432",
+      "project_name": "教育政策的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 68,
+        "end_date": "2024-05-19"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-05-19"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 433,
+      "project_no": "IMP-2024-000433",
+      "project_name": "基层治理的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 34,
+        "end_date": "2026-02-10"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-02-10"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 436,
+      "project_no": "IMP-2023-000436",
+      "project_name": "科技创新的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 44,
+        "end_date": "2024-08-11"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-08-11"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 437,
+      "project_no": "IMP-2024-000437",
+      "project_name": "科技创新的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 38,
+        "end_date": "2026-03-10"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-03-10"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 441,
+      "project_no": "IMP-2022-000441",
+      "project_name": "环境治理的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 72,
+        "end_date": "2025-04-14"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-04-14"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 442,
+      "project_no": "IMP-2023-000442",
+      "project_name": "基层治理的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 80,
+        "end_date": "2024-12-14"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-12-14"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 443,
+      "project_no": "IMP-2023-000443",
+      "project_name": "碳中和的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 81,
+        "end_date": "2024-06-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-06-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 444,
+      "project_no": "IMP-2024-000444",
+      "project_name": "文化自信的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 64,
+        "end_date": "2026-07-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-07-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 445,
+      "project_no": "IMP-2022-000445",
+      "project_name": "国际贸易的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 36,
+        "end_date": "2024-06-10"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-06-10"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 446,
+      "project_no": "IMP-2021-000446",
+      "project_name": "住房保障的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 82,
+        "end_date": "2023-12-27"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-12-27"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 448,
+      "project_no": "IMP-2022-000448",
+      "project_name": "教育政策的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 4,
+        "end_date": "2025-02-27"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-02-27"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 452,
+      "project_no": "IMP-2023-000452",
+      "project_name": "国际贸易的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 25,
+        "end_date": "2026-05-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-05-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 453,
+      "project_no": "IMP-2023-000453",
+      "project_name": "社区服务的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 5,
+        "end_date": "2026-05-17"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-05-17"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 454,
+      "project_no": "IMP-2022-000454",
+      "project_name": "儿童福利的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 25,
+        "end_date": "2024-09-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-09-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 455,
+      "project_no": "IMP-2022-000455",
+      "project_name": "法治建设的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 27,
+        "end_date": "2023-10-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-10-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 456,
+      "project_no": "IMP-2021-000456",
+      "project_name": "社会保障的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 50,
+        "end_date": "2024-07-09"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-07-09"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 457,
+      "project_no": "IMP-2023-000457",
+      "project_name": "老龄化的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 32,
+        "end_date": "2026-02-14"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-02-14"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 459,
+      "project_no": "IMP-2021-000459",
+      "project_name": "住房保障的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 11,
+        "end_date": "2024-08-08"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-08-08"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 460,
+      "project_no": "IMP-2023-000460",
+      "project_name": "社区服务的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 97,
+        "end_date": "2025-09-25"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-09-25"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 461,
+      "project_no": "IMP-2023-000461",
+      "project_name": "公共卫生的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 1,
+        "end_date": "2024-05-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-05-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 462,
+      "project_no": "IMP-2021-000462",
+      "project_name": "应急管理的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 76,
+        "end_date": "2022-02-13"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-02-13"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 463,
+      "project_no": "IMP-2022-000463",
+      "project_name": "应急管理的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 75,
+        "end_date": "2025-01-17"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-01-17"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 465,
+      "project_no": "IMP-2023-000465",
+      "project_name": "社会保障的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 74,
+        "end_date": "2025-11-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-11-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 469,
+      "project_no": "IMP-2021-000469",
+      "project_name": "中国式现代化的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 57,
+        "end_date": "2022-05-26"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-05-26"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 470,
+      "project_no": "IMP-2023-000470",
+      "project_name": "社区服务的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 3,
+        "end_date": "2026-06-22"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-06-22"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 471,
+      "project_no": "IMP-2023-000471",
+      "project_name": "产业政策的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 59,
+        "end_date": "2026-02-19"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-02-19"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 472,
+      "project_no": "IMP-2022-000472",
+      "project_name": "应急管理的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 70,
+        "end_date": "2024-04-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-04-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 474,
+      "project_no": "IMP-2024-000474",
+      "project_name": "中国式现代化的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 40,
+        "end_date": "2026-05-26"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-05-26"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 475,
+      "project_no": "IMP-2023-000475",
+      "project_name": "科技创新的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 88,
+        "end_date": "2025-12-09"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-12-09"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 476,
+      "project_no": "IMP-2024-000476",
+      "project_name": "社区服务的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 25,
+        "end_date": "2026-07-17"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-07-17"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 477,
+      "project_no": "IMP-2023-000477",
+      "project_name": "国际贸易的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 27,
+        "end_date": "2025-10-05"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-10-05"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 478,
+      "project_no": "IMP-2023-000478",
+      "project_name": "共同富裕的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 39,
+        "end_date": "2026-09-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-09-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 480,
+      "project_no": "IMP-2022-000480",
+      "project_name": "人工智能治理的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 4,
+        "end_date": "2024-10-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-10-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 481,
+      "project_no": "IMP-2021-000481",
+      "project_name": "中国式现代化的路径研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 91,
+        "end_date": "2023-01-11"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-01-11"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 483,
+      "project_no": "IMP-2021-000483",
+      "project_name": "基层治理的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 5,
+        "end_date": "2023-02-18"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-02-18"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 484,
+      "project_no": "IMP-2021-000484",
+      "project_name": "应急管理的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 27,
+        "end_date": "2024-01-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-01-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 486,
+      "project_no": "IMP-2022-000486",
+      "project_name": "金融监管的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 19,
+        "end_date": "2023-09-21"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-09-21"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 487,
+      "project_no": "IMP-2022-000487",
+      "project_name": "住房保障的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 49,
+        "end_date": "2024-06-19"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-06-19"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 489,
+      "project_no": "IMP-2021-000489",
+      "project_name": "乡村振兴的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 68,
+        "end_date": "2024-09-09"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-09-09"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 490,
+      "project_no": "IMP-2024-000490",
+      "project_name": "数字政府的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 15,
+        "end_date": "2025-03-06"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-03-06"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 491,
+      "project_no": "IMP-2024-000491",
+      "project_name": "基层治理的评估研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 53,
+        "end_date": "2026-06-15"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-06-15"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 493,
+      "project_no": "IMP-2023-000493",
+      "project_name": "社区服务的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 26,
+        "end_date": "2026-06-26"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-06-26"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 495,
+      "project_no": "IMP-2022-000495",
+      "project_name": "数字政府的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 23,
+        "end_date": "2024-08-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-08-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 496,
+      "project_no": "IMP-2023-000496",
+      "project_name": "教育政策的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 49,
+        "end_date": "2024-04-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-04-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 499,
+      "project_no": "IMP-2023-000499",
+      "project_name": "文化自信的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 70,
+        "end_date": "2024-04-06"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-04-06"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 501,
+      "project_no": "IMP-2023-000501",
+      "project_name": "城市管理的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 64,
+        "end_date": "2026-09-27"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2026-09-27"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 502,
+      "project_no": "IMP-2023-000502",
+      "project_name": "就业促进的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 81,
+        "end_date": "2024-01-17"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-01-17"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 504,
+      "project_no": "IMP-2024-000504",
+      "project_name": "文化自信的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 93,
+        "end_date": "2025-10-24"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-10-24"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 507,
+      "project_no": "IMP-2021-000507",
+      "project_name": "公共服务的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 97,
+        "end_date": "2023-12-08"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-12-08"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 508,
+      "project_no": "IMP-2024-000508",
+      "project_name": "公共服务的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 0,
+        "end_date": "2025-01-07"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-01-07"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 509,
+      "project_no": "IMP-2021-000509",
+      "project_name": "法治建设的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 73,
+        "end_date": "2023-12-12"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-12-12"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 510,
+      "project_no": "IMP-2021-000510",
+      "project_name": "对外开放的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 63,
+        "end_date": "2024-04-16"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-04-16"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 512,
+      "project_no": "IMP-2022-000512",
+      "project_name": "老龄化的演进研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 88,
+        "end_date": "2023-02-14"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-02-14"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 516,
+      "project_no": "IMP-2021-000516",
+      "project_name": "中国式现代化的实践研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 31,
+        "end_date": "2023-03-25"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-03-25"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 517,
+      "project_no": "IMP-2021-000517",
+      "project_name": "碳中和的模式研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 37,
+        "end_date": "2022-02-20"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2022-02-20"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 520,
+      "project_no": "IMP-2024-000520",
+      "project_name": "公共卫生的机制研究",
+      "reason": "进度已达100%，但项目结束日期尚未到；调整为审核中，不提前标记结题。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 100,
+        "end_date": "2026-12-19"
+      },
+      "after": {
+        "status": "审核中",
+        "actual_progress": 100,
+        "end_date": "2026-12-19"
+      },
+      "fields": [
+        "status"
+      ]
+    },
+    {
+      "project_id": 521,
+      "project_no": "IMP-2022-000521",
+      "project_name": "儿童福利的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 3,
+        "end_date": "2023-06-03"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2023-06-03"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 523,
+      "project_no": "IMP-2022-000523",
+      "project_name": "就业促进的对策研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "立项",
+        "actual_progress": 70,
+        "end_date": "2025-11-18"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2025-11-18"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 525,
+      "project_no": "IMP-2022-000525",
+      "project_name": "全球治理的创新研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "在研",
+        "actual_progress": 30,
+        "end_date": "2024-12-28"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-12-28"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    },
+    {
+      "project_id": 526,
+      "project_no": "IMP-2021-000526",
+      "project_name": "国际贸易的机制研究",
+      "reason": "模拟数据规则：结束日期已过且没有延期字段，统一归为已结题项目。",
+      "before": {
+        "status": "审核中",
+        "actual_progress": 33,
+        "end_date": "2024-01-18"
+      },
+      "after": {
+        "status": "结题",
+        "actual_progress": 100,
+        "end_date": "2024-01-18"
+      },
+      "fields": [
+        "status",
+        "actual_progress"
+      ]
+    }
+  ],
+  "warning_changes": [
+    {
+      "warning_id": 38,
+      "project_id": 153,
+      "project_name": "科学社会主义系2022年度研究分析",
+      "reason": "预警日期晚于项目结束日期，调整到项目结束日前14天；关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-02-23",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2021-03-14",
+        "project_start_date": "2020-05-17",
+        "project_status": "立项"
+      },
+      "after": {
+        "warning_date": "2021-02-28",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2021-03-14"
+      },
+      "fields": [
+        "warning_date",
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 39,
+      "project_id": 156,
+      "project_name": "科学社会主义系2023年度分析评估",
+      "reason": "预警日期晚于项目结束日期，调整到项目结束日前14天；关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-03-10",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2024-06-20",
+        "project_start_date": "2022-12-02",
+        "project_status": "在研"
+      },
+      "after": {
+        "warning_date": "2024-06-06",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2024-06-20"
+      },
+      "fields": [
+        "warning_date",
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 40,
+      "project_id": 160,
+      "project_name": "科学社会主义系2024年度评估分析",
+      "reason": "预警日期晚于项目结束日期，调整到项目结束日前14天；关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-02-27",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2024-06-21",
+        "project_start_date": "2022-05-09",
+        "project_status": "在研"
+      },
+      "after": {
+        "warning_date": "2024-06-07",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2024-06-21"
+      },
+      "fields": [
+        "warning_date",
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 41,
+      "project_id": 161,
+      "project_name": "科学社会主义系2025年度研究分析",
+      "reason": "关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-03-10",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2026-06-20",
+        "project_start_date": "2024-02-23",
+        "project_status": "在研"
+      },
+      "after": {
+        "warning_date": "2025-03-10",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2026-06-20"
+      },
+      "fields": [
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 42,
+      "project_id": 166,
+      "project_name": "政治学系2021年度评估路径",
+      "reason": "预警日期晚于项目结束日期，调整到项目结束日前14天；关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-04-27",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2022-05-16",
+        "project_start_date": "2020-02-12",
+        "project_status": "立项"
+      },
+      "after": {
+        "warning_date": "2022-05-02",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2022-05-16"
+      },
+      "fields": [
+        "warning_date",
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 43,
+      "project_id": 168,
+      "project_name": "政治学系2021年度路径评估",
+      "reason": "预警日期晚于项目结束日期，调整到项目结束日前14天；关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-02-01",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2021-07-12",
+        "project_start_date": "2019-04-19",
+        "project_status": "在研"
+      },
+      "after": {
+        "warning_date": "2021-06-28",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2021-07-12"
+      },
+      "fields": [
+        "warning_date",
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 44,
+      "project_id": 169,
+      "project_name": "政治学系2021年度研究评估",
+      "reason": "预警日期晚于项目结束日期，调整到项目结束日前14天；关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-02-21",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2022-03-26",
+        "project_start_date": "2019-04-28",
+        "project_status": "立项"
+      },
+      "after": {
+        "warning_date": "2022-03-12",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2022-03-26"
+      },
+      "fields": [
+        "warning_date",
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 45,
+      "project_id": 178,
+      "project_name": "政治学系2024年度路径评估",
+      "reason": "关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-01-08",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2025-07-24",
+        "project_start_date": "2024-10-24",
+        "project_status": "在研"
+      },
+      "after": {
+        "warning_date": "2025-01-08",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2025-07-24"
+      },
+      "fields": [
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 47,
+      "project_id": 190,
+      "project_name": "国际政治系2022年度路径评估",
+      "reason": "预警日期晚于项目结束日期，调整到项目结束日前14天；关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-06-05",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2022-04-05",
+        "project_start_date": "2020-09-27",
+        "project_status": "在研"
+      },
+      "after": {
+        "warning_date": "2022-03-22",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2022-04-05"
+      },
+      "fields": [
+        "warning_date",
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 48,
+      "project_id": 194,
+      "project_name": "国际政治系2023年度分析评估",
+      "reason": "关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-06-04",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2026-04-04",
+        "project_start_date": "2023-01-12",
+        "project_status": "立项"
+      },
+      "after": {
+        "warning_date": "2025-06-04",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2026-04-04"
+      },
+      "fields": [
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 49,
+      "project_id": 203,
+      "project_name": "公共管理系2021年度分析评估",
+      "reason": "预警日期晚于项目结束日期，调整到项目结束日前14天；关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-03-22",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2024-01-28",
+        "project_start_date": "2021-01-21",
+        "project_status": "在研"
+      },
+      "after": {
+        "warning_date": "2024-01-14",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2024-01-28"
+      },
+      "fields": [
+        "warning_date",
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 50,
+      "project_id": 210,
+      "project_name": "公共管理系2022年度分析机制",
+      "reason": "预警日期晚于项目结束日期，调整到项目结束日前14天；关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-04-23",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2023-03-19",
+        "project_start_date": "2020-08-07",
+        "project_status": "立项"
+      },
+      "after": {
+        "warning_date": "2023-03-05",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2023-03-19"
+      },
+      "fields": [
+        "warning_date",
+        "is_resolved",
+        "suggested_action"
+      ]
+    },
+    {
+      "warning_id": 51,
+      "project_id": 215,
+      "project_name": "公共管理系2023年度分析机制",
+      "reason": "关联项目本轮结题，预警同步关闭并归档。",
+      "before": {
+        "warning_date": "2025-01-01",
+        "is_resolved": false,
+        "suggested_action": "加快调研进度",
+        "project_end_date": "2025-11-05",
+        "project_start_date": "2023-08-22",
+        "project_status": "在研"
+      },
+      "after": {
+        "warning_date": "2025-01-01",
+        "is_resolved": true,
+        "suggested_action": "项目已结题，预警关闭并归档",
+        "project_end_date": "2025-11-05"
+      },
+      "fields": [
+        "is_resolved",
+        "suggested_action"
+      ]
+    }
+  ],
+  "backup_path": "D:\\research_system\\data_repair_plan\\backups\\db_before_consistency_repair_20261025_113503.sqlite3",
+  "post_validation": {
+    "overdue_non_closed_project_count": 0,
+    "warning_after_project_end_count": 0
+  }
+}

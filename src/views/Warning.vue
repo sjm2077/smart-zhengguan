@@ -3,6 +3,10 @@
     <div class="page-header">
       <h2>智能预警系统</h2>
       <p>实时监控学院各项数据指标，智能预警异常情况</p>
+      <p class="source-note">
+        数据分级：<b>A 官网真实</b>（pspa.sdu.edu.cn 定时爬取） · <b>B 真实采集文件</b>（研究生 Excel / 论文 CSV） ·
+        <b>C 子系统演示台账</b>（科研模拟脚本生成，非官网口径）。每条预警标注来源，官网无公开口径的指标不做编造。
+      </p>
     </div>
 
     <div class="kpi-overview">
@@ -53,6 +57,7 @@
             <div class="warning-type">
               <span class="type-badge" :class="item.level">{{ levelLabel(item.level) }}</span>
               <span class="type-name">{{ item.typeName }}</span>
+              <span class="warning-source">{{ item.source || '未标注来源' }}</span>
             </div>
             <span class="warning-time">{{ item.time }}</span>
           </div>
@@ -108,6 +113,27 @@
             <span class="low">{{ m.lowLabel }}</span>
             <span class="high">{{ m.highLabel }}</span>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 官网《学院简介》权威指标（学院自己公布的口径） ===== -->
+    <div class="metrics-section official-section">
+      <div class="section-title">
+        <span class="title-icon">🏛️</span>
+        <span>官网权威指标（《学院简介》原文）</span>
+        <span class="section-count">
+          {{ profileLoading ? '（读取中…）' : `（${profileItems.length} 项，来源 pspa.sdu.edu.cn/xygk/xyjj.htm）` }}
+        </span>
+      </div>
+      <p v-if="profileError" class="official-error">{{ profileError }}</p>
+      <div class="official-grid">
+        <div v-for="it in profileItems" :key="it.key" class="official-card" :title="it.raw">
+          <div class="official-label">{{ it.label }}</div>
+          <div class="official-value">
+            {{ formatNum(it.value) }}<span class="official-unit">{{ it.unit }}</span>
+          </div>
+          <div class="official-raw">{{ it.raw }}</div>
         </div>
       </div>
     </div>
@@ -224,7 +250,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 
 const toast = ref({ show: false, message: '' })
 let toastTimer = null
@@ -242,117 +268,412 @@ const levelLabel = (level) => {
 
 // 统计
 const stats = reactive({
-  emergency: 2,
-  warning: 3,
-  normal: 15,
-  resolved: 28
+  emergency: 0,
+  warning: 0,
+  normal: 0,
+  resolved: 0
 })
 
-// 预警数据
-const warnings = ref([
-  {
-    id: 1,
-    level: 'danger',
-    typeName: '预算执行预警',
-    time: '10分钟前',
-    title: '科研经费预算执行率偏低',
-    description: '目前科研经费预算执行率为76%，低于预期目标（85%）。建议加快项目执行进度，确保资金合理使用。',
-    suggestion: '1. 梳理各项目执行进度，识别滞后环节\n2. 召开项目进度推进会，明确时间节点\n3. 对执行率低于70%的项目进行重点督导',
-    metrics: [
-      { label: '当前值', value: '76%', status: 'danger' },
-      { label: '目标值', value: '85%', status: '' },
-      { label: '偏差', value: '-9%', status: 'danger' }
-    ],
-    processed: false,
-    hasAI: true
-  },
-  {
-    id: 2,
-    level: 'warning',
-    typeName: '招生趋势预警',
-    time: '30分钟前',
-    title: '部分专业报名人数呈下降趋势',
-    description: '国际政治专业今年报名人数同比去年下降12%，需关注招生宣传策略调整。',
-    suggestion: '1. 加强线上招生宣传，拓展新媒体渠道\n2. 组织优秀在校生回母校宣讲\n3. 优化专业介绍材料，突出就业优势',
-    metrics: [
-      { label: '去年人数', value: '120', status: '' },
-      { label: '今年人数', value: '106', status: '' },
-      { label: '变化', value: '-12%', status: 'warning' }
-    ],
-    processed: false,
-    hasAI: true
-  },
-  {
-    id: 3,
-    level: 'warning',
-    typeName: '师资结构预警',
-    time: '2小时前',
-    title: '青年教师比例偏低',
-    description: '35岁以下青年教师占比为25%，建议加强青年人才引进和培养。',
-    suggestion: '1. 制定青年人才引进专项计划\n2. 加大海内外优秀博士招聘力度\n3. 完善青年教师培养和晋升机制',
-    metrics: [
-      { label: '青年教师', value: '33人', status: '' },
-      { label: '总教师', value: '130人', status: '' },
-      { label: '占比', value: '25%', status: 'warning' }
-    ],
-    processed: false,
-    hasAI: true
-  },
-  {
-    id: 4,
-    level: 'info',
-    typeName: '数据更新提醒',
-    time: '2小时前',
-    title: '学生数据已更新',
-    description: '最新学生数据已同步，建议查看最新分析报告。',
-    suggestion: '建议前往综合概览页面查看最新的学生数据分析报告。',
-    metrics: [
-      { label: '更新内容', value: '学生数据', status: '' },
-      { label: '数据范围', value: '全部年级', status: '' },
-      { label: '状态', value: '已完成', status: '' }
-    ],
-    processed: false,
-    hasAI: false,
-    detailBtnText: '查看数据',
-    processBtnText: '标记已读'
-  },
-  {
-    id: 5,
-    level: 'info',
-    typeName: '系统提醒',
-    time: '5小时前',
-    title: '月度报告生成完成',
-    description: '2026年5月学院综合分析报告已生成，可在科研管理系统中查看。',
-    suggestion: '建议前往科研管理系统查看完整的月度分析报告。',
-    metrics: [
-      { label: '报告月份', value: '2026年5月', status: '' },
-      { label: '数据维度', value: '教学/科研/师资', status: '' },
-      { label: '状态', value: '可查看', status: '' }
-    ],
-    processed: false,
-    hasAI: false,
-    detailBtnText: '查看报告',
-    processBtnText: '标记已读'
-  }
-])
+// 预警数据（从真实 API 动态生成）
+const warnings = ref([])
 
 const activeWarnings = computed(() => warnings.value.filter(w => !w.processed))
 
-const historyList = ref([
-  { id: 1, title: '教学工作量统计完成', description: '本学期教师教学工作量数据已全部统计完成', time: '昨天 14:30', handler: '系统自动' },
-  { id: 2, title: '科研经费到账提醒', description: '3项国家级项目经费已到账，总额520万元', time: '2天前 09:15', handler: '陈科研' },
-  { id: 3, title: '学生评教数据更新', description: '本学期中期学生评教数据已同步完成', time: '3天前 16:45', handler: '王教务' },
-  { id: 4, title: '实验室安全巡检完成', description: '本月实验室安全巡检已全部完成，无异常', time: '5天前 11:20', handler: '系统自动' },
-  { id: 5, title: '毕业论文查重结果', description: '2026届本科毕业论文查重工作已完成，通过率98%', time: '1周前 15:00', handler: '王教务' }
+const historyList = ref([])
+
+// 指标监控数据（全部由下方规则从真实接口回填，初始只占位、不写死数值）
+const metrics = ref([
+  { key: 'fund', name: '经费执行率（科研系统）', value: '--', percent: 0, barColor: 'success', status: '加载中', statusLabel: '加载中', lowLabel: '低于 50% 预警', highLabel: '目标 ≥90%' },
+  { key: 'score', name: '教师平均综合分（科研系统）', value: '--', percent: 0, barColor: 'success', status: '加载中', statusLabel: '加载中', lowLabel: '低 <75', highLabel: '优 >85' },
+  { key: 'project', name: '官网近五年项目', value: '--', percent: 0, barColor: 'info', status: '', statusLabel: '', lowLabel: '重大+社科+国自然+部委', highLabel: '等待官网指标' },
+  { key: 'achv', name: '官网学术成果', value: '--', percent: 0, barColor: 'info', status: '', statusLabel: '', lowLabel: '官网学术成果页', highLabel: '等待官网指标' },
+  { key: 'profile', name: '官网教师主页覆盖率', value: '--', percent: 0, barColor: 'info', status: '', statusLabel: '', lowLabel: '个人主页可检索', highLabel: '目标 ≥90%' },
+  { key: 'notice', name: '官网通知公告采集', value: '--', percent: 0, barColor: 'info', status: '', statusLabel: '', lowLabel: '通知公告栏目', highLabel: '等待官网指标' }
 ])
 
-// 指标监控数据
-const metrics = ref([
-  { name: '预算执行率', value: '76%', percent: 76, barColor: 'danger', status: '偏低', statusLabel: '偏低', lowLabel: '低 <75%', highLabel: '高 >90%' },
-  { name: '师生比', value: '15.4:1', percent: 75, barColor: 'success', status: '正常', statusLabel: '正常', lowLabel: '低 <10:1', highLabel: '高 >20:1' },
-  { name: '科研项目完成率', value: '88%', percent: 88, barColor: 'success', status: '良好', statusLabel: '良好', lowLabel: '低 <70%', highLabel: '高 >95%' },
-  { name: '就业率', value: '92%', percent: 92, barColor: 'success', status: '优秀', statusLabel: '优秀', lowLabel: '低 <85%', highLabel: '高 >95%' }
-])
+const setMetric = (key, patch) => {
+  const m = metrics.value.find(x => x.key === key)
+  if (m) Object.assign(m, patch)
+}
+
+// 官网《学院简介》权威指标（真实原文，不含任何估算）
+const profileItems = ref([])
+const profileError = ref('')
+const profileLoading = ref(true)
+const formatNum = (v) => (v === null || v === undefined ? '--' : (Number.isInteger(v) ? v : v.toFixed(1)))
+
+const loadProfileStats = async () => {
+  profileLoading.value = true
+  profileError.value = ''
+  try {
+    const r = await fetch('/api-research/api/real/pspa-profile')
+    if (!r.ok) throw new Error('HTTP ' + r.status)
+    const d = await r.json()
+    profileItems.value = d.items || []
+    const derived = d.derived || {}
+
+    setMetric('project', {
+      value: (derived.project_total || 0) + ' 项',
+      percent: Math.min(100, Math.round(derived.project_total || 0)),
+      highLabel: `官网合计 ${derived.project_total || 0} 项`,
+      status: '正常',
+      statusLabel: '官网口径'
+    })
+    setMetric('notice', {
+      highLabel: '官网通知公告栏目持续采集'
+    })
+
+    historyList.value = [
+      { id: 'h1', title: '智能预警系统启动', description: '接入科研库（MySQL 8888）、研究生库（MySQL 8000）与学院官网爬取数据，规则引擎按接口数据实时计算', time: '系统启动', handler: '系统自动' },
+      { id: 'h2', title: '官网权威指标已加载', description: `《学院简介》原文指标 ${profileItems.value.length} 项：在职教师 ${formatNum(d.data?.teacher_total)} 人、教授 ${formatNum(d.data?.teacher_professor)} 人、博导 ${formatNum(d.data?.supervisor_phd)} 人、近五年项目 ${formatNum(derived.project_total)} 项`, time: '数据初始化', handler: '系统自动' },
+      { id: 'h3', title: '预警规则引擎生效', description: '项目进度、经费执行率、官网学术成果、官网项目、官网通知、师资评分、教师主页覆盖率共 7 条规则按真实接口数据计算', time: '数据初始化', handler: '系统自动' }
+    ]
+  } catch (e) {
+    profileError.value = '官网权威指标加载失败（需启动科研后端 8888）'
+    historyList.value = [
+      { id: 'h1', title: '智能预警系统启动', description: '规则引擎已启动，后端接口不可用时不会编造任何指标', time: '系统启动', handler: '系统自动' }
+    ]
+  } finally {
+    profileLoading.value = false
+  }
+}
+
+// ==================== 真实数据驱动的规则引擎 ====================
+let nextId = 100
+const addWarning = (w) => {
+  warnings.value.push({ id: nextId++, processed: false, hasAI: true, time: '刚刚', ...w })
+  updateStats()
+}
+
+const updateStats = () => {
+  const unresolved = warnings.value.filter(w => !w.processed)
+  stats.emergency = unresolved.filter(w => w.level === 'danger').length
+  stats.warning = unresolved.filter(w => w.level === 'warning').length
+  stats.normal = unresolved.filter(w => w.level === 'info').length
+  stats.resolved = warnings.value.filter(w => w.processed).length
+}
+
+// 规则1：项目进度预警（科研系统项目台账；注意：该表由模拟数据脚本生成，
+// 属"子系统数据"，不是学院官方口径）
+async function ruleProjectProgress() {
+  try {
+    const r = await fetch('/api-research/api/admin/risk-projects')
+    if (!r.ok) return
+    const data = await r.json()
+    const risky = data.data || []
+    risky.forEach(p => {
+      const level = p.progress < 30 ? 'danger' : 'warning'
+      addWarning({
+        level,
+        typeName: level === 'danger' ? '项目进度严重滞后' : '项目进度预警',
+        source: 'C 科研子系统台账（模拟脚本）',
+        title: `项目「${p.project_name}」进度 ${p.progress}%`,
+        description: `负责人 ${p.leader} 的项目「${p.project_name}」当前执行进度仅 ${p.progress}%，距计划完成率（80%）存在较大差距。（数据来源：科研系统项目台账，为演示用模拟台账，非官网口径）`,
+        suggestion: `1. 立即联系负责人 ${p.leader} 了解滞后原因\n2. 制定两周内追赶计划\n3. 如涉及经费使用问题，同步启动经费督导`,
+        metrics: [
+          { label: '项目编号', value: p.project_no, status: '' },
+          { label: '当前进度', value: p.progress + '%', status: level },
+          { label: '状态', value: p.status, status: '' },
+          { label: '截止日期', value: p.end_date, status: '' },
+        ]
+      })
+    })
+  } catch (e) { /* silent */ }
+}
+
+// 规则2：经费执行率预警（真实数据：项目进度加权执行率）
+async function ruleFundExecution() {
+  try {
+    const r = await fetch('/api-research/api/fund/overview')
+    if (!r.ok) return
+    const d = await r.json()
+    // execution_rate  = 全部项目进度加权执行率
+    // ongoing_rate    = 在研项目进度加权执行率（更应关注）
+    const rate = d.execution_rate || 0
+    const ongoingRate = d.ongoing_rate || 0
+    const ongoingCount = d.ongoing_count || 0
+    const ongoingFund = d.ongoing_fund || 0
+    const executed = d.executed_amount || 0
+
+    let level = 'info', label = '良好', barColor = 'success'
+    if (rate < 50) { level = 'danger'; label = '偏低'; barColor = 'danger' }
+    else if (rate < 70) { level = 'warning'; label = '偏低'; barColor = 'warning' }
+    else if (rate >= 90) { label = '优秀'; barColor = 'info' }
+
+    setMetric('fund', {
+      name: '经费执行率（科研系统）',
+      value: rate.toFixed(1) + '%',
+      percent: Math.round(Math.min(rate, 100)),
+      barColor,
+      status: label,
+      statusLabel: label,
+      lowLabel: `在研 ${ongoingCount} 项仅 ${ongoingRate.toFixed(1)}%`,
+      highLabel: '目标 ≥90%'
+    })
+
+    addWarning({
+      level,
+      typeName: level === 'info' ? '经费执行良好' : '经费执行预警',
+      source: 'C 科研子系统台账（模拟脚本）',
+      title: `科研经费进度加权执行率 ${rate.toFixed(1)}%，在研项目仅 ${ongoingRate.toFixed(1)}%`,
+      description: `全部 ${d.project_count} 个项目预算合计 ${Number(d.total_amount).toFixed(0)} 万元，按项目进度折算已执行 ${Number(executed).toFixed(0)} 万元，执行率 ${rate.toFixed(1)}%。其中在研 ${ongoingCount} 个项目执行率仅 ${ongoingRate.toFixed(1)}%，是拉低整体执行率的主因。（口径：项目进度加权，FundDetail 记录的是经费分配而非支出流水；数据来源科研系统模拟台账）`,
+      suggestion: `1. 重点督导在研项目（${ongoingCount} 个，经费 ${Number(ongoingFund).toFixed(0)} 万元）执行进度\n2. 召开项目进度推进会，明确时间节点\n3. 对进度低于 30% 的项目挂账督办\n4. 已结题 ${d.finished_count} 个项目及时完成经费决算`,
+      metrics: [
+        { label: '整体执行率', value: rate.toFixed(1) + '%', status: level },
+        { label: '在研执行率', value: ongoingRate.toFixed(1) + '%', status: 'danger' },
+        { label: '已执行', value: Number(executed).toFixed(0) + '万', status: '' },
+        { label: '预算总额', value: Number(d.total_amount).toFixed(0) + '万', status: '' },
+      ],
+      detailBtnText: '查看项目',
+    })
+  } catch (e) { /* silent */ }
+}
+
+// 规则3：官网学术成果动态（爬虫采集 pspa-achievement，真实页面数据）
+async function rulePaperUpdate() {
+  try {
+    const r = await fetch('/api-research/api/real/pspa-achievements?limit=3')
+    if (!r.ok) return
+    const d = await r.json()
+    const list = d.data || []
+    const total = d.total || 0
+
+    // 官网成果页当前可采集上限按 500 条作为进度展示基准，实际条数以接口 total 为准
+    setMetric('achv', {
+      value: total + ' 条',
+      percent: Math.min(100, Math.round(total / 5)),
+      highLabel: `采集进度（基准 500 条）`,
+      status: '正常',
+      statusLabel: '官网口径'
+    })
+
+    if (list.length > 0) {
+      const latest = list[0]
+      addWarning({
+        level: 'info',
+        typeName: '官网学术成果',
+        source: 'A 官网学术成果页',
+        title: `官网学术成果最新收录：${(latest.title || '').slice(0, 40)}`,
+        description: `学院官网「学术成果」栏目已采集 ${total} 条真实记录，最新一条类别为「${latest.category || '未分类'}」，发布日期 ${latest.date || '未标注'}。`,
+        suggestion: `1. 关注学院最新科研成果，及时做成果宣传\n2. 鼓励教师围绕优势方向持续产出\n3. 每 6 小时定时重采，保持官网数据同步`,
+        metrics: [
+          { label: '累计采集', value: total + ' 条', status: '' },
+          { label: '成果类别', value: latest.category || '未分类', status: '' },
+          { label: '发布日期', value: latest.date || '-', status: '' },
+        ],
+        detailBtnText: '查看成果',
+        processBtnText: '标记已读',
+      })
+    }
+  } catch (e) { /* silent */ }
+}
+
+// 规则4a：官网科研项目（学院简介原文：重大攻关/国家社科/国自然/部委项目）
+async function ruleProjectCount() {
+  try {
+    const r = await fetch('/api-research/api/real/pspa-profile')
+    if (!r.ok) return
+    const d = await r.json()
+    const p = d.data || {}
+    const derived = d.derived || {}
+    const total = derived.project_total || 0
+
+    setMetric('project', {
+      value: total + ' 项',
+      percent: Math.min(100, Math.round(total)),
+      highLabel: `官网合计 ${total} 项`,
+      status: '正常',
+      statusLabel: '官网口径'
+    })
+
+    addWarning({
+      level: 'info',
+      typeName: '官网科研项目',
+      source: 'A 官网《学院简介》',
+      title: `学院官网公布近五年承担科研项目 ${total} 项，总经费 ${p.fund_total || 0} 万元`,
+      description: `官网《学院简介》原文：承担国家社科基金重大项目、教育部重大攻关项目 ${p.project_major || 0} 余项，国家社科基金各类项目 ${p.project_nssf || 0} 余项，国家自然科学基金项目 ${p.project_nsfc || 0} 余项，其他部委各类项目 ${p.project_ministry || 0} 多项，总项目经费六千余万元。`,
+      suggestion: '1. 以官网口径作为对外汇报基准，内部项目台账另作明细\n2. 关注重大/国自然项目占比，优化项目结构\n3. 定期核对官网数据与内部台账差异',
+      metrics: [
+        { label: '重大攻关', value: (p.project_major || 0) + ' 项', status: '' },
+        { label: '国家社科', value: (p.project_nssf || 0) + ' 项', status: '' },
+        { label: '国自然', value: (p.project_nsfc || 0) + ' 项', status: '' },
+        { label: '总经费', value: (p.fund_total || 0) + ' 万', status: '' },
+      ],
+      processBtnText: '标记已读',
+    })
+  } catch (e) { /* silent */ }
+}
+
+// 规则4b：官网通知公告（爬虫采集，最新一条即“待关注”事项）
+async function ruleNoticeUpdate() {
+  try {
+    const r = await fetch('/api-research/api/real/pspa-notices?limit=1')
+    if (!r.ok) return
+    const d = await r.json()
+    const list = d.data || []
+    const total = d.total || 0
+    if (!list.length) return
+    const latest = list[0]
+    setMetric('notice', {
+      value: total + ' 条',
+      percent: Math.min(100, Math.round(total / 10)),
+      status: '正常',
+      statusLabel: '官网口径',
+      lowLabel: `最新 ${latest.date || '未标注'}`,
+      highLabel: `官网栏目累计 ${total} 条`
+    })
+    addWarning({
+      level: 'info',
+      typeName: '官网通知公告',
+      source: 'A 官网通知公告',
+      title: `官网最新通知：${(latest.title || '').slice(0, 46)}`,
+      description: `学院官网通知公告栏目已采集 ${total} 条，最新一条发布于 ${latest.date || '未标注'}。请及时查看是否涉及本平台业务（教学、科研、人事、研究生）。`,
+      suggestion: '1. 打开原文核对通知要求与截止时间\n2. 涉及数据报送的，同步到对应业务子系统\n3. 保持每 6 小时定时采集',
+      metrics: [
+        { label: '累计采集', value: total + ' 条', status: '' },
+        { label: '发布日期', value: latest.date || '-', status: '' },
+        { label: '来源', value: 'pspa.sdu.edu.cn', status: '' },
+      ],
+      detailBtnText: '查看通知',
+      processBtnText: '标记已读',
+    })
+  } catch (e) { /* silent */ }
+}
+
+// 规则5：教师平均综合分（数据来源科研系统 TeacherScore，模拟台账）
+async function ruleTeacherScore() {
+  try {
+    const r = await fetch('/api-research/api/real/overview')
+    if (!r.ok) return
+    const d = await r.json()
+    const avg = d.avg_sum_score || 0
+    const teacherCount = d.teacher_count || 0
+    const cnpapers = d.cnki_count || 0
+
+    setMetric('score', {
+      name: '教师平均综合分（科研系统）',
+      value: avg.toFixed(1),
+      percent: Math.round(Math.min(avg, 100)),
+      barColor: avg >= 85 ? 'success' : avg >= 75 ? 'warning' : 'danger',
+      status: avg >= 85 ? '优秀' : avg >= 75 ? '良好' : '偏低',
+      statusLabel: avg >= 85 ? '优秀' : avg >= 75 ? '良好' : '偏低',
+      lowLabel: `${teacherCount} 人 · CNKI ${cnpapers} 篇`,
+      highLabel: '优秀线 ≥85'
+    })
+
+    if (avg < 80) {
+      addWarning({
+        level: 'warning',
+        typeName: '师资发展',
+        source: 'C 科研子系统评分（模拟台账）',
+        title: `教师平均综合分 ${avg.toFixed(1)}，低于优秀线（85）`,
+        description: `${teacherCount} 名教师综合评分均值 ${avg.toFixed(1)}，近 ${cnpapers} 篇CNKI论文。建议关注低分教师发展支持。`,
+        suggestion: '1. 对综合分低于70的教师进行一对一访谈\n2. 制定差异化发展计划\n3. 加强导师指导和团队建设',
+        metrics: [
+          { label: '教师数', value: teacherCount + ' 人', status: '' },
+          { label: '平均综合分', value: avg.toFixed(1), status: 'warning' },
+          { label: 'CNKI论文', value: cnpapers + ' 篇', status: '' },
+        ],
+      })
+    } else {
+      addWarning({
+        level: 'info',
+        typeName: '师资发展',
+        source: 'C 科研子系统评分（模拟台账）',
+        title: `教师平均综合分 ${avg.toFixed(1)}，整体良好`,
+        description: `${teacherCount} 名教师综合评分均值 ${avg.toFixed(1)}，师资队伍整体呈现上升态势。`,
+        suggestion: '继续保持，鼓励优秀教师发挥传帮带作用。',
+        metrics: [
+          { label: '教师数', value: teacherCount + ' 人', status: '' },
+          { label: '平均综合分', value: avg.toFixed(1), status: '' },
+        ],
+        processBtnText: '标记已读',
+      })
+    }
+  } catch (e) { /* silent */ }
+}
+
+// 规则6：官网教师主页覆盖率（真实：PspaTeacher 93 人 vs 个人主页可检索 88 人）
+async function ruleProfileCoverage() {
+  try {
+    const r = await fetch('/api-research/api/real/pspa-faculty-portrait')
+    if (!r.ok) return
+    const d = await r.json()
+    const o = d.overall || {}
+    const total = o.teacher_count || 0
+    const profiled = o.profile_count || 0
+    if (!total) return
+    const rate = (profiled / total) * 100
+    const level = rate < 85 ? 'warning' : 'info'
+
+    setMetric('profile', {
+      value: rate.toFixed(1) + '%',
+      percent: Math.round(Math.min(rate, 100)),
+      barColor: rate < 85 ? 'warning' : 'success',
+      status: rate < 85 ? '偏低' : '正常',
+      statusLabel: rate < 85 ? '偏低' : '正常',
+      lowLabel: `个人主页可检索 ${profiled} 人`,
+      highLabel: `官网教师名录 ${total} 人`
+    })
+
+    addWarning({
+      level,
+      typeName: '官网数据完整性',
+      source: 'A 官网教师名录 + 个人主页',
+      title: `官网教师主页覆盖率 ${rate.toFixed(1)}%（${profiled}/${total} 人）`,
+      description: `学院官网教师名录共采集 ${total} 名在职教师，其中 ${profiled} 人可检索到个人主页详细信息（职称、研究方向、成果）。另有 ${total - profiled} 人仅有名录条目，画像与词云分析会缺少这部分信息。`,
+      suggestion: `1. 核对缺少主页的 ${Math.max(0, total - profiled)} 名教师，确认官网是否已发布主页\n2. 画像与词云分析中对该部分教师标注“信息待补充”\n3. 保持每 6 小时增量重采，主页发布后自动入库`,
+      metrics: [
+        { label: '教师名录', value: total + ' 人', status: '' },
+        { label: '可检索主页', value: profiled + ' 人', status: '' },
+        { label: '覆盖率', value: rate.toFixed(1) + '%', status: level === 'warning' ? 'warning' : '' },
+      ],
+      processBtnText: '标记已读',
+    })
+  } catch (e) { /* silent */ }
+}
+
+// ==================== 初始化 ====================
+async function loadRealWarnings() {
+  // 官网权威指标与规则并行加载
+  await Promise.allSettled([
+    loadProfileStats(),
+    ruleProjectProgress(),
+    ruleFundExecution(),
+    rulePaperUpdate(),
+    ruleProjectCount(),
+    ruleNoticeUpdate(),
+    ruleTeacherScore(),
+    ruleProfileCoverage(),
+  ])
+  // 兜底：如果所有 API 都挂了（比如后端没启动），至少给出明确提示，不编造预警
+  if (warnings.value.length === 0) {
+    warnings.value = [
+      { id: 1, level: 'danger', typeName: '服务离线', source: '系统状态', time: '系统离线', processed: false, hasAI: true,
+        title: '后端服务未启动，无法获取真实数据',
+        description: '请先启动科研后端（8888端口）和研究生后端（8000端口），系统将自动接入真实数据。',
+        suggestion: '1. 启动科研后端: cd research_system && python manage.py runserver 8888\n2. 启动研究生后端: cd smartzhengguan/.../backend && python manage.py runserver 8000',
+        metrics: [
+          { label: '状态', value: '后端离线', status: 'danger' },
+          { label: '影响范围', value: '全部预警', status: '' },
+        ]
+      },
+      { id: 2, level: 'info', typeName: '数据来源说明', source: '系统说明', time: '系统离线', processed: false, hasAI: false,
+        title: '当前为离线演示模式',
+        description: '当后端服务不可用时，预警系统进入离线演示模式。启动后端后所有预警、指标将基于真实数据库数据生成。',
+        suggestion: '启动后端服务后刷新页面即可看到真实数据驱动的智能预警。',
+        metrics: [
+          { label: '模式', value: '离线演示', status: '' },
+          { label: '数据', value: '等待接入', status: '' },
+        ],
+        processBtnText: '标记已读',
+      }
+    ]
+    updateStats()
+  }
+}
+
+onMounted(loadRealWarnings)
 
 // 详情弹窗
 const showDetail = ref(false)
@@ -381,45 +702,78 @@ const markProcessed = (item) => {
   showToast('✅ 已标记处理')
 }
 
-const updateStats = () => {
-  const unresolved = warnings.value.filter(w => !w.processed)
-  stats.emergency = unresolved.filter(w => w.level === 'danger').length
-  stats.warning = unresolved.filter(w => w.level === 'warning').length
-  stats.normal = unresolved.filter(w => w.level === 'info').length
-  stats.resolved = warnings.value.filter(w => w.processed).length
-}
-
 // AI分析
 const showAI = ref(false)
 const aiItem = ref(null)
 const aiLoading = ref(false)
 const aiResult = ref('')
 
+// 用预警自身的真实指标构造提问，交给后端 AI 代理（Key 只在服务端）
+function buildAIPrompt(item) {
+  const metricLines = (item.metrics || [])
+    .map(m => `- ${m.label}：${m.value}`)
+    .join('\n')
+  return `【预警类型】${item.typeName}
+【预警标题】${item.title}
+【现状描述】${item.description}
+【关键指标】
+${metricLines}
+
+请基于以上真实业务数据，给出：1）问题成因分析（分点）；2）可执行的处置建议（分点，明确责任与时间）；3）后续需持续监控的指标。控制在 400 字以内，直接输出中文正文，不要客套话。`
+}
+
+const SYSTEM_PROMPT = '你是高校科研管理数据分析助手，擅长根据真实业务指标做归因分析和给出可落地的管理建议。回答务实、具体、分点，避免空话。'
+
+// 本地兜底分析（后端不可用或 AI 调用失败时，仍基于真实指标给出结构化结论）
+function localAnalysis(item) {
+  const m = item.metrics || []
+  const lines = m.map(x => `${x.label}：${x.value}`).join('、')
+  return `【成因分析】
+当前预警为「${item.title}」。已知真实指标：${lines}。
+从数据看，主要矛盾集中在指标值与预期目标之间的差距，且与其他关联指标存在联动，需要结合项目执行节奏综合判断。
+
+【处置建议】
+1. 由科研管理部门牵头，梳理涉及的项目/教师清单，明确到人。
+2. 对差距最大的对象设置两周内追赶节点，纳入月度进度检查。
+3. 涉及经费与进度的，同步启动经费督导流程。
+
+【持续监控】
+建议持续跟踪上述指标变化，并在下一周期复核是否收敛。
+
+（说明：当前为本地规则生成的兜底分析，接入 AI 代理后可获得更深入的归因）`
+}
+
+async function runAI(item) {
+  aiLoading.value = true
+  aiResult.value = ''
+  try {
+    const resp = await fetch('/api-grad/v1/chat-proxy/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_prompt: SYSTEM_PROMPT,
+        message: buildAIPrompt(item),
+      }),
+    })
+    if (!resp.ok) throw new Error('proxy ' + resp.status)
+    const data = await resp.json()
+    const content = (data.content || '').trim()
+    aiResult.value = content || localAnalysis(item)
+  } catch (e) {
+    aiResult.value = localAnalysis(item)
+  } finally {
+    aiLoading.value = false
+  }
+}
+
 const aiAnalysis = (item) => {
   aiItem.value = item
   showAI.value = true
-  aiLoading.value = true
-  aiResult.value = ''
-
-  const mockResults = {
-    '科研经费预算执行率偏低': '经AI分析，当前科研经费预算执行率76%低于目标值85%，主要问题集中在以下方面：\n\n1. 3个国家级项目执行进度滞后，仅完成60%，涉及经费约180万元\n2. 横向课题到账周期延长，平均到账周期从45天延长至62天\n3. 部分项目负责人同时承担多项任务，精力分散\n\n建议：优先推进执行率低于70%的项目，设立月度进度检查机制。',
-    '部分专业报名人数呈下降趋势': '经AI分析，国际政治专业报名人数下降12%主要原因：\n\n1. 近三年就业数据显示，该专业对口就业率下降5个百分点\n2. 同类院校该专业招生规模扩大，竞争加剧\n3. 新媒体宣传投入不足，影响力有限\n\n建议：加大线上宣传投入，突出学院在国际事务领域的独特优势。',
-    '青年教师比例偏低': '经AI分析，青年教师占比25%偏低的原因及建议：\n\n1. 近三年引进博士15人，但同期退休教师8人，净增仅7人\n2. 与同类985高校相比，引进待遇竞争力不足\n3. 青年人才成长通道有待完善\n\n建议：设立青年人才引进专项基金，提供有竞争力的科研启动经费。'
-  }
-
-  setTimeout(() => {
-    aiResult.value = mockResults[item.title] || `正在对「${item.title}」进行智能分析...\n\n该预警涉及多项指标，AI建议结合历史数据进行趋势研判，并及时采取应对措施。`
-    aiLoading.value = false
-  }, 1500)
+  runAI(item)
 }
 
 const regenerateAI = () => {
-  aiLoading.value = true
-  aiResult.value = ''
-  setTimeout(() => {
-    aiResult.value = `（重新分析结果）经AI深度分析，「${aiItem.value?.title}」相关数据已更新，建议持续关注指标变化并采取相应措施。`
-    aiLoading.value = false
-  }, 1200)
+  if (aiItem.value) runAI(aiItem.value)
 }
 </script>
 
@@ -449,6 +803,80 @@ const regenerateAI = () => {
 .page-header p {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.6);
+}
+
+.page-header .source-note {
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.6;
+}
+
+.page-header .source-note b {
+  color: rgba(0, 212, 255, 0.75);
+  font-weight: 600;
+}
+
+.warning-source {
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+
+/* 官网权威指标 */
+.official-section .section-count {
+  font-size: 12px;
+}
+
+.official-error {
+  font-size: 13px;
+  color: #ff7875;
+  margin-bottom: 12px;
+}
+
+.official-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.official-card {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  background: rgba(0, 212, 255, 0.04);
+}
+
+.official-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 6px;
+}
+
+.official-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #00d4ff;
+}
+
+.official-unit {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 4px;
+}
+
+.official-raw {
+  margin-top: 6px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* KPI */
@@ -555,6 +983,7 @@ const regenerateAI = () => {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .type-badge {
@@ -639,7 +1068,7 @@ const regenerateAI = () => {
 /* Metrics grid */
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 16px;
 }
 

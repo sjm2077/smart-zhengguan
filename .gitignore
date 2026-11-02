@@ -27,3 +27,22 @@ server.js（如果只用来存密钥建议单独拆分）
 *.rar
 *.pdf
 
+
+# Python 缓存与虚拟环境
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# 前端构建缓存
+.vite/
+
+# 本地备份与临时数据
+research_system/backups/
+research_system/db_before_*.sqlite3
+smartzhengguan/backups/
+教学系统/_backend_migration_backup/
+*.backup_*
+
+# 外部克隆项目，保持本地独立
+教学系统/frontend/

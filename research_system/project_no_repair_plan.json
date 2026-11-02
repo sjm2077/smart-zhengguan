@@ -1,0 +1,6155 @@
+{
+  "audit_type": "project_no_repair_plan",
+  "mode": "DRY_RUN",
+  "database_write_performed": false,
+  "project_total": 377,
+  "project_no_missing_count": 299,
+  "existing_nonblank_project_no_count": 78,
+  "proposed_number_scheme": "DEMO-<start_year>-<project_primary_key_6_digits>",
+  "proposed_number_collision_with_existing_count": 0,
+  "proposed_number_internal_duplicate_count": 0,
+  "proposed_number_collisions_with_existing": [],
+  "proposed_number_internal_duplicates": [],
+  "project_no_candidates": [
+    {
+      "project_id": 228,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000228",
+      "project_name": "科技创新的对策研究",
+      "leader": "Yunsoo Lee",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2021-07-22",
+      "end_date": "2022-07-14"
+    },
+    {
+      "project_id": 229,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000229",
+      "project_name": "法治建设的实践研究",
+      "leader": "黄靖",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2024-11-20",
+      "end_date": "2026-10-16"
+    },
+    {
+      "project_id": 230,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000230",
+      "project_name": "产业政策的创新研究",
+      "leader": "王佃利",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2024-10-19",
+      "end_date": "2027-08-06"
+    },
+    {
+      "project_id": 231,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000231",
+      "project_name": "国际贸易的评估研究",
+      "leader": "赵均佳",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2022-01-01",
+      "end_date": "2023-06-05"
+    },
+    {
+      "project_id": 232,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000232",
+      "project_name": "公共卫生的路径研究",
+      "leader": "李延伟",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2022-11-13",
+      "end_date": "2024-05-12"
+    },
+    {
+      "project_id": 233,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000233",
+      "project_name": "人工智能治理的评估研究",
+      "leader": "展妍男",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2022-11-17",
+      "end_date": "2023-12-16"
+    },
+    {
+      "project_id": 234,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000234",
+      "project_name": "共同富裕的对策研究",
+      "leader": "刘琳",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2023-07-12",
+      "end_date": "2026-12-19"
+    },
+    {
+      "project_id": 235,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000235",
+      "project_name": "金融监管的对策研究",
+      "leader": "马荣久",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2024-10-20",
+      "end_date": "2026-09-01"
+    },
+    {
+      "project_id": 236,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000236",
+      "project_name": "公共服务的实践研究",
+      "leader": "张淑兰",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2024-02-02",
+      "end_date": "2026-08-23"
+    },
+    {
+      "project_id": 237,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000237",
+      "project_name": "住房保障的模式研究",
+      "leader": "李亚洲",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2024-01-18",
+      "end_date": "2025-07-19"
+    },
+    {
+      "project_id": 238,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000238",
+      "project_name": "教育政策的演进研究",
+      "leader": "黄晴",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2023-05-25",
+      "end_date": "2025-11-01"
+    },
+    {
+      "project_id": 239,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000239",
+      "project_name": "数据安全的路径研究",
+      "leader": "米雪",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2023-06-02",
+      "end_date": "2024-01-13"
+    },
+    {
+      "project_id": 240,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000240",
+      "project_name": "老龄化的评估研究",
+      "leader": "王元亮",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-08-19",
+      "end_date": "2026-03-28"
+    },
+    {
+      "project_id": 241,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000241",
+      "project_name": "人工智能治理的模式研究",
+      "leader": "滕玉成",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-03-09",
+      "end_date": "2026-10-14"
+    },
+    {
+      "project_id": 242,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000242",
+      "project_name": "法治建设的模式研究",
+      "leader": "吕连仁",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2023-07-14",
+      "end_date": "2026-04-05"
+    },
+    {
+      "project_id": 243,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000243",
+      "project_name": "文化自信的机制研究",
+      "leader": "季丽新",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2023-09-26",
+      "end_date": "2024-05-17"
+    },
+    {
+      "project_id": 244,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000244",
+      "project_name": "一带一路的模式研究",
+      "leader": "李广",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2022-01-10",
+      "end_date": "2025-10-21"
+    },
+    {
+      "project_id": 245,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000245",
+      "project_name": "城市管理的实践研究",
+      "leader": "李亚洲",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2023-06-16",
+      "end_date": "2025-06-06"
+    },
+    {
+      "project_id": 246,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000246",
+      "project_name": "数字政府的评估研究",
+      "leader": "姬生翔",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2023-10-21",
+      "end_date": "2024-01-05"
+    },
+    {
+      "project_id": 247,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000247",
+      "project_name": "就业促进的模式研究",
+      "leader": "臧秀玲",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2022-04-23",
+      "end_date": "2023-02-10"
+    },
+    {
+      "project_id": 248,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000248",
+      "project_name": "住房保障的创新研究",
+      "leader": "白江波",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2023-03-19",
+      "end_date": "2025-02-02"
+    },
+    {
+      "project_id": 249,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000249",
+      "project_name": "就业促进的对策研究",
+      "leader": "刘浩",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2023-02-20",
+      "end_date": "2026-08-03"
+    },
+    {
+      "project_id": 250,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000250",
+      "project_name": "就业促进的路径研究",
+      "leader": "金淑霞",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2023-03-24",
+      "end_date": "2026-04-02"
+    },
+    {
+      "project_id": 251,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000251",
+      "project_name": "社区服务的机制研究",
+      "leader": "吕连仁",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2023-05-09",
+      "end_date": "2026-07-28"
+    },
+    {
+      "project_id": 252,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000252",
+      "project_name": "全球治理的机制研究",
+      "leader": "刘浩",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2022-04-22",
+      "end_date": "2024-09-19"
+    },
+    {
+      "project_id": 253,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000253",
+      "project_name": "对外开放的实践研究",
+      "leader": "姬生翔",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2024-02-11",
+      "end_date": "2026-06-05"
+    },
+    {
+      "project_id": 254,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000254",
+      "project_name": "环境治理的演进研究",
+      "leader": "李梦丹",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2021-01-23",
+      "end_date": "2024-10-23"
+    },
+    {
+      "project_id": 255,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000255",
+      "project_name": "老龄化的对策研究",
+      "leader": "黄登学",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2023-10-05",
+      "end_date": "2024-05-06"
+    },
+    {
+      "project_id": 256,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000256",
+      "project_name": "公共服务的对策研究",
+      "leader": "陈仁兴",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2024-06-14",
+      "end_date": "2027-07-19"
+    },
+    {
+      "project_id": 257,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000257",
+      "project_name": "对外开放的评估研究",
+      "leader": "楼苏萍",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2024-05-06",
+      "end_date": "2025-05-27"
+    },
+    {
+      "project_id": 258,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000258",
+      "project_name": "碳中和的演进研究",
+      "leader": "陈仁兴",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2021-09-10",
+      "end_date": "2023-03-15"
+    },
+    {
+      "project_id": 259,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000259",
+      "project_name": "公共卫生的对策研究",
+      "leader": "张乐",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2023-12-28",
+      "end_date": "2024-08-16"
+    },
+    {
+      "project_id": 260,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000260",
+      "project_name": "数据安全的实践研究",
+      "leader": "胡志伟",
+      "department": "科学社会主义系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-01-08",
+      "end_date": "2026-08-16"
+    },
+    {
+      "project_id": 261,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000261",
+      "project_name": "碳中和的模式研究",
+      "leader": "朱贵昌",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2024-11-27",
+      "end_date": "2027-02-11"
+    },
+    {
+      "project_id": 262,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000262",
+      "project_name": "儿童福利的演进研究",
+      "leader": "黄栋",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2024-06-11",
+      "end_date": "2027-08-22"
+    },
+    {
+      "project_id": 263,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000263",
+      "project_name": "环境治理的机制研究",
+      "leader": "刘华兴",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2022-01-25",
+      "end_date": "2025-04-03"
+    },
+    {
+      "project_id": 264,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000264",
+      "project_name": "乡村振兴的机制研究",
+      "leader": "徐会平",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2023-01-10",
+      "end_date": "2025-09-09"
+    },
+    {
+      "project_id": 265,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000265",
+      "project_name": "全球治理的评估研究",
+      "leader": "王元亮",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2021-10-02",
+      "end_date": "2023-06-27"
+    },
+    {
+      "project_id": 266,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000266",
+      "project_name": "中国式现代化的评估研究",
+      "leader": "曹现强",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2022-09-07",
+      "end_date": "2025-11-20"
+    },
+    {
+      "project_id": 267,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000267",
+      "project_name": "碳中和的机制研究",
+      "leader": "黄靖",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2021-01-02",
+      "end_date": "2023-05-03"
+    },
+    {
+      "project_id": 268,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000268",
+      "project_name": "一带一路的评估研究",
+      "leader": "李亚洲",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2023-02-18",
+      "end_date": "2026-11-19"
+    },
+    {
+      "project_id": 269,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000269",
+      "project_name": "教育政策的实践研究",
+      "leader": "陈静",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2022-05-07",
+      "end_date": "2023-12-18"
+    },
+    {
+      "project_id": 270,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000270",
+      "project_name": "数字政府的演进研究",
+      "leader": "王薪喜",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-01-26",
+      "end_date": "2027-12-25"
+    },
+    {
+      "project_id": 271,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000271",
+      "project_name": "区域协调的演进研究",
+      "leader": "张乐",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2022-07-17",
+      "end_date": "2023-04-27"
+    },
+    {
+      "project_id": 272,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000272",
+      "project_name": "应急管理的路径研究",
+      "leader": "张继亮",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-03-17",
+      "end_date": "2027-02-01"
+    },
+    {
+      "project_id": 273,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000273",
+      "project_name": "应急管理的创新研究",
+      "leader": "王成",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2021-03-04",
+      "end_date": "2023-09-09"
+    },
+    {
+      "project_id": 274,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000274",
+      "project_name": "对外开放的创新研究",
+      "leader": "杨春林",
+      "department": "科学社会主义系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2023-10-07",
+      "end_date": "2024-12-02"
+    },
+    {
+      "project_id": 275,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000275",
+      "project_name": "公共服务的演进研究",
+      "leader": "展妍男",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2021-01-12",
+      "end_date": "2024-11-13"
+    },
+    {
+      "project_id": 276,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000276",
+      "project_name": "法治建设的评估研究",
+      "leader": "蒋锐",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2023-11-26",
+      "end_date": "2025-06-17"
+    },
+    {
+      "project_id": 277,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000277",
+      "project_name": "应急管理的实践研究",
+      "leader": "李昕蕾",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-05-17",
+      "end_date": "2026-08-04"
+    },
+    {
+      "project_id": 278,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000278",
+      "project_name": "乡村振兴的实践研究",
+      "leader": "季丽新",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2021-08-05",
+      "end_date": "2022-11-21"
+    },
+    {
+      "project_id": 279,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000279",
+      "project_name": "儿童福利的对策研究",
+      "leader": "李辉",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2022-02-16",
+      "end_date": "2024-10-19"
+    },
+    {
+      "project_id": 280,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000280",
+      "project_name": "数据安全的模式研究",
+      "leader": "程龙",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2024-01-28",
+      "end_date": "2027-09-24"
+    },
+    {
+      "project_id": 281,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000281",
+      "project_name": "乡村振兴的路径研究",
+      "leader": "杨春林",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2023-06-21",
+      "end_date": "2026-06-23"
+    },
+    {
+      "project_id": 282,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000282",
+      "project_name": "城市管理的演进研究",
+      "leader": "杨志",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2022-01-09",
+      "end_date": "2025-03-27"
+    },
+    {
+      "project_id": 283,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000283",
+      "project_name": "数据安全的创新研究",
+      "leader": "楼苏萍",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2024-02-07",
+      "end_date": "2027-12-02"
+    },
+    {
+      "project_id": 284,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000284",
+      "project_name": "共同富裕的路径研究",
+      "leader": "王元亮",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2023-12-23",
+      "end_date": "2024-02-13"
+    },
+    {
+      "project_id": 285,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000285",
+      "project_name": "产业政策的实践研究",
+      "leader": "黄登学",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2023-12-14",
+      "end_date": "2026-10-21"
+    },
+    {
+      "project_id": 286,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000286",
+      "project_name": "公共卫生的演进研究",
+      "leader": "米雪",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2023-12-01",
+      "end_date": "2024-09-16"
+    },
+    {
+      "project_id": 287,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000287",
+      "project_name": "文化自信的对策研究",
+      "leader": "王薪喜",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2022-10-24",
+      "end_date": "2024-03-25"
+    },
+    {
+      "project_id": 288,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000288",
+      "project_name": "住房保障的路径研究",
+      "leader": "白江波",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2022-05-09",
+      "end_date": "2025-10-03"
+    },
+    {
+      "project_id": 289,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000289",
+      "project_name": "中国式现代化的模式研究",
+      "leader": "李梦丹",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2024-10-25",
+      "end_date": "2027-05-06"
+    },
+    {
+      "project_id": 290,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000290",
+      "project_name": "公共卫生的创新研究",
+      "leader": "李昕蕾",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-04-05",
+      "end_date": "2026-07-06"
+    },
+    {
+      "project_id": 291,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000291",
+      "project_name": "文化自信的模式研究",
+      "leader": "盛力",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2021-10-19",
+      "end_date": "2022-11-13"
+    },
+    {
+      "project_id": 292,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000292",
+      "project_name": "公共服务的模式研究",
+      "leader": "党成孝",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2023-01-16",
+      "end_date": "2024-06-05"
+    },
+    {
+      "project_id": 293,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000293",
+      "project_name": "一带一路的机制研究",
+      "leader": "季丽新",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2023-05-24",
+      "end_date": "2026-11-24"
+    },
+    {
+      "project_id": 294,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000294",
+      "project_name": "对外开放的模式研究",
+      "leader": "李广",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-02-15",
+      "end_date": "2024-10-21"
+    },
+    {
+      "project_id": 295,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000295",
+      "project_name": "碳中和的演进研究",
+      "leader": "马荣久",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2021-08-26",
+      "end_date": "2023-02-01"
+    },
+    {
+      "project_id": 296,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000296",
+      "project_name": "科技创新的路径研究",
+      "leader": "刘浩",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2021-03-15",
+      "end_date": "2024-09-07"
+    },
+    {
+      "project_id": 297,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000297",
+      "project_name": "科技创新的模式研究",
+      "leader": "程龙",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2021-01-15",
+      "end_date": "2024-08-04"
+    },
+    {
+      "project_id": 298,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000298",
+      "project_name": "数字政府的模式研究",
+      "leader": "李延伟",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2021-10-23",
+      "end_date": "2023-06-21"
+    },
+    {
+      "project_id": 299,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000299",
+      "project_name": "数据安全的路径研究",
+      "leader": "褚雷",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2021-02-12",
+      "end_date": "2022-07-22"
+    },
+    {
+      "project_id": 300,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000300",
+      "project_name": "全球治理的路径研究",
+      "leader": "米雪",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2024-12-15",
+      "end_date": "2026-11-28"
+    },
+    {
+      "project_id": 301,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000301",
+      "project_name": "科技创新的路径研究",
+      "leader": "王成",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2022-11-20",
+      "end_date": "2025-08-12"
+    },
+    {
+      "project_id": 302,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000302",
+      "project_name": "金融监管的演进研究",
+      "leader": "黄登学",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2021-05-06",
+      "end_date": "2022-08-13"
+    },
+    {
+      "project_id": 303,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000303",
+      "project_name": "法治建设的模式研究",
+      "leader": "盛力",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2023-05-10",
+      "end_date": "2026-12-02"
+    },
+    {
+      "project_id": 304,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000304",
+      "project_name": "一带一路的评估研究",
+      "leader": "孙宗锋",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2023-08-10",
+      "end_date": "2025-05-05"
+    },
+    {
+      "project_id": 305,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000305",
+      "project_name": "产业政策的实践研究",
+      "leader": "黄晴",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2022-03-01",
+      "end_date": "2024-07-11"
+    },
+    {
+      "project_id": 306,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000306",
+      "project_name": "就业促进的路径研究",
+      "leader": "王鹏权",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2022-06-02",
+      "end_date": "2023-11-24"
+    },
+    {
+      "project_id": 307,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000307",
+      "project_name": "应急管理的创新研究",
+      "leader": "王军洋",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2023-09-17",
+      "end_date": "2024-09-15"
+    },
+    {
+      "project_id": 308,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000308",
+      "project_name": "公共卫生的对策研究",
+      "leader": "王学玉",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2022-09-03",
+      "end_date": "2023-03-27"
+    },
+    {
+      "project_id": 309,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000309",
+      "project_name": "科技创新的机制研究",
+      "leader": "刘玉安",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2023-06-19",
+      "end_date": "2026-04-28"
+    },
+    {
+      "project_id": 310,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000310",
+      "project_name": "人工智能治理的评估研究",
+      "leader": "韩自强",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2024-12-10",
+      "end_date": "2027-09-13"
+    },
+    {
+      "project_id": 311,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000311",
+      "project_name": "区域协调的模式研究",
+      "leader": "王元亮",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2021-02-08",
+      "end_date": "2023-06-02"
+    },
+    {
+      "project_id": 312,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000312",
+      "project_name": "区域协调的演进研究",
+      "leader": "李梦丹",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2022-03-21",
+      "end_date": "2024-02-28"
+    },
+    {
+      "project_id": 313,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000313",
+      "project_name": "碳中和的实践研究",
+      "leader": "朱贵昌",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2022-09-19",
+      "end_date": "2024-08-24"
+    },
+    {
+      "project_id": 314,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000314",
+      "project_name": "金融监管的路径研究",
+      "leader": "李广",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2023-05-22",
+      "end_date": "2026-11-02"
+    },
+    {
+      "project_id": 315,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000315",
+      "project_name": "老龄化的评估研究",
+      "leader": "韩丽华",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2024-12-19",
+      "end_date": "2025-03-07"
+    },
+    {
+      "project_id": 316,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000316",
+      "project_name": "共同富裕的实践研究",
+      "leader": "徐会平",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2024-02-19",
+      "end_date": "2027-01-27"
+    },
+    {
+      "project_id": 317,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000317",
+      "project_name": "教育政策的创新研究",
+      "leader": "吕连仁",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2024-09-12",
+      "end_date": "2027-07-09"
+    },
+    {
+      "project_id": 318,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000318",
+      "project_name": "公共卫生的创新研究",
+      "leader": "马荣久",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2023-01-12",
+      "end_date": "2025-05-05"
+    },
+    {
+      "project_id": 319,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000319",
+      "project_name": "碳中和的实践研究",
+      "leader": "马荣久",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2023-07-20",
+      "end_date": "2025-03-21"
+    },
+    {
+      "project_id": 320,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000320",
+      "project_name": "国际贸易的演进研究",
+      "leader": "张淑兰",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2023-10-15",
+      "end_date": "2024-02-26"
+    },
+    {
+      "project_id": 321,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000321",
+      "project_name": "应急管理的机制研究",
+      "leader": "展妍男",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2023-05-11",
+      "end_date": "2026-12-25"
+    },
+    {
+      "project_id": 322,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000322",
+      "project_name": "环境治理的演进研究",
+      "leader": "王薪喜",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2023-08-02",
+      "end_date": "2026-09-16"
+    },
+    {
+      "project_id": 323,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000323",
+      "project_name": "全球治理的创新研究",
+      "leader": "陈静",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2024-01-17",
+      "end_date": "2026-11-26"
+    },
+    {
+      "project_id": 324,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000324",
+      "project_name": "金融监管的模式研究",
+      "leader": "韩丽华",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2021-05-12",
+      "end_date": "2022-06-06"
+    },
+    {
+      "project_id": 325,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000325",
+      "project_name": "教育政策的路径研究",
+      "leader": "费立国",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2021-01-04",
+      "end_date": "2023-01-15"
+    },
+    {
+      "project_id": 326,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000326",
+      "project_name": "对外开放的机制研究",
+      "leader": "党成孝",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2021-06-01",
+      "end_date": "2023-12-09"
+    },
+    {
+      "project_id": 327,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000327",
+      "project_name": "文化自信的模式研究",
+      "leader": "朱林旭",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2022-06-04",
+      "end_date": "2025-12-11"
+    },
+    {
+      "project_id": 328,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000328",
+      "project_name": "乡村振兴的机制研究",
+      "leader": "孙宗锋",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2021-02-25",
+      "end_date": "2022-07-04"
+    },
+    {
+      "project_id": 329,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000329",
+      "project_name": "老龄化的演进研究",
+      "leader": "韩自强",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2022-10-21",
+      "end_date": "2023-01-01"
+    },
+    {
+      "project_id": 330,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000330",
+      "project_name": "乡村振兴的评估研究",
+      "leader": "赵均佳",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2023-10-12",
+      "end_date": "2025-01-12"
+    },
+    {
+      "project_id": 331,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000331",
+      "project_name": "数据安全的演进研究",
+      "leader": "李振",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2024-06-05",
+      "end_date": "2026-09-18"
+    },
+    {
+      "project_id": 332,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000332",
+      "project_name": "全球治理的实践研究",
+      "leader": "李济时",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2021-12-22",
+      "end_date": "2023-10-24"
+    },
+    {
+      "project_id": 333,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000333",
+      "project_name": "老龄化的对策研究",
+      "leader": "秦亚青",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2024-12-21",
+      "end_date": "2027-10-04"
+    },
+    {
+      "project_id": 334,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000334",
+      "project_name": "就业促进的机制研究",
+      "leader": "吕连仁",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2022-04-05",
+      "end_date": "2025-12-15"
+    },
+    {
+      "project_id": 335,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000335",
+      "project_name": "社区服务的路径研究",
+      "leader": "王鹏权",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2022-12-06",
+      "end_date": "2025-05-06"
+    },
+    {
+      "project_id": 336,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000336",
+      "project_name": "教育政策的评估研究",
+      "leader": "米雪",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2024-07-22",
+      "end_date": "2026-02-07"
+    },
+    {
+      "project_id": 337,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000337",
+      "project_name": "碳中和的模式研究",
+      "leader": "白江波",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2024-08-17",
+      "end_date": "2025-10-18"
+    },
+    {
+      "project_id": 338,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000338",
+      "project_name": "基层治理的机制研究",
+      "leader": "胡志伟",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2021-02-06",
+      "end_date": "2022-11-22"
+    },
+    {
+      "project_id": 339,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000339",
+      "project_name": "人工智能治理的评估研究",
+      "leader": "方炯升",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2024-07-12",
+      "end_date": "2027-01-12"
+    },
+    {
+      "project_id": 340,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000340",
+      "project_name": "公共服务的对策研究",
+      "leader": "米雪",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2021-06-24",
+      "end_date": "2024-05-07"
+    },
+    {
+      "project_id": 341,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000341",
+      "project_name": "数据安全的机制研究",
+      "leader": "李亚洲",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2024-01-09",
+      "end_date": "2026-04-05"
+    },
+    {
+      "project_id": 342,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000342",
+      "project_name": "金融监管的实践研究",
+      "leader": "陈仁兴",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2023-03-03",
+      "end_date": "2024-05-20"
+    },
+    {
+      "project_id": 343,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000343",
+      "project_name": "老龄化的对策研究",
+      "leader": "李梦丹",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2021-07-06",
+      "end_date": "2023-04-27"
+    },
+    {
+      "project_id": 344,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000344",
+      "project_name": "教育政策的创新研究",
+      "leader": "赵均佳",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2024-01-16",
+      "end_date": "2026-02-18"
+    },
+    {
+      "project_id": 345,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000345",
+      "project_name": "城市管理的演进研究",
+      "leader": "张继亮",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2021-01-16",
+      "end_date": "2022-12-23"
+    },
+    {
+      "project_id": 346,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000346",
+      "project_name": "一带一路的评估研究",
+      "leader": "曹现强",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2023-09-01",
+      "end_date": "2025-07-21"
+    },
+    {
+      "project_id": 347,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000347",
+      "project_name": "环境治理的创新研究",
+      "leader": "秦亚青",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2022-11-24",
+      "end_date": "2023-05-21"
+    },
+    {
+      "project_id": 348,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000348",
+      "project_name": "社会保障的创新研究",
+      "leader": "胡志伟",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2023-09-09",
+      "end_date": "2025-03-05"
+    },
+    {
+      "project_id": 349,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000349",
+      "project_name": "住房保障的演进研究",
+      "leader": "王军洋",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2022-02-28",
+      "end_date": "2023-05-22"
+    },
+    {
+      "project_id": 350,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000350",
+      "project_name": "全球治理的评估研究",
+      "leader": "刘琳",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2023-01-26",
+      "end_date": "2025-03-21"
+    },
+    {
+      "project_id": 351,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000351",
+      "project_name": "区域协调的演进研究",
+      "leader": "方雷",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2024-12-08",
+      "end_date": "2025-02-23"
+    },
+    {
+      "project_id": 352,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000352",
+      "project_name": "中国式现代化的创新研究",
+      "leader": "楼苏萍",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-11-23",
+      "end_date": "2024-06-23"
+    },
+    {
+      "project_id": 353,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000353",
+      "project_name": "公共卫生的机制研究",
+      "leader": "黄栋",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2022-06-08",
+      "end_date": "2025-11-06"
+    },
+    {
+      "project_id": 354,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000354",
+      "project_name": "数字政府的演进研究",
+      "leader": "刘昌明",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2021-12-13",
+      "end_date": "2022-04-02"
+    },
+    {
+      "project_id": 355,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000355",
+      "project_name": "数字政府的实践研究",
+      "leader": "张健彬",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2023-04-14",
+      "end_date": "2026-09-16"
+    },
+    {
+      "project_id": 356,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000356",
+      "project_name": "就业促进的实践研究",
+      "leader": "黄晴",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2023-07-23",
+      "end_date": "2026-09-05"
+    },
+    {
+      "project_id": 357,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000357",
+      "project_name": "公共服务的实践研究",
+      "leader": "张继亮",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2024-10-28",
+      "end_date": "2025-03-18"
+    },
+    {
+      "project_id": 358,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000358",
+      "project_name": "国际贸易的实践研究",
+      "leader": "孙宗锋",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2024-09-19",
+      "end_date": "2026-07-18"
+    },
+    {
+      "project_id": 359,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000359",
+      "project_name": "全球治理的评估研究",
+      "leader": "李振",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2022-11-23",
+      "end_date": "2023-07-05"
+    },
+    {
+      "project_id": 360,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000360",
+      "project_name": "产业政策的路径研究",
+      "leader": "胡志伟",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2021-09-19",
+      "end_date": "2024-05-15"
+    },
+    {
+      "project_id": 361,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000361",
+      "project_name": "科技创新的评估研究",
+      "leader": "王薪喜",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2022-07-10",
+      "end_date": "2025-04-03"
+    },
+    {
+      "project_id": 362,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000362",
+      "project_name": "社区服务的实践研究",
+      "leader": "马奔",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-05-15",
+      "end_date": "2024-01-02"
+    },
+    {
+      "project_id": 363,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000363",
+      "project_name": "科技创新的对策研究",
+      "leader": "李广",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-08-27",
+      "end_date": "2027-08-22"
+    },
+    {
+      "project_id": 364,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000364",
+      "project_name": "城市管理的对策研究",
+      "leader": "韩丽华",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2022-03-12",
+      "end_date": "2025-04-10"
+    },
+    {
+      "project_id": 365,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000365",
+      "project_name": "应急管理的模式研究",
+      "leader": "俞少宾",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2023-07-28",
+      "end_date": "2025-04-20"
+    },
+    {
+      "project_id": 366,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000366",
+      "project_name": "法治建设的实践研究",
+      "leader": "邢占军",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2022-10-19",
+      "end_date": "2025-10-05"
+    },
+    {
+      "project_id": 367,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000367",
+      "project_name": "对外开放的机制研究",
+      "leader": "楚成亚",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2021-12-09",
+      "end_date": "2024-03-08"
+    },
+    {
+      "project_id": 368,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000368",
+      "project_name": "公共服务的演进研究",
+      "leader": "徐会平",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2021-04-08",
+      "end_date": "2024-07-14"
+    },
+    {
+      "project_id": 369,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000369",
+      "project_name": "社会保障的实践研究",
+      "leader": "法帅",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2022-06-23",
+      "end_date": "2024-06-06"
+    },
+    {
+      "project_id": 370,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000370",
+      "project_name": "全球治理的评估研究",
+      "leader": "赵婷",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2023-07-08",
+      "end_date": "2026-11-25"
+    },
+    {
+      "project_id": 371,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000371",
+      "project_name": "国际贸易的评估研究",
+      "leader": "杨春林",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2024-03-28",
+      "end_date": "2025-11-09"
+    },
+    {
+      "project_id": 372,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000372",
+      "project_name": "共同富裕的路径研究",
+      "leader": "李宏",
+      "department": "科学社会主义系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2021-07-10",
+      "end_date": "2023-02-17"
+    },
+    {
+      "project_id": 373,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000373",
+      "project_name": "共同富裕的评估研究",
+      "leader": "李昕蕾",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2022-09-02",
+      "end_date": "2025-06-10"
+    },
+    {
+      "project_id": 374,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000374",
+      "project_name": "人工智能治理的创新研究",
+      "leader": "霍文乐",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2021-01-01",
+      "end_date": "2024-04-21"
+    },
+    {
+      "project_id": 375,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000375",
+      "project_name": "环境治理的创新研究",
+      "leader": "高原",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2021-03-23",
+      "end_date": "2024-10-02"
+    },
+    {
+      "project_id": 376,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000376",
+      "project_name": "数据安全的评估研究",
+      "leader": "姬生翔",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2023-11-13",
+      "end_date": "2026-09-10"
+    },
+    {
+      "project_id": 377,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000377",
+      "project_name": "国际贸易的对策研究",
+      "leader": "刘昌明",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2021-06-27",
+      "end_date": "2024-01-07"
+    },
+    {
+      "project_id": 378,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000378",
+      "project_name": "住房保障的评估研究",
+      "leader": "展妍男",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2024-08-10",
+      "end_date": "2026-12-18"
+    },
+    {
+      "project_id": 379,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000379",
+      "project_name": "一带一路的创新研究",
+      "leader": "赵志华",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2022-01-20",
+      "end_date": "2023-07-04"
+    },
+    {
+      "project_id": 380,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000380",
+      "project_name": "社会保障的评估研究",
+      "leader": "张淑兰",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2022-10-27",
+      "end_date": "2023-05-24"
+    },
+    {
+      "project_id": 381,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000381",
+      "project_name": "数字政府的实践研究",
+      "leader": "刘玉安",
+      "department": "科学社会主义系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2023-07-21",
+      "end_date": "2024-04-07"
+    },
+    {
+      "project_id": 382,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000382",
+      "project_name": "人工智能治理的模式研究",
+      "leader": "王成",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2023-09-27",
+      "end_date": "2025-07-02"
+    },
+    {
+      "project_id": 383,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000383",
+      "project_name": "对外开放的对策研究",
+      "leader": "邢占军",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2024-09-25",
+      "end_date": "2025-02-13"
+    },
+    {
+      "project_id": 384,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000384",
+      "project_name": "乡村振兴的路径研究",
+      "leader": "Yunsoo Lee",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2022-03-18",
+      "end_date": "2025-08-26"
+    },
+    {
+      "project_id": 385,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000385",
+      "project_name": "全球治理的创新研究",
+      "leader": "姬生翔",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2023-12-15",
+      "end_date": "2024-03-12"
+    },
+    {
+      "project_id": 386,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000386",
+      "project_name": "国际贸易的路径研究",
+      "leader": "张健彬",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2022-10-09",
+      "end_date": "2023-02-02"
+    },
+    {
+      "project_id": 387,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000387",
+      "project_name": "教育政策的模式研究",
+      "leader": "王学玉",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2023-09-05",
+      "end_date": "2026-10-15"
+    },
+    {
+      "project_id": 388,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000388",
+      "project_name": "中国式现代化的实践研究",
+      "leader": "王军洋",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2024-08-25",
+      "end_date": "2026-04-15"
+    },
+    {
+      "project_id": 389,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000389",
+      "project_name": "住房保障的模式研究",
+      "leader": "李梦丹",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2022-05-05",
+      "end_date": "2024-10-13"
+    },
+    {
+      "project_id": 390,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000390",
+      "project_name": "国际贸易的创新研究",
+      "leader": "孔令栋",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2022-02-11",
+      "end_date": "2025-04-20"
+    },
+    {
+      "project_id": 391,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000391",
+      "project_name": "应急管理的模式研究",
+      "leader": "郑子君",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2024-10-01",
+      "end_date": "2026-06-28"
+    },
+    {
+      "project_id": 392,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000392",
+      "project_name": "公共服务的对策研究",
+      "leader": "韩丽华",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2022-07-09",
+      "end_date": "2025-07-24"
+    },
+    {
+      "project_id": 393,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000393",
+      "project_name": "环境治理的模式研究",
+      "leader": "李济时",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2021-08-26",
+      "end_date": "2024-07-07"
+    },
+    {
+      "project_id": 394,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000394",
+      "project_name": "文化自信的对策研究",
+      "leader": "张乐",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2021-03-11",
+      "end_date": "2022-01-23"
+    },
+    {
+      "project_id": 395,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000395",
+      "project_name": "老龄化的对策研究",
+      "leader": "张健彬",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2024-09-01",
+      "end_date": "2026-11-21"
+    },
+    {
+      "project_id": 396,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000396",
+      "project_name": "城市管理的模式研究",
+      "leader": "陈仁兴",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2024-09-26",
+      "end_date": "2025-03-25"
+    },
+    {
+      "project_id": 397,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000397",
+      "project_name": "社区服务的评估研究",
+      "leader": "李振",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2023-04-17",
+      "end_date": "2025-02-09"
+    },
+    {
+      "project_id": 398,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000398",
+      "project_name": "儿童福利的机制研究",
+      "leader": "李延伟",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2021-07-09",
+      "end_date": "2023-03-24"
+    },
+    {
+      "project_id": 399,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000399",
+      "project_name": "老龄化的对策研究",
+      "leader": "杨春林",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2024-10-01",
+      "end_date": "2026-01-03"
+    },
+    {
+      "project_id": 400,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000400",
+      "project_name": "老龄化的模式研究",
+      "leader": "李延伟",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2022-06-20",
+      "end_date": "2024-10-15"
+    },
+    {
+      "project_id": 401,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000401",
+      "project_name": "基层治理的演进研究",
+      "leader": "赵志华",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2023-08-01",
+      "end_date": "2025-02-18"
+    },
+    {
+      "project_id": 402,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000402",
+      "project_name": "国际贸易的对策研究",
+      "leader": "刘华兴",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2023-07-12",
+      "end_date": "2025-11-20"
+    },
+    {
+      "project_id": 403,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000403",
+      "project_name": "老龄化的创新研究",
+      "leader": "高原",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2024-03-15",
+      "end_date": "2027-11-12"
+    },
+    {
+      "project_id": 404,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000404",
+      "project_name": "教育政策的创新研究",
+      "leader": "刘玉安",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2021-04-07",
+      "end_date": "2023-01-22"
+    },
+    {
+      "project_id": 405,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000405",
+      "project_name": "区域协调的机制研究",
+      "leader": "朱贵昌",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2022-12-13",
+      "end_date": "2023-01-03"
+    },
+    {
+      "project_id": 406,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000406",
+      "project_name": "公共服务的机制研究",
+      "leader": "吕连仁",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2024-05-18",
+      "end_date": "2027-08-01"
+    },
+    {
+      "project_id": 407,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000407",
+      "project_name": "数据安全的演进研究",
+      "leader": "王薪喜",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-05-09",
+      "end_date": "2024-10-23"
+    },
+    {
+      "project_id": 408,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000408",
+      "project_name": "老龄化的对策研究",
+      "leader": "楚成亚",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2023-08-26",
+      "end_date": "2025-08-22"
+    },
+    {
+      "project_id": 409,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000409",
+      "project_name": "数字政府的创新研究",
+      "leader": "臧秀玲",
+      "department": "科学社会主义系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2021-12-10",
+      "end_date": "2022-09-17"
+    },
+    {
+      "project_id": 410,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000410",
+      "project_name": "人工智能治理的路径研究",
+      "leader": "李振",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2024-06-09",
+      "end_date": "2026-11-28"
+    },
+    {
+      "project_id": 411,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000411",
+      "project_name": "金融监管的机制研究",
+      "leader": "季丽新",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2022-11-20",
+      "end_date": "2023-05-04"
+    },
+    {
+      "project_id": 412,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000412",
+      "project_name": "全球治理的评估研究",
+      "leader": "孔令栋",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2022-03-14",
+      "end_date": "2023-08-01"
+    },
+    {
+      "project_id": 413,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000413",
+      "project_name": "碳中和的创新研究",
+      "leader": "王佃利",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2022-01-05",
+      "end_date": "2024-10-13"
+    },
+    {
+      "project_id": 414,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000414",
+      "project_name": "就业促进的演进研究",
+      "leader": "王鹏权",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2023-10-03",
+      "end_date": "2026-11-12"
+    },
+    {
+      "project_id": 415,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000415",
+      "project_name": "儿童福利的实践研究",
+      "leader": "展妍男",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2022-07-04",
+      "end_date": "2025-09-21"
+    },
+    {
+      "project_id": 416,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000416",
+      "project_name": "金融监管的模式研究",
+      "leader": "王学玉",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2024-01-14",
+      "end_date": "2026-08-28"
+    },
+    {
+      "project_id": 417,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000417",
+      "project_name": "公共卫生的路径研究",
+      "leader": "刘琳",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2021-02-09",
+      "end_date": "2024-12-16"
+    },
+    {
+      "project_id": 418,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000418",
+      "project_name": "应急管理的实践研究",
+      "leader": "刘玉安",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2021-05-04",
+      "end_date": "2022-05-11"
+    },
+    {
+      "project_id": 419,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000419",
+      "project_name": "科技创新的模式研究",
+      "leader": "高原",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2023-09-04",
+      "end_date": "2026-01-19"
+    },
+    {
+      "project_id": 420,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000420",
+      "project_name": "基层治理的机制研究",
+      "leader": "孔令伟",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2023-12-04",
+      "end_date": "2025-08-23"
+    },
+    {
+      "project_id": 421,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000421",
+      "project_name": "法治建设的对策研究",
+      "leader": "魏铭",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2023-11-01",
+      "end_date": "2026-04-27"
+    },
+    {
+      "project_id": 422,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000422",
+      "project_name": "碳中和的机制研究",
+      "leader": "王学玉",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2021-12-09",
+      "end_date": "2022-03-04"
+    },
+    {
+      "project_id": 423,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000423",
+      "project_name": "社会保障的模式研究",
+      "leader": "张淑兰",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2022-03-28",
+      "end_date": "2025-04-09"
+    },
+    {
+      "project_id": 424,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000424",
+      "project_name": "碳中和的模式研究",
+      "leader": "马奔",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2023-12-13",
+      "end_date": "2025-01-17"
+    },
+    {
+      "project_id": 425,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000425",
+      "project_name": "教育政策的机制研究",
+      "leader": "刘浩",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2024-06-06",
+      "end_date": "2026-10-20"
+    },
+    {
+      "project_id": 426,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000426",
+      "project_name": "共同富裕的路径研究",
+      "leader": "赵志华",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2024-10-05",
+      "end_date": "2026-03-12"
+    },
+    {
+      "project_id": 427,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000427",
+      "project_name": "产业政策的路径研究",
+      "leader": "朱贵昌",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2022-10-02",
+      "end_date": "2025-03-12"
+    },
+    {
+      "project_id": 428,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000428",
+      "project_name": "环境治理的机制研究",
+      "leader": "赵均佳",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2024-01-05",
+      "end_date": "2026-05-17"
+    },
+    {
+      "project_id": 429,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000429",
+      "project_name": "碳中和的创新研究",
+      "leader": "吕连仁",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2022-04-15",
+      "end_date": "2023-02-13"
+    },
+    {
+      "project_id": 430,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000430",
+      "project_name": "一带一路的演进研究",
+      "leader": "方雷",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2022-07-21",
+      "end_date": "2025-08-15"
+    },
+    {
+      "project_id": 431,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000431",
+      "project_name": "国际贸易的机制研究",
+      "leader": "李延伟",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2022-09-26",
+      "end_date": "2025-05-03"
+    },
+    {
+      "project_id": 432,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000432",
+      "project_name": "教育政策的演进研究",
+      "leader": "王鹏权",
+      "department": "科学社会主义系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2022-02-18",
+      "end_date": "2024-05-19"
+    },
+    {
+      "project_id": 433,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000433",
+      "project_name": "基层治理的演进研究",
+      "leader": "滕玉成",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2024-03-07",
+      "end_date": "2026-02-10"
+    },
+    {
+      "project_id": 434,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000434",
+      "project_name": "社会保障的机制研究",
+      "leader": "马永驰",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2024-08-21",
+      "end_date": "2027-02-17"
+    },
+    {
+      "project_id": 435,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000435",
+      "project_name": "区域协调的对策研究",
+      "leader": "胡志伟",
+      "department": "科学社会主义系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2022-09-20",
+      "end_date": "2025-07-18"
+    },
+    {
+      "project_id": 436,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000436",
+      "project_name": "科技创新的实践研究",
+      "leader": "秦亚青",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-05-09",
+      "end_date": "2024-08-11"
+    },
+    {
+      "project_id": 437,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000437",
+      "project_name": "科技创新的路径研究",
+      "leader": "王学玉",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2024-03-07",
+      "end_date": "2026-03-10"
+    },
+    {
+      "project_id": 438,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000438",
+      "project_name": "科技创新的创新研究",
+      "leader": "秦亚青",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2023-05-13",
+      "end_date": "2025-03-23"
+    },
+    {
+      "project_id": 439,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000439",
+      "project_name": "法治建设的对策研究",
+      "leader": "朱林旭",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2022-10-01",
+      "end_date": "2025-10-21"
+    },
+    {
+      "project_id": 440,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000440",
+      "project_name": "公共卫生的对策研究",
+      "leader": "李慧明",
+      "department": "国际政治系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2024-08-16",
+      "end_date": "2027-05-14"
+    },
+    {
+      "project_id": 441,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000441",
+      "project_name": "环境治理的对策研究",
+      "leader": "高原",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2022-12-01",
+      "end_date": "2025-04-14"
+    },
+    {
+      "project_id": 442,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000442",
+      "project_name": "基层治理的实践研究",
+      "leader": "盛力",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-02-16",
+      "end_date": "2024-12-14"
+    },
+    {
+      "project_id": 443,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000443",
+      "project_name": "碳中和的创新研究",
+      "leader": "魏铭",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2023-06-10",
+      "end_date": "2024-06-15"
+    },
+    {
+      "project_id": 444,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000444",
+      "project_name": "文化自信的模式研究",
+      "leader": "李梦丹",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2024-11-05",
+      "end_date": "2026-07-20"
+    },
+    {
+      "project_id": 445,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000445",
+      "project_name": "国际贸易的实践研究",
+      "leader": "臧秀玲",
+      "department": "科学社会主义系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2022-10-12",
+      "end_date": "2024-06-10"
+    },
+    {
+      "project_id": 446,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000446",
+      "project_name": "住房保障的实践研究",
+      "leader": "赵志华",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2021-05-17",
+      "end_date": "2023-12-27"
+    },
+    {
+      "project_id": 447,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000447",
+      "project_name": "金融监管的对策研究",
+      "leader": "黄靖",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2024-12-17",
+      "end_date": "2026-12-15"
+    },
+    {
+      "project_id": 448,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000448",
+      "project_name": "教育政策的模式研究",
+      "leader": "秦亚青",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2022-01-17",
+      "end_date": "2025-02-27"
+    },
+    {
+      "project_id": 449,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000449",
+      "project_name": "老龄化的机制研究",
+      "leader": "张健彬",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2022-07-15",
+      "end_date": "2024-02-25"
+    },
+    {
+      "project_id": 450,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000450",
+      "project_name": "公共卫生的实践研究",
+      "leader": "程龙",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2024-07-17",
+      "end_date": "2027-01-06"
+    },
+    {
+      "project_id": 451,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000451",
+      "project_name": "住房保障的模式研究",
+      "leader": "季丽新",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2024-03-10",
+      "end_date": "2027-09-28"
+    },
+    {
+      "project_id": 452,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000452",
+      "project_name": "国际贸易的机制研究",
+      "leader": "方炯升",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2023-04-28",
+      "end_date": "2026-05-13"
+    },
+    {
+      "project_id": 453,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000453",
+      "project_name": "社区服务的机制研究",
+      "leader": "魏铭",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2023-05-12",
+      "end_date": "2026-05-17"
+    },
+    {
+      "project_id": 454,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000454",
+      "project_name": "儿童福利的演进研究",
+      "leader": "庞敏",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2022-01-10",
+      "end_date": "2024-09-21"
+    },
+    {
+      "project_id": 455,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000455",
+      "project_name": "法治建设的演进研究",
+      "leader": "蒋锐",
+      "department": "科学社会主义系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2022-02-23",
+      "end_date": "2023-10-13"
+    },
+    {
+      "project_id": 456,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000456",
+      "project_name": "社会保障的对策研究",
+      "leader": "俞少宾",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2021-03-19",
+      "end_date": "2024-07-09"
+    },
+    {
+      "project_id": 457,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000457",
+      "project_name": "老龄化的实践研究",
+      "leader": "李济时",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2023-08-11",
+      "end_date": "2026-02-14"
+    },
+    {
+      "project_id": 458,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000458",
+      "project_name": "公共卫生的实践研究",
+      "leader": "邢占军",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2024-10-16",
+      "end_date": "2027-07-09"
+    },
+    {
+      "project_id": 459,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000459",
+      "project_name": "住房保障的创新研究",
+      "leader": "黄晴",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2021-10-25",
+      "end_date": "2024-08-08"
+    },
+    {
+      "project_id": 460,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000460",
+      "project_name": "社区服务的演进研究",
+      "leader": "孙宗锋",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2023-06-23",
+      "end_date": "2025-09-25"
+    },
+    {
+      "project_id": 461,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000461",
+      "project_name": "公共卫生的演进研究",
+      "leader": "刘琳",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2023-06-21",
+      "end_date": "2024-05-16"
+    },
+    {
+      "project_id": 462,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000462",
+      "project_name": "应急管理的路径研究",
+      "leader": "孙宗锋",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2021-02-14",
+      "end_date": "2022-02-13"
+    },
+    {
+      "project_id": 463,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000463",
+      "project_name": "应急管理的评估研究",
+      "leader": "盛力",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2022-07-06",
+      "end_date": "2025-01-17"
+    },
+    {
+      "project_id": 464,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000464",
+      "project_name": "基层治理的模式研究",
+      "leader": "刘琳",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2023-04-20",
+      "end_date": "2025-02-12"
+    },
+    {
+      "project_id": 465,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000465",
+      "project_name": "社会保障的实践研究",
+      "leader": "方炯升",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2023-01-11",
+      "end_date": "2025-11-16"
+    },
+    {
+      "project_id": 466,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000466",
+      "project_name": "老龄化的路径研究",
+      "leader": "郑国栋",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2022-09-08",
+      "end_date": "2023-10-08"
+    },
+    {
+      "project_id": 467,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000467",
+      "project_name": "应急管理的演进研究",
+      "leader": "孔令栋",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2024-11-07",
+      "end_date": "2026-09-24"
+    },
+    {
+      "project_id": 468,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000468",
+      "project_name": "数据安全的对策研究",
+      "leader": "王佃利",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2022-06-18",
+      "end_date": "2024-07-18"
+    },
+    {
+      "project_id": 469,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000469",
+      "project_name": "中国式现代化的模式研究",
+      "leader": "王佃利",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2021-08-18",
+      "end_date": "2022-05-26"
+    },
+    {
+      "project_id": 470,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000470",
+      "project_name": "社区服务的路径研究",
+      "leader": "韩自强",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2023-03-27",
+      "end_date": "2026-06-22"
+    },
+    {
+      "project_id": 471,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000471",
+      "project_name": "产业政策的对策研究",
+      "leader": "张淑兰",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2023-07-24",
+      "end_date": "2026-02-19"
+    },
+    {
+      "project_id": 472,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000472",
+      "project_name": "应急管理的模式研究",
+      "leader": "罗聪",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2022-11-17",
+      "end_date": "2024-04-21"
+    },
+    {
+      "project_id": 473,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000473",
+      "project_name": "区域协调的路径研究",
+      "leader": "王佃利",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2021-06-03",
+      "end_date": "2022-05-28"
+    },
+    {
+      "project_id": 474,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000474",
+      "project_name": "中国式现代化的创新研究",
+      "leader": "韩自强",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "立项",
+      "start_date": "2024-09-16",
+      "end_date": "2026-05-26"
+    },
+    {
+      "project_id": 475,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000475",
+      "project_name": "科技创新的演进研究",
+      "leader": "王军洋",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2023-11-01",
+      "end_date": "2025-12-09"
+    },
+    {
+      "project_id": 476,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000476",
+      "project_name": "社区服务的评估研究",
+      "leader": "王佃利",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2024-04-18",
+      "end_date": "2026-07-17"
+    },
+    {
+      "project_id": 477,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000477",
+      "project_name": "国际贸易的机制研究",
+      "leader": "王成",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2023-09-07",
+      "end_date": "2025-10-05"
+    },
+    {
+      "project_id": 478,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000478",
+      "project_name": "共同富裕的演进研究",
+      "leader": "霍文乐",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2023-01-27",
+      "end_date": "2026-09-20"
+    },
+    {
+      "project_id": 479,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000479",
+      "project_name": "对外开放的实践研究",
+      "leader": "刘华兴",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-09-19",
+      "end_date": "2027-03-28"
+    },
+    {
+      "project_id": 480,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000480",
+      "project_name": "人工智能治理的模式研究",
+      "leader": "臧秀玲",
+      "department": "科学社会主义系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2022-08-11",
+      "end_date": "2024-10-28"
+    },
+    {
+      "project_id": 481,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000481",
+      "project_name": "中国式现代化的路径研究",
+      "leader": "白江波",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2021-11-09",
+      "end_date": "2023-01-11"
+    },
+    {
+      "project_id": 482,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000482",
+      "project_name": "数字政府的演进研究",
+      "leader": "朱林旭",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2024-11-21",
+      "end_date": "2027-03-18"
+    },
+    {
+      "project_id": 483,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000483",
+      "project_name": "基层治理的创新研究",
+      "leader": "黄晴",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2021-10-06",
+      "end_date": "2023-02-18"
+    },
+    {
+      "project_id": 484,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000484",
+      "project_name": "应急管理的实践研究",
+      "leader": "高原",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2021-06-04",
+      "end_date": "2024-01-03"
+    },
+    {
+      "project_id": 485,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000485",
+      "project_name": "一带一路的路径研究",
+      "leader": "马永驰",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2024-07-19",
+      "end_date": "2027-12-06"
+    },
+    {
+      "project_id": 486,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000486",
+      "project_name": "金融监管的创新研究",
+      "leader": "杨春林",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2022-11-17",
+      "end_date": "2023-09-21"
+    },
+    {
+      "project_id": 487,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000487",
+      "project_name": "住房保障的机制研究",
+      "leader": "白江波",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2022-07-19",
+      "end_date": "2024-06-19"
+    },
+    {
+      "project_id": 488,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000488",
+      "project_name": "基层治理的对策研究",
+      "leader": "滕玉成",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2022-02-27",
+      "end_date": "2025-08-26"
+    },
+    {
+      "project_id": 489,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000489",
+      "project_name": "乡村振兴的评估研究",
+      "leader": "Yunsoo Lee",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2021-02-11",
+      "end_date": "2024-09-09"
+    },
+    {
+      "project_id": 490,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000490",
+      "project_name": "数字政府的模式研究",
+      "leader": "臧秀玲",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2024-10-07",
+      "end_date": "2025-03-06"
+    },
+    {
+      "project_id": 491,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000491",
+      "project_name": "基层治理的评估研究",
+      "leader": "黄栋",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-12-10",
+      "end_date": "2026-06-15"
+    },
+    {
+      "project_id": 492,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000492",
+      "project_name": "教育政策的演进研究",
+      "leader": "赵志华",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2022-09-23",
+      "end_date": "2024-12-10"
+    },
+    {
+      "project_id": 493,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000493",
+      "project_name": "社区服务的对策研究",
+      "leader": "蒋锐",
+      "department": "科学社会主义系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2023-10-16",
+      "end_date": "2026-06-26"
+    },
+    {
+      "project_id": 494,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000494",
+      "project_name": "乡村振兴的对策研究",
+      "leader": "钟诚",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "结题",
+      "start_date": "2024-10-18",
+      "end_date": "2025-11-09"
+    },
+    {
+      "project_id": 495,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000495",
+      "project_name": "数字政府的对策研究",
+      "leader": "张淑兰",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "审核中",
+      "start_date": "2022-03-07",
+      "end_date": "2024-08-28"
+    },
+    {
+      "project_id": 496,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000496",
+      "project_name": "教育政策的实践研究",
+      "leader": "展妍男",
+      "department": "国际政治系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2023-01-27",
+      "end_date": "2024-04-28"
+    },
+    {
+      "project_id": 497,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000497",
+      "project_name": "公共卫生的对策研究",
+      "leader": "秦亚青",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-04-06",
+      "end_date": "2026-11-14"
+    },
+    {
+      "project_id": 498,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000498",
+      "project_name": "法治建设的评估研究",
+      "leader": "黄登学",
+      "department": "国际政治系",
+      "project_type": "校级",
+      "status": "结题",
+      "start_date": "2024-06-01",
+      "end_date": "2025-01-27"
+    },
+    {
+      "project_id": 499,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000499",
+      "project_name": "文化自信的创新研究",
+      "leader": "李振",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2023-09-23",
+      "end_date": "2024-04-06"
+    },
+    {
+      "project_id": 500,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000500",
+      "project_name": "区域协调的机制研究",
+      "leader": "钟诚",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2021-05-20",
+      "end_date": "2024-01-01"
+    },
+    {
+      "project_id": 501,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000501",
+      "project_name": "城市管理的对策研究",
+      "leader": "金淑霞",
+      "department": "科学社会主义系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2023-10-11",
+      "end_date": "2026-09-27"
+    },
+    {
+      "project_id": 502,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000502",
+      "project_name": "就业促进的对策研究",
+      "leader": "王元亮",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2023-12-03",
+      "end_date": "2024-01-17"
+    },
+    {
+      "project_id": 503,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000503",
+      "project_name": "共同富裕的演进研究",
+      "leader": "陈仁兴",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2021-11-20",
+      "end_date": "2024-01-18"
+    },
+    {
+      "project_id": 504,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000504",
+      "project_name": "文化自信的实践研究",
+      "leader": "陈静",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2024-07-14",
+      "end_date": "2025-10-24"
+    },
+    {
+      "project_id": 505,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000505",
+      "project_name": "乡村振兴的路径研究",
+      "leader": "赵均佳",
+      "department": "国际政治系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2023-09-25",
+      "end_date": "2026-11-27"
+    },
+    {
+      "project_id": 506,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000506",
+      "project_name": "国际贸易的模式研究",
+      "leader": "王成",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2024-06-23",
+      "end_date": "2026-08-01"
+    },
+    {
+      "project_id": 507,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000507",
+      "project_name": "公共服务的演进研究",
+      "leader": "俞少宾",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2021-10-28",
+      "end_date": "2023-12-08"
+    },
+    {
+      "project_id": 508,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000508",
+      "project_name": "公共服务的演进研究",
+      "leader": "李振",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2024-02-09",
+      "end_date": "2025-01-07"
+    },
+    {
+      "project_id": 509,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000509",
+      "project_name": "法治建设的演进研究",
+      "leader": "孔令伟",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "立项",
+      "start_date": "2021-01-14",
+      "end_date": "2023-12-12"
+    },
+    {
+      "project_id": 510,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000510",
+      "project_name": "对外开放的模式研究",
+      "leader": "李梦丹",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "立项",
+      "start_date": "2021-06-19",
+      "end_date": "2024-04-16"
+    },
+    {
+      "project_id": 511,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000511",
+      "project_name": "全球治理的创新研究",
+      "leader": "李宏",
+      "department": "科学社会主义系",
+      "project_type": "省部级",
+      "status": "在研",
+      "start_date": "2024-07-14",
+      "end_date": "2026-12-15"
+    },
+    {
+      "project_id": 512,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000512",
+      "project_name": "老龄化的演进研究",
+      "leader": "高原",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "在研",
+      "start_date": "2022-04-18",
+      "end_date": "2023-02-14"
+    },
+    {
+      "project_id": 513,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000513",
+      "project_name": "文化自信的演进研究",
+      "leader": "褚雷",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2024-01-05",
+      "end_date": "2026-03-20"
+    },
+    {
+      "project_id": 514,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000514",
+      "project_name": "一带一路的路径研究",
+      "leader": "张乐",
+      "department": "公共管理系",
+      "project_type": "国家级",
+      "status": "结题",
+      "start_date": "2022-01-14",
+      "end_date": "2023-03-18"
+    },
+    {
+      "project_id": 515,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000515",
+      "project_name": "城市管理的实践研究",
+      "leader": "高原",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2024-03-14",
+      "end_date": "2027-06-03"
+    },
+    {
+      "project_id": 516,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000516",
+      "project_name": "中国式现代化的实践研究",
+      "leader": "王成",
+      "department": "政治学系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2021-01-21",
+      "end_date": "2023-03-25"
+    },
+    {
+      "project_id": 517,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000517",
+      "project_name": "碳中和的模式研究",
+      "leader": "刘琳",
+      "department": "政治学系",
+      "project_type": "省部级",
+      "status": "审核中",
+      "start_date": "2021-04-14",
+      "end_date": "2022-02-20"
+    },
+    {
+      "project_id": 518,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2023-000518",
+      "project_name": "环境治理的机制研究",
+      "leader": "郑子君",
+      "department": "公共管理系",
+      "project_type": "省部级",
+      "status": "结题",
+      "start_date": "2023-10-09",
+      "end_date": "2024-05-06"
+    },
+    {
+      "project_id": 519,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000519",
+      "project_name": "对外开放的创新研究",
+      "leader": "钟诚",
+      "department": "政治学系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2024-12-06",
+      "end_date": "2026-11-09"
+    },
+    {
+      "project_id": 520,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000520",
+      "project_name": "公共卫生的机制研究",
+      "leader": "楚成亚",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2024-11-28",
+      "end_date": "2026-12-19"
+    },
+    {
+      "project_id": 521,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000521",
+      "project_name": "儿童福利的对策研究",
+      "leader": "王元亮",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "审核中",
+      "start_date": "2022-06-05",
+      "end_date": "2023-06-03"
+    },
+    {
+      "project_id": 522,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000522",
+      "project_name": "区域协调的评估研究",
+      "leader": "王军洋",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2024-11-12",
+      "end_date": "2027-03-17"
+    },
+    {
+      "project_id": 523,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000523",
+      "project_name": "就业促进的对策研究",
+      "leader": "刘华兴",
+      "department": "公共管理系",
+      "project_type": "校级",
+      "status": "立项",
+      "start_date": "2022-01-20",
+      "end_date": "2025-11-18"
+    },
+    {
+      "project_id": 524,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2024-000524",
+      "project_name": "一带一路的机制研究",
+      "leader": "朱林旭",
+      "department": "公共管理系",
+      "project_type": "横向",
+      "status": "在研",
+      "start_date": "2024-09-01",
+      "end_date": "2027-10-25"
+    },
+    {
+      "project_id": 525,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2022-000525",
+      "project_name": "全球治理的创新研究",
+      "leader": "王军洋",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "在研",
+      "start_date": "2022-02-05",
+      "end_date": "2024-12-28"
+    },
+    {
+      "project_id": 526,
+      "current_project_no": "",
+      "proposed_project_no": "DEMO-2021-000526",
+      "project_name": "国际贸易的机制研究",
+      "leader": "叶紫蒙",
+      "department": "政治学系",
+      "project_type": "国家级",
+      "status": "审核中",
+      "start_date": "2021-12-28",
+      "end_date": "2024-01-18"
+    }
+  ],
+  "duplicate_project_name_distinct_count": 89,
+  "records_in_duplicate_name_groups": 213,
+  "duplicate_project_name_groups": [
+    {
+      "project_name": "老龄化的对策研究",
+      "record_count": 6,
+      "records": [
+        {
+          "project_id": 255,
+          "project_no": "",
+          "leader": "黄登学",
+          "department": "国际政治系",
+          "start_date": "2023-10-05",
+          "end_date": "2024-05-06",
+          "status": "审核中"
+        },
+        {
+          "project_id": 333,
+          "project_no": "",
+          "leader": "秦亚青",
+          "department": "国际政治系",
+          "start_date": "2024-12-21",
+          "end_date": "2027-10-04",
+          "status": "审核中"
+        },
+        {
+          "project_id": 343,
+          "project_no": "",
+          "leader": "李梦丹",
+          "department": "公共管理系",
+          "start_date": "2021-07-06",
+          "end_date": "2023-04-27",
+          "status": "结题"
+        },
+        {
+          "project_id": 395,
+          "project_no": "",
+          "leader": "张健彬",
+          "department": "公共管理系",
+          "start_date": "2024-09-01",
+          "end_date": "2026-11-21",
+          "status": "审核中"
+        },
+        {
+          "project_id": 399,
+          "project_no": "",
+          "leader": "杨春林",
+          "department": "科学社会主义系",
+          "start_date": "2024-10-01",
+          "end_date": "2026-01-03",
+          "status": "在研"
+        },
+        {
+          "project_id": 408,
+          "project_no": "",
+          "leader": "楚成亚",
+          "department": "政治学系",
+          "start_date": "2023-08-26",
+          "end_date": "2025-08-22",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "全球治理的评估研究",
+      "record_count": 5,
+      "records": [
+        {
+          "project_id": 265,
+          "project_no": "",
+          "leader": "王元亮",
+          "department": "公共管理系",
+          "start_date": "2021-10-02",
+          "end_date": "2023-06-27",
+          "status": "审核中"
+        },
+        {
+          "project_id": 350,
+          "project_no": "",
+          "leader": "刘琳",
+          "department": "政治学系",
+          "start_date": "2023-01-26",
+          "end_date": "2025-03-21",
+          "status": "立项"
+        },
+        {
+          "project_id": 359,
+          "project_no": "",
+          "leader": "李振",
+          "department": "政治学系",
+          "start_date": "2022-11-23",
+          "end_date": "2023-07-05",
+          "status": "结题"
+        },
+        {
+          "project_id": 370,
+          "project_no": "",
+          "leader": "赵婷",
+          "department": "科学社会主义系",
+          "start_date": "2023-07-08",
+          "end_date": "2026-11-25",
+          "status": "在研"
+        },
+        {
+          "project_id": 412,
+          "project_no": "",
+          "leader": "孔令栋",
+          "department": "政治学系",
+          "start_date": "2022-03-14",
+          "end_date": "2023-08-01",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "全球治理的创新研究",
+      "record_count": 4,
+      "records": [
+        {
+          "project_id": 323,
+          "project_no": "",
+          "leader": "陈静",
+          "department": "公共管理系",
+          "start_date": "2024-01-17",
+          "end_date": "2026-11-26",
+          "status": "结题"
+        },
+        {
+          "project_id": 385,
+          "project_no": "",
+          "leader": "姬生翔",
+          "department": "政治学系",
+          "start_date": "2023-12-15",
+          "end_date": "2024-03-12",
+          "status": "在研"
+        },
+        {
+          "project_id": 511,
+          "project_no": "",
+          "leader": "李宏",
+          "department": "科学社会主义系",
+          "start_date": "2024-07-14",
+          "end_date": "2026-12-15",
+          "status": "在研"
+        },
+        {
+          "project_id": 525,
+          "project_no": "",
+          "leader": "王军洋",
+          "department": "政治学系",
+          "start_date": "2022-02-05",
+          "end_date": "2024-12-28",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "公共卫生的对策研究",
+      "record_count": 4,
+      "records": [
+        {
+          "project_id": 259,
+          "project_no": "",
+          "leader": "张乐",
+          "department": "公共管理系",
+          "start_date": "2023-12-28",
+          "end_date": "2024-08-16",
+          "status": "在研"
+        },
+        {
+          "project_id": 308,
+          "project_no": "",
+          "leader": "王学玉",
+          "department": "国际政治系",
+          "start_date": "2022-09-03",
+          "end_date": "2023-03-27",
+          "status": "立项"
+        },
+        {
+          "project_id": 440,
+          "project_no": "",
+          "leader": "李慧明",
+          "department": "国际政治系",
+          "start_date": "2024-08-16",
+          "end_date": "2027-05-14",
+          "status": "立项"
+        },
+        {
+          "project_id": 497,
+          "project_no": "",
+          "leader": "秦亚青",
+          "department": "国际政治系",
+          "start_date": "2024-04-06",
+          "end_date": "2026-11-14",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "公共服务的演进研究",
+      "record_count": 4,
+      "records": [
+        {
+          "project_id": 275,
+          "project_no": "",
+          "leader": "展妍男",
+          "department": "国际政治系",
+          "start_date": "2021-01-12",
+          "end_date": "2024-11-13",
+          "status": "结题"
+        },
+        {
+          "project_id": 368,
+          "project_no": "",
+          "leader": "徐会平",
+          "department": "政治学系",
+          "start_date": "2021-04-08",
+          "end_date": "2024-07-14",
+          "status": "结题"
+        },
+        {
+          "project_id": 507,
+          "project_no": "",
+          "leader": "俞少宾",
+          "department": "公共管理系",
+          "start_date": "2021-10-28",
+          "end_date": "2023-12-08",
+          "status": "立项"
+        },
+        {
+          "project_id": 508,
+          "project_no": "",
+          "leader": "李振",
+          "department": "政治学系",
+          "start_date": "2024-02-09",
+          "end_date": "2025-01-07",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "国际贸易的机制研究",
+      "record_count": 4,
+      "records": [
+        {
+          "project_id": 431,
+          "project_no": "",
+          "leader": "李延伟",
+          "department": "公共管理系",
+          "start_date": "2022-09-26",
+          "end_date": "2025-05-03",
+          "status": "审核中"
+        },
+        {
+          "project_id": 452,
+          "project_no": "",
+          "leader": "方炯升",
+          "department": "国际政治系",
+          "start_date": "2023-04-28",
+          "end_date": "2026-05-13",
+          "status": "在研"
+        },
+        {
+          "project_id": 477,
+          "project_no": "",
+          "leader": "王成",
+          "department": "政治学系",
+          "start_date": "2023-09-07",
+          "end_date": "2025-10-05",
+          "status": "立项"
+        },
+        {
+          "project_id": 526,
+          "project_no": "",
+          "leader": "叶紫蒙",
+          "department": "政治学系",
+          "start_date": "2021-12-28",
+          "end_date": "2024-01-18",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "碳中和的模式研究",
+      "record_count": 4,
+      "records": [
+        {
+          "project_id": 261,
+          "project_no": "",
+          "leader": "朱贵昌",
+          "department": "国际政治系",
+          "start_date": "2024-11-27",
+          "end_date": "2027-02-11",
+          "status": "结题"
+        },
+        {
+          "project_id": 337,
+          "project_no": "",
+          "leader": "白江波",
+          "department": "政治学系",
+          "start_date": "2024-08-17",
+          "end_date": "2025-10-18",
+          "status": "结题"
+        },
+        {
+          "project_id": 424,
+          "project_no": "",
+          "leader": "马奔",
+          "department": "公共管理系",
+          "start_date": "2023-12-13",
+          "end_date": "2025-01-17",
+          "status": "审核中"
+        },
+        {
+          "project_id": 517,
+          "project_no": "",
+          "leader": "刘琳",
+          "department": "政治学系",
+          "start_date": "2021-04-14",
+          "end_date": "2022-02-20",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "一带一路的评估研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 268,
+          "project_no": "",
+          "leader": "李亚洲",
+          "department": "科学社会主义系",
+          "start_date": "2023-02-18",
+          "end_date": "2026-11-19",
+          "status": "在研"
+        },
+        {
+          "project_id": 304,
+          "project_no": "",
+          "leader": "孙宗锋",
+          "department": "公共管理系",
+          "start_date": "2023-08-10",
+          "end_date": "2025-05-05",
+          "status": "结题"
+        },
+        {
+          "project_id": 346,
+          "project_no": "",
+          "leader": "曹现强",
+          "department": "公共管理系",
+          "start_date": "2023-09-01",
+          "end_date": "2025-07-21",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "乡村振兴的路径研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 281,
+          "project_no": "",
+          "leader": "杨春林",
+          "department": "科学社会主义系",
+          "start_date": "2023-06-21",
+          "end_date": "2026-06-23",
+          "status": "结题"
+        },
+        {
+          "project_id": 384,
+          "project_no": "",
+          "leader": "Yunsoo Lee",
+          "department": "公共管理系",
+          "start_date": "2022-03-18",
+          "end_date": "2025-08-26",
+          "status": "在研"
+        },
+        {
+          "project_id": 505,
+          "project_no": "",
+          "leader": "赵均佳",
+          "department": "国际政治系",
+          "start_date": "2023-09-25",
+          "end_date": "2026-11-27",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "人工智能治理的模式研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 241,
+          "project_no": "",
+          "leader": "滕玉成",
+          "department": "公共管理系",
+          "start_date": "2024-03-09",
+          "end_date": "2026-10-14",
+          "status": "立项"
+        },
+        {
+          "project_id": 382,
+          "project_no": "",
+          "leader": "王成",
+          "department": "政治学系",
+          "start_date": "2023-09-27",
+          "end_date": "2025-07-02",
+          "status": "审核中"
+        },
+        {
+          "project_id": 480,
+          "project_no": "",
+          "leader": "臧秀玲",
+          "department": "科学社会主义系",
+          "start_date": "2022-08-11",
+          "end_date": "2024-10-28",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "人工智能治理的评估研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 233,
+          "project_no": "",
+          "leader": "展妍男",
+          "department": "国际政治系",
+          "start_date": "2022-11-17",
+          "end_date": "2023-12-16",
+          "status": "结题"
+        },
+        {
+          "project_id": 310,
+          "project_no": "",
+          "leader": "韩自强",
+          "department": "公共管理系",
+          "start_date": "2024-12-10",
+          "end_date": "2027-09-13",
+          "status": "结题"
+        },
+        {
+          "project_id": 339,
+          "project_no": "",
+          "leader": "方炯升",
+          "department": "国际政治系",
+          "start_date": "2024-07-12",
+          "end_date": "2027-01-12",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "住房保障的模式研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 237,
+          "project_no": "",
+          "leader": "李亚洲",
+          "department": "科学社会主义系",
+          "start_date": "2024-01-18",
+          "end_date": "2025-07-19",
+          "status": "审核中"
+        },
+        {
+          "project_id": 389,
+          "project_no": "",
+          "leader": "李梦丹",
+          "department": "公共管理系",
+          "start_date": "2022-05-05",
+          "end_date": "2024-10-13",
+          "status": "立项"
+        },
+        {
+          "project_id": 451,
+          "project_no": "",
+          "leader": "季丽新",
+          "department": "公共管理系",
+          "start_date": "2024-03-10",
+          "end_date": "2027-09-28",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "公共服务的对策研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 256,
+          "project_no": "",
+          "leader": "陈仁兴",
+          "department": "公共管理系",
+          "start_date": "2024-06-14",
+          "end_date": "2027-07-19",
+          "status": "审核中"
+        },
+        {
+          "project_id": 340,
+          "project_no": "",
+          "leader": "米雪",
+          "department": "国际政治系",
+          "start_date": "2021-06-24",
+          "end_date": "2024-05-07",
+          "status": "审核中"
+        },
+        {
+          "project_id": 392,
+          "project_no": "",
+          "leader": "韩丽华",
+          "department": "公共管理系",
+          "start_date": "2022-07-09",
+          "end_date": "2025-07-24",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "共同富裕的路径研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 284,
+          "project_no": "",
+          "leader": "王元亮",
+          "department": "公共管理系",
+          "start_date": "2023-12-23",
+          "end_date": "2024-02-13",
+          "status": "立项"
+        },
+        {
+          "project_id": 372,
+          "project_no": "",
+          "leader": "李宏",
+          "department": "科学社会主义系",
+          "start_date": "2021-07-10",
+          "end_date": "2023-02-17",
+          "status": "立项"
+        },
+        {
+          "project_id": 426,
+          "project_no": "",
+          "leader": "赵志华",
+          "department": "公共管理系",
+          "start_date": "2024-10-05",
+          "end_date": "2026-03-12",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "区域协调的演进研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 271,
+          "project_no": "",
+          "leader": "张乐",
+          "department": "公共管理系",
+          "start_date": "2022-07-17",
+          "end_date": "2023-04-27",
+          "status": "立项"
+        },
+        {
+          "project_id": 312,
+          "project_no": "",
+          "leader": "李梦丹",
+          "department": "公共管理系",
+          "start_date": "2022-03-21",
+          "end_date": "2024-02-28",
+          "status": "在研"
+        },
+        {
+          "project_id": 351,
+          "project_no": "",
+          "leader": "方雷",
+          "department": "政治学系",
+          "start_date": "2024-12-08",
+          "end_date": "2025-02-23",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "就业促进的对策研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 249,
+          "project_no": "",
+          "leader": "刘浩",
+          "department": "公共管理系",
+          "start_date": "2023-02-20",
+          "end_date": "2026-08-03",
+          "status": "立项"
+        },
+        {
+          "project_id": 502,
+          "project_no": "",
+          "leader": "王元亮",
+          "department": "公共管理系",
+          "start_date": "2023-12-03",
+          "end_date": "2024-01-17",
+          "status": "在研"
+        },
+        {
+          "project_id": 523,
+          "project_no": "",
+          "leader": "刘华兴",
+          "department": "公共管理系",
+          "start_date": "2022-01-20",
+          "end_date": "2025-11-18",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "应急管理的实践研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 277,
+          "project_no": "",
+          "leader": "李昕蕾",
+          "department": "国际政治系",
+          "start_date": "2023-05-17",
+          "end_date": "2026-08-04",
+          "status": "审核中"
+        },
+        {
+          "project_id": 418,
+          "project_no": "",
+          "leader": "刘玉安",
+          "department": "科学社会主义系",
+          "start_date": "2021-05-04",
+          "end_date": "2022-05-11",
+          "status": "在研"
+        },
+        {
+          "project_id": 484,
+          "project_no": "",
+          "leader": "高原",
+          "department": "公共管理系",
+          "start_date": "2021-06-04",
+          "end_date": "2024-01-03",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "应急管理的模式研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 365,
+          "project_no": "",
+          "leader": "俞少宾",
+          "department": "公共管理系",
+          "start_date": "2023-07-28",
+          "end_date": "2025-04-20",
+          "status": "立项"
+        },
+        {
+          "project_id": 391,
+          "project_no": "",
+          "leader": "郑子君",
+          "department": "公共管理系",
+          "start_date": "2024-10-01",
+          "end_date": "2026-06-28",
+          "status": "审核中"
+        },
+        {
+          "project_id": 472,
+          "project_no": "",
+          "leader": "罗聪",
+          "department": "公共管理系",
+          "start_date": "2022-11-17",
+          "end_date": "2024-04-21",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "教育政策的创新研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 317,
+          "project_no": "",
+          "leader": "吕连仁",
+          "department": "科学社会主义系",
+          "start_date": "2024-09-12",
+          "end_date": "2027-07-09",
+          "status": "在研"
+        },
+        {
+          "project_id": 344,
+          "project_no": "",
+          "leader": "赵均佳",
+          "department": "国际政治系",
+          "start_date": "2024-01-16",
+          "end_date": "2026-02-18",
+          "status": "结题"
+        },
+        {
+          "project_id": 404,
+          "project_no": "",
+          "leader": "刘玉安",
+          "department": "科学社会主义系",
+          "start_date": "2021-04-07",
+          "end_date": "2023-01-22",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "教育政策的演进研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 238,
+          "project_no": "",
+          "leader": "黄晴",
+          "department": "公共管理系",
+          "start_date": "2023-05-25",
+          "end_date": "2025-11-01",
+          "status": "结题"
+        },
+        {
+          "project_id": 432,
+          "project_no": "",
+          "leader": "王鹏权",
+          "department": "科学社会主义系",
+          "start_date": "2022-02-18",
+          "end_date": "2024-05-19",
+          "status": "审核中"
+        },
+        {
+          "project_id": 492,
+          "project_no": "",
+          "leader": "赵志华",
+          "department": "公共管理系",
+          "start_date": "2022-09-23",
+          "end_date": "2024-12-10",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "数字政府的演进研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 270,
+          "project_no": "",
+          "leader": "王薪喜",
+          "department": "国际政治系",
+          "start_date": "2024-01-26",
+          "end_date": "2027-12-25",
+          "status": "立项"
+        },
+        {
+          "project_id": 354,
+          "project_no": "",
+          "leader": "刘昌明",
+          "department": "国际政治系",
+          "start_date": "2021-12-13",
+          "end_date": "2022-04-02",
+          "status": "审核中"
+        },
+        {
+          "project_id": 482,
+          "project_no": "",
+          "leader": "朱林旭",
+          "department": "公共管理系",
+          "start_date": "2024-11-21",
+          "end_date": "2027-03-18",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "文化自信的模式研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 291,
+          "project_no": "",
+          "leader": "盛力",
+          "department": "国际政治系",
+          "start_date": "2021-10-19",
+          "end_date": "2022-11-13",
+          "status": "审核中"
+        },
+        {
+          "project_id": 327,
+          "project_no": "",
+          "leader": "朱林旭",
+          "department": "公共管理系",
+          "start_date": "2022-06-04",
+          "end_date": "2025-12-11",
+          "status": "立项"
+        },
+        {
+          "project_id": 444,
+          "project_no": "",
+          "leader": "李梦丹",
+          "department": "公共管理系",
+          "start_date": "2024-11-05",
+          "end_date": "2026-07-20",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "环境治理的机制研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 263,
+          "project_no": "",
+          "leader": "刘华兴",
+          "department": "公共管理系",
+          "start_date": "2022-01-25",
+          "end_date": "2025-04-03",
+          "status": "立项"
+        },
+        {
+          "project_id": 428,
+          "project_no": "",
+          "leader": "赵均佳",
+          "department": "国际政治系",
+          "start_date": "2024-01-05",
+          "end_date": "2026-05-17",
+          "status": "结题"
+        },
+        {
+          "project_id": 518,
+          "project_no": "",
+          "leader": "郑子君",
+          "department": "公共管理系",
+          "start_date": "2023-10-09",
+          "end_date": "2024-05-06",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "碳中和的创新研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 413,
+          "project_no": "",
+          "leader": "王佃利",
+          "department": "公共管理系",
+          "start_date": "2022-01-05",
+          "end_date": "2024-10-13",
+          "status": "结题"
+        },
+        {
+          "project_id": 429,
+          "project_no": "",
+          "leader": "吕连仁",
+          "department": "科学社会主义系",
+          "start_date": "2022-04-15",
+          "end_date": "2023-02-13",
+          "status": "在研"
+        },
+        {
+          "project_id": 443,
+          "project_no": "",
+          "leader": "魏铭",
+          "department": "公共管理系",
+          "start_date": "2023-06-10",
+          "end_date": "2024-06-15",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "科技创新的路径研究",
+      "record_count": 3,
+      "records": [
+        {
+          "project_id": 296,
+          "project_no": "",
+          "leader": "刘浩",
+          "department": "公共管理系",
+          "start_date": "2021-03-15",
+          "end_date": "2024-09-07",
+          "status": "在研"
+        },
+        {
+          "project_id": 301,
+          "project_no": "",
+          "leader": "王成",
+          "department": "政治学系",
+          "start_date": "2022-11-20",
+          "end_date": "2025-08-12",
+          "status": "立项"
+        },
+        {
+          "project_id": 437,
+          "project_no": "",
+          "leader": "王学玉",
+          "department": "国际政治系",
+          "start_date": "2024-03-07",
+          "end_date": "2026-03-10",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "一带一路的机制研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 293,
+          "project_no": "",
+          "leader": "季丽新",
+          "department": "公共管理系",
+          "start_date": "2023-05-24",
+          "end_date": "2026-11-24",
+          "status": "立项"
+        },
+        {
+          "project_id": 524,
+          "project_no": "",
+          "leader": "朱林旭",
+          "department": "公共管理系",
+          "start_date": "2024-09-01",
+          "end_date": "2027-10-25",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "一带一路的路径研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 485,
+          "project_no": "",
+          "leader": "马永驰",
+          "department": "公共管理系",
+          "start_date": "2024-07-19",
+          "end_date": "2027-12-06",
+          "status": "在研"
+        },
+        {
+          "project_id": 514,
+          "project_no": "",
+          "leader": "张乐",
+          "department": "公共管理系",
+          "start_date": "2022-01-14",
+          "end_date": "2023-03-18",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "中国式现代化的创新研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 352,
+          "project_no": "",
+          "leader": "楼苏萍",
+          "department": "公共管理系",
+          "start_date": "2023-11-23",
+          "end_date": "2024-06-23",
+          "status": "审核中"
+        },
+        {
+          "project_id": 474,
+          "project_no": "",
+          "leader": "韩自强",
+          "department": "公共管理系",
+          "start_date": "2024-09-16",
+          "end_date": "2026-05-26",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "中国式现代化的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 388,
+          "project_no": "",
+          "leader": "王军洋",
+          "department": "政治学系",
+          "start_date": "2024-08-25",
+          "end_date": "2026-04-15",
+          "status": "在研"
+        },
+        {
+          "project_id": 516,
+          "project_no": "",
+          "leader": "王成",
+          "department": "政治学系",
+          "start_date": "2021-01-21",
+          "end_date": "2023-03-25",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "中国式现代化的模式研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 289,
+          "project_no": "",
+          "leader": "李梦丹",
+          "department": "公共管理系",
+          "start_date": "2024-10-25",
+          "end_date": "2027-05-06",
+          "status": "立项"
+        },
+        {
+          "project_id": 469,
+          "project_no": "",
+          "leader": "王佃利",
+          "department": "公共管理系",
+          "start_date": "2021-08-18",
+          "end_date": "2022-05-26",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "乡村振兴的机制研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 264,
+          "project_no": "",
+          "leader": "徐会平",
+          "department": "政治学系",
+          "start_date": "2023-01-10",
+          "end_date": "2025-09-09",
+          "status": "审核中"
+        },
+        {
+          "project_id": 328,
+          "project_no": "",
+          "leader": "孙宗锋",
+          "department": "公共管理系",
+          "start_date": "2021-02-25",
+          "end_date": "2022-07-04",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "乡村振兴的评估研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 330,
+          "project_no": "",
+          "leader": "赵均佳",
+          "department": "国际政治系",
+          "start_date": "2023-10-12",
+          "end_date": "2025-01-12",
+          "status": "立项"
+        },
+        {
+          "project_id": 489,
+          "project_no": "",
+          "leader": "Yunsoo Lee",
+          "department": "公共管理系",
+          "start_date": "2021-02-11",
+          "end_date": "2024-09-09",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "产业政策的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 285,
+          "project_no": "",
+          "leader": "黄登学",
+          "department": "国际政治系",
+          "start_date": "2023-12-14",
+          "end_date": "2026-10-21",
+          "status": "审核中"
+        },
+        {
+          "project_id": 305,
+          "project_no": "",
+          "leader": "黄晴",
+          "department": "公共管理系",
+          "start_date": "2022-03-01",
+          "end_date": "2024-07-11",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "产业政策的路径研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 360,
+          "project_no": "",
+          "leader": "胡志伟",
+          "department": "科学社会主义系",
+          "start_date": "2021-09-19",
+          "end_date": "2024-05-15",
+          "status": "在研"
+        },
+        {
+          "project_id": 427,
+          "project_no": "",
+          "leader": "朱贵昌",
+          "department": "国际政治系",
+          "start_date": "2022-10-02",
+          "end_date": "2025-03-12",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "住房保障的创新研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 248,
+          "project_no": "",
+          "leader": "白江波",
+          "department": "政治学系",
+          "start_date": "2023-03-19",
+          "end_date": "2025-02-02",
+          "status": "立项"
+        },
+        {
+          "project_id": 459,
+          "project_no": "",
+          "leader": "黄晴",
+          "department": "公共管理系",
+          "start_date": "2021-10-25",
+          "end_date": "2024-08-08",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "儿童福利的对策研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 279,
+          "project_no": "",
+          "leader": "李辉",
+          "department": "公共管理系",
+          "start_date": "2022-02-16",
+          "end_date": "2024-10-19",
+          "status": "在研"
+        },
+        {
+          "project_id": 521,
+          "project_no": "",
+          "leader": "王元亮",
+          "department": "公共管理系",
+          "start_date": "2022-06-05",
+          "end_date": "2023-06-03",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "儿童福利的演进研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 262,
+          "project_no": "",
+          "leader": "黄栋",
+          "department": "国际政治系",
+          "start_date": "2024-06-11",
+          "end_date": "2027-08-22",
+          "status": "立项"
+        },
+        {
+          "project_id": 454,
+          "project_no": "",
+          "leader": "庞敏",
+          "department": "科学社会主义系",
+          "start_date": "2022-01-10",
+          "end_date": "2024-09-21",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "公共卫生的创新研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 290,
+          "project_no": "",
+          "leader": "李昕蕾",
+          "department": "国际政治系",
+          "start_date": "2024-04-05",
+          "end_date": "2026-07-06",
+          "status": "立项"
+        },
+        {
+          "project_id": 318,
+          "project_no": "",
+          "leader": "马荣久",
+          "department": "国际政治系",
+          "start_date": "2023-01-12",
+          "end_date": "2025-05-05",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "公共卫生的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 450,
+          "project_no": "",
+          "leader": "程龙",
+          "department": "公共管理系",
+          "start_date": "2024-07-17",
+          "end_date": "2027-01-06",
+          "status": "结题"
+        },
+        {
+          "project_id": 458,
+          "project_no": "",
+          "leader": "邢占军",
+          "department": "公共管理系",
+          "start_date": "2024-10-16",
+          "end_date": "2027-07-09",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "公共卫生的机制研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 353,
+          "project_no": "",
+          "leader": "黄栋",
+          "department": "国际政治系",
+          "start_date": "2022-06-08",
+          "end_date": "2025-11-06",
+          "status": "结题"
+        },
+        {
+          "project_id": 520,
+          "project_no": "",
+          "leader": "楚成亚",
+          "department": "政治学系",
+          "start_date": "2024-11-28",
+          "end_date": "2026-12-19",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "公共卫生的演进研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 286,
+          "project_no": "",
+          "leader": "米雪",
+          "department": "国际政治系",
+          "start_date": "2023-12-01",
+          "end_date": "2024-09-16",
+          "status": "审核中"
+        },
+        {
+          "project_id": 461,
+          "project_no": "",
+          "leader": "刘琳",
+          "department": "政治学系",
+          "start_date": "2023-06-21",
+          "end_date": "2024-05-16",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "公共卫生的路径研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 232,
+          "project_no": "",
+          "leader": "李延伟",
+          "department": "公共管理系",
+          "start_date": "2022-11-13",
+          "end_date": "2024-05-12",
+          "status": "审核中"
+        },
+        {
+          "project_id": 417,
+          "project_no": "",
+          "leader": "刘琳",
+          "department": "政治学系",
+          "start_date": "2021-02-09",
+          "end_date": "2024-12-16",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "公共服务的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 236,
+          "project_no": "",
+          "leader": "张淑兰",
+          "department": "国际政治系",
+          "start_date": "2024-02-02",
+          "end_date": "2026-08-23",
+          "status": "在研"
+        },
+        {
+          "project_id": 357,
+          "project_no": "",
+          "leader": "张继亮",
+          "department": "政治学系",
+          "start_date": "2024-10-28",
+          "end_date": "2025-03-18",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "共同富裕的演进研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 478,
+          "project_no": "",
+          "leader": "霍文乐",
+          "department": "国际政治系",
+          "start_date": "2023-01-27",
+          "end_date": "2026-09-20",
+          "status": "审核中"
+        },
+        {
+          "project_id": 503,
+          "project_no": "",
+          "leader": "陈仁兴",
+          "department": "公共管理系",
+          "start_date": "2021-11-20",
+          "end_date": "2024-01-18",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "区域协调的机制研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 405,
+          "project_no": "",
+          "leader": "朱贵昌",
+          "department": "国际政治系",
+          "start_date": "2022-12-13",
+          "end_date": "2023-01-03",
+          "status": "审核中"
+        },
+        {
+          "project_id": 500,
+          "project_no": "",
+          "leader": "钟诚",
+          "department": "政治学系",
+          "start_date": "2021-05-20",
+          "end_date": "2024-01-01",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "国际贸易的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 358,
+          "project_no": "",
+          "leader": "孙宗锋",
+          "department": "公共管理系",
+          "start_date": "2024-09-19",
+          "end_date": "2026-07-18",
+          "status": "结题"
+        },
+        {
+          "project_id": 445,
+          "project_no": "",
+          "leader": "臧秀玲",
+          "department": "科学社会主义系",
+          "start_date": "2022-10-12",
+          "end_date": "2024-06-10",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "国际贸易的对策研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 377,
+          "project_no": "",
+          "leader": "刘昌明",
+          "department": "国际政治系",
+          "start_date": "2021-06-27",
+          "end_date": "2024-01-07",
+          "status": "立项"
+        },
+        {
+          "project_id": 402,
+          "project_no": "",
+          "leader": "刘华兴",
+          "department": "公共管理系",
+          "start_date": "2023-07-12",
+          "end_date": "2025-11-20",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "国际贸易的评估研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 231,
+          "project_no": "",
+          "leader": "赵均佳",
+          "department": "国际政治系",
+          "start_date": "2022-01-01",
+          "end_date": "2023-06-05",
+          "status": "立项"
+        },
+        {
+          "project_id": 371,
+          "project_no": "",
+          "leader": "杨春林",
+          "department": "科学社会主义系",
+          "start_date": "2024-03-28",
+          "end_date": "2025-11-09",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "城市管理的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 245,
+          "project_no": "",
+          "leader": "李亚洲",
+          "department": "科学社会主义系",
+          "start_date": "2023-06-16",
+          "end_date": "2025-06-06",
+          "status": "结题"
+        },
+        {
+          "project_id": 515,
+          "project_no": "",
+          "leader": "高原",
+          "department": "公共管理系",
+          "start_date": "2024-03-14",
+          "end_date": "2027-06-03",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "城市管理的对策研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 364,
+          "project_no": "",
+          "leader": "韩丽华",
+          "department": "公共管理系",
+          "start_date": "2022-03-12",
+          "end_date": "2025-04-10",
+          "status": "立项"
+        },
+        {
+          "project_id": 501,
+          "project_no": "",
+          "leader": "金淑霞",
+          "department": "科学社会主义系",
+          "start_date": "2023-10-11",
+          "end_date": "2026-09-27",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "城市管理的演进研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 282,
+          "project_no": "",
+          "leader": "杨志",
+          "department": "公共管理系",
+          "start_date": "2022-01-09",
+          "end_date": "2025-03-27",
+          "status": "结题"
+        },
+        {
+          "project_id": 345,
+          "project_no": "",
+          "leader": "张继亮",
+          "department": "政治学系",
+          "start_date": "2021-01-16",
+          "end_date": "2022-12-23",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "基层治理的机制研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 338,
+          "project_no": "",
+          "leader": "胡志伟",
+          "department": "科学社会主义系",
+          "start_date": "2021-02-06",
+          "end_date": "2022-11-22",
+          "status": "结题"
+        },
+        {
+          "project_id": 420,
+          "project_no": "",
+          "leader": "孔令伟",
+          "department": "政治学系",
+          "start_date": "2023-12-04",
+          "end_date": "2025-08-23",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "基层治理的演进研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 401,
+          "project_no": "",
+          "leader": "赵志华",
+          "department": "公共管理系",
+          "start_date": "2023-08-01",
+          "end_date": "2025-02-18",
+          "status": "在研"
+        },
+        {
+          "project_id": 433,
+          "project_no": "",
+          "leader": "滕玉成",
+          "department": "公共管理系",
+          "start_date": "2024-03-07",
+          "end_date": "2026-02-10",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "对外开放的创新研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 274,
+          "project_no": "",
+          "leader": "杨春林",
+          "department": "科学社会主义系",
+          "start_date": "2023-10-07",
+          "end_date": "2024-12-02",
+          "status": "立项"
+        },
+        {
+          "project_id": 519,
+          "project_no": "",
+          "leader": "钟诚",
+          "department": "政治学系",
+          "start_date": "2024-12-06",
+          "end_date": "2026-11-09",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "对外开放的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 253,
+          "project_no": "",
+          "leader": "姬生翔",
+          "department": "政治学系",
+          "start_date": "2024-02-11",
+          "end_date": "2026-06-05",
+          "status": "在研"
+        },
+        {
+          "project_id": 479,
+          "project_no": "",
+          "leader": "刘华兴",
+          "department": "公共管理系",
+          "start_date": "2024-09-19",
+          "end_date": "2027-03-28",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "对外开放的机制研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 326,
+          "project_no": "",
+          "leader": "党成孝",
+          "department": "政治学系",
+          "start_date": "2021-06-01",
+          "end_date": "2023-12-09",
+          "status": "审核中"
+        },
+        {
+          "project_id": 367,
+          "project_no": "",
+          "leader": "楚成亚",
+          "department": "政治学系",
+          "start_date": "2021-12-09",
+          "end_date": "2024-03-08",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "对外开放的模式研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 294,
+          "project_no": "",
+          "leader": "李广",
+          "department": "公共管理系",
+          "start_date": "2023-02-15",
+          "end_date": "2024-10-21",
+          "status": "审核中"
+        },
+        {
+          "project_id": 510,
+          "project_no": "",
+          "leader": "李梦丹",
+          "department": "公共管理系",
+          "start_date": "2021-06-19",
+          "end_date": "2024-04-16",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "就业促进的路径研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 250,
+          "project_no": "",
+          "leader": "金淑霞",
+          "department": "科学社会主义系",
+          "start_date": "2023-03-24",
+          "end_date": "2026-04-02",
+          "status": "审核中"
+        },
+        {
+          "project_id": 306,
+          "project_no": "",
+          "leader": "王鹏权",
+          "department": "科学社会主义系",
+          "start_date": "2022-06-02",
+          "end_date": "2023-11-24",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "应急管理的创新研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 273,
+          "project_no": "",
+          "leader": "王成",
+          "department": "政治学系",
+          "start_date": "2021-03-04",
+          "end_date": "2023-09-09",
+          "status": "立项"
+        },
+        {
+          "project_id": 307,
+          "project_no": "",
+          "leader": "王军洋",
+          "department": "政治学系",
+          "start_date": "2023-09-17",
+          "end_date": "2024-09-15",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "应急管理的路径研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 272,
+          "project_no": "",
+          "leader": "张继亮",
+          "department": "政治学系",
+          "start_date": "2024-03-17",
+          "end_date": "2027-02-01",
+          "status": "立项"
+        },
+        {
+          "project_id": 462,
+          "project_no": "",
+          "leader": "孙宗锋",
+          "department": "公共管理系",
+          "start_date": "2021-02-14",
+          "end_date": "2022-02-13",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "政治学系2025年度研究路径",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 183,
+          "project_no": "XM202518915",
+          "leader": "政治学系教师",
+          "department": "政治学系",
+          "start_date": "2024-01-03",
+          "end_date": "2027-08-02",
+          "status": "在研"
+        },
+        {
+          "project_id": 184,
+          "project_no": "XM202518793",
+          "leader": "政治学系教师",
+          "department": "政治学系",
+          "start_date": "2025-02-21",
+          "end_date": "2028-05-13",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "教育政策的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 269,
+          "project_no": "",
+          "leader": "陈静",
+          "department": "公共管理系",
+          "start_date": "2022-05-07",
+          "end_date": "2023-12-18",
+          "status": "在研"
+        },
+        {
+          "project_id": 496,
+          "project_no": "",
+          "leader": "展妍男",
+          "department": "国际政治系",
+          "start_date": "2023-01-27",
+          "end_date": "2024-04-28",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "教育政策的模式研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 387,
+          "project_no": "",
+          "leader": "王学玉",
+          "department": "国际政治系",
+          "start_date": "2023-09-05",
+          "end_date": "2026-10-15",
+          "status": "在研"
+        },
+        {
+          "project_id": 448,
+          "project_no": "",
+          "leader": "秦亚青",
+          "department": "国际政治系",
+          "start_date": "2022-01-17",
+          "end_date": "2025-02-27",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "数字政府的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 355,
+          "project_no": "",
+          "leader": "张健彬",
+          "department": "公共管理系",
+          "start_date": "2023-04-14",
+          "end_date": "2026-09-16",
+          "status": "审核中"
+        },
+        {
+          "project_id": 381,
+          "project_no": "",
+          "leader": "刘玉安",
+          "department": "科学社会主义系",
+          "start_date": "2023-07-21",
+          "end_date": "2024-04-07",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "数字政府的模式研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 298,
+          "project_no": "",
+          "leader": "李延伟",
+          "department": "公共管理系",
+          "start_date": "2021-10-23",
+          "end_date": "2023-06-21",
+          "status": "立项"
+        },
+        {
+          "project_id": 490,
+          "project_no": "",
+          "leader": "臧秀玲",
+          "department": "科学社会主义系",
+          "start_date": "2024-10-07",
+          "end_date": "2025-03-06",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "数据安全的演进研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 331,
+          "project_no": "",
+          "leader": "李振",
+          "department": "政治学系",
+          "start_date": "2024-06-05",
+          "end_date": "2026-09-18",
+          "status": "在研"
+        },
+        {
+          "project_id": 407,
+          "project_no": "",
+          "leader": "王薪喜",
+          "department": "国际政治系",
+          "start_date": "2023-05-09",
+          "end_date": "2024-10-23",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "数据安全的路径研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 239,
+          "project_no": "",
+          "leader": "米雪",
+          "department": "国际政治系",
+          "start_date": "2023-06-02",
+          "end_date": "2024-01-13",
+          "status": "审核中"
+        },
+        {
+          "project_id": 299,
+          "project_no": "",
+          "leader": "褚雷",
+          "department": "公共管理系",
+          "start_date": "2021-02-12",
+          "end_date": "2022-07-22",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "文化自信的对策研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 287,
+          "project_no": "",
+          "leader": "王薪喜",
+          "department": "国际政治系",
+          "start_date": "2022-10-24",
+          "end_date": "2024-03-25",
+          "status": "在研"
+        },
+        {
+          "project_id": 394,
+          "project_no": "",
+          "leader": "张乐",
+          "department": "公共管理系",
+          "start_date": "2021-03-11",
+          "end_date": "2022-01-23",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "法治建设的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 229,
+          "project_no": "",
+          "leader": "黄靖",
+          "department": "政治学系",
+          "start_date": "2024-11-20",
+          "end_date": "2026-10-16",
+          "status": "审核中"
+        },
+        {
+          "project_id": 366,
+          "project_no": "",
+          "leader": "邢占军",
+          "department": "公共管理系",
+          "start_date": "2022-10-19",
+          "end_date": "2025-10-05",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "法治建设的对策研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 421,
+          "project_no": "",
+          "leader": "魏铭",
+          "department": "公共管理系",
+          "start_date": "2023-11-01",
+          "end_date": "2026-04-27",
+          "status": "在研"
+        },
+        {
+          "project_id": 439,
+          "project_no": "",
+          "leader": "朱林旭",
+          "department": "公共管理系",
+          "start_date": "2022-10-01",
+          "end_date": "2025-10-21",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "法治建设的模式研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 242,
+          "project_no": "",
+          "leader": "吕连仁",
+          "department": "科学社会主义系",
+          "start_date": "2023-07-14",
+          "end_date": "2026-04-05",
+          "status": "立项"
+        },
+        {
+          "project_id": 303,
+          "project_no": "",
+          "leader": "盛力",
+          "department": "国际政治系",
+          "start_date": "2023-05-10",
+          "end_date": "2026-12-02",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "法治建设的演进研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 455,
+          "project_no": "",
+          "leader": "蒋锐",
+          "department": "科学社会主义系",
+          "start_date": "2022-02-23",
+          "end_date": "2023-10-13",
+          "status": "立项"
+        },
+        {
+          "project_id": 509,
+          "project_no": "",
+          "leader": "孔令伟",
+          "department": "政治学系",
+          "start_date": "2021-01-14",
+          "end_date": "2023-12-12",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "法治建设的评估研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 276,
+          "project_no": "",
+          "leader": "蒋锐",
+          "department": "科学社会主义系",
+          "start_date": "2023-11-26",
+          "end_date": "2025-06-17",
+          "status": "结题"
+        },
+        {
+          "project_id": 498,
+          "project_no": "",
+          "leader": "黄登学",
+          "department": "国际政治系",
+          "start_date": "2024-06-01",
+          "end_date": "2025-01-27",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "环境治理的创新研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 347,
+          "project_no": "",
+          "leader": "秦亚青",
+          "department": "国际政治系",
+          "start_date": "2022-11-24",
+          "end_date": "2023-05-21",
+          "status": "在研"
+        },
+        {
+          "project_id": 375,
+          "project_no": "",
+          "leader": "高原",
+          "department": "公共管理系",
+          "start_date": "2021-03-23",
+          "end_date": "2024-10-02",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "环境治理的演进研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 254,
+          "project_no": "",
+          "leader": "李梦丹",
+          "department": "公共管理系",
+          "start_date": "2021-01-23",
+          "end_date": "2024-10-23",
+          "status": "结题"
+        },
+        {
+          "project_id": 322,
+          "project_no": "",
+          "leader": "王薪喜",
+          "department": "国际政治系",
+          "start_date": "2023-08-02",
+          "end_date": "2026-09-16",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "碳中和的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 313,
+          "project_no": "",
+          "leader": "朱贵昌",
+          "department": "国际政治系",
+          "start_date": "2022-09-19",
+          "end_date": "2024-08-24",
+          "status": "在研"
+        },
+        {
+          "project_id": 319,
+          "project_no": "",
+          "leader": "马荣久",
+          "department": "国际政治系",
+          "start_date": "2023-07-20",
+          "end_date": "2025-03-21",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "碳中和的机制研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 267,
+          "project_no": "",
+          "leader": "黄靖",
+          "department": "政治学系",
+          "start_date": "2021-01-02",
+          "end_date": "2023-05-03",
+          "status": "审核中"
+        },
+        {
+          "project_id": 422,
+          "project_no": "",
+          "leader": "王学玉",
+          "department": "国际政治系",
+          "start_date": "2021-12-09",
+          "end_date": "2022-03-04",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "碳中和的演进研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 258,
+          "project_no": "",
+          "leader": "陈仁兴",
+          "department": "公共管理系",
+          "start_date": "2021-09-10",
+          "end_date": "2023-03-15",
+          "status": "立项"
+        },
+        {
+          "project_id": 295,
+          "project_no": "",
+          "leader": "马荣久",
+          "department": "国际政治系",
+          "start_date": "2021-08-26",
+          "end_date": "2023-02-01",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "社会保障的实践研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 369,
+          "project_no": "",
+          "leader": "法帅",
+          "department": "政治学系",
+          "start_date": "2022-06-23",
+          "end_date": "2024-06-06",
+          "status": "结题"
+        },
+        {
+          "project_id": 465,
+          "project_no": "",
+          "leader": "方炯升",
+          "department": "国际政治系",
+          "start_date": "2023-01-11",
+          "end_date": "2025-11-16",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "社区服务的机制研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 251,
+          "project_no": "",
+          "leader": "吕连仁",
+          "department": "科学社会主义系",
+          "start_date": "2023-05-09",
+          "end_date": "2026-07-28",
+          "status": "在研"
+        },
+        {
+          "project_id": 453,
+          "project_no": "",
+          "leader": "魏铭",
+          "department": "公共管理系",
+          "start_date": "2023-05-12",
+          "end_date": "2026-05-17",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "社区服务的评估研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 397,
+          "project_no": "",
+          "leader": "李振",
+          "department": "政治学系",
+          "start_date": "2023-04-17",
+          "end_date": "2025-02-09",
+          "status": "在研"
+        },
+        {
+          "project_id": 476,
+          "project_no": "",
+          "leader": "王佃利",
+          "department": "公共管理系",
+          "start_date": "2024-04-18",
+          "end_date": "2026-07-17",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "社区服务的路径研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 335,
+          "project_no": "",
+          "leader": "王鹏权",
+          "department": "科学社会主义系",
+          "start_date": "2022-12-06",
+          "end_date": "2025-05-06",
+          "status": "审核中"
+        },
+        {
+          "project_id": 470,
+          "project_no": "",
+          "leader": "韩自强",
+          "department": "公共管理系",
+          "start_date": "2023-03-27",
+          "end_date": "2026-06-22",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "科学社会主义系2022年度评估分析",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 150,
+          "project_no": "XM202217480",
+          "leader": "蒋老师",
+          "department": "科学社会主义系",
+          "start_date": "2020-02-17",
+          "end_date": "2023-03-25",
+          "status": "结题"
+        },
+        {
+          "project_id": 151,
+          "project_no": "XM202217105",
+          "leader": "郑老师",
+          "department": "科学社会主义系",
+          "start_date": "2020-06-04",
+          "end_date": "2023-10-21",
+          "status": "审核中"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "科技创新的对策研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 228,
+          "project_no": "",
+          "leader": "Yunsoo Lee",
+          "department": "公共管理系",
+          "start_date": "2021-07-22",
+          "end_date": "2022-07-14",
+          "status": "结题"
+        },
+        {
+          "project_id": 363,
+          "project_no": "",
+          "leader": "李广",
+          "department": "公共管理系",
+          "start_date": "2024-08-27",
+          "end_date": "2027-08-22",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "科技创新的模式研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 297,
+          "project_no": "",
+          "leader": "程龙",
+          "department": "公共管理系",
+          "start_date": "2021-01-15",
+          "end_date": "2024-08-04",
+          "status": "在研"
+        },
+        {
+          "project_id": 419,
+          "project_no": "",
+          "leader": "高原",
+          "department": "公共管理系",
+          "start_date": "2023-09-04",
+          "end_date": "2026-01-19",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "老龄化的演进研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 329,
+          "project_no": "",
+          "leader": "韩自强",
+          "department": "公共管理系",
+          "start_date": "2022-10-21",
+          "end_date": "2023-01-01",
+          "status": "审核中"
+        },
+        {
+          "project_id": 512,
+          "project_no": "",
+          "leader": "高原",
+          "department": "公共管理系",
+          "start_date": "2022-04-18",
+          "end_date": "2023-02-14",
+          "status": "在研"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "老龄化的评估研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 240,
+          "project_no": "",
+          "leader": "王元亮",
+          "department": "公共管理系",
+          "start_date": "2023-08-19",
+          "end_date": "2026-03-28",
+          "status": "审核中"
+        },
+        {
+          "project_id": 315,
+          "project_no": "",
+          "leader": "韩丽华",
+          "department": "公共管理系",
+          "start_date": "2024-12-19",
+          "end_date": "2025-03-07",
+          "status": "结题"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "金融监管的对策研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 235,
+          "project_no": "",
+          "leader": "马荣久",
+          "department": "国际政治系",
+          "start_date": "2024-10-20",
+          "end_date": "2026-09-01",
+          "status": "在研"
+        },
+        {
+          "project_id": 447,
+          "project_no": "",
+          "leader": "黄靖",
+          "department": "政治学系",
+          "start_date": "2024-12-17",
+          "end_date": "2026-12-15",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    },
+    {
+      "project_name": "金融监管的模式研究",
+      "record_count": 2,
+      "records": [
+        {
+          "project_id": 324,
+          "project_no": "",
+          "leader": "韩丽华",
+          "department": "公共管理系",
+          "start_date": "2021-05-12",
+          "end_date": "2022-06-06",
+          "status": "立项"
+        },
+        {
+          "project_id": 416,
+          "project_no": "",
+          "leader": "王学玉",
+          "department": "国际政治系",
+          "start_date": "2024-01-14",
+          "end_date": "2026-08-28",
+          "status": "立项"
+        }
+      ],
+      "note": "名称重复只作为核查线索；不同负责人/年份的同名项目不自动判定为重复记录。"
+    }
+  ],
+  "rules": [
+    "只处理 project_no 为空或全空格的项目。",
+    "不覆盖已有项目编号。",
+    "不更改 project_name，不删除项目记录。",
+    "候选编号以 DEMO 开头，不能当作正式科研项目编号。",
+    "任何编号冲突都会阻止写入。"
+  ],
+  "updated_record_count": 0
+}

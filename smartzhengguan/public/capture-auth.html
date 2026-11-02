@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capture Auth Redirect</title>
+</head>
+<body>
+  <script>
+    const params = new URLSearchParams(window.location.search)
+    const route = params.get('route') || '/home'
+
+    try {
+      localStorage.setItem('token', 'ppt-capture-token')
+    } catch (error) {
+      console.error('Failed to seed capture token', error)
+    }
+
+    window.location.replace('/#' + route)
+  </script>
+</body>
+</html>

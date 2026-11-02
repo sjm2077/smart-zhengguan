@@ -469,6 +469,129 @@
                 padding-left: 10px;
                 border-left: 3px solid var(--light-blue);
             }
+
+        /* 首页视觉优化：延续系统现有藏蓝、亮蓝与金色配色 */
+        .content {
+            max-width: calc(100% - 240px);
+            min-width: 0;
+            padding: 28px 30px 36px;
+        }
+
+        .page-heading {
+            margin-bottom: 22px;
+            padding: 2px 0 17px;
+            border-bottom: 1px solid rgba(10, 35, 67, 0.09);
+        }
+
+        .page-title {
+            margin-bottom: 7px;
+            font-size: 27px;
+            line-height: 1.35;
+        }
+
+        .grid-container,
+        .grid-6,
+        .grid-2-1,
+        .grid-1-2,
+        .grid-1 {
+            min-width: 0;
+            align-items: stretch;
+        }
+
+        .grid-container { gap: 18px; margin-bottom: 20px; }
+        .grid-6 { gap: 14px; margin-bottom: 22px; }
+        .grid-2-1, .grid-1-2, .grid-1 { gap: 20px; margin-bottom: 22px; }
+
+        .data-card {
+            min-width: 0;
+            padding: 21px 22px 16px;
+            border-radius: 15px;
+            border: 1px solid rgba(64, 158, 255, 0.13);
+            box-shadow: 0 4px 18px rgba(10, 35, 67, 0.055);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .data-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(10, 35, 67, 0.10);
+        }
+
+        .data-label { font-size: 15px; margin-bottom: 10px; }
+        .data-num { font-size: 30px; letter-spacing: .3px; font-variant-numeric: tabular-nums; }
+        .mini-chart { height: 42px; margin-top: 5px; }
+
+        .mini-card {
+            min-width: 0;
+            min-height: 126px;
+            padding: 22px 12px 20px;
+            border: 1px solid rgba(10, 35, 67, 0.06);
+            box-shadow: 0 3px 14px rgba(10, 35, 67, 0.045);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .mini-card:hover { transform: translateY(-2px); box-shadow: 0 7px 18px rgba(10,35,67,.08); }
+        .mini-card .label { line-height: 1.5; font-size: 15px; margin-bottom: 10px; }
+        .mini-card .value { font-size: 34px; line-height: 1.25; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+        .card {
+            min-width: 0;
+            padding: 22px;
+            border-radius: 15px;
+            box-shadow: 0 4px 18px rgba(10, 35, 67, 0.055);
+            border-color: rgba(64, 158, 255, 0.12);
+        }
+        .card-title {
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .chart { height: 350px !important; }
+        .chart-wide { height: 280px !important; }
+        @media (max-width: 1350px) {
+            .content { padding: 24px 22px 32px; }
+            .grid-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .chart { height: 330px !important; }
+        }
+
+        @media (max-width: 1050px) {
+            .sidebar { width: 205px; }
+            .content { margin-left: 205px; max-width: calc(100% - 205px); padding: 22px 18px 28px; }
+            .grid-container { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+            .grid-2-1, .grid-1-2 { grid-template-columns: minmax(0, 1fr); }
+            .data-card { padding: 18px 16px 14px; }
+            .data-num { font-size: 26px; }
+        }
+
+        @media (max-width: 720px) {
+            .top-nav { padding: 0 12px; }
+            .top-nav .logo-box { gap: 7px; }
+            .top-nav .logo-box img { height: 32px; }
+            .top-nav .logo-box .title-text { font-size: 14px; }
+            .top-nav .search-box { gap: 8px; }
+            .top-nav .search-input { width: 145px; font-size: 12px; }
+            .top-nav .user-info { gap: 4px; }
+            .top-nav .user-info img { width: 30px; height: 30px; }
+            .top-nav .user-info button { font-size: 11px; padding: 3px 5px !important; }
+            .sidebar { width: 64px; padding-top: 12px; overflow-x: hidden; }
+            .sidebar .menu-title, .sidebar .submenu { display: none; }
+            .sidebar > .menu-item { justify-content: center; padding: 15px 5px; font-size: 0; gap: 0; }
+            .sidebar > .menu-item i { font-size: 19px; }
+            .sidebar > .menu-item .fa-angle-down { display: none; }
+            .content { margin-left: 64px; max-width: calc(100% - 64px); padding: 20px 12px 24px; }
+            .page-title { font-size: 22px; }
+            .grid-container { grid-template-columns: minmax(0, 1fr); }
+            .grid-6 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .grid-2-1, .grid-1-2, .grid-1 { gap: 14px; margin-bottom: 15px; }
+            .card { padding: 15px 12px; }
+            .card-title { font-size: 15px; }
+            .chart { height: 290px !important; }
+            .chart-wide { height: 230px !important; }
+            .data-card { padding: 17px 18px 12px; }
+            .data-num { font-size: 27px; }
+            .mini-card { min-height: 112px; padding: 18px 8px 16px; }
+            .mini-card .label { font-size: 13px; margin-bottom: 8px; }
+            .mini-card .value { font-size: 29px; }
+        }
     </style>
 </head>
 <body>
@@ -533,24 +656,26 @@
 </div>
 
         <div class="content">
-            <div class="page-title">
-                <i class="fa fa-dashboard" style="color:#409EFF"></i> 科研总览大屏
+            <div class="page-heading">
+                <div class="page-title">
+                    <i class="fa fa-dashboard" style="color:#409EFF"></i> 科研总览大屏
+                </div>
             </div>
 
             <div class="grid-container">
                 <div class="data-card">
                     <div class="data-label"><i class="fa fa-folder-open"></i> 在研项目总数</div>
-                    <div class="data-num">68</div>
+                    <div class="data-num">—</div>
                     <div id="mini-chart1" class="mini-chart"></div>
                 </div>
                 <div class="data-card">
                     <div class="data-label"><i class="fa fa-money"></i> 科研经费总额</div>
-                    <div class="data-num">1860 万</div>
+                    <div class="data-num">—</div>
                     <div id="mini-chart2" class="mini-chart"></div>
                 </div>
                 <div class="data-card">
                     <div class="data-label"><i class="fa fa-trophy"></i> 科研成果总数</div>
-                    <div class="data-num">325</div>
+                    <div class="data-num">—</div>
                     <div id="mini-chart3" class="mini-chart"></div>
                 </div>
             </div>
@@ -558,27 +683,27 @@
             <div class="grid-6">
                 <div class="mini-card">
                     <div class="label">国家级项目</div>
-                    <div class="value">22</div>
+                    <div class="value">—</div>
                 </div>
                 <div class="mini-card">
                     <div class="label">省部级项目</div>
-                    <div class="value">31</div>
+                    <div class="value">—</div>
                 </div>
                 <div class="mini-card">
                     <div class="label">横向项目</div>
-                    <div class="value">15</div>
+                    <div class="value">—</div>
                 </div>
                 <div class="mini-card">
                     <div class="label">CSSCI论文</div>
-                    <div class="value">186</div>
+                    <div class="value">—</div>
                 </div>
                 <div class="mini-card">
                     <div class="label">专著/教材</div>
-                    <div class="value">42</div>
+                    <div class="value">—</div>
                 </div>
                 <div class="mini-card">
                     <div class="label">在研率</div>
-                    <div class="value">78%</div>
+                    <div class="value">—</div>
                 </div>
             </div>
 
@@ -597,14 +722,6 @@
                 <div class="card">
                     <div class="card-title"><i class="fa fa-pie-chart"></i> 子学科科研实力分析</div>
                     <div id="chart_bubble" class="chart" style="height: 380px;"></div>
-                    <div style="margin-top:20px;"></div>
-                    <div class="analysis-content">
-                        <h4>📊 学科表现解读</h4>
-                        <p><strong>公共管理系</strong>：成果数量与学术影响力双高，团队规模最大，建议加强跨学科合作。</p>
-                        <p><strong>政治学系</strong>：CSSCI论文产出突出，学术影响力仅次于公共管理系。</p>
-                        <p><strong>国际政治系</strong>：横向项目与成果数量偏低，可拓展智库合作渠道。</p>
-                        <p><strong>科学社会主义系</strong>：整体表现平稳，需进一步提升成果影响力与经费规模。</p>
-                    </div>
                 </div>
             </div>
 
@@ -897,6 +1014,14 @@
         document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
         document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
         setActiveMenu();
+
+        // 窗口尺寸变化时同步调整 ECharts，避免图表在窄屏或缩放后留白/溢出。
+        window.addEventListener('resize', function () {
+            document.querySelectorAll('.chart, .chart-wide, .mini-chart').forEach(function (el) {
+                const instance = echarts.getInstanceByDom(el);
+                if (instance) instance.resize();
+            });
+        });
 
         // 定义所有需要加载的数据接口
         const apiCalls = {

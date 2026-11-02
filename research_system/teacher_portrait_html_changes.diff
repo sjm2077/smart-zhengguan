@@ -1,0 +1,414 @@
+--- 智能分析教师版_original.html
++++ 智能分析教师版_patched.html
+@@ -94,6 +94,10 @@
+         .directory-action:hover { background: #2f86df; }
+         .card-title .inline-filter { margin-left: auto; height: 32px; max-width: 180px; padding: 0 10px; border: 1px solid #dcdfe6; border-radius: 6px; color: #555; font-size: 13px; background: #fff; }
+         .profile-status { margin-top: 14px; padding: 10px 12px; border-radius: 8px; background: #f5f9ff; color: #5b6b82; font-size: 13px; }
++        .profile-status.demo-status { background: #fff8e6; color: #8a5a00; border: 1px solid #f0d58a; }
++        .demo-badge { display: inline-flex; align-items: center; padding: 2px 7px; margin-left: 6px; border: 1px solid #f0d58a; border-radius: 10px; background: #fff3cd; color: #8a5a00; font-size: 11px; font-weight: 600; line-height: 1.5; vertical-align: middle; white-space: nowrap; }
++        .demo-badge[hidden], .demo-legend[hidden] { display: none !important; }
++        .demo-legend { margin-top: 8px; padding: 8px 10px; border: 1px solid #f0d58a; border-radius: 6px; background: #fff8e6; color: #8a5a00; font-size: 12px; }
+         .empty-chart { color: #909399; font-size: 14px; }
+         .project-table .high-risk { background: #fff0f0; color: #c45656; }
+         .project-table .medium-risk { background: #fff9eb; color: #b88230; }
+@@ -171,34 +175,35 @@
+                     <div class="impact-metric"><div class="num" id="hIndex">--</div><div class="label">H指数</div></div>
+                 </div>
+             </div>
+-            <div id="profileStatus" class="profile-status">请从上方教师目录选择一位教师，查看其真实科研数据。</div>
++            <div id="profileStatus" class="profile-status">请从上方教师目录选择一位教师，查看数据库记录；如包含演示数据，将单独标注。</div>
+             <hr style="margin:15px 0; border-color:#eee;">
+             <div class="grid-3">
+-                <div class="personal-metric" style="border-bottom:none; padding:5px 0;"><div class="metric-label">综合得分</div><div><span id="comprehensiveScore" class="metric-value">--</span><span class="metric-unit">/ 100</span></div></div>
++                <div class="personal-metric" style="border-bottom:none; padding:5px 0;"><div class="metric-label">综合得分<span id="scoreDemoBadge" class="demo-badge" hidden>演示数据</span></div><div><span id="comprehensiveScore" class="metric-value">--</span><span class="metric-unit">/ 100</span></div></div>
+                 <div class="personal-metric" style="border-bottom:none; padding:5px 0;"><div class="metric-label">在研项目</div><div><span id="ongoingProjects" class="metric-value">--</span><span class="metric-unit">项</span></div></div>
+                 <div class="personal-metric" style="border-bottom:none; padding:5px 0;"><div class="metric-label">经费总额</div><div><span id="fundTotal" class="metric-value">--</span><span class="metric-unit">万元</span></div></div>
+                 <div class="personal-metric" style="border-bottom:none; padding:5px 0;"><div class="metric-label">成果总数</div><div><span id="achievementsCount" class="metric-value">--</span><span class="metric-unit">篇/项</span></div></div>
+-                <div class="personal-metric" style="border-bottom:none; padding:5px 0;"><div class="metric-label">合作记录</div><div><span id="cooperationCount" class="metric-value">—</span><span class="metric-unit">条</span></div></div>
+-                <div class="personal-metric" style="border-bottom:none; padding:5px 0;"><div class="metric-label">近3年增长率</div><div><span id="growthRate" class="metric-value">--</span><span class="metric-unit">%</span></div></div>
++                <div class="personal-metric" style="border-bottom:none; padding:5px 0;"><div class="metric-label">合作记录<span id="cooperationDemoBadgeMetric" class="demo-badge" hidden>含演示数据</span></div><div><span id="cooperationCount" class="metric-value">—</span><span class="metric-unit">条</span></div></div>
++                <div class="personal-metric" style="border-bottom:none; padding:5px 0;"><div class="metric-label">近3年增长率<span id="growthDemoBadge" class="demo-badge" hidden>含演示评分</span></div><div><span id="growthRate" class="metric-value">--</span><span class="metric-unit">%</span></div></div>
+             </div>
+         </div>
+ 
+         <!-- 趋势 + 雷达 -->
+         <div class="grid-2">
+             <div class="card">
+-                <div class="card-title"><i class="fa fa-line-chart"></i> 历年综合得分趋势 <select id="personalTrendRange" class="inline-filter" aria-label="趋势时间范围"><option value="5year">近5个有数据年份</option><option value="3year">近3个有数据年份</option><option value="all">全部有数据年份</option></select></div>
++                <div class="card-title"><i class="fa fa-line-chart"></i> 历年综合得分趋势<span id="trendDemoBadge" class="demo-badge" hidden>含演示数据</span><select id="personalTrendRange" class="inline-filter" aria-label="趋势时间范围"><option value="5year">近5个有数据年份</option><option value="3year">近3个有数据年份</option><option value="all">全部有数据年份</option></select></div>
+                 <div id="scoreTrend" class="chart-half"></div>
+             </div>
+             <div class="card">
+-                <div class="card-title"><i class="fa fa-radar"></i> 年度绩效维度 <select id="personalAbilityYear" class="inline-filter" aria-label="选择年度"><option value="">暂无年份</option></select></div>
++                <div class="card-title"><i class="fa fa-radar"></i> 年度绩效维度<span id="abilityDemoBadge" class="demo-badge" hidden>演示数据</span><select id="personalAbilityYear" class="inline-filter" aria-label="选择年度"><option value="">暂无年份</option></select></div>
+                 <div id="abilityRadar" class="chart-half"></div>
+             </div>
+         </div>
+ 
+         <!-- 合作网络 -->
+         <div class="card">
+-            <div class="card-title"><i class="fa fa-users"></i> 科研合作网络</div>
++            <div class="card-title"><i class="fa fa-users"></i> 科研合作网络<span id="cooperationDemoBadge" class="demo-badge" hidden>含演示数据</span></div>
+             <div id="cooperationGraph" class="chart-full" style="height:380px;"></div>
++            <div id="cooperationDemoLegend" class="demo-legend" hidden>图例：蓝色实线为原有合作记录；黄色虚线为演示合作关系。演示关系仅用于系统展示，不代表真实合作事实。</div>
+         </div>
+ 
+         <!-- 项目 + 成果 -->
+@@ -245,6 +250,7 @@
+     let TEACHER_ID = new URLSearchParams(window.location.search).get('teacher_id') || '';
+     let currentRole = localStorage.getItem('userRole') || 'teacher';
+     let teacherDirectory = [];
++    let selectedTeacherInfo = null;
+     let scoreTrend, abilityRadar, projectPie, projectFundTrend, achievementPie, achievementTrend, cooperationGraph, personalFundUse;
+ 
+     function switchRole(role) {
+@@ -311,13 +317,45 @@
+             animation: false
+         }, true);
+     }
+-    function setProfileStatus(message, isError = false) {
++    function setProfileStatus(message, isError = false, isDemo = false) {
+         const el = document.getElementById('profileStatus');
+         el.textContent = message;
+-        el.style.background = isError ? '#fff1f0' : '#f5f9ff';
+-        el.style.color = isError ? '#c45656' : '#5b6b82';
+-    }
+-    function resetProfileView(message = '请从上方教师目录选择一位教师，查看其真实科研数据。') {
++        el.classList.toggle('demo-status', Boolean(isDemo) && !isError);
++        el.style.background = isError ? '#fff1f0' : (isDemo ? '#fff8e6' : '#f5f9ff');
++        el.style.color = isError ? '#c45656' : (isDemo ? '#8a5a00' : '#5b6b82');
++    }
++    function setBadgeVisible(id, visible) {
++        const el = document.getElementById(id);
++        if (el) el.hidden = !visible;
++    }
++    function setProfileStatusFromTeacherInfo(prefix) {
++        const info = selectedTeacherInfo;
++        if (!info) {
++            setProfileStatus(prefix || '请从上方教师目录选择一位教师，查看数据库记录。');
++            return;
++        }
++        const demoParts = [];
++        if (Number(info.demo_score_count || 0) > 0) {
++            demoParts.push(`年度绩效评分 ${Number(info.demo_score_count)} 条`);
++        }
++        if (Number(info.demo_cooperation_count || 0) > 0) {
++            demoParts.push(`合作关系 ${Number(info.demo_cooperation_count)} 条`);
++        }
++        const base = prefix || `已加载 ${info.real_name || '所选教师'} 的数据库记录。未记录的指标显示为“暂无数据”。`;
++        if (demoParts.length) {
++            setProfileStatus(
++                `${base} 注意：${demoParts.join('、')}为模拟演示数据，已在对应指标和图表中标注，不代表真实绩效考核或真实合作事实。`,
++                false,
++                true
++            );
++        } else {
++            setProfileStatus(`${base} 当前教师画像未发现演示评分或演示合作关系。`, false, false);
++        }
++    }
++    function resetProfileView(message = '请从上方教师目录选择一位教师，查看数据库记录；如包含演示数据，将单独标注。') {
++        selectedTeacherInfo = null;
++        ['scoreDemoBadge', 'cooperationDemoBadgeMetric', 'growthDemoBadge', 'trendDemoBadge', 'abilityDemoBadge', 'cooperationDemoBadge', 'cooperationDemoLegend']
++            .forEach(id => setBadgeVisible(id, false));
+         ['teacherName', 'teacherTitle', 'teacherDept'].forEach(id => {
+             document.getElementById(id).textContent = id === 'teacherName' ? '请选择教师' : '—';
+         });
+@@ -334,7 +372,7 @@
+         showEmptyChart(cooperationGraph);
+         showEmptyChart(personalFundUse);
+         document.getElementById('projectFundFilter').innerHTML = '<option value="all">全部项目</option>';
+-        setProfileStatus(message);
++        setProfileStatus(message, false, false);
+     }
+ 
+     // ==================== 教师目录 ====================
+@@ -397,6 +435,7 @@
+     // ==================== 数据加载 ====================
+     async function loadTeacherInfo() {
+         const data = await fetchJson(teacherApi('info'));
++        selectedTeacherInfo = data;
+         document.getElementById('teacherAvatar').textContent = (data.real_name || '—').trim().slice(0, 1) || '—';
+         document.getElementById('teacherName').textContent = data.real_name || '—';
+         document.getElementById('teacherTitle').textContent = data.title || '暂无数据';
+@@ -410,6 +449,9 @@
+         setMetric('totalCitation', data.total_citation);
+         setMetric('hIndex', data.h_index);
+         setMetric('growthRate', data.growth_rate, 1);
++        setBadgeVisible('scoreDemoBadge', Boolean(data.score_is_demo));
++        setBadgeVisible('cooperationDemoBadgeMetric', Number(data.demo_cooperation_count || 0) > 0);
++        setBadgeVisible('growthDemoBadge', Boolean(data.growth_rate_is_demo));
+         const yearSelect = document.getElementById('personalAbilityYear');
+         const years = (data.years || []).slice().sort((a, b) => b - a);
+         if (years.length) {
+@@ -418,33 +460,103 @@
+         } else {
+             yearSelect.innerHTML = '<option value="">暂无年份</option>';
+         }
+-        setProfileStatus(`已加载 ${data.real_name || '所选教师'} 的数据库记录；未记录的指标将显示为“暂无数据”。`);
++        setProfileStatusFromTeacherInfo();
+         return data;
+     }
+     async function loadScoreTrend() {
+         const range = document.getElementById('personalTrendRange').value || '5year';
+         const data = await fetchJson(teacherApi('trend', { type: range }));
++        const scoreIsDemo = data.score_is_demo || [];
++        const scoreDataSources = data.score_data_sources || [];
++        const hasDemoScores = scoreIsDemo.some(Boolean);
++        setBadgeVisible('trendDemoBadge', hasDemoScores);
++
+         if (!data.years || !data.years.length || !(data.scores || []).some(value => value !== null && value !== undefined)) {
+             showEmptyChart(scoreTrend, '暂无综合绩效趋势记录');
+-            return;
+-        }
++            setBadgeVisible('trendDemoBadge', false);
++            return;
++        }
++
++        const seriesData = data.scores.map((value, index) => {
++            const isDemo = Boolean(scoreIsDemo[index]) && value !== null && value !== undefined;
++            return {
++                value,
++                is_demo: isDemo,
++                data_source: scoreDataSources[index] || null,
++                itemStyle: { color: isDemo ? '#E6A23C' : '#409EFF' },
++                symbol: isDemo ? 'diamond' : 'circle',
++            };
++        });
++
+         scoreTrend.setOption({
+-            tooltip: { trigger: 'axis' },
++            tooltip: {
++                trigger: 'axis',
++                formatter: params => {
++                    const items = Array.isArray(params) ? params : [params];
++                    if (!items.length) return '';
++                    const header = items[0].axisValueLabel || items[0].axisValue || '';
++                    const lines = items.map(item => {
++                        const raw = item.data && typeof item.data === 'object' ? item.data : {};
++                        const value = raw.value !== undefined ? raw.value : item.value;
++                        const formatted = value === null || value === undefined ? '暂无数据' : `${Number(value).toFixed(2)} 分`;
++                        const label = raw.is_demo ? '演示数据' : (value === null || value === undefined ? '无评分记录' : '原有记录');
++                        return `${item.marker || ''}${item.seriesName}：${formatted}（${label}）`;
++                    });
++                    return [header, ...lines].join('<br/>');
++                }
++            },
+             grid: { left: 45, right: 20, top: 25, bottom: 35 },
+             xAxis: { type: 'category', data: data.years.map(String), boundaryGap: false },
+             yAxis: { type: 'value', min: 0, max: 100, name: '得分' },
+-            series: [{ type: 'line', name: '综合得分', data: data.scores, connectNulls: false, smooth: true, color: '#409EFF', lineStyle: { width: 3 }, symbolSize: 7 }]
++            series: [{
++                type: 'line',
++                name: '综合得分',
++                data: seriesData,
++                connectNulls: false,
++                smooth: true,
++                color: '#409EFF',
++                lineStyle: { width: 3 },
++                symbolSize: 7
++            }]
+         }, true);
+     }
+     async function loadAbilityRadar() {
+         const year = document.getElementById('personalAbilityYear').value;
+-        if (!year) { showEmptyChart(abilityRadar, '暂无绩效年份'); return; }
++        if (!year) {
++            setBadgeVisible('abilityDemoBadge', false);
++            showEmptyChart(abilityRadar, '暂无绩效年份');
++            return;
++        }
+         const data = await fetchJson(teacherApi('ability', { year }));
+-        if (!data.data || !data.data.length) { showEmptyChart(abilityRadar, `${year} 年暂无绩效评分`); return; }
++        if (!data.data || !data.data.length) {
++            setBadgeVisible('abilityDemoBadge', false);
++            showEmptyChart(abilityRadar, `${year} 年暂无绩效评分`);
++            return;
++        }
++
++        const isDemo = Boolean(data.is_demo);
++        setBadgeVisible('abilityDemoBadge', isDemo);
+         abilityRadar.setOption({
+-            tooltip: {},
+-            radar: { indicator: data.data.map(item => ({ name: item.name, max: 100 })), radius: '68%' },
+-            series: [{ type: 'radar', data: [{ value: data.data.map(item => item.value), name: `${year}年实际评分` }], areaStyle: { color: 'rgba(64,158,255,0.2)' }, lineStyle: { color: '#409EFF' } }]
++            title: isDemo
++                ? { text: `${year} 年绩效维度（演示数据）`, left: 'center', top: 4, textStyle: { color: '#B88230', fontSize: 13, fontWeight: 'normal' } }
++                : { text: '' },
++            tooltip: {
++                formatter: params => {
++                    const name = params.name || `${year}年绩效`;
++                    return `${escapeHtml(name)}${isDemo ? '（演示数据）' : '（原有记录）'}`;
++                }
++            },
++            radar: { indicator: data.data.map(item => ({ name: item.name, max: 100 })), radius: '62%', center: ['50%', '56%'] },
++            series: [{
++                type: 'radar',
++                data: [{
++                    value: data.data.map(item => item.value),
++                    name: `${year}年${isDemo ? '演示评分' : '实际评分'}`,
++                    itemStyle: { color: isDemo ? '#E6A23C' : '#409EFF' },
++                    lineStyle: { color: isDemo ? '#E6A23C' : '#409EFF' },
++                    areaStyle: { color: isDemo ? 'rgba(230,162,60,0.20)' : 'rgba(64,158,255,0.2)' }
++                }]
++            }]
+         }, true);
+     }
+     async function loadProjects() {
+@@ -510,13 +622,47 @@
+     }
+     async function loadCooperation() {
+         const data = await fetchJson(`/api/cooperation/network?teacher_id=${encodeURIComponent(TEACHER_ID)}`);
+-        if (!data.links || !data.links.length) { showEmptyChart(cooperationGraph, '暂无合作记录'); return; }
++        const links = data.links || [];
++        const hasDemoLinks = links.some(link => Boolean(link.is_demo));
++        setBadgeVisible('cooperationDemoBadge', hasDemoLinks);
++        setBadgeVisible('cooperationDemoLegend', hasDemoLinks);
++
++        if (!links.length) {
++            showEmptyChart(cooperationGraph, '暂无合作记录');
++            return;
++        }
++
++        const styledLinks = links.map(link => ({
++            ...link,
++            lineStyle: link.is_demo
++                ? { color: '#E6A23C', type: 'dashed', width: 2, opacity: 0.95 }
++                : { color: 'rgba(10,35,67,0.3)', type: 'solid', width: 1, opacity: 0.8 }
++        }));
++
+         cooperationGraph.setOption({
+-            tooltip: { trigger: 'item', formatter: params => params.dataType === 'edge' ? `${escapeHtml(params.data.source)} → ${escapeHtml(params.data.target)}<br>合作次数：${params.data.value || 1}` : escapeHtml(params.name) },
++            tooltip: {
++                trigger: 'item',
++                formatter: params => {
++                    if (params.dataType === 'edge') {
++                        const item = params.data || {};
++                        const source = escapeHtml(item.source || '');
++                        const target = escapeHtml(item.target || '');
++                        const count = Number(item.value || 1);
++                        const sourceLabel = item.is_demo ? '演示数据' : '原有记录';
++                        const project = item.project_name ? `<br>关联项目：${escapeHtml(item.project_name)}` : '';
++                        return `${source} → ${target}<br>合作次数：${count}<br>数据标记：${sourceLabel}${project}`;
++                    }
++                    return escapeHtml(params.name);
++                }
++            },
+             legend: [{ data: ['teacher', 'external'], bottom: 0, formatter: name => name === 'teacher' ? '教师' : '外部合作方' }],
+             series: [{
+-                type: 'graph', layout: 'force', force: { repulsion: 300, edgeLength: 100 }, roam: true,
+-                data: data.nodes, links: data.links,
++                type: 'graph',
++                layout: 'force',
++                force: { repulsion: 300, edgeLength: 100 },
++                roam: true,
++                data: data.nodes || [],
++                links: styledLinks,
+                 categories: [{ name: 'teacher' }, { name: 'external' }],
+                 label: { show: true, position: 'right' },
+                 lineStyle: { color: 'rgba(10,35,67,0.3)', curveness: 0.2 }
+@@ -555,7 +701,7 @@
+     }
+     async function loadSelectedTeacher() {
+         if (!TEACHER_ID) { resetProfileView(); return; }
+-        resetProfileView('正在加载所选教师的真实科研数据...');
++        resetProfileView('正在加载所选教师的数据库记录并识别演示数据...');
+         try {
+             await loadTeacherInfo();
+         } catch (error) {
+@@ -572,7 +718,9 @@
+         if (failures.length) {
+             setProfileStatus(`教师基本信息已加载，但有 ${failures.length} 个图表模块加载失败；可检查对应 API 请求。`, true);
+         } else {
+-            setProfileStatus(`已加载 ${document.getElementById('teacherName').textContent} 的数据库记录；图表仅展示实际存在的数据。`);
++            setProfileStatusFromTeacherInfo(
++                `已加载 ${document.getElementById('teacherName').textContent} 的数据库记录。图表不会补造缺失指标。`
++            );
+         }
+     }
+     async function generatePersonalReport() {
+@@ -590,40 +738,63 @@
+             const [info, trend, ability, achievements, warnings] = await Promise.all([
+                 fetchJson(teacherApi('info')),
+                 fetchJson(teacherApi('trend', { type: '5year' })),
+-                year ? fetchJson(teacherApi('ability', { year })) : Promise.resolve({ data: [] }),
++                year ? fetchJson(teacherApi('ability', { year })) : Promise.resolve({ data: [], is_demo: false }),
+                 year ? fetchJson(teacherApi('achievement-types', { year })) : Promise.resolve({ data: [] }),
+                 fetchJson(teacherApi('risk-warnings'))
+             ]);
+-            const scores = (trend.scores || []).map((value, index) => ({ year: trend.years[index], value }))
+-                .filter(item => item.value !== null && item.value !== undefined);
++
++            const scores = (trend.scores || []).map((value, index) => ({
++                year: trend.years[index],
++                value,
++                is_demo: Boolean((trend.score_is_demo || [])[index])
++            })).filter(item => item.value !== null && item.value !== undefined);
++
+             let scoreComparison = '绩效记录不足，无法计算年度变化。';
+             if (scores.length >= 2) {
+                 const first = scores[0];
+                 const last = scores[scores.length - 1];
+-                scoreComparison = `${first.year} 年：${first.value} 分；${last.year} 年：${last.value} 分；变化 ${Number(last.value - first.value).toFixed(2)} 分。`;
++                const firstLabel = first.is_demo ? '演示数据' : '原有记录';
++                const lastLabel = last.is_demo ? '演示数据' : '原有记录';
++                scoreComparison = `${first.year} 年：${first.value} 分（${firstLabel}）；${last.year} 年：${last.value} 分（${lastLabel}）；变化 ${Number(last.value - first.value).toFixed(2)} 分。`;
++            } else if (scores.length === 1) {
++                const only = scores[0];
++                scoreComparison = `${only.year} 年：${only.value} 分（${only.is_demo ? '演示数据' : '原有记录'}）；只有一个有评分年份，无法计算年度变化。`;
+             }
++
+             const achievementLines = (achievements.data || []).length
+-                ? achievements.data.map(item => `- ${item.name}：${item.value} 项`).join('\n')
++                ? achievements.data.map(item => `- ${item.name}：${item.value} 项（数据库已有成果记录）`).join('\n')
+                 : '暂无该年度成果记录。';
+             const abilityLines = (ability.data || []).length
+-                ? ability.data.map(item => `- ${item.name}：${item.value} 分`).join('\n')
++                ? ability.data.map(item => `- ${item.name}：${item.value} 分${ability.is_demo ? '（演示数据）' : '（原有记录）'}`).join('\n')
+                 : '暂无该年度绩效维度评分。';
++
++            const latestScoreLabel = info.comprehensive == null
++                ? '暂无数据'
++                : `${info.comprehensive} 分（${info.score_year} 年，${info.score_is_demo ? '演示数据' : '原有记录'}）`;
++            const growthLabel = info.growth_rate == null
++                ? '暂无足够记录计算'
++                : `${info.growth_rate}%${info.growth_rate_is_demo ? '（计算包含演示评分）' : ''}`;
++            const demoNotice = info.has_demo_data
++                ? '本报告包含模拟演示数据：演示年度评分或演示合作关系已逐项标注，不代表真实绩效考核或真实合作事实。'
++                : '本报告未发现该教师的演示评分或演示合作关系。';
++
+             const report = [
+                 '教师科研画像报告',
+                 `报告生成时间：${new Date().toLocaleDateString('zh-CN')}`,
+                 `教师姓名：${info.real_name || '—'}`,
+                 `职称：${info.title || '暂无数据'}`,
+                 `所属系别：${info.dept || '未分配'}`,
++                `数据来源说明：${demoNotice}`,
+                 '',
+                 '一、核心指标',
+-                `最新综合得分：${info.comprehensive == null ? '暂无数据' : `${info.comprehensive} 分（${info.score_year} 年）`}`,
+-                `在研项目：${info.ongoing_projects} 项`,
+-                `经费明细累计金额：${info.fund_total}（金额单位沿用系统经费数据口径）`,
+-                `科研成果总数：${info.achievements_count} 项`,
+-                `总被引次数：${info.total_citation == null ? '暂无数据' : info.total_citation}`, 
++                `最新综合得分：${latestScoreLabel}`,
++                `在研项目：${info.ongoing_projects} 项（数据库已有项目记录）`,
++                `经费明细累计金额：${info.fund_total}（数据库已有经费记录，金额单位沿用系统口径）`,
++                `科研成果总数：${info.achievements_count} 项（数据库已有成果记录）`,
++                `总被引次数：${info.total_citation == null ? '暂无数据' : info.total_citation}`,
+                 `H 指数：${info.h_index == null ? '暂无数据' : info.h_index}`,
+-                `合作记录：${info.cooperation_count} 条`,
+-                `近三年综合得分变化率：${info.growth_rate == null ? '暂无足够记录计算' : `${info.growth_rate}%`}`,
++                `合作记录：${info.cooperation_count} 条（原有记录 ${info.existing_cooperation_count || 0} 条；演示关系 ${info.demo_cooperation_count || 0} 条）`,
++                `近三年综合得分变化率：${growthLabel}`,
+                 '',
+                 '二、绩效趋势',
+                 scoreComparison,
+@@ -639,7 +810,7 @@
+                     ? warnings.warnings.map(item => `- ${item.project_name}：进度 ${item.progress}%，${item.risk_level}风险；建议：${item.suggestion}`).join('\n')
+                     : '暂无符合当前预警规则的项目。',
+                 '',
+-                '说明：本报告仅汇总系统中已有记录。未配置的字段、缺失的数据以及未建立评估模型的指标不会被推算或补造。'
++                '说明：未记录的字段和指标不会被推算为真实值；演示评分和演示合作关系仅用于系统功能展示，不可作为真实考核、科研评价或合作事实的依据。'
+             ].join('\n');
+             contentDiv.textContent = report;
+         } catch (error) {

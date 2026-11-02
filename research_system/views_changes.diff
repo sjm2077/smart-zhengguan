@@ -1,0 +1,360 @@
+--- views_original.py
++++ views_patched.py
+@@ -59,7 +59,10 @@
+     )
+ 
+     # 教师绩效年份
+-    score_years = TeacherScore.objects.values_list(
++    # 全局年份筛选仅使用原有非演示绩效，避免模拟年份影响其他业务页面。
++    score_years = TeacherScore.objects.filter(
++        is_demo=False
++    ).values_list(
+         'year',
+         flat=True
+     ).distinct()
+@@ -289,7 +292,11 @@
+ 
+ # ---------- 6. 合作网络图 ----------
+ def cooperation_network(request):
+-    """科研合作网络。传入 teacher_id 时仅返回该教师负责项目中的合作记录。"""
++    """
++    科研合作网络。
++    - 传入 teacher_id：教师画像展示该教师负责项目的原有与演示合作关系，并逐条返回数据标记。
++    - 不传 teacher_id：兼容全院网络页面，但默认排除演示关系，避免在未标注页面中混入模拟数据。
++    """
+     raw_teacher_id = request.GET.get('teacher_id', '').strip()
+ 
+     if raw_teacher_id:
+@@ -312,11 +319,14 @@
+             project__leader=teacher
+         ).select_related('project').order_by('id')
+ 
++        demo_count = cooperations.filter(is_demo=True).count()
++        existing_count = cooperations.filter(is_demo=False).count()
+         teacher_names = set(
+             User.objects.filter(role='teacher').values_list('real_name', flat=True)
+         )
+         names = set()
+         links = []
++
+         for item in cooperations:
+             source = (item.source or '').strip()
+             target = (item.target or '').strip()
+@@ -330,10 +340,10 @@
+                     'target': target,
+                     'value': item.coop_count or 1,
+                     'project_name': item.project.project_name,
++                    'is_demo': bool(item.is_demo),
++                    'data_source': item.data_source or 'unknown',
++                    'source_label': '演示数据' if item.is_demo else '原有记录',
+                 })
+-
+-        if not names and not links:
+-            return JsonResponse({'nodes': [], 'links': [], 'total': 0})
+ 
+         nodes = [
+             {
+@@ -349,12 +359,20 @@
+             'nodes': nodes,
+             'links': links,
+             'total': len(links),
++            'summary': {
++                'existing_records': existing_count,
++                'demo_records': demo_count,
++            },
++            'has_demo_data': demo_count > 0,
+         })
+ 
+-    # 未传教师 ID 时保留全院合作网络，兼容其他页面的调用方式。
++    # 全院网络兼容模式：不展示模拟关系，防止其他页面无标识地使用演示数据。
+     teachers = User.objects.filter(role='teacher')
+     teacher_names = set(teachers.values_list('real_name', flat=True))
+-    cooperations = Cooperation.objects.select_related('project').order_by('id')
++    cooperations = Cooperation.objects.filter(
++        is_demo=False
++    ).select_related('project').order_by('id')
++    excluded_demo_count = Cooperation.objects.filter(is_demo=True).count()
+     names = set(teacher_names)
+     links = []
+ 
+@@ -370,6 +388,9 @@
+                 'source': source,
+                 'target': target,
+                 'value': item.coop_count or 1,
++                'is_demo': False,
++                'data_source': item.data_source or 'existing',
++                'source_label': '原有记录',
+             })
+ 
+     nodes = [
+@@ -382,7 +403,16 @@
+         }
+         for name in sorted(names)
+     ]
+-    return JsonResponse({'nodes': nodes, 'links': links, 'total': len(links)})
++    return JsonResponse({
++        'nodes': nodes,
++        'links': links,
++        'total': len(links),
++        'summary': {
++            'existing_records': len(links),
++            'demo_records_excluded': excluded_demo_count,
++        },
++        'has_demo_data': False,
++    })
+ 
+ def sankey(request):
+     year = int(request.GET.get('year', 2025))
+@@ -665,9 +695,10 @@
+         .order_by('year')
+     )
+ 
++    # 项目详情默认只展示原有合作记录；教师画像接口会单独展示并标注演示合作关系。
+     cooperation_queryset = (
+         Cooperation.objects
+-        .filter(project_id=project.id)
++        .filter(project_id=project.id, is_demo=False)
+         .order_by('id')
+     )
+ 
+@@ -1740,17 +1771,24 @@
+ 
+ 
+ def teacher_info(request):
+-    """返回选定教师的真实基本信息和核心指标，不生成演示值。"""
++    """返回教师基本信息和核心指标；如含演示绩效/合作记录，明确返回来源标记。"""
+     teacher, error_response = _teacher_from_request(request)
+     if error_response is not None:
+         return error_response
+ 
++    score_rows = list(
++        TeacherScore.objects.filter(teacher=teacher).order_by('year', 'id')
++    )
+     score_by_year = {}
+-    for score in TeacherScore.objects.filter(teacher=teacher).order_by('year', 'id'):
++    for score in score_rows:
+         score_by_year[score.year] = score
+ 
+     latest_score_year = max(score_by_year) if score_by_year else None
+     latest_score = score_by_year.get(latest_score_year) if latest_score_year is not None else None
++
++    demo_scores = [score for score in score_rows if score.is_demo]
++    existing_scores = [score for score in score_rows if not score.is_demo]
++    demo_score_years = sorted({score.year for score in demo_scores})
+ 
+     projects = Project.objects.filter(leader=teacher)
+     ongoing_projects = projects.filter(status='在研').count()
+@@ -1777,8 +1815,8 @@
+         h_index = None
+ 
+     growth_rate = None
++    growth_rate_is_demo = False
+     if score_by_year:
+-        latest_score_year = max(score_by_year)
+         recent_scores = [
+             score_by_year[year]
+             for year in sorted(score_by_year)
+@@ -1789,8 +1827,13 @@
+             last_score = float(recent_scores[-1].comprehensive_score)
+             if first_score != 0 and recent_scores[-1].year > recent_scores[0].year:
+                 growth_rate = round((last_score - first_score) / first_score * 100, 1)
++                growth_rate_is_demo = any(score.is_demo for score in recent_scores)
+ 
+     years = _teacher_data_years(teacher)
++    cooperation_queryset = Cooperation.objects.filter(project__leader=teacher)
++    demo_cooperation_count = cooperation_queryset.filter(is_demo=True).count()
++    existing_cooperation_count = cooperation_queryset.filter(is_demo=False).count()
++
+     return JsonResponse({
+         'id': teacher.id,
+         'real_name': teacher.real_name,
+@@ -1803,21 +1846,32 @@
+             if latest_score is not None else None
+         ),
+         'score_year': latest_score_year,
++        'score_is_demo': bool(latest_score.is_demo) if latest_score is not None else False,
++        'score_data_source': latest_score.data_source if latest_score is not None else None,
+         'ongoing_projects': ongoing_projects,
+         'fund_total': round(float(fund_total), 2),
+         'achievements_count': achievement_count,
+         'total_citation': total_citation,
+         'h_index': h_index,
+-        'cooperation_count': Cooperation.objects.filter(project__leader=teacher).count(),
++        'cooperation_count': existing_cooperation_count + demo_cooperation_count,
++        'existing_cooperation_count': existing_cooperation_count,
++        'demo_cooperation_count': demo_cooperation_count,
++        'score_count': len(score_rows),
++        'existing_score_count': len(existing_scores),
++        'demo_score_count': len(demo_scores),
++        'demo_score_years': demo_score_years,
++        'has_demo_score_data': bool(demo_scores),
++        'has_demo_cooperation_data': demo_cooperation_count > 0,
++        'has_demo_data': bool(demo_scores) or demo_cooperation_count > 0,
+         'growth_rate': growth_rate,
++        'growth_rate_is_demo': growth_rate_is_demo,
+         'years': years,
+         'score_years': sorted(score_by_year),
+         'latest_year': years[-1] if years else None,
+     })
+ 
+-
+ def teacher_trend(request):
+-    """返回教师实际年度绩效、项目数和成果数；没有记录的绩效点保留为空值。"""
++    """返回教师实际年度绩效、项目数和成果数；逐年附带绩效记录来源标记。"""
+     teacher, error_response = _teacher_from_request(request)
+     if error_response is not None:
+         return error_response
+@@ -1836,16 +1890,22 @@
+         years = years[-limit:]
+ 
+     scores = []
++    score_is_demo = []
++    score_data_sources = []
+     project_counts = []
+     achievement_counts = []
++
+     for year in years:
+         score = TeacherScore.objects.filter(
+             teacher=teacher,
+             year=year
+         ).order_by('-id').first()
++
+         scores.append(
+             round(float(score.comprehensive_score), 2) if score is not None else None
+         )
++        score_is_demo.append(bool(score.is_demo) if score is not None else False)
++        score_data_sources.append(score.data_source if score is not None else None)
+         project_counts.append(
+             Project.objects.filter(leader=teacher, start_date__year=year).count()
+         )
+@@ -1856,13 +1916,15 @@
+     return JsonResponse({
+         'years': years,
+         'scores': scores,
++        'score_is_demo': score_is_demo,
++        'score_data_sources': score_data_sources,
+         'projects': project_counts,
+         'achievements': achievement_counts,
++        'has_demo_scores': any(score_is_demo),
+     })
+ 
+-
+ def teacher_ability(request):
+-    """返回绩效表中真实记录的科研、教学、服务评分，不推算额外维度。"""
++    """返回绩效表中真实记录的科研、教学、服务评分，并标明是否为演示数据。"""
+     teacher, error_response = _teacher_from_request(request)
+     if error_response is not None:
+         return error_response
+@@ -1879,22 +1941,37 @@
+         ).order_by('-year').values_list('year', flat=True).first()
+ 
+     if year is None:
+-        return JsonResponse({'year': None, 'data': []})
++        return JsonResponse({
++            'year': None,
++            'data': [],
++            'is_demo': False,
++            'data_source': None,
++        })
+ 
+     score = TeacherScore.objects.filter(
+         teacher=teacher,
+         year=year
+     ).order_by('-id').first()
+     if score is None:
+-        return JsonResponse({'year': year, 'data': []})
++        return JsonResponse({
++            'year': year,
++            'data': [],
++            'is_demo': False,
++            'data_source': None,
++        })
+ 
+     data = [
+         {'name': '科研得分', 'value': round(float(score.research_score), 2)},
+         {'name': '教学得分', 'value': round(float(score.teaching_score), 2)},
+         {'name': '服务得分', 'value': round(float(score.service_score), 2)},
+     ]
+-    return JsonResponse({'year': year, 'data': data})
+-
++    return JsonResponse({
++        'year': year,
++        'data': data,
++        'is_demo': bool(score.is_demo),
++        'data_source': score.data_source,
++        'source_label': '演示数据' if score.is_demo else '原有记录',
++    })
+ 
+ def teacher_projects_progress(request):
+     """返回该教师全部项目的实际状态、进度和时间信息。"""
+@@ -2046,7 +2123,9 @@
+         years = [2021, 2022, 2023, 2024, 2025]
+         result = []
+         for t in teachers:
+-            scores = TeacherScore.objects.filter(teacher=t, year__in=years)
++            scores = TeacherScore.objects.filter(
++                teacher=t, year__in=years, is_demo=False
++            )
+             if not scores.exists():
+                 continue
+             avg_research = scores.aggregate(avg=Avg('research_score'))['avg'] or 0
+@@ -2059,7 +2138,9 @@
+         return JsonResponse({'data': result})
+     else:
+         year = int(year)
+-        scores = TeacherScore.objects.filter(year=year).select_related('teacher')
++        scores = TeacherScore.objects.filter(
++            year=year, is_demo=False
++        ).select_related('teacher')
+         data = []
+         for s in scores:
+             data.append({
+@@ -2072,7 +2153,9 @@
+ def admin_rank(request):
+     """全院教师教学/科研/服务得分排行（取前12名）"""
+     year = int(request.GET.get('year', '2024'))
+-    scores = TeacherScore.objects.filter(year=year).select_related('teacher').order_by('-comprehensive_score')[:12]
++    scores = TeacherScore.objects.filter(
++        year=year, is_demo=False
++    ).select_related('teacher').order_by('-comprehensive_score')[:12]
+     names = [s.teacher.real_name[0] for s in scores]  # 取姓氏（或全名，视情况）
+     teach = [float(s.teaching_score) for s in scores]
+     research = [float(s.research_score) for s in scores]
+@@ -2084,7 +2167,9 @@
+ def admin_trend(request):
+     months = [f"{i}月" for i in range(1, 13)]
+     current_year = 2025
+-    avg_score = TeacherScore.objects.filter(year=current_year).aggregate(avg=Avg('comprehensive_score'))['avg']
++    avg_score = TeacherScore.objects.filter(
++        year=current_year, is_demo=False
++    ).aggregate(avg=Avg('comprehensive_score'))['avg']
+     if avg_score is None:
+         avg_score = 75.0
+     else:
+@@ -2111,7 +2196,9 @@
+     year = int(request.GET.get('year', '2024'))
+     titles = ['教授', '副教授', '讲师', '助教']
+     # 取综合得分前10名教师
+-    top_scores = TeacherScore.objects.filter(year=year).order_by('-comprehensive_score')[:10]
++    top_scores = TeacherScore.objects.filter(
++        year=year, is_demo=False
++    ).order_by('-comprehensive_score')[:10]
+     data = []
+     y_axis_labels = []
+     for idx, ts in enumerate(top_scores):
+@@ -2265,8 +2352,13 @@
+     ]
+ 
+     # ========== 教师绩效气泡图 ==========
+-    latest_year = TeacherScore.objects.filter(teacher__dept=dept).aggregate(max_year=Max('year'))['max_year'] or 2025
+-    teacher_scores = TeacherScore.objects.filter(teacher__dept=dept, year=latest_year).select_related('teacher')
++    # 学科分析默认只使用原有绩效，教师画像演示数据不进入未标注的院系统计。
++    latest_year = TeacherScore.objects.filter(
++        teacher__dept=dept, is_demo=False
++    ).aggregate(max_year=Max('year'))['max_year'] or 2025
++    teacher_scores = TeacherScore.objects.filter(
++        teacher__dept=dept, year=latest_year, is_demo=False
++    ).select_related('teacher')
+     bubble_data = []
+     if teacher_scores.exists():
+         for ts in teacher_scores:

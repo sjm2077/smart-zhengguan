@@ -1,0 +1,102 @@
+{
+  "report_title": "教师画像模拟数据写入前独立只读预检 V2",
+  "status": "PASS",
+  "database_write": false,
+  "data_source": "TEACHER_PORTRAIT_DEMO_V1",
+  "input_sha256": {
+    "plan_json": "68665ed9d5a093e6179d16566b4a552a44a2d7dd8b9c18ac85e7adc281e0f26c",
+    "score_csv": "519044ff8f6532d77ba5eb162bfb6dee5c1e654d89f41e133b9a51ce84b59bc8",
+    "cooperation_csv": "330efb1d070c116d839cc3c74e8b8d2d4c36ac2045afa00399b5ac724eb8ae83",
+    "unresolved_csv": "9ac0f93f5ab3ee629116097f1611a828afece50adb1047e222ba1d566a583198"
+  },
+  "backup": {
+    "created_at": "2026-10-25T15:25:20+08:00",
+    "source_database": "D:\\research_system\\db.sqlite3",
+    "backup_path": "D:\\research_system\\backups\\teacher_portrait_demo_repair\\teacher_portrait_demo_prewrite_20261025_152520_849264.sqlite3",
+    "backup_sha256": "2b0d5bfa450d7f5e96db86c4c50d027c6d918e120511c511b1288b7bb812b1cd",
+    "integrity_check": "ok",
+    "source_table_row_counts": {
+      "api_achievement": 1016,
+      "api_cooperation": 28,
+      "api_dept": 4,
+      "api_deptresource": 20,
+      "api_fundbudget": 696,
+      "api_funddetail": 1475,
+      "api_project": 377,
+      "api_riskwarning": 17,
+      "api_teacherscore": 85,
+      "api_user": 105,
+      "auth_group": 0,
+      "auth_group_permissions": 0,
+      "auth_permission": 64,
+      "auth_user": 1,
+      "auth_user_groups": 0,
+      "auth_user_user_permissions": 0,
+      "django_admin_log": 0,
+      "django_content_type": 16,
+      "django_migrations": 24,
+      "django_session": 2
+    },
+    "backup_table_row_counts": {
+      "api_achievement": 1016,
+      "api_cooperation": 28,
+      "api_dept": 4,
+      "api_deptresource": 20,
+      "api_fundbudget": 696,
+      "api_funddetail": 1475,
+      "api_project": 377,
+      "api_riskwarning": 17,
+      "api_teacherscore": 85,
+      "api_user": 105,
+      "auth_group": 0,
+      "auth_group_permissions": 0,
+      "auth_permission": 64,
+      "auth_user": 1,
+      "auth_user_groups": 0,
+      "auth_user_user_permissions": 0,
+      "django_admin_log": 0,
+      "django_content_type": 16,
+      "django_migrations": 24,
+      "django_session": 2
+    },
+    "table_row_counts_match": true,
+    "database_modified": false,
+    "note": "通过 SQLite backup API 复制；未对源数据库执行 INSERT/UPDATE/DELETE。"
+  },
+  "state_fingerprint": "75da40578c46d65b6ddf1bd3e5524e4a9da1bae8770177910ff2bebc1691864e",
+  "protected_state_fingerprint": "75da40578c46d65b6ddf1bd3e5524e4a9da1bae8770177910ff2bebc1691864e",
+  "checks": {
+    "baseline_counts": {
+      "teachers_total": 104,
+      "projects_total": 377,
+      "teacher_score_records_total": 85,
+      "cooperation_records_total": 28,
+      "teacher_score_demo_records": 0,
+      "cooperation_demo_records": 0
+    },
+    "expected_baseline_counts": {
+      "teachers_total": 104,
+      "projects_total": 377,
+      "teacher_score_records_total": 85,
+      "cooperation_records_total": 28,
+      "teacher_score_demo_records": 0,
+      "cooperation_demo_records": 0
+    },
+    "target_score_years": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "score_candidates": 435,
+    "cooperation_candidates": 44,
+    "unresolved_cooperation_rows": 0,
+    "duplicate_existing_teacher_year_keys": [],
+    "duplicate_candidate_score_keys": [],
+    "duplicate_candidate_cooperation_pairs": [],
+    "protected_state_fingerprint": "75da40578c46d65b6ddf1bd3e5524e4a9da1bae8770177910ff2bebc1691864e"
+  },
+  "errors": [],
+  "note": "本脚本不写入业务数据库；仅在全部预检通过后生成独立 SQLite 备份文件。"
+}

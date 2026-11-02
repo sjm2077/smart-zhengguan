@@ -1,0 +1,1681 @@
+{
+  "audit_type": "read_only",
+  "note": "本报告只反映当前数据库记录，不验证记录内容是否真实。",
+  "tables": {
+    "departments": 4,
+    "users_all_roles": 105,
+    "projects": 377,
+    "fund_details": 1475,
+    "fund_budgets": 696,
+    "achievements": 1016,
+    "teacher_scores": 85,
+    "cooperations": 28,
+    "department_resources": 20,
+    "risk_warnings": 17,
+    "teachers": 104,
+    "admins": 1
+  },
+  "coverage": {
+    "teachers_total": 104,
+    "teachers_with_projects": 99,
+    "teachers_without_projects": 5,
+    "teachers_with_achievements": 104,
+    "teachers_without_achievements": 0,
+    "teachers_with_any_performance_score": 17,
+    "teachers_without_performance_score": 87,
+    "teachers_mentioned_in_cooperation_records": 16,
+    "teachers_not_mentioned_in_cooperation_records": 88,
+    "projects_with_fund_details": 253,
+    "projects_without_fund_details": 124,
+    "projects_with_risk_warning": 17,
+    "projects_without_risk_warning": 360
+  },
+  "quality_checks": {
+    "teachers_missing_title": {
+      "count": 0,
+      "sample": []
+    },
+    "teachers_missing_department": {
+      "count": 0,
+      "sample": []
+    },
+    "projects_missing_name_or_number": {
+      "count": 0,
+      "sample": []
+    },
+    "projects_invalid_progress_outside_0_100": {
+      "count": 0,
+      "sample": []
+    },
+    "projects_start_after_end": {
+      "count": 0,
+      "sample": []
+    },
+    "fund_details_nonpositive_amount": {
+      "count": 0,
+      "sample": []
+    },
+    "fund_budgets_nonpositive_amount": {
+      "count": 0,
+      "sample": []
+    },
+    "achievements_missing_title": {
+      "count": 0,
+      "sample": []
+    },
+    "achievements_negative_citation_count": {
+      "count": 0,
+      "sample": []
+    },
+    "teacher_scores_outside_0_100": {
+      "count": 0,
+      "sample": []
+    },
+    "teacher_score_duplicate_teacher_year": {
+      "count": 0,
+      "sample": []
+    },
+    "cooperation_nonpositive_count": {
+      "count": 0,
+      "sample": []
+    },
+    "cooperation_self_links": {
+      "count": 0,
+      "sample": []
+    },
+    "department_resource_negative_amount": {
+      "count": 0,
+      "sample": []
+    },
+    "department_resource_duplicate_dept_year": {
+      "count": 0,
+      "sample": []
+    },
+    "risk_warnings_with_project_end_date_before_warning_date": {
+      "count": 9,
+      "sample": [
+        {
+          "id": 38,
+          "project__project_no": "XM202217417",
+          "project__project_name": "科学社会主义系2022年度研究分析",
+          "warning_date": "2025-02-23",
+          "risk_level": "中",
+          "is_resolved": false
+        },
+        {
+          "id": 39,
+          "project__project_no": "XM202317651",
+          "project__project_name": "科学社会主义系2023年度分析评估",
+          "warning_date": "2025-03-10",
+          "risk_level": "高",
+          "is_resolved": false
+        },
+        {
+          "id": 40,
+          "project__project_no": "XM202417175",
+          "project__project_name": "科学社会主义系2024年度评估分析",
+          "warning_date": "2025-02-27",
+          "risk_level": "中",
+          "is_resolved": false
+        },
+        {
+          "id": 42,
+          "project__project_no": "XM202118460",
+          "project__project_name": "政治学系2021年度评估路径",
+          "warning_date": "2025-04-27",
+          "risk_level": "中",
+          "is_resolved": false
+        },
+        {
+          "id": 43,
+          "project__project_no": "XM202118886",
+          "project__project_name": "政治学系2021年度路径评估",
+          "warning_date": "2025-02-01",
+          "risk_level": "高",
+          "is_resolved": false
+        },
+        {
+          "id": 44,
+          "project__project_no": "XM202118232",
+          "project__project_name": "政治学系2021年度研究评估",
+          "warning_date": "2025-02-21",
+          "risk_level": "高",
+          "is_resolved": false
+        },
+        {
+          "id": 47,
+          "project__project_no": "XM202219900",
+          "project__project_name": "国际政治系2022年度路径评估",
+          "warning_date": "2025-06-05",
+          "risk_level": "高",
+          "is_resolved": false
+        },
+        {
+          "id": 49,
+          "project__project_no": "XM202120509",
+          "project__project_name": "公共管理系2021年度分析评估",
+          "warning_date": "2025-03-22",
+          "risk_level": "高",
+          "is_resolved": false
+        },
+        {
+          "id": 50,
+          "project__project_no": "XM202220967",
+          "project__project_name": "公共管理系2022年度分析机制",
+          "warning_date": "2025-04-23",
+          "risk_level": "高",
+          "is_resolved": false
+        }
+      ]
+    },
+    "risk_warnings_duplicate_project_level_date": {
+      "count": 0,
+      "sample": []
+    }
+  },
+  "distributions": {
+    "teachers_by_department": {
+      "公共管理系": 44,
+      "国际政治系": 20,
+      "政治学系": 19,
+      "科学社会主义系": 21
+    },
+    "teachers_by_title": {
+      "副教授": 3,
+      "教授": 92,
+      "讲师": 9
+    },
+    "projects_by_start_year": {
+      "2019": 8,
+      "2020": 9,
+      "2021": 68,
+      "2022": 94,
+      "2023": 98,
+      "2024": 88,
+      "2025": 12
+    },
+    "projects_by_status": {
+      "在研": 101,
+      "审核中": 95,
+      "立项": 102,
+      "结题": 79
+    },
+    "projects_by_type": {
+      "国家级": 87,
+      "校级": 91,
+      "横向": 92,
+      "省部级": 107
+    },
+    "projects_by_department": {
+      "公共管理系": 148,
+      "国际政治系": 84,
+      "政治学系": 82,
+      "科学社会主义系": 63
+    },
+    "fund_details_by_year": {
+      "2021": 291,
+      "2022": 285,
+      "2023": 307,
+      "2024": 294,
+      "2025": 298
+    },
+    "fund_details_by_usage": {
+      "业务费": 45,
+      "人员费": 209,
+      "会议费": 270,
+      "其他": 243,
+      "出版费": 228,
+      "劳务费": 40,
+      "设备费": 244,
+      "调研费": 196
+    },
+    "fund_details_by_source": {
+      "国家社科": 313,
+      "政府委托": 306,
+      "教育部": 290,
+      "横向课题": 278,
+      "省级项目": 288
+    },
+    "fund_budgets_by_year": {
+      "2021": 144,
+      "2022": 135,
+      "2023": 145,
+      "2024": 131,
+      "2025": 141
+    },
+    "fund_budgets_by_demo_flag": {
+      "True": 696
+    },
+    "achievements_by_year": {
+      "2021": 223,
+      "2022": 216,
+      "2023": 198,
+      "2024": 188,
+      "2025": 191
+    },
+    "achievements_by_type": {
+      "CSSCI期刊": 4,
+      "专利": 153,
+      "专著": 2,
+      "决策咨询": 179,
+      "学术著作": 179,
+      "期刊论文": 170,
+      "核心期刊": 3,
+      "研究报告": 156,
+      "获奖": 170
+    },
+    "achievements_by_level": {
+      "未填写": 655,
+      "CSSCI": 76,
+      "SSCI": 69,
+      "国家级": 4,
+      "国家级出版社": 67,
+      "核心期刊": 80,
+      "省级采纳": 57,
+      "省部级": 8
+    },
+    "achievements_by_subject": {
+      "未填写": 798,
+      "公共政策": 43,
+      "国际关系": 45,
+      "政治学理论": 46,
+      "社会保障": 41,
+      "行政管理": 43
+    },
+    "teacher_scores_by_year": {
+      "2021": 17,
+      "2022": 17,
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "cooperations_by_project": {
+      "公共管理系2021年度研究分析": 2,
+      "公共管理系2022年度路径评估": 1,
+      "公共管理系2023年度分析机制": 1,
+      "公共管理系2023年度机制研究": 2,
+      "公共管理系2024年度评估分析": 1,
+      "国际政治系2022年度评估分析": 1,
+      "国际政治系2024年度机制评估": 1,
+      "国际政治系2024年度机制路径": 1,
+      "国际政治系2024年度路径评估": 2,
+      "国际政治系2025年度机制分析": 1,
+      "政治学系2021年度机制评估": 1,
+      "政治学系2021年度评估路径": 2,
+      "政治学系2022年度研究机制": 1,
+      "政治学系2023年度评估路径": 1,
+      "政治学系2023年度路径分析": 2,
+      "政治学系2024年度分析研究": 1,
+      "科学社会主义系2021年度分析机制": 2,
+      "科学社会主义系2023年度机制评估": 1,
+      "科学社会主义系2024年度评估分析": 1,
+      "科学社会主义系2025年度分析机制": 3
+    },
+    "department_resources_by_year": {
+      "2021": 4,
+      "2022": 4,
+      "2023": 4,
+      "2024": 4,
+      "2025": 4
+    },
+    "risk_warnings_by_level": {
+      "中": 6,
+      "高": 11
+    },
+    "risk_warnings_by_resolved": {
+      "False": 17
+    }
+  },
+  "teacher_coverage_detail": [
+    {
+      "teacher_id": 166,
+      "teacher_name": "Yunsoo Lee",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 4,
+      "fund_detail_count": 16,
+      "fund_total": 675.47,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 155,
+      "teacher_name": "俞少宾",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 10,
+      "fund_detail_count": 20,
+      "fund_total": 676.12,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 160,
+      "teacher_name": "冷安丽",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 0,
+      "achievement_count": 8,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 157,
+      "teacher_name": "刘华兴",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 4,
+      "fund_detail_count": 9,
+      "fund_total": 406.09,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 156,
+      "teacher_name": "刘浩",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 14,
+      "fund_detail_count": 36,
+      "fund_total": 1410.67,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 83,
+      "teacher_name": "卫老师",
+      "department": "公共管理系",
+      "title": "讲师",
+      "project_count": 3,
+      "achievement_count": 11,
+      "fund_detail_count": 12,
+      "fund_total": 584.09,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 3
+    },
+    {
+      "teacher_id": 77,
+      "teacher_name": "吴教授",
+      "department": "公共管理系",
+      "title": "副教授",
+      "project_count": 6,
+      "achievement_count": 14,
+      "fund_detail_count": 25,
+      "fund_total": 828.95,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 7
+    },
+    {
+      "teacher_id": 143,
+      "teacher_name": "孙宗锋",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 13,
+      "fund_detail_count": 13,
+      "fund_total": 665.87,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 150,
+      "teacher_name": "季丽新",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 9,
+      "fund_detail_count": 20,
+      "fund_total": 887.46,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 147,
+      "teacher_name": "张乐",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 8,
+      "fund_detail_count": 30,
+      "fund_total": 1209.31,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 164,
+      "teacher_name": "张健彬",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 5,
+      "fund_detail_count": 20,
+      "fund_total": 772.31,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 148,
+      "teacher_name": "张天舒",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 0,
+      "achievement_count": 11,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 135,
+      "teacher_name": "曹现强",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 11,
+      "fund_detail_count": 3,
+      "fund_total": 162.14,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 173,
+      "teacher_name": "朱林旭",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 8,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 151,
+      "teacher_name": "李广",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 6,
+      "fund_detail_count": 13,
+      "fund_total": 536.68,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 138,
+      "teacher_name": "李延伟",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 8,
+      "fund_detail_count": 35,
+      "fund_total": 1362.41,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 170,
+      "teacher_name": "李梦丹",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 7,
+      "achievement_count": 11,
+      "fund_detail_count": 16,
+      "fund_total": 515.03,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 167,
+      "teacher_name": "李欢欢",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 0,
+      "achievement_count": 5,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 137,
+      "teacher_name": "李辉",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 1,
+      "achievement_count": 11,
+      "fund_detail_count": 12,
+      "fund_total": 514.0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 153,
+      "teacher_name": "杨志",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 1,
+      "achievement_count": 9,
+      "fund_detail_count": 7,
+      "fund_total": 371.57,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 141,
+      "teacher_name": "楼苏萍",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 12,
+      "fund_detail_count": 18,
+      "fund_total": 851.2,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 85,
+      "teacher_name": "沈老师",
+      "department": "公共管理系",
+      "title": "讲师",
+      "project_count": 4,
+      "achievement_count": 15,
+      "fund_detail_count": 17,
+      "fund_total": 611.14,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 1
+    },
+    {
+      "teacher_id": 144,
+      "teacher_name": "滕玉成",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 8,
+      "fund_detail_count": 13,
+      "fund_total": 417.28,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 145,
+      "teacher_name": "王佃利",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 6,
+      "achievement_count": 7,
+      "fund_detail_count": 26,
+      "fund_total": 1195.43,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 154,
+      "teacher_name": "王元亮",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 6,
+      "achievement_count": 6,
+      "fund_detail_count": 28,
+      "fund_total": 1039.45,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 159,
+      "teacher_name": "程龙",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 10,
+      "fund_detail_count": 20,
+      "fund_total": 865.25,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 172,
+      "teacher_name": "罗聪",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 1,
+      "achievement_count": 5,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 169,
+      "teacher_name": "褚雷",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 11,
+      "fund_detail_count": 3,
+      "fund_total": 119.28,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 158,
+      "teacher_name": "费立国",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 1,
+      "achievement_count": 6,
+      "fund_detail_count": 3,
+      "fund_total": 56.25,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 171,
+      "teacher_name": "赵志华",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 13,
+      "fund_detail_count": 26,
+      "fund_total": 1146.09,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 146,
+      "teacher_name": "邢占军",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 11,
+      "fund_detail_count": 6,
+      "fund_total": 131.97,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 165,
+      "teacher_name": "郑国栋",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 1,
+      "achievement_count": 16,
+      "fund_detail_count": 6,
+      "fund_total": 253.46,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 162,
+      "teacher_name": "郑子君",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 5,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 79,
+      "teacher_name": "钱老师",
+      "department": "公共管理系",
+      "title": "讲师",
+      "project_count": 4,
+      "achievement_count": 10,
+      "fund_detail_count": 12,
+      "fund_total": 753.93,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 4
+    },
+    {
+      "teacher_id": 161,
+      "teacher_name": "陈仁兴",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 7,
+      "fund_detail_count": 23,
+      "fund_total": 886.36,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 81,
+      "teacher_name": "陈老师",
+      "department": "公共管理系",
+      "title": "讲师",
+      "project_count": 4,
+      "achievement_count": 12,
+      "fund_detail_count": 16,
+      "fund_total": 565.36,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 5
+    },
+    {
+      "teacher_id": 168,
+      "teacher_name": "陈静",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 4,
+      "fund_detail_count": 19,
+      "fund_total": 857.04,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 149,
+      "teacher_name": "韩丽华",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 5,
+      "fund_detail_count": 13,
+      "fund_total": 446.62,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 136,
+      "teacher_name": "韩自强",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 12,
+      "fund_detail_count": 7,
+      "fund_total": 207.56,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 139,
+      "teacher_name": "马奔",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 8,
+      "fund_detail_count": 7,
+      "fund_total": 308.33,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 140,
+      "teacher_name": "马永驰",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 9,
+      "fund_detail_count": 5,
+      "fund_total": 177.98,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 163,
+      "teacher_name": "高原",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 7,
+      "achievement_count": 9,
+      "fund_detail_count": 5,
+      "fund_total": 175.49,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 152,
+      "teacher_name": "魏铭",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 3,
+      "fund_detail_count": 7,
+      "fund_total": 233.37,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 142,
+      "teacher_name": "黄晴",
+      "department": "公共管理系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 13,
+      "fund_detail_count": 18,
+      "fund_total": 909.63,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 121,
+      "teacher_name": "刘昌明",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 6,
+      "fund_detail_count": 3,
+      "fund_total": 121.68,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 76,
+      "teacher_name": "周教授",
+      "department": "国际政治系",
+      "title": "副教授",
+      "project_count": 7,
+      "achievement_count": 12,
+      "fund_detail_count": 23,
+      "fund_total": 833.67,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 1
+    },
+    {
+      "teacher_id": 130,
+      "teacher_name": "展妍男",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 6,
+      "achievement_count": 11,
+      "fund_detail_count": 28,
+      "fund_total": 1098.99,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 126,
+      "teacher_name": "张淑兰",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 6,
+      "achievement_count": 7,
+      "fund_detail_count": 32,
+      "fund_total": 1381.41,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 128,
+      "teacher_name": "方炯升",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 17,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 127,
+      "teacher_name": "朱贵昌",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 13,
+      "fund_detail_count": 22,
+      "fund_total": 894.56,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 120,
+      "teacher_name": "李慧明",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 1,
+      "achievement_count": 7,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 71,
+      "teacher_name": "李教授",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 13,
+      "fund_detail_count": 13,
+      "fund_total": 472.83,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 3
+    },
+    {
+      "teacher_id": 118,
+      "teacher_name": "李昕蕾",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 9,
+      "fund_detail_count": 23,
+      "fund_total": 1001.39,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 125,
+      "teacher_name": "王学玉",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 12,
+      "fund_detail_count": 5,
+      "fund_total": 169.04,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 72,
+      "teacher_name": "王教授",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 15,
+      "fund_detail_count": 14,
+      "fund_total": 934.67,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 3
+    },
+    {
+      "teacher_id": 133,
+      "teacher_name": "王薪喜",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 10,
+      "fund_detail_count": 21,
+      "fund_total": 727.86,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 124,
+      "teacher_name": "盛力",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 9,
+      "fund_detail_count": 17,
+      "fund_total": 636.44,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 122,
+      "teacher_name": "秦亚青",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 6,
+      "achievement_count": 10,
+      "fund_detail_count": 18,
+      "fund_total": 870.27,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 132,
+      "teacher_name": "米雪",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 9,
+      "fund_detail_count": 35,
+      "fund_total": 1410.85,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 131,
+      "teacher_name": "赵均佳",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 10,
+      "fund_detail_count": 20,
+      "fund_total": 690.0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 134,
+      "teacher_name": "霍文乐",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 6,
+      "fund_detail_count": 16,
+      "fund_total": 731.98,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 123,
+      "teacher_name": "马荣久",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 7,
+      "fund_detail_count": 9,
+      "fund_total": 324.78,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 129,
+      "teacher_name": "黄栋",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 9,
+      "fund_detail_count": 21,
+      "fund_total": 855.78,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 119,
+      "teacher_name": "黄登学",
+      "department": "国际政治系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 16,
+      "fund_detail_count": 36,
+      "fund_total": 1385.76,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 112,
+      "teacher_name": "党成孝",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 10,
+      "fund_detail_count": 23,
+      "fund_total": 859.23,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 107,
+      "teacher_name": "刘琳",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 6,
+      "achievement_count": 12,
+      "fund_detail_count": 11,
+      "fund_total": 454.99,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 116,
+      "teacher_name": "叶紫蒙",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 1,
+      "achievement_count": 5,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 113,
+      "teacher_name": "姬生翔",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 9,
+      "fund_detail_count": 17,
+      "fund_total": 650.64,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 115,
+      "teacher_name": "孔令伟",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 9,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 102,
+      "teacher_name": "孔令栋",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 11,
+      "fund_detail_count": 9,
+      "fund_total": 371.74,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 106,
+      "teacher_name": "张继亮",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 12,
+      "fund_detail_count": 9,
+      "fund_total": 273.1,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 110,
+      "teacher_name": "徐会平",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 13,
+      "fund_detail_count": 10,
+      "fund_total": 457.48,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 86,
+      "teacher_name": "政治学系教师",
+      "department": "政治学系",
+      "title": "讲师",
+      "project_count": 20,
+      "achievement_count": 11,
+      "fund_detail_count": 60,
+      "fund_total": 3143.15,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 2
+    },
+    {
+      "teacher_id": 101,
+      "teacher_name": "方雷",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 7,
+      "fund_detail_count": 5,
+      "fund_total": 276.48,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 104,
+      "teacher_name": "李振",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 6,
+      "achievement_count": 10,
+      "fund_detail_count": 24,
+      "fund_total": 887.52,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 103,
+      "teacher_name": "李济时",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 14,
+      "fund_detail_count": 9,
+      "fund_total": 439.61,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 100,
+      "teacher_name": "楚成亚",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 10,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 108,
+      "teacher_name": "法帅",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 1,
+      "achievement_count": 14,
+      "fund_detail_count": 9,
+      "fund_total": 456.75,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 109,
+      "teacher_name": "王军洋",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 6,
+      "achievement_count": 9,
+      "fund_detail_count": 17,
+      "fund_total": 558.66,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 105,
+      "teacher_name": "王成",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 6,
+      "achievement_count": 6,
+      "fund_detail_count": 11,
+      "fund_total": 470.11,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 117,
+      "teacher_name": "白江波",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 6,
+      "fund_detail_count": 21,
+      "fund_total": 900.81,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 111,
+      "teacher_name": "钟诚",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 11,
+      "fund_detail_count": 7,
+      "fund_total": 289.58,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 114,
+      "teacher_name": "黄靖",
+      "department": "政治学系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 11,
+      "fund_detail_count": 13,
+      "fund_total": 599.15,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 80,
+      "teacher_name": "冯老师",
+      "department": "科学社会主义系",
+      "title": "讲师",
+      "project_count": 0,
+      "achievement_count": 12,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 73,
+      "teacher_name": "刘教授",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 14,
+      "fund_detail_count": 9,
+      "fund_total": 337.41,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 2
+    },
+    {
+      "teacher_id": 91,
+      "teacher_name": "刘玉安",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 11,
+      "fund_detail_count": 4,
+      "fund_total": 258.71,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 94,
+      "teacher_name": "吕连仁",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 6,
+      "achievement_count": 4,
+      "fund_detail_count": 31,
+      "fund_total": 1398.86,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 75,
+      "teacher_name": "孙教授",
+      "department": "科学社会主义系",
+      "title": "副教授",
+      "project_count": 4,
+      "achievement_count": 11,
+      "fund_detail_count": 12,
+      "fund_total": 744.68,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 2
+    },
+    {
+      "teacher_id": 97,
+      "teacher_name": "庞敏",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 1,
+      "achievement_count": 8,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 70,
+      "teacher_name": "张教授",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 28,
+      "fund_detail_count": 30,
+      "fund_total": 500.0,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 1
+    },
+    {
+      "teacher_id": 90,
+      "teacher_name": "李亚洲",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 6,
+      "fund_detail_count": 40,
+      "fund_total": 1618.94,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 89,
+      "teacher_name": "李宏",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 8,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 98,
+      "teacher_name": "杨春林",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 7,
+      "fund_detail_count": 33,
+      "fund_total": 1397.21,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 95,
+      "teacher_name": "王鹏权",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 4,
+      "achievement_count": 11,
+      "fund_detail_count": 13,
+      "fund_total": 695.73,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 99,
+      "teacher_name": "胡志伟",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 5,
+      "fund_detail_count": 42,
+      "fund_total": 1481.1,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 92,
+      "teacher_name": "臧秀玲",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 5,
+      "achievement_count": 6,
+      "fund_detail_count": 5,
+      "fund_total": 230.58,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 84,
+      "teacher_name": "蒋老师",
+      "department": "科学社会主义系",
+      "title": "讲师",
+      "project_count": 4,
+      "achievement_count": 15,
+      "fund_detail_count": 9,
+      "fund_total": 440.27,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 4
+    },
+    {
+      "teacher_id": 88,
+      "teacher_name": "蒋锐",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 3,
+      "achievement_count": 8,
+      "fund_detail_count": 20,
+      "fund_total": 853.09,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 82,
+      "teacher_name": "褚老师",
+      "department": "科学社会主义系",
+      "title": "讲师",
+      "project_count": 1,
+      "achievement_count": 10,
+      "fund_detail_count": 5,
+      "fund_total": 238.47,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 1
+    },
+    {
+      "teacher_id": 93,
+      "teacher_name": "赵婷",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 1,
+      "achievement_count": 6,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 74,
+      "teacher_name": "赵教授",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 14,
+      "fund_detail_count": 7,
+      "fund_total": 446.13,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 3
+    },
+    {
+      "teacher_id": 78,
+      "teacher_name": "郑老师",
+      "department": "科学社会主义系",
+      "title": "讲师",
+      "project_count": 3,
+      "achievement_count": 13,
+      "fund_detail_count": 11,
+      "fund_total": 539.22,
+      "score_years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "cooperation_record_count": 2
+    },
+    {
+      "teacher_id": 87,
+      "teacher_name": "郭春生",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 0,
+      "achievement_count": 11,
+      "fund_detail_count": 0,
+      "fund_total": 0,
+      "score_years": [],
+      "cooperation_record_count": 0
+    },
+    {
+      "teacher_id": 96,
+      "teacher_name": "金淑霞",
+      "department": "科学社会主义系",
+      "title": "教授",
+      "project_count": 2,
+      "achievement_count": 13,
+      "fund_detail_count": 8,
+      "fund_total": 370.53,
+      "score_years": [],
+      "cooperation_record_count": 0
+    }
+  ]
+}

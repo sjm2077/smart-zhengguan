@@ -2,7 +2,10 @@
   <div class="kpi-card" :class="{ disabled: isDisabled, hidden: isHidden }" :style="cardStyle">
     <div class="card-inner">
       <div class="card-left">
-        <span class="card-title">{{ title }}</span>
+        <span class="card-title">
+          {{ title }}
+          <span v-if="sourceText" class="source-badge" :class="'badge-' + sourceType">{{ sourceText }}</span>
+        </span>
         <div class="card-value-row">
           <span class="card-value" :style="valueStyle">
             <template v-if="isHidden">
@@ -37,7 +40,10 @@ const props = defineProps({
   trendDirection: { type: String, default: 'up' },
   gradient: { type: String, default: 'linear-gradient(135deg, #00d4ff, #0099cc)' },
   color: { type: String, default: '#00d4ff' },
-  permission: { type: String, default: 'full' }
+  permission: { type: String, default: 'full' },
+  // 数据来源标注：sourceText 为角标文字，sourceType 决定配色（official=官网真实 / sub=子系统 / demo=演示）
+  sourceText: { type: String, default: '' },
+  sourceType: { type: String, default: 'sub' }
 })
 
 const animatedValue = ref(props.value)
@@ -136,6 +142,42 @@ watch(() => props.value, (newVal) => {
   color: rgba(255, 255, 255, 0.65);
   font-weight: 500;
   letter-spacing: 0.5px;
+}
+
+/* 数据来源角标：官网真实 / 子系统 / 演示 */
+.source-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 5px;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 15px;
+  border-radius: 7px;
+  border: 1px solid currentColor;
+  opacity: 0.9;
+  vertical-align: middle;
+  letter-spacing: 0;
+}
+
+.badge-official {
+  color: #52c41a;
+  background: rgba(82, 196, 26, 0.1);
+}
+
+.badge-sub {
+  color: #00d4ff;
+  background: rgba(0, 212, 255, 0.1);
+}
+
+/* est = 官网口径换算的估算值（如在校生 = 年招生 × 标准学制） */
+.badge-est {
+  color: #faad14;
+  background: rgba(250, 173, 20, 0.1);
+}
+
+.badge-demo {
+  color: #faad14;
+  background: rgba(250, 173, 20, 0.1);
 }
 
 .card-value-row {

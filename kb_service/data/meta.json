@@ -1,0 +1,3816 @@
+{
+  "built_at": "2026-10-26 20:46:53",
+  "chunk_count": 5453,
+  "doc_count": 2032,
+  "by_type": {
+    "faculty": 131,
+    "achievement": 597,
+    "notice": 899,
+    "profile": 1,
+    "paper": 395,
+    "policy": 7,
+    "platform": 2
+  },
+  "stats": {
+    "teacher_total": 93.0,
+    "teacher_professor": 37.0,
+    "teacher_associate": 29.0,
+    "teacher_lecturer": 27.0,
+    "teacher_postdoc": 13.0,
+    "teacher_phd": 91.0,
+    "teacher_overseas": 26.0,
+    "supervisor_phd": 30.0,
+    "supervisor_master": 46.0,
+    "paper_total": 600.0,
+    "paper_ssci": 100.0,
+    "paper_cssci": 500.0,
+    "book_total": 100.0,
+    "thinktank_report": 300.0,
+    "project_major": 10.0,
+    "project_nssf": 30.0,
+    "project_nsfc": 10.0,
+    "project_ministry": 50.0,
+    "enroll_undergrad": 150.0,
+    "enroll_master": 120.0,
+    "enroll_doctor": 35.0,
+    "enroll_mpa": 400.0,
+    "enroll_intl": 40.0,
+    "fund_total": 6000.0,
+    "project_total": 100.0,
+    "enroll_graduate_total": 595.0
+  },
+  "faculty": [
+    {
+      "name": "李爽",
+      "title": "副教授",
+      "dept": "公共治理研究院",
+      "url": "https://faculty.sdu.edu.cn/lishuang123/zh_CN/index.htm",
+      "research": "行为公共管理 智能组织管理与人机协同决策 政治心理学 欢迎对以上议题感兴趣的同学加入课题组"
+    },
+    {
+      "name": "李进涛",
+      "title": "教授",
+      "dept": "公共治理研究院",
+      "url": "http://www.shzlyj.qd.sdu.edu.cn/info/1049/1601.htm",
+      "research": "城乡发展与土地资源利用、土地利用规划、基层治理、空间分析与治理等"
+    },
+    {
+      "name": "谢东虹",
+      "title": "助理研究员",
+      "dept": "公共治理研究院",
+      "url": "http://www.iog.sdu.edu.cn/info/1036/3451.htm",
+      "research": "人口流动 、 老龄化 与生理健康"
+    },
+    {
+      "name": "贾小云",
+      "title": "助理研究员",
+      "dept": "公共治理研究院",
+      "url": "http://www.shzlyj.qd.sdu.edu.cn/info/1049/3998.htm",
+      "research": "网上行为分析、数智治理、网络与新媒体研究等"
+    },
+    {
+      "name": "金澄",
+      "title": "副研究员",
+      "dept": "公共治理研究院",
+      "url": "http://www.iog.sdu.edu.cn/info/1036/3231.htm",
+      "research": "区域经济学、发展经济学、公司治理、农业经济和经济史"
+    },
+    {
+      "name": "YunsooLee",
+      "title": "讲师",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1288/15705.htm",
+      "research": "公共管理、比较公共管理"
+    },
+    {
+      "name": "俞少宾",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/yushaobin",
+      "research": "1.组织理论、国际移民与华侨华人、大数据与公共治理"
+    },
+    {
+      "name": "冷安丽",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/lenganli1/zh_CN/index.htm",
+      "research": "为健康经济与政策、应急管理、健康养老 、医疗保障等"
+    },
+    {
+      "name": "刘华兴",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "http://faculty.sdu.edu.cn/~YNvAvm/zh_CN/index.htm",
+      "research": "为神经与行为公共管理、行为公共政策、公共部门人力资源管理、城乡治理、地方治理等"
+    },
+    {
+      "name": "刘浩",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "http://faculty.sdu.edu.cn/~MzIVji/zh_CN/index.htm",
+      "research": "1] 城市与区域管理、应急管理与韧性城市、区域协同与空间治理"
+    },
+    {
+      "name": "孙宗锋",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "http://faculty.sdu.edu.cn/sunzongfeng/zh_CN/index/779047/list/index.htm",
+      "research": "1. 数字技术、组织理论、公共政策"
+    },
+    {
+      "name": "季丽新",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1287/15696.htm",
+      "research": ""
+    },
+    {
+      "name": "张乐",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "http://faculty.sdu.edu.cn/zhangle/zh_CN/index.htm",
+      "research": "1. 应急管理与社会风险"
+    },
+    {
+      "name": "张健彬",
+      "title": "讲师",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1288/15706.htm",
+      "research": ""
+    },
+    {
+      "name": "张天舒",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1285/15685.htm",
+      "research": "公共管理、政策评估、社会调查与测量"
+    },
+    {
+      "name": "曹现强",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1285/15672.htm",
+      "research": "行政理论"
+    },
+    {
+      "name": "朱林旭",
+      "title": "博士后",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1309/16704.htm",
+      "research": ""
+    },
+    {
+      "name": "李广",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1287/15697.htm",
+      "research": ""
+    },
+    {
+      "name": "李延伟",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/liyanwei1/zh_CN/index.htm",
+      "research": "1. 风险治理 2. 公共政策过程 3. 政府创新 4. 政府治理"
+    },
+    {
+      "name": "李梦丹",
+      "title": "助理研究员",
+      "dept": "公共管理系",
+      "url": "http://www.shzlyj.qd.sdu.edu.cn/info/1049/3939.htm",
+      "research": "政策评估、社会保障"
+    },
+    {
+      "name": "李欢欢",
+      "title": "助理研究员",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/lihuanhuan1/zh_CN/index.htm",
+      "research": "1.数字政府 2.算法决策 3.城市数字化转型"
+    },
+    {
+      "name": "李辉",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/lihui123456789101112131415161718/zh_CN/index.htm",
+      "research": "包括区域治理与地方政府合作、社会治理与基层治理等"
+    },
+    {
+      "name": "杨志",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/yangzhi1/zh_CN/index.htm",
+      "research": ""
+    },
+    {
+      "name": "楼苏萍",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/lousuping/zh_CN/xsxx/559499/list/index.htm",
+      "research": "行政管理"
+    },
+    {
+      "name": "滕玉成",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1285/15679.htm",
+      "research": "人力资源管理 组织文化 城镇化与社区治理"
+    },
+    {
+      "name": "王佃利",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1285/15680.htm",
+      "research": "城市治理 公共政策理论与分析 区域治理"
+    },
+    {
+      "name": "王元亮",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1287/15701.htm",
+      "research": ""
+    },
+    {
+      "name": "程龙",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/chenglong12/zh_CN/index.htm",
+      "research": "包括 公共政策分析、城乡公共治理、因果推断 等"
+    },
+    {
+      "name": "罗聪",
+      "title": "博士后",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1309/16707.htm",
+      "research": ""
+    },
+    {
+      "name": "褚雷",
+      "title": "助理研究员",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/chulei/zh_CN/index.htm",
+      "research": "1.生活质量与保障制度、人工智能与风险治理、人力资源测评、社会心理与社会治理"
+    },
+    {
+      "name": "费立国",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/feiliguo/zh_CN/index.htm",
+      "research": "为应急管理、数字政府、社会治理、风险决策、城市治理、防灾减灾、计算社会科学、数据融合等"
+    },
+    {
+      "name": "赵志华",
+      "title": "助理研究员",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/zhaozhihua1/zh_CN/index/1464136/list/",
+      "research": "为政府绩效、高质量发展"
+    },
+    {
+      "name": "邢占军",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1285/15717.htm",
+      "research": "生活质量与公共政策、人力资源评价与管理、社会调查与测量"
+    },
+    {
+      "name": "郄子君",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/qiezijun/zh_CN/index.htm",
+      "research": "为复合型灾害风险评估、突发事件应急管理、城市适灾韧性等"
+    },
+    {
+      "name": "郑国栋",
+      "title": "讲师",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1288/15707.htm",
+      "research": ""
+    },
+    {
+      "name": "陈仁兴",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/chenrenxing/zh_CN/index.htm",
+      "research": "涉及 社会保障理论与政策、养老服务、 残障社会福利、社会治理 、社会政策、儿童福利 等领域"
+    },
+    {
+      "name": "陈静",
+      "title": "助理研究员",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/chenjing1234567891011121314/zh_CN/zhym/1554277/list/index.htm",
+      "research": "数字治理"
+    },
+    {
+      "name": "韩丽华",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1287/15694.htm",
+      "research": "政府监管 （公共规制） ， 公共经济"
+    },
+    {
+      "name": "韩自强",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/hanziqiang1/zh_CN/index/844319/list/index.htm",
+      "research": "为风险、灾难、危机与应急管理、计算社会科学，国家重点研发计划（国合项目）首席科学家"
+    },
+    {
+      "name": "马奔",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1285/15676.htm",
+      "research": "风险治理与应急管理"
+    },
+    {
+      "name": "马永驰",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/mayongchi/zh_CN/index.htm",
+      "research": "应急管理与公共安全"
+    },
+    {
+      "name": "高原",
+      "title": "讲师",
+      "dept": "公共管理系",
+      "url": "https://pspa.sdu.edu.cn/info/1288/15709.htm",
+      "research": ""
+    },
+    {
+      "name": "魏铭",
+      "title": "副教授",
+      "dept": "公共管理系",
+      "url": "https://faculty.sdu.edu.cn/weiming1/zh_CN/index.htm",
+      "research": "1. 居民时空行为特征研究 2. 应急管理大数据应用与分析"
+    },
+    {
+      "name": "黄晴",
+      "title": "教授",
+      "dept": "公共管理系",
+      "url": "http://faculty.sdu.edu.cn/~QRb26n/zh_CN/index.htm",
+      "research": "为内城更新、城市治理、组织行为与公务员生活质量等"
+    },
+    {
+      "name": "刘昌明",
+      "title": "教授",
+      "dept": "国际政治系",
+      "url": "https://pspa.sdu.edu.cn/info/1281/15657.htm",
+      "research": "为东亚地区政治比较、全球化与全球治理、美国政治与外交、中国外交政策与实践"
+    },
+    {
+      "name": "展妍男",
+      "title": "副教授",
+      "dept": "国际政治系",
+      "url": "https://pspa.sdu.edu.cn/info/1282/16150.htm",
+      "research": "俄罗斯中亚问题、中俄关系、 “ 一带一路 ” 与俄罗斯和中亚"
+    },
+    {
+      "name": "张淑兰",
+      "title": "教授",
+      "dept": "国际政治系",
+      "url": "https://pspa.sdu.edu.cn/info/1281/17068.htm",
+      "research": "南亚政治经济与外交"
+    },
+    {
+      "name": "方炯升",
+      "title": "副教授",
+      "dept": "国际政治系",
+      "url": "https://faculty.sdu.edu.cn/fangjiongsheng/zh_CN/index.htm",
+      "research": ""
+    },
+    {
+      "name": "朱贵昌",
+      "title": "教授",
+      "dept": "国际政治系",
+      "url": "https://pspa.sdu.edu.cn/info/1281/15663.htm",
+      "research": "欧洲一体化与欧盟政治 中国政治与外交"
+    },
+    {
+      "name": "李慧明",
+      "title": "教授",
+      "dept": "国际政治系",
+      "url": "https://faculty.sdu.edu.cn/lihuiming1/zh_CN/index.htm",
+      "research": "1. 全球气候治理、欧盟的国际气候谈判立场"
+    },
+    {
+      "name": "李昕蕾",
+      "title": "教授",
+      "dept": "国际政治系",
+      "url": "https://pspa.sdu.edu.cn/info/1281/15662.htm",
+      "research": "环境与能源治理、 全球与地方气候治理、清洁能源外交 、生态文明理论、国际公共危机治理"
+    },
+    {
+      "name": "王学玉",
+      "title": "教授",
+      "dept": "国际政治系",
+      "url": "https://pspa.sdu.edu.cn/info/1281/15660.htm",
+      "research": "欧洲一体化、欧洲外交与安全政策、中欧关系、地区政治（治理）理论与比较、中国全球倡议"
+    },
+    {
+      "name": "王薪喜",
+      "title": "助理研究员",
+      "dept": "国际政治系",
+      "url": "https://faculty.sdu.edu.cn/wangxinxi/zh_CN/index.htm",
+      "research": "信息政治学 国际政治经济学 社会科学研究方法"
+    },
+    {
+      "name": "盛力",
+      "title": "教授",
+      "dept": "国际政治系",
+      "url": "https://faculty.sdu.edu.cn/shengli/zh_CN/index.htm",
+      "research": ""
+    },
+    {
+      "name": "秦亚青",
+      "title": "教授",
+      "dept": "国际政治系",
+      "url": "https://faculty.sdu.edu.cn/qinyaqing/zh_CN/index.htm",
+      "research": ""
+    },
+    {
+      "name": "米雪",
+      "title": "助理研究员",
+      "dept": "国际政治系",
+      "url": "https://faculty.sdu.edu.cn/mixue12/zh_CN/index.htm",
+      "research": ""
+    },
+    {
+      "name": "赵玙佳",
+      "title": "副教授",
+      "dept": "国际政治系",
+      "url": "https://pspa.sdu.edu.cn/info/1282/15667.htm",
+      "research": "东亚大国关系，国际政治经济与数字经济"
+    },
+    {
+      "name": "霍文乐",
+      "title": "助理研究员",
+      "dept": "国际政治系",
+      "url": "https://faculty.sdu.edu.cn/huowenle/zh_CN/index.htm",
+      "research": ""
+    },
+    {
+      "name": "马荣久",
+      "title": "教授",
+      "dept": "国际政治系",
+      "url": "https://pspa.sdu.edu.cn/info/1281/16148.htm",
+      "research": "国际组织与全球治理，外交政策分析"
+    },
+    {
+      "name": "黄栋",
+      "title": "副教授",
+      "dept": "国际政治系",
+      "url": "https://pspa.sdu.edu.cn/info/1282/16149.htm",
+      "research": "欧洲政治、北极治理、中欧关系"
+    },
+    {
+      "name": "黄登学",
+      "title": "教授",
+      "dept": "国际政治系",
+      "url": "https://pspa.sdu.edu.cn/info/1281/15656.htm",
+      "research": "国际政治 俄罗斯政治与外交"
+    },
+    {
+      "name": "MattiasG.Ottervik",
+      "title": "副教授",
+      "dept": "政治学系",
+      "url": "https://pspa.sdu.edu.cn/info/1278/16432.htm",
+      "research": ""
+    },
+    {
+      "name": "党成孝",
+      "title": "助理研究员",
+      "dept": "政治学系",
+      "url": "https://faculty.sdu.edu.cn/dangchengxiao/zh_CN/index.htm",
+      "research": ""
+    },
+    {
+      "name": "刘琳",
+      "title": "副教授",
+      "dept": "政治学系",
+      "url": "https://faculty.sdu.edu.cn/liulinsdu/zh_CN/index.htm",
+      "research": "1.风险政治学、危机管理哲学 2.公共治理与政治文化的实证研究"
+    },
+    {
+      "name": "叶紫蒙",
+      "title": "博士后",
+      "dept": "政治学系",
+      "url": "https://pspa.sdu.edu.cn/info/1307/16698.htm",
+      "research": ""
+    },
+    {
+      "name": "姬生翔",
+      "title": "助理研究员",
+      "dept": "政治学系",
+      "url": "https://faculty-cms.sdu.edu.cn/zwmb9/index.jsp?wbtreeid=1002&tstreeid=1256997&_t_uid=38512&language=zh_CN&homepageid=75363&templateid=1010&producttype=0&_tmode_=99&tsitesapptype=index&sc=",
+      "research": ""
+    },
+    {
+      "name": "孔令伟",
+      "title": "助理研究员",
+      "dept": "政治学系",
+      "url": "http://faculty.sdu.edu.cn/konglingwei/zh_CN/index.htm",
+      "research": "为中国政治思想、中外政治制度、政治代表理论"
+    },
+    {
+      "name": "孔令栋",
+      "title": "教授",
+      "dept": "政治学系",
+      "url": "https://pspa.sdu.edu.cn/info/1276/17404.htm",
+      "research": "政治学理论 政治制度比较 当代社会主义理论与实践"
+    },
+    {
+      "name": "张继亮",
+      "title": "教授",
+      "dept": "政治学系",
+      "url": "https://faculty.sdu.edu.cn/zhangjiliang/zh_CN/index/1898259/list/index.htm",
+      "research": "中国政府与政治 比较政治经济 新制度主义分析 比较政治思想史 政治哲学 科研成果"
+    },
+    {
+      "name": "徐会平",
+      "title": "副教授",
+      "dept": "政治学系",
+      "url": "https://pspa.sdu.edu.cn/info/1278/15652.htm",
+      "research": "近代西方政治思想与政治观念"
+    },
+    {
+      "name": "方雷",
+      "title": "教授",
+      "dept": "政治学系",
+      "url": "https://pspa.sdu.edu.cn/info/1276/15718.htm",
+      "research": "政治学理论与方法 政党政治研究 地方政府管理研究 中东欧政治发展 社会主义理论与实践"
+    },
+    {
+      "name": "李振",
+      "title": "教授",
+      "dept": "政治学系",
+      "url": "http://faculty.sdu.edu.cn/lizhen5/zh_CN/index.htm",
+      "research": "政治学理论"
+    },
+    {
+      "name": "李济时",
+      "title": "教授",
+      "dept": "政治学系",
+      "url": "http://faculty.sdu.edu.cn/lijishi/zh_CN/index.htm",
+      "research": "为中外政治制度比较、政治制度与地方治理、西方政治理论和欧洲政治"
+    },
+    {
+      "name": "楚成亚",
+      "title": "教授",
+      "dept": "政治学系",
+      "url": "https://pspa.sdu.edu.cn/info/1276/15642.htm",
+      "research": "政治文化理论 政治态度实证研究"
+    },
+    {
+      "name": "法帅",
+      "title": "副教授",
+      "dept": "政治学系",
+      "url": "http://faculty.sdu.edu.cn/fashuai/zh_CN/index.htm",
+      "research": "为中国政治思想史"
+    },
+    {
+      "name": "王军洋",
+      "title": "副教授",
+      "dept": "政治学系",
+      "url": "http://faculty.sdu.edu.cn/wangjunyang/zh_CN/index.htm",
+      "research": "社会冲突、社会稳定与基层治理方面的研究，具体研究话题围绕国家的stability maintenance, social/NIMBY protest and veterans' affairs in China展开"
+    },
+    {
+      "name": "王成",
+      "title": "教授",
+      "dept": "政治学系",
+      "url": "https://pspa.sdu.edu.cn/info/1276/15645.htm",
+      "research": "中国政治制度与政治思想"
+    },
+    {
+      "name": "白江波",
+      "title": "博士后",
+      "dept": "政治学系",
+      "url": "https://pspa.sdu.edu.cn/info/1307/16697.htm",
+      "research": ""
+    },
+    {
+      "name": "钟诚",
+      "title": "副教授",
+      "dept": "政治学系",
+      "url": "https://pspa.sdu.edu.cn/info/1278/15653.htm",
+      "research": ""
+    },
+    {
+      "name": "黄靖",
+      "title": "助理研究员",
+      "dept": "政治学系",
+      "url": "https://faculty.sdu.edu.cn/jinghuang/zh_CN/index.htm",
+      "research": ""
+    },
+    {
+      "name": "刘玉安",
+      "title": "教授",
+      "dept": "科社系",
+      "url": "https://pspa.sdu.edu.cn/info/1272/15664.htm",
+      "research": "国际政治理论 比较社会政策"
+    },
+    {
+      "name": "吕连仁",
+      "title": "副教授",
+      "dept": "科社系",
+      "url": "https://pspa.sdu.edu.cn/info/1273/15638.htm",
+      "research": "中国共产党的历史发展、中国社会主义理论与实践、中国农民问题理论与政策、当代中国政治等"
+    },
+    {
+      "name": "庞敏",
+      "title": "助理研究员",
+      "dept": "科社系",
+      "url": "https://faculty.sdu.edu.cn/pangmin/zh_CN/index.htm",
+      "research": "海外中共学、中国共产党国际形象、中共党史党建"
+    },
+    {
+      "name": "李亚洲",
+      "title": "教授",
+      "dept": "科社系",
+      "url": "https://pspa.sdu.edu.cn/info/1272/15636.htm",
+      "research": "科学社会主义与国际共产主义运动、俄罗斯研究"
+    },
+    {
+      "name": "李宏",
+      "title": "教授",
+      "dept": "科社系",
+      "url": "https://pspa.sdu.edu.cn/info/1272/15634.htm",
+      "research": "欧洲政治、 欧洲政党"
+    },
+    {
+      "name": "杨春林",
+      "title": "助理研究员",
+      "dept": "科社系",
+      "url": "https://pspa.sdu.edu.cn/info/1275/15641.htm",
+      "research": "政党政治、民粹主义、技术政治学"
+    },
+    {
+      "name": "王鹏权",
+      "title": "副教授",
+      "dept": "科社系",
+      "url": "https://faculty.sdu.edu.cn/wangpengquan/zh_CN/xsxx/987635/content/161538.htm",
+      "research": ""
+    },
+    {
+      "name": "胡志伟",
+      "title": "博士后",
+      "dept": "科社系",
+      "url": "https://pspa.sdu.edu.cn/info/1306/16694.htm",
+      "research": ""
+    },
+    {
+      "name": "臧秀玲",
+      "title": "教授",
+      "dept": "科社系",
+      "url": "https://pspa.sdu.edu.cn/info/1272/15635.htm",
+      "research": "政党政治理论 中国共产党与中国社会发展 当代资本主义"
+    },
+    {
+      "name": "蒋锐",
+      "title": "教授",
+      "dept": "科社系",
+      "url": "https://pspa.sdu.edu.cn/info/1272/15633.htm",
+      "research": "当代国外社会主义 中国特色社会主义与传统文化 统一战线理论与政策 德国政治与文化"
+    },
+    {
+      "name": "赵婷",
+      "title": "教授",
+      "dept": "科社系",
+      "url": "http://faculty.sdu.edu.cn/zhaoting/zh_CN/index.htm",
+      "research": "当代世界社会主义、政党政治、党的创新理论"
+    },
+    {
+      "name": "郭春生",
+      "title": "教授",
+      "dept": "科社系",
+      "url": "http://faculty.sdu.edu.cn/guochunsheng1/zh_CN/index.htm",
+      "research": "中共党史 科学社会主义与国际共产主义运动"
+    },
+    {
+      "name": "金淑霞",
+      "title": "讲师",
+      "dept": "科社系",
+      "url": "https://pspa.sdu.edu.cn/info/1274/15640.htm",
+      "research": "组织政治"
+    }
+  ],
+  "notices": [
+    {
+      "title": "政管学院2027年接收推荐免试硕士研究生复试工作安排",
+      "date": "2026/09/10",
+      "url": "https://pspa.sdu.edu.cn/info/1038/18903.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2026年9月批次博士研究生学位论文答辩公告（二）",
+      "date": "2026/09/04",
+      "url": "https://pspa.sdu.edu.cn/info/1038/18891.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2027年接收推荐免试硕士研究生预报名通知",
+      "date": "2026/09/01",
+      "url": "https://pspa.sdu.edu.cn/info/1038/18888.htm",
+      "has_body": true
+    },
+    {
+      "title": "2026年“行政管理+电子科学与技术双学位”选拔公告",
+      "date": "2026/08/29",
+      "url": "https://pspa.sdu.edu.cn/info/1201/18885.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学政治学与公共管理学院关于征集院史史料及师生校友书画摄影作品的启事",
+      "date": "2026/08/11",
+      "url": "https://pspa.sdu.edu.cn/info/1201/18871.htm",
+      "has_body": true
+    },
+    {
+      "title": "提案中国·第十三届全国大学生模拟政协提案大赛山东赛区初赛开始报名",
+      "date": "2026/07/18",
+      "url": "https://pspa.sdu.edu.cn/info/1049/18853.htm",
+      "has_body": true
+    },
+    {
+      "title": "2026年剑南春强国青年奖学金拟推荐人选公示",
+      "date": "2026/06/16",
+      "url": "https://pspa.sdu.edu.cn/info/1049/18808.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于召开政治学与公共管理学院第二十二次研究生代表大会的通知",
+      "date": "2026/06/10",
+      "url": "https://pspa.sdu.edu.cn/info/1049/18782.htm",
+      "has_body": true
+    },
+    {
+      "title": "2025年第四批学生赴海外国际学分资助公示",
+      "date": "2026/06/08",
+      "url": "https://pspa.sdu.edu.cn/info/1201/18775.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于召开政治学与公共管理学院第二十五次学生代表大会的通知",
+      "date": "2026/05/23",
+      "url": "https://pspa.sdu.edu.cn/info/1049/18726.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学第十八届“我心目中的好导师”候选人——王佃利",
+      "date": "2026/05/15",
+      "url": "https://pspa.sdu.edu.cn/info/1049/18698.htm",
+      "has_body": true
+    },
+    {
+      "title": "2025-2026学年政管学院寒假社会实践校级荣誉结果公示",
+      "date": "2026/05/11",
+      "url": "https://pspa.sdu.edu.cn/info/1049/18732.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2026年招收攻读博士学位研究生考试工作安排-第二批",
+      "date": "2026/05/09",
+      "url": "https://pspa.sdu.edu.cn/info/1038/18672.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于政管学院第三届“政德杯”本科征文活动的通知",
+      "date": "2026/04/30",
+      "url": "https://pspa.sdu.edu.cn/info/1033/18668.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2026年招收攻读博士学位研究生简章 （第二批）",
+      "date": "2026/04/28",
+      "url": "https://pspa.sdu.edu.cn/info/1038/18661.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选山东大学第十八届“我心目中的好导师”和第四届“优秀研究生导学团队”的通知",
+      "date": "2026/04/24",
+      "url": "https://pspa.sdu.edu.cn/info/1049/18657.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2026年攻读博士学位研究生中期考核通知",
+      "date": "2026/03/23",
+      "url": "https://pspa.sdu.edu.cn/info/1038/18574.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2026年学术型硕士研究生招生复试录取工作通知（含当代社会主义研究所）",
+      "date": "2026/03/21",
+      "url": "https://pspa.sdu.edu.cn/info/1038/18572.htm",
+      "has_body": true
+    },
+    {
+      "title": "2025年第二批学生赴海外国际学分资助公示",
+      "date": "2026/03/13",
+      "url": "https://pspa.sdu.edu.cn/info/1201/18544.htm",
+      "has_body": true
+    },
+    {
+      "title": "集思广益谋发展，同心聚力启新章 | 政管学院“十五五”规划建言献策征集",
+      "date": "2026/02/04",
+      "url": "https://pspa.sdu.edu.cn/info/1201/18516.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选2026届山东大学优秀毕业生的通知",
+      "date": "2026/01/07",
+      "url": "https://pspa.sdu.edu.cn/info/1201/18038.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于人文社科研究项目2025年9-12月结项情况的通报",
+      "date": "2026/01/07",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=e8b97b69-91bb-4335-8e2d-9c5e8054d1fc",
+      "has_body": false
+    },
+    {
+      "title": "政管学院2026年招收攻读博士学位研究生考试工作安排（含当代社会主义研究所）",
+      "date": "2025/12/31",
+      "url": "https://pspa.sdu.edu.cn/info/1038/18028.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2026年招收攻读博士学位研究生简章 （含当代社会主义研究所）",
+      "date": "2025/12/10",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17950.htm",
+      "has_body": true
+    },
+    {
+      "title": "2025年秋季学期学生英语雅思/托福考试报名费资助公示",
+      "date": "2025/12/09",
+      "url": "https://pspa.sdu.edu.cn/info/1201/17948.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2025年度山东省高等学校青年创新团队发展计划（人文社科类）的通知",
+      "date": "2025/12/08",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=dafe3b48-fd58-4860-82b7-dcd3d0712eee",
+      "has_body": false
+    },
+    {
+      "title": "政管学院2026年招收攻读博士学位研究生导师团队介绍",
+      "date": "2025/12/08",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17938.htm",
+      "has_body": true
+    },
+    {
+      "title": "2025年第一批学生赴海外国际学分资助公示",
+      "date": "2025/11/26",
+      "url": "https://pspa.sdu.edu.cn/info/1201/17891.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院关于2026年申请招收硕士研究生人员审核认定工作的通知",
+      "date": "2025/11/12",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17844.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织2025年度山东省自然科学基金项目验收工作（第二批）的通知",
+      "date": "2025/11/03",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=13095",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2025年度教育部哲学社会科学研究重大课题攻关项目和高校思想政治理论课教师研究专项重大课题…",
+      "date": "2025/10/31",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=6d56a7d5-752e-4bcf-9370-9eceaaedea95",
+      "has_body": false
+    },
+    {
+      "title": "政管学院2025年度博士生学术论文征文比赛通知",
+      "date": "2025/10/31",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17800.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于进行2025年度学术型硕士研究生中期考核的通知",
+      "date": "2025/10/30",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17795.htm",
+      "has_body": true
+    },
+    {
+      "title": "通知|2025年“榜样的力量”学生年度人物评选活动安排",
+      "date": "2025/10/27",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17782.htm",
+      "has_body": true
+    },
+    {
+      "title": "通知丨关于举办山东大学政管学院第十二届大学生职业规划大赛的通知",
+      "date": "2025/10/27",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17781.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于第十届教育部科学研究优秀成果奖(人文社会科学) 申报工作的通知",
+      "date": "2025/10/20",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=90d35be1-2ac5-4fc7-bd56-5c24faa4bb4d",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度山东省社会科学规划研究专项的通知",
+      "date": "2025/10/15",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=29c0cfb4-9ba7-4438-addd-ba76c3d9afc3",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2024年度山东大学人文社会科学重大科研成果奖励的通知",
+      "date": "2025/09/23",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=c4c275db-c9bb-47c3-9826-efcbcc36a174",
+      "has_body": false
+    },
+    {
+      "title": "政管学院2026年接收推荐免试硕士研究生复试工作安排（含当代社会主义研究所）",
+      "date": "2025/09/12",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17651.htm",
+      "has_body": true
+    },
+    {
+      "title": "“行政管理+电子科学与技术双学位”选拔特别公告",
+      "date": "2025/09/11",
+      "url": "https://pspa.sdu.edu.cn/info/1033/17647.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于山东省第三十七届社会科学优秀成果奖、突出贡献奖和学科新秀奖申报工作的通知",
+      "date": "2025/09/05",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=d6ae6fba-7cec-4c86-aa53-76dbf99e8fdd",
+      "has_body": false
+    },
+    {
+      "title": "关于举办第三届山东大学大学生新文科实践创新大赛暨2025年大学生新文科实践创新大赛校内选拔赛的通知",
+      "date": "2025/09/02",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17623.htm",
+      "has_body": true
+    },
+    {
+      "title": "2025“行政管理+电子科学与技术双学位”选拔公告",
+      "date": "2025/09/01",
+      "url": "https://pspa.sdu.edu.cn/info/1033/17622.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2026年接收推荐免试硕士研究生预报名通知",
+      "date": "2025/09/01",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17618.htm",
+      "has_body": true
+    },
+    {
+      "title": "2025级新生团员、新建新转入团支部团员团组织关系转接、团员证补办安排",
+      "date": "2025/09/01",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17617.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织开展山东省社会科学规划“孔子研究院儒学研究专项”申报工作的通知",
+      "date": "2025/08/31",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=67ddb50b-0a27-4a37-9aca-2255fb585710",
+      "has_body": false
+    },
+    {
+      "title": "政管学院博士后招聘启事（随时受理申请）",
+      "date": "2025/07/10",
+      "url": "https://pspa.sdu.edu.cn/info/1201/17536.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织开展2025年度山东省高等学校哲学社会科学研究项目申报工作的通知",
+      "date": "2025/07/03",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=5e019606-00b9-4cb3-92d9-f72a45bc6ba2",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度山东大学人文社会科学卓越精品支持计划项目的通知",
+      "date": "2025/07/03",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=ddf0725d-3290-40d9-af7c-de95f02cd77c",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度山东大学名家作品集编撰计划项目的通知",
+      "date": "2025/07/03",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=11097d4a-6649-4021-a844-59082acf2555",
+      "has_body": false
+    },
+    {
+      "title": "关于第三十七届山东省社会科学优秀成果奖评选预申报工作的通知",
+      "date": "2025/07/02",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=4e6ad86f-42c2-4b01-a235-fef6c9813e81",
+      "has_body": false
+    },
+    {
+      "title": "通知 | 山东大学公共管理青年学者国际发表能力提升工作坊入选论文名单",
+      "date": "2025/07/02",
+      "url": "https://pspa.sdu.edu.cn/info/1201/17518.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织2025年度智库成果认定的通知",
+      "date": "2025/06/27",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=87bde181-6e8f-4f5e-b1f2-29e5f72d926e",
+      "has_body": false
+    },
+    {
+      "title": "政管学院关于开展山东大学“万里边疆 强国有我” 社会实践专项的通知",
+      "date": "2025/06/26",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17506.htm",
+      "has_body": true
+    },
+    {
+      "title": "通知丨关于政治学与公共管理学院2024-2025学年学生暑期社会实践工作实施方案的通知",
+      "date": "2025/06/23",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17502.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展“齐鲁青衿行”山东省社会工作领域青年实习实践专项的通知",
+      "date": "2025/06/21",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17496.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2025年国家社会科学基金后期资助暨优秀博士学位论文出版、优秀学术著作再版项目的通知",
+      "date": "2025/06/19",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=da806990-8795-4cef-bd37-a39ab6aa7f52",
+      "has_body": false
+    },
+    {
+      "title": "关于做好政管学院2025届毕业生团员团组织关系转接工作的通知",
+      "date": "2025/06/18",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17497.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2025年山东大学人文社科高端学术论坛和青年学者学术沙龙的通知",
+      "date": "2025/06/11",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=9e7be9ca-de82-4e36-a7c7-d1d6384d9dda",
+      "has_body": false
+    },
+    {
+      "title": "关于开展政治学与公共管理学院2025年“推普助力乡村振兴”全国大学生暑期社会实践志愿服务活动的通知",
+      "date": "2025/06/07",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17456.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2025年国家社会科学基金哲学社会科学学术通俗读物项目的通知",
+      "date": "2025/06/03",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=9a3b619e-0b41-4700-9dd3-1c91e907585b",
+      "has_body": false
+    },
+    {
+      "title": "关于召开政治学与公共管理学院第二十一次研究生代表大会的通知",
+      "date": "2025/06/03",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17435.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2025年国家社会科学基金重大项目招标的通知",
+      "date": "2025/05/27",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=c3c8a836-f468-41e1-95c3-3727d8a6bc21",
+      "has_body": false
+    },
+    {
+      "title": "关于召开政治学与公共管理学院第二十四次学生代表大会的通知",
+      "date": "2025/05/26",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17418.htm",
+      "has_body": true
+    },
+    {
+      "title": "政治学与公共管理学院2024年度大学生创新创业训练计划项目结题评审结果公示",
+      "date": "2025/05/23",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17411.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于招募“政管学院青年师生宣讲团”的通知",
+      "date": "2025/05/19",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17397.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学第十七届“我心目中的好导师”候选人——韩自强",
+      "date": "2025/05/16",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17390.htm",
+      "has_body": true
+    },
+    {
+      "title": "2024-2025学年政管学院暑假社会实践省级荣誉结果公示及经费补充报销通知",
+      "date": "2025/05/11",
+      "url": "https://pspa.sdu.edu.cn/info/1049/18762.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于征集沂蒙精神和红色文化研究成果的通知",
+      "date": "2025/04/30",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/12528.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选山东大学第十七届“我心目中的好导师”和2025年度“优秀研究生导学团队”的通知",
+      "date": "2025/04/30",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17337.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2025年招收攻读博士学位研究生考试工作安排（含当代社会主义研究所）",
+      "date": "2025/04/29",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17320.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报中国自主知识体系标识性概念研究工程课题的通知",
+      "date": "2025/04/27",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=58448aa8-d395-4fb1-871b-4b43e7285802",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度全国教育科学规划教育考试研究专项和高校毕业生就业研究专项项目的通知",
+      "date": "2025/04/27",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=aa4e048a-eb05-4b73-adbc-5093def70d11",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度全国教育科学规划学科建设与研究生培养研究专项和终身教育体系研究专项项目的通知",
+      "date": "2025/04/27",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=42954d77-f708-4cef-9c0c-fb69e9bd9f8b",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度国家社科基金教育学重大项目招标和年度项目的通知",
+      "date": "2025/04/24",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=ddd4847a-280f-4c31-8879-98947ffae87e",
+      "has_body": false
+    },
+    {
+      "title": "政管学院2025年招收攻读博士学位研究生简章",
+      "date": "2025/04/24",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17292.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2025年招收攻读博士学位研究生导师团队介绍",
+      "date": "2025/04/24",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17291.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2025年度山东省社会科学规划研究项目的通知",
+      "date": "2025/04/21",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=b7dd92d7-748a-4e53-871e-c5b5b8935988",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2024年度社科理论优秀成果的通知",
+      "date": "2025/04/21",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/12507.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于招募2025年大学生志愿服务西部计划及山东计划志愿者的通知",
+      "date": "2025/04/18",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17265.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于招募2025年大学生志愿服务西部计划及山东计划志愿者的通知",
+      "date": "2025/04/18",
+      "url": "https://pspa.sdu.edu.cn/info/1201/17264.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院“公共安全与应急管理”微专业2025年招生简章及培养方案",
+      "date": "2025/04/17",
+      "url": "https://pspa.sdu.edu.cn/info/1033/17259.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2025年山东省决策咨询研究后期资助项目的通知",
+      "date": "2025/04/16",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=06aa0f8a-1c26-43d8-b5b7-a8798609c472",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年山东省决策咨询研究项目的通知",
+      "date": "2025/04/15",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=82968df8-bfa5-4e93-8166-e9e50d358e54",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度山东省人力资源社会保障课题的通知",
+      "date": "2025/04/15",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=394df0b0-a675-44f1-b0ab-2628f3e94ced",
+      "has_body": false
+    },
+    {
+      "title": "关于举办山东大学“拥抱AI时代”主题演讲比赛暨第二届“SDU TALK”学生创新大讲堂院级选拔的通知",
+      "date": "2025/04/14",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17238.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2025年国家社会科学基金中华学术外译项目的通知",
+      "date": "2025/04/14",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=6aca013d-4efd-495f-a2ba-792e8401ab74",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报山东省重点新型智库的通知",
+      "date": "2025/04/10",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=6431daa4-0466-45a0-8376-4f8ae2709099",
+      "has_body": false
+    },
+    {
+      "title": "关于开展2025年度法治山东建设理论与实务研究课题征集工作的通知",
+      "date": "2025/04/10",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=5a166067-97fe-4b04-ad48-0b4dd2dcd673",
+      "has_body": false
+    },
+    {
+      "title": "2024年秋季学期学生赴海外国际学分资助公示",
+      "date": "2025/04/08",
+      "url": "https://pspa.sdu.edu.cn/info/1201/17218.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于人文社科研究项目2025年1-3月结项情况的通报",
+      "date": "2025/04/02",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=7a1949fa-e544-445f-9120-9b9b85d92814",
+      "has_body": false
+    },
+    {
+      "title": "关于做好2024年度五四评比表彰工作的通知",
+      "date": "2025/03/28",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16279.htm",
+      "has_body": true
+    },
+    {
+      "title": "出访公示",
+      "date": "2025/03/27",
+      "url": "https://pspa.sdu.edu.cn/info/1201/17190.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2025年国家社会科学基金年度项目的通知",
+      "date": "2025/03/27",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=094551fb-1852-4a0d-9905-1bbc73cdf618",
+      "has_body": false
+    },
+    {
+      "title": "关于政管学院第二届“政德杯”本科征文活动的通知",
+      "date": "2025/03/26",
+      "url": "https://pspa.sdu.edu.cn/info/1033/17184.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2025年学术型硕士研究生招生复试录取工作通知（含当代社会主义研究所）",
+      "date": "2025/03/19",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17172.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2025年攻读博士学位研究生中期考核通知",
+      "date": "2025/03/19",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17171.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报第二届山东省人民政府决策咨询奖的通知",
+      "date": "2025/03/18",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=35dac1c6-4735-4446-88f8-b9482351ad1d",
+      "has_body": false
+    },
+    {
+      "title": "关于开展第十一届（2024年度）山东省人力资源社会保障优秀科研成果评选的通知",
+      "date": "2025/03/17",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/12477.htm ",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度民族宗教课题研究的通知",
+      "date": "2025/03/14",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=8e5ccc59-0139-4578-b0ce-e0dcb41f5dc1",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度教育部哲学社会科学研究重大课题攻关项目选题的通知",
+      "date": "2025/03/13",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=7356ddd0-4197-4544-af65-7106a0ef7ea7",
+      "has_body": false
+    },
+    {
+      "title": "山东大学政治学与公共管理学院2025年教师外其他专业技术岗位招聘公告",
+      "date": "2025/03/10",
+      "url": "https://pspa.sdu.edu.cn/info/1201/17148.htm",
+      "has_body": true
+    },
+    {
+      "title": "招聘公告：诚聘海内外英才！",
+      "date": "2025/03/05",
+      "url": "https://pspa.sdu.edu.cn/info/1201/2945.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报第二批教育部哲学社会科学实验室的通知",
+      "date": "2025/03/05",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=7f133035-4a9e-4597-97a6-bb81181ba9c8",
+      "has_body": false
+    },
+    {
+      "title": "2025年山东哲学社会科学精品出版工程(《齐鲁社科成果文库》)项目申报通知",
+      "date": "2025/03/05",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/12465.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2025年高校思政课教师研究专项一般项目的通知",
+      "date": "2025/02/28",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=e6c8dae9-ac44-4d65-adbe-b4b3b65522a9",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度教育部人文社会科学研究专项任务项目（高校辅导员研究）的通知",
+      "date": "2025/02/26",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=d43820dc-ca06-46b5-8917-87966d06fa80",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度教育部人文社会科学研究专项任务项目（中国特色社会主义理论体系研究）申报的通知",
+      "date": "2025/02/26",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=09d54d35-f702-4752-bd5d-cd3201ed6aaa",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度教育部人文社会科学研究一般项目的通知",
+      "date": "2025/02/26",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=923f2468-2bb8-4992-9d91-0668a7e504bf",
+      "has_body": false
+    },
+    {
+      "title": "关于在本科课程聘任博士研究生课程助教岗位的通知-2025年春季学期",
+      "date": "2025/02/21",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17090.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选2025届山东大学优秀毕业生的通知",
+      "date": "2025/02/21",
+      "url": "https://pspa.sdu.edu.cn/info/1049/17106.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于2025年度国家自然科学基金项目申请有关事项的通知",
+      "date": "2025/01/25",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=acc4f30a-d115-4cd1-a868-5caf65a6ff15",
+      "has_body": false
+    },
+    {
+      "title": "政管学院2024年培新研究生科研基金项目立项通知",
+      "date": "2025/01/14",
+      "url": "https://pspa.sdu.edu.cn/info/1038/17056.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2025年度国家宗教事务局招标科研项目的通知",
+      "date": "2025/01/10",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=41a31c35-feb9-483b-abbe-0bff19912e32",
+      "has_body": false
+    },
+    {
+      "title": "政治学与公共管理学院海外优青2025年度招聘公告",
+      "date": "2024/12/31",
+      "url": "https://pspa.sdu.edu.cn/info/1201/17018.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院关于2025年申请招收硕士研究生人员审核认定工作的通知",
+      "date": "2024/12/17",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16985.htm",
+      "has_body": true
+    },
+    {
+      "title": "2024年秋季学期学生英语雅思/托福考试报名费资助公示",
+      "date": "2024/12/11",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16975.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于填报2024年度人文社科科研成果信息的通知",
+      "date": "2024/12/09",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/12286.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选2024年度山东大学政管学院校友奖学金的通知",
+      "date": "2024/12/04",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16960.htm",
+      "has_body": true
+    },
+    {
+      "title": "2024年度培新卓越学生奖学金（全日制本/硕博研究生—学术学位类）公示",
+      "date": "2024/12/03",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16955.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于举办2024年度本科生最美学习笔记评选大赛的通知",
+      "date": "2024/11/25",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16935.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年度山东大学习近平文化思想研究专项的通知",
+      "date": "2024/11/25",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=6bad78a1-8631-4c6a-9c7d-c217413bfe07",
+      "has_body": false
+    },
+    {
+      "title": "关于征集 2024 年度山东省文化和旅游优秀研究成果的通知",
+      "date": "2024/11/21",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=2a79dde9-57b9-455d-a4be-67f1d040da91",
+      "has_body": false
+    },
+    {
+      "title": "2024年春季学期学生赴海外国际学分资助公示",
+      "date": "2024/11/20",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16914.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评审山东大学2024年（第八届）研究生道德风尚奖的通知",
+      "date": "2024/11/14",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16903.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报教育部哲学社会科学研究专项（全国教育大会精神研究）的通知",
+      "date": "2024/11/11",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=c16013c1-4dda-4130-99d5-53caa46a0334",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2025年度国家社科基金教育学重大重点项目选题的通知",
+      "date": "2024/11/07",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=e349e99a-2962-498a-958e-820b9bebfe0b",
+      "has_body": false
+    },
+    {
+      "title": "转发国家自然科学基金委员会与国际应用系统分析学会 2025年暑期青年科学家项目开放申请通知",
+      "date": "2024/11/07",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/gjjjb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1536&wbnewsid=12074",
+      "has_body": true
+    },
+    {
+      "title": "转发2024年度国家自然科学基金指南引导类原创探索计划项目 “数据流通市场的基础理论与治理方法”项目指…",
+      "date": "2024/11/07",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/gjjjb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1536&wbnewsid=12068",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024-2025年度公共机构绿色低碳转型课题的通知",
+      "date": "2024/11/07",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/gjzdjhb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1543&wbnewsid=12072",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2024年度培新研究生科研基金项目申报通知",
+      "date": "2024/11/04",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16870.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2024年度博士生学术论文征文比赛通知",
+      "date": "2024/11/04",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16869.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于山东大学政管学院“云端支教·赋能乡村振兴”数字支教志愿服务项目结项结果及经费报销的通知公示",
+      "date": "2024/11/01",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16864.htm",
+      "has_body": true
+    },
+    {
+      "title": "2024年度本科生社会奖学金评选安排",
+      "date": "2024/10/31",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16862.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于做好2024年度国家社科基金年度项目中期检查工作的通知",
+      "date": "2024/10/23",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=3f523e3c-c4db-4cb1-ba6c-be595778d1e0",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2023年度社科理论优秀成果的通知",
+      "date": "2024/10/22",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=eac842a3-d5ad-4f17-ac5b-85f78396f9a5",
+      "has_body": false
+    },
+    {
+      "title": "山东大学政治学与公共管理学院非事业编制岗位拟聘用人员公示",
+      "date": "2024/10/14",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16796.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报教育部哲学社会科学研究专项（党的二十届三中全会精神研究）的通知",
+      "date": "2024/10/10",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=d07541d7-dcd6-4636-96f7-c10f80de79f2",
+      "has_body": false
+    },
+    {
+      "title": "关于进行2024年度学术型硕士研究生中期考核的通知",
+      "date": "2024/10/08",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16784.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年度山东省社会科学规划研究专项的通知",
+      "date": "2024/09/30",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=e2cce7a0-3558-4be8-add3-3956a9ad9d10",
+      "has_body": false
+    },
+    {
+      "title": "2024年度本科生国家奖学金评选安排",
+      "date": "2024/09/30",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16769.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于公布山东大学政治学与公共管理学院非事业编制岗位招聘进入考察及体检环节人员名单的通知",
+      "date": "2024/09/29",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16767.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学政治学与公共管理学院关于非事业编制人员招聘面试的通知",
+      "date": "2024/09/29",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16766.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2024年度本科生评奖评优工作安排",
+      "date": "2024/09/27",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16757.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展2024年度本科生特长（书院）奖学金评选通知",
+      "date": "2024/09/27",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15613.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学政治学与公共管理学院关于非事业编制人员招聘笔试的通知",
+      "date": "2024/09/25",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16748.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于在本科课程聘任博士研究生课程助教岗位的通知-2024年秋季学期",
+      "date": "2024/09/24",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16732.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2025年接收免试攻读硕士学位研究生 复试工作安排（含当代社会主义研究所）",
+      "date": "2024/09/20",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16721.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报第三届山东大学人文社会科学青年学者优秀成果奖的通知",
+      "date": "2024/09/14",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=8de00d0f-217c-4207-8cba-0d468d6eb4e1",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2023年度山东大学人文社会科学重大科研成果奖励的通知",
+      "date": "2024/09/14",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=f2204ede-0fa1-44b3-bbfe-62b8a3c9abbc",
+      "has_body": false
+    },
+    {
+      "title": "2024年度臧克家奖学金评选安排",
+      "date": "2024/09/13",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16708.htm",
+      "has_body": true
+    },
+    {
+      "title": "出访公示",
+      "date": "2024/09/12",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16692.htm",
+      "has_body": true
+    },
+    {
+      "title": "出访公示",
+      "date": "2024/09/12",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16691.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年国家社会科学基金高校思想政治理论课研究专项的通知",
+      "date": "2024/09/10",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=b768f9dd-76dd-4054-98ce-58b78c07b358",
+      "has_body": false
+    },
+    {
+      "title": "山东大学政治学与公共管理学院2024年秋季学期非事业编制人员招聘公告",
+      "date": "2024/09/09",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16672.htm",
+      "has_body": true
+    },
+    {
+      "title": "2024年山东大学政管学院“行政管理+电子科学与技术双学位”选拔公告",
+      "date": "2024/09/03",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16646.htm",
+      "has_body": true
+    },
+    {
+      "title": "2024级新生团员、新建新转入团支部团员团组织关系转接、团员证补办安排",
+      "date": "2024/09/01",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16642.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2024年度山东省高等学校青年创新团队发展计划（人文社科类）的通知",
+      "date": "2024/08/31",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=233d4c5d-2647-46bb-90ab-f1a178b18d7d",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报研究阐释党的二十届三中全会精神国家社会科学基金重大专项的通知",
+      "date": "2024/08/30",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=8e1c71a4-8f80-40aa-8387-0ee473ea851f",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报教育部哲学社会科学研究专项（党的二十届三中全会精神研究）的通知",
+      "date": "2024/08/25",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=d07541d7-dcd6-4636-96f7-c10f80de79f2",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024-2025年度国家社科基金中华学术外译项目选题的通知",
+      "date": "2024/08/21",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=0987bc47-abd4-41cd-a9e3-68ee95af9bb1",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024 年度教育部哲学社会科学研究重大课题攻关项目和高校思想政治理论课教师研究专项重大课…",
+      "date": "2024/08/12",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=457226c8-3bf2-4b4b-acb7-211b0401af57",
+      "has_body": false
+    },
+    {
+      "title": "山东大学政治学与公共管理学院关于举办社会稳定风险评估与应急管理暑期研讨会的通知",
+      "date": "2024/08/10",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16619.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东省文化和旅游厅关于开展2024年文化和旅游数字化创新示范案例征集评选工作的通知",
+      "date": "2024/08/06",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=2c247bc0-2744-40f3-8313-ccb65b43ef47",
+      "has_body": false
+    },
+    {
+      "title": "关于征集红色法治文化理论研究成果的通知",
+      "date": "2024/07/21",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=f962aa05-4b23-4c88-997c-b905350e6cf3",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024年习近平文化思想研究中心重大课题的通知",
+      "date": "2024/07/21",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=b424b9a2-1186-4f14-819d-615c2c3a0b8f",
+      "has_body": false
+    },
+    {
+      "title": "首届山东省公共管理优秀案例征集活动评选结果公告",
+      "date": "2024/07/13",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16596.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年国家社科基金冷门绝学研究专项的通知",
+      "date": "2024/07/09",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=8bf98980-1e37-4237-88d6-e640a089498f",
+      "has_body": false
+    },
+    {
+      "title": "关于人文社科研究项目2024年4-6月结项情况的通报",
+      "date": "2024/07/08",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=5199cbbb-8ef6-4c66-bfbe-bc13a33c8c40",
+      "has_body": false
+    },
+    {
+      "title": "出访公示",
+      "date": "2024/07/08",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16584.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年山东省档案科技项目的通知",
+      "date": "2024/07/08",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=8685e102-26de-4b41-8670-e9d0cba03c2d",
+      "has_body": false
+    },
+    {
+      "title": "关于开展山东大学出版基金2024年度资助项目申报的通知",
+      "date": "2024/07/08",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=7fea4652-4915-496c-86da-01fadf5941de",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2024年国家社会科学基金后期资助暨优秀博士学位论文出版、优秀学术著作再版项目的通知",
+      "date": "2024/07/02",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=0e2c37cf-07af-42be-b2da-9a760b26b2a2",
+      "has_body": false
+    },
+    {
+      "title": "2023年第三批学生赴海外国际学分资助公示",
+      "date": "2024/06/27",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16546.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织2024年度智库成果认定的通知",
+      "date": "2024/06/25",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=7854eafe-2783-4b8d-b91f-334661202df9",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报中国高校产学研创新基金-现代服务业新质生产力产教融合研究专项的通知",
+      "date": "2024/06/18",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=9dd5f72f-43bf-4d3d-9866-8d800bed14af",
+      "has_body": false
+    },
+    {
+      "title": "关于申报山东省社会科学界联合会2024年度人文社会科学课题合作专项的通知",
+      "date": "2024/06/18",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=a24322b0-7071-4117-bf1e-96bc544b2b98",
+      "has_body": false
+    },
+    {
+      "title": "2024年春季学期学生英语雅思/托福考试报名费资助公示",
+      "date": "2024/06/13",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16497.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于做好政管学院2024届毕业生团员团组织关系转接工作的通知",
+      "date": "2024/06/11",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16486.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报第十届（2023年度）山东省人力资源社会保障优秀科研成果的通知",
+      "date": "2024/06/11",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=7e7f273d-0b85-43e5-9c54-7f0de14b0ec5",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024年度教育部哲学社会科学研究后期资助项目的通知",
+      "date": "2024/06/03",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=e019283d-e8dc-46ae-b60f-6f0f36672d3a",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024年国家社科基金文化遗产保护传承研究专项的通知",
+      "date": "2024/05/30",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=eb776a42-cd82-421a-a81d-562daa239924",
+      "has_body": false
+    },
+    {
+      "title": "关于启动教育部哲学社会科学创新团队建设工作的通知",
+      "date": "2024/05/30",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=a8b60b6f-d677-4ed9-aadd-cb98300ac7dd",
+      "has_body": false
+    },
+    {
+      "title": "2023年秋季学期学生赴海外国际学分资助公示",
+      "date": "2024/05/29",
+      "url": "https://pspa.sdu.edu.cn/content.jsp?urltype=news.NewsContentUrl&wbtreeid=1201&wbnewsid=16458",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年度山东省人民政府决策咨询研究重点课题的通知",
+      "date": "2024/05/29",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=e0dee425-82e8-4f3b-9fb5-4e6ed6662443",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报国家社科基金重大项目选题的通知",
+      "date": "2024/05/28",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=2f8a0ffc-df65-496b-a0aa-0cd3e923f070",
+      "has_body": false
+    },
+    {
+      "title": "关于召开政治学与公共管理学院第二十三次学生代表大会的通知",
+      "date": "2024/05/22",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16439.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年度全国教育科学规划专项的通知",
+      "date": "2024/05/22",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=536b8152-69db-4e84-95c7-d5bfc117c799",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024年度山东省自然科学基金项目（第一批）的通知",
+      "date": "2024/05/22",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=11740",
+      "has_body": true
+    },
+    {
+      "title": "山东大学第十六届“我心目中的好导师” 候选人——孙宗锋",
+      "date": "2024/05/17",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16426.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年度山东省文化和旅游研究课题的通知",
+      "date": "2024/05/16",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=eb50d230-f675-4034-908e-65f99379237b",
+      "has_body": false
+    },
+    {
+      "title": "关于组织开展2024年度山东省重点研发计划（软科学）项目申报的通知",
+      "date": "2024/05/15",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=11728",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年度全省人力资源社会保障课题的通知",
+      "date": "2024/05/13",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=c87060ee-56c4-4946-a54b-4b29572728b8",
+      "has_body": false
+    },
+    {
+      "title": "关于征集2024年全国人才与人事研究论文的通知",
+      "date": "2024/05/11",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=49ac8ca6-3464-45cf-87e3-c6139c1a4620",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024年度全国教育科学规划项目及国家社科基金教育学重大项目的通知",
+      "date": "2024/05/09",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=2a0a7dbd-b99c-4422-9201-acf6a94f6069",
+      "has_body": false
+    },
+    {
+      "title": "山东大学第十六届“我心目中的好导师”和2024年度“优秀研究生导学团队”拟推荐结果公示",
+      "date": "2024/05/07",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16385.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年度山东大学中华民族现代文明建设研究专项的通知",
+      "date": "2024/04/30",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=52405c03-0194-4f8a-877b-289cbacd064b",
+      "has_body": false
+    },
+    {
+      "title": "关于2024年度山东省自然科学基金项目结题验收（综合绩效评价）工作安排的通知",
+      "date": "2024/04/29",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=11599",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2024年度山东大学文科名家作品集编撰计划项目的通知",
+      "date": "2024/04/29",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=7693b709-9ab3-4d61-a7b6-57f9f3265bd0",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024年度山东大学人文社会科学卓越精品支持计划项目的通知",
+      "date": "2024/04/29",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=4ebdecc1-95ca-4e2a-be06-847519dc59c9",
+      "has_body": false
+    },
+    {
+      "title": "关于开展学科交叉研究前沿系列“语言认知与健康科学”专题培训的通知",
+      "date": "2024/04/25",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=99da9f52-aebc-439e-bcb4-344271b3c137",
+      "has_body": false
+    },
+    {
+      "title": "关于2024年度国家社会科学基金重大项目申报工作的补充通知",
+      "date": "2024/04/23",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=eeca8c67-9e02-434a-b2d1-92f04ddc2b5f",
+      "has_body": false
+    },
+    {
+      "title": "关于评选山东大学第十六届“我心目中的好导师”和 2024年度“优秀研究生导学团队”的通知",
+      "date": "2024/04/22",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16338.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报山东省“十五五”规划重大课题委托研究的通知",
+      "date": "2024/04/22",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=a9776d54-b9e3-41e0-aea0-110288d51a83",
+      "has_body": false
+    },
+    {
+      "title": "关于国家社科基金专家库增补专家和更新信息的通知",
+      "date": "2024/04/19",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=7da7c84e-72e1-4b11-a1b7-58b0d9862e34",
+      "has_body": false
+    },
+    {
+      "title": "关于2024年度国家社会科学基金年度项目申报工作的补充通知",
+      "date": "2024/04/18",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=cf87822a-af5e-4235-965a-9507c3234176",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024年国家社会科学基金年度项目的通知",
+      "date": "2024/04/15",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=5fdf8fed-4e36-4e67-83b6-ddaa6b67841b",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024年国家社会科学基金重大项目的通知",
+      "date": "2024/04/15",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=1934db32-b082-4310-9f66-454ae6ca0158",
+      "has_body": false
+    },
+    {
+      "title": "关于人文社科研究项目2024年1-3月结项情况的通报",
+      "date": "2024/04/12",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=ebdd28bc-b8c7-4c86-b5b7-b7a47a19d213",
+      "has_body": false
+    },
+    {
+      "title": "政管学院2024年攻读博士学位研究生中期考核通知",
+      "date": "2024/04/09",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16308.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2024年度民族宗教课题研究项目的通知",
+      "date": "2024/04/08",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=a99f9391-27b4-4500-ac2d-0c91c9c5adf5",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2024年山东大学人文社科高端学术论坛和青年学者学术沙龙的通知",
+      "date": "2024/04/02",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=92a05d66-82b2-4bfb-a291-df9728b76b83",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2024年度教育部哲学社会科学研究重大课题攻关项目选题的通知",
+      "date": "2024/04/02",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=b29e34f4-7270-4bb3-8490-974ba9dafd65",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2024年度山东省社会科学规划研究项目的通知",
+      "date": "2024/03/28",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=eb0d7aaa-17d2-4b90-b311-98ec84a4da46",
+      "has_body": false
+    },
+    {
+      "title": "关于举办政管学院第十四届“挑战杯”大学生创业计划大赛及中国国际大学生创新大赛（2024）院赛选拔通知",
+      "date": "2024/03/27",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16276.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于在本科课程聘任博士研究生课程助教岗位的通知-2024年春季学期",
+      "date": "2024/03/25",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16273.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于推荐第四批山东省哲学社会科学青年人才团队的通知",
+      "date": "2024/03/25",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=77be624c-7050-4e91-820c-0663bac657ba",
+      "has_body": false
+    },
+    {
+      "title": "山东大学2024年公共管理硕士（MPA）研究生招生复试考生名单公示",
+      "date": "2024/03/22",
+      "url": "http://www.mpa.sdu.edu.cn/info/1042/3550.htm",
+      "has_body": false
+    },
+    {
+      "title": "山东大学2024年MPA招生复试录取工作安排",
+      "date": "2024/03/21",
+      "url": "http://www.mpa.sdu.edu.cn/info/1042/3541.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2024年学术型硕士研究生复试录取工作安排（含当代社会主义研究所）",
+      "date": "2024/03/21",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16243.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2024年度教育部人文社会科学研究一般及专项项目的通知",
+      "date": "2024/03/20",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=c0acc5cc-3bea-4dc1-84bb-dbaf18e83010",
+      "has_body": false
+    },
+    {
+      "title": "关于2024年度“政德杯”本科征文活动的通知",
+      "date": "2024/03/19",
+      "url": "https://pspa.sdu.edu.cn/info/1033/16234.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2024年度山东省社会科学界联合会人文社会科学课题（厅级项目）的通知",
+      "date": "2024/03/18",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=074d32e5-278e-40bc-92c8-98f8fe2d0f1f",
+      "has_body": false
+    },
+    {
+      "title": "关于评选2024年度“青岛市千名优秀大学生”的通知",
+      "date": "2024/03/14",
+      "url": "https://pspa.sdu.edu.cn/info/1049/14623.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023年度研究生省级优秀学生、优秀学生干部学院拟推荐人选公示",
+      "date": "2024/03/12",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16213.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023年度本科生山东省优秀学生、优秀学生干部、先进班集体学院拟推荐人选公示",
+      "date": "2024/03/08",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16193.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选2023年度研究生省级优秀学生、优秀学生干部的通知",
+      "date": "2024/03/07",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16184.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于推荐优秀本科生、班集体参加2023年度山东省优秀学生、优秀学生干部和先进班集体评选的通知",
+      "date": "2024/03/07",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16181.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于“全国纪念邓小平同志诞辰120周年学术研讨会”论文征集通知",
+      "date": "2024/03/06",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=9dd5a23c-22e5-44ba-9667-686c94a27264",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2024年度国家社科基金艺术学及重大项目的通知",
+      "date": "2024/02/23",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=76d3d987-391d-4951-8537-791eaac10380",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2024年度山东社科决策咨询项目（一）的通知",
+      "date": "2024/02/23",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=49d72260-dd40-4561-9c74-8d51179d2635",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2024年度《国家哲学社会科学成果文库》的通知",
+      "date": "2024/02/23",
+      "url": "https://webvpn.sdu.edu.cn/https/77726476706e69737468656265737421fff60f8f232526557a1dc7af96/sdu_cms.jsp?messageId=b04dbbea-9073-46ba-ba9f-ffabee20f513",
+      "has_body": false
+    },
+    {
+      "title": "关于2024年度国家自然科学基金项目申请有关事项的通知",
+      "date": "2024/02/23",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/gjjjb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1536&wbnewsid=11553",
+      "has_body": true
+    },
+    {
+      "title": "关于人文社科研究项目2023年5-12月结项情况的通报",
+      "date": "2024/01/18",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=da76064a-b99b-48d2-94de-e8f13ddf4be1",
+      "has_body": false
+    },
+    {
+      "title": "政管学院海外优青2024年度招聘公告",
+      "date": "2024/01/10",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16049.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2024年招收攻读博士学位研究生考试工作安排（含当代社会主义研究所）",
+      "date": "2024/01/09",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16046.htm",
+      "has_body": true
+    },
+    {
+      "title": "2024年挪威NEWDAY暑期课程项目报名通知",
+      "date": "2024/01/04",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16034.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2023年度研究生科研基金项目立项通知",
+      "date": "2024/01/03",
+      "url": "https://pspa.sdu.edu.cn/info/1038/16030.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学政治学与公共管理学院2023-2024学年寒假社会实践活动工作指引",
+      "date": "2023/12/28",
+      "url": "https://pspa.sdu.edu.cn/info/1049/16027.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于2023年度国家自然科学基金项目结题的通知",
+      "date": "2023/12/22",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=ce9d2ead-1c17-4029-aad9-3fbee181842c",
+      "has_body": false
+    },
+    {
+      "title": "“校友讲堂”名称征集活动",
+      "date": "2023/12/20",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16014.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023年秋季学期学生英语雅思/托福考试报名费资助公示",
+      "date": "2023/12/20",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16012.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年度山东省高等学校哲学社会科学研究项目的通知",
+      "date": "2023/12/19",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=7c07193b-1c14-405d-8bbb-8deb5dcfc147",
+      "has_body": false
+    },
+    {
+      "title": "2023年春季学期学生赴海外国际学分资助公示",
+      "date": "2023/12/15",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16004.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023年春季学期学生英语雅思/托福考试报名费资助公示",
+      "date": "2023/12/15",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16002.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年秋季学期学生赴海外国际学分资助公示（三）",
+      "date": "2023/12/15",
+      "url": "https://pspa.sdu.edu.cn/info/1201/16001.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学关于表彰2023年度青年教师教学比赛获奖教师的决定",
+      "date": "2023/12/15",
+      "url": "https://pspa.sdu.edu.cn/info/1033/15999.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于山东大学政治学与公共管理学院2022-2023学年暑期社会实践经费报销情况的公示",
+      "date": "2023/12/13",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15984.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于征集黄河流域生态保护和高质量发展课题研究成果的通知",
+      "date": "2023/12/12",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/11482.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022-2023学年本科生班级工作考评暨山东大学先进班集体、优良学风班、“优秀班长”评选安排",
+      "date": "2023/12/12",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15978.htm",
+      "has_body": true
+    },
+    {
+      "title": "​关于评选2024届山东大学优秀毕业生、山东省优秀毕业生的通知",
+      "date": "2023/12/11",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15975.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于公布山东大学政治学与公共管理学院非事业编制岗位招聘进入考察及体检环节人员名单的通知",
+      "date": "2023/12/09",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15974.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学政治学与公共管理学院关于非事业编制人员招聘面试的通知",
+      "date": "2023/12/08",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15972.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2024年招收攻读博士学位研究生简章 （含当代社会主义研究所）",
+      "date": "2023/12/08",
+      "url": "https://pspa.sdu.edu.cn/info/1038/15970.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于填报2023年度人文社科科研成果信息的通知",
+      "date": "2023/12/06",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/11479.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学政治学与公共管理学院关于非事业编制人员招聘笔试的通知",
+      "date": "2023/12/05",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15964.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年度国家社科基金中华学术外译项目的通知",
+      "date": "2023/12/04",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=4bfebeb2-0a06-4e34-9214-07d1a6acd336",
+      "has_body": false
+    },
+    {
+      "title": "关于举办2023年度本科生最美学习笔记评选大赛的通知",
+      "date": "2023/12/01",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15958.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2024年招收博士研究生导师团队介绍",
+      "date": "2023/12/01",
+      "url": "https://pspa.sdu.edu.cn/info/1038/15953.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学政治学与公共管理学院非事业编制人员招聘公告",
+      "date": "2023/11/14",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15869.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于举办“心航杯”心理剧本创作大赛的通知",
+      "date": "2023/11/13",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15865.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023年研究生道德风尚奖学金评审安排",
+      "date": "2023/11/10",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15861.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选山东大学优秀生涯发展委员的通知",
+      "date": "2023/11/09",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15860.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022-2023学年本科学生海外学习奖评选工作安排",
+      "date": "2023/11/06",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13179.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院关于2024年申请招收硕士研究生人员审核认定工作的通知",
+      "date": "2023/11/01",
+      "url": "https://pspa.sdu.edu.cn/info/1038/15843.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于举办第十届大学生职业规划大赛暨首届全国大学生职业规划大赛院内选拔赛的通知",
+      "date": "2023/10/25",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15803.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年度国家社会科学基金重大项目的通知",
+      "date": "2023/10/23",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=1c120022-0a23-4f89-b5e7-88a0510e0df3",
+      "has_body": false
+    },
+    {
+      "title": "政管学院关于2023年度研究生科研基金项目申报的通知",
+      "date": "2023/10/20",
+      "url": "https://pspa.sdu.edu.cn/info/1038/15783.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2023年度博士生学术论文征文比赛",
+      "date": "2023/10/19",
+      "url": "https://pspa.sdu.edu.cn/info/1038/15769.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于2023年度山东省自然科学基金项目第三批结题验收（综合绩效评价）工作安排的通知",
+      "date": "2023/10/19",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=11399",
+      "has_body": true
+    },
+    {
+      "title": "政管学院关于进行2023年度学术型硕士研究生中期考核的通知",
+      "date": "2023/10/18",
+      "url": "https://pspa.sdu.edu.cn/info/1038/15762.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于征集2024年度山东省重点研发计划（软科学）项目指南建议的通知",
+      "date": "2023/10/17",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=11398",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报中国高校产学研创新基金－曜程数字教育项目的通知",
+      "date": "2023/10/17",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=c5dec99a-d7d5-4857-8132-8de20dac8a31",
+      "has_body": false
+    },
+    {
+      "title": "2023年度本科生社会奖学金评选安排",
+      "date": "2023/10/16",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15754.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2023年度山东大学中华民族现代文明建设研究专项的通知",
+      "date": "2023/10/12",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=2e97e7e4-990e-4072-a213-06fcda4237e6",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2023年度国家社科基金高校思想政治理论课研究专项的通知",
+      "date": "2023/10/11",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=2b62d763-27ff-49f8-b5e0-7c8385cea086",
+      "has_body": false
+    },
+    {
+      "title": "关于开展“四个一百”团支部立项活动的通知",
+      "date": "2023/10/10",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15631.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于报送文科实验室建设情况的通知",
+      "date": "2023/10/10",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10898.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2023年度山东大学人文社科研究重大项目的通知",
+      "date": "2023/10/10",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=dcb347a0-32e1-481f-890f-53838a6b61cc",
+      "has_body": false
+    },
+    {
+      "title": "2023年度本科生国家奖学金评选安排",
+      "date": "2023/10/10",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15626.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于在本科课程聘任博士研究生课程助教岗位的通知-2023年秋季学期",
+      "date": "2023/10/09",
+      "url": "https://pspa.sdu.edu.cn/info/1038/15623.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年度山东省社会科学规划研究专项的通知",
+      "date": "2023/10/07",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10888.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于评选2023年度本科生优秀学生干部的通知",
+      "date": "2023/09/29",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15612.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023年度本科生学业奖、优秀学生奖、三好学生评选工作安排",
+      "date": "2023/09/29",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15611.htm",
+      "has_body": true
+    },
+    {
+      "title": "“公共服务与城市高质量发展”论坛征稿通知",
+      "date": "2023/09/26",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15603.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于2023年度山东省自然科学基金项目第二批结题验收（综合绩效评价）工作安排的通知",
+      "date": "2023/09/26",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=11363",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2022年度山东大学人文社会科学重大科研成果奖励的通知",
+      "date": "2023/09/26",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10876.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于做好2022年度及往年青岛市社会科学规划项目结项工作的通知",
+      "date": "2023/09/25",
+      "url": "http://www.qdxc.gov.cn/notice/2023/0922/22174.html",
+      "has_body": false
+    },
+    {
+      "title": "政管学院2024年接收免试攻读硕士学位研究生复试工作安排",
+      "date": "2023/09/21",
+      "url": "https://pspa.sdu.edu.cn/info/1038/15586.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展2023年校园地国家助学贷款办理工作的通知",
+      "date": "2023/09/19",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12694.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023年度宝钢优秀学生奖评选安排",
+      "date": "2023/09/16",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12736.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023年度臧克家奖学金评选安排",
+      "date": "2023/09/16",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12737.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展2023-2024学年研究生生源地助学贷款审核工作的通知",
+      "date": "2023/09/10",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15540.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2024年接收推荐免试硕士研究生预报名通知（含当代社会主义研究基地）",
+      "date": "2023/09/08",
+      "url": "https://pspa.sdu.edu.cn/info/1038/15537.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023级新生团员、新建新转入团支部团员团组织关系转接、团员证补办安排",
+      "date": "2023/09/07",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15533.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报山东省教育厅2023年度山东省高等学校青年创新团队发展计划的通知",
+      "date": "2023/09/06",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10848.htm",
+      "has_body": true
+    },
+    {
+      "title": "“行政管理+电子科学与技术双学位”选拔公告",
+      "date": "2023/09/03",
+      "url": "https://pspa.sdu.edu.cn/info/1033/15521.htm",
+      "has_body": true
+    },
+    {
+      "title": "会议预告 | 第二届“中国式现代化与民生保障”学术论坛即将在山东大学召开",
+      "date": "2023/09/02",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15517.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年度国家社科基金冷门绝学研究专项的通知",
+      "date": "2023/08/07",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10811.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于山东省第十六届社会科学突出贡献奖、学科新秀奖申报推荐的通知",
+      "date": "2023/08/02",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10796.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于山东省第三十六届社会科学优秀成果奖申报工作的通知",
+      "date": "2023/08/02",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10797.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年度国家民委民族研究项目的通知",
+      "date": "2023/07/17",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15415.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织参加山东省社科界第十届人文艺术作品大赛的通知",
+      "date": "2023/07/17",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15414.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年度教育部哲学社会科学研究重大课题攻关项目和高校思想政治理论课教师研究专项重大课题攻关…",
+      "date": "2023/07/17",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15413.htm",
+      "has_body": true
+    },
+    {
+      "title": "国家民委办公厅关于申报国家民委民族研究项目2023年度公开招标课题的通知",
+      "date": "2023/07/10",
+      "url": "https://www.neac.gov.cn/seac/xxgk/202307/1165910.shtml",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2023-2024年度国家社科基金中华学术外译项目选题的通知",
+      "date": "2023/07/10",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=75fad43d-b232-41c7-96c4-cc02152d517a",
+      "has_body": false
+    },
+    {
+      "title": "关于做好青岛市“双百调研工程” 动态课题申报工作的通知",
+      "date": "2023/07/04",
+      "url": "http://sky.qingdao.cn/ggl_103/202307/t20230704_7274382.shtml",
+      "has_body": false
+    },
+    {
+      "title": "关于组织开展校内自主设置非实体科研机构（人文社科类）优化整合的通知",
+      "date": "2023/06/30",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=b854388d-68e9-4374-bb3a-e3941006fc56",
+      "has_body": false
+    },
+    {
+      "title": "关于青岛市第三十七次社会科学优秀成果奖申报推荐的通知",
+      "date": "2023/06/28",
+      "url": "http://sky.qingdao.cn/ggl_103/202306/t20230627_7262051.shtml",
+      "has_body": false
+    },
+    {
+      "title": "关于组织2023年度智库成果认定的通知",
+      "date": "2023/06/21",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=9b55c705-18f9-4e44-bbbe-975f2c1b0345",
+      "has_body": false
+    },
+    {
+      "title": "关于申报教育部社科司中华优秀传统文化专项（A类）课题的通知",
+      "date": "2023/06/13",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=6faed2f2-cc6a-48ca-ada7-3c6ee85ea95f",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2023年度教育部哲学社会科学研究后期资助项目的通知",
+      "date": "2023/06/12",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=775b74b0-4766-4e71-a67b-cc2566a4d58a",
+      "has_body": false
+    },
+    {
+      "title": "关于做好政管学院2023届毕业生团员团组织关系转接工作的通知",
+      "date": "2023/06/08",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15116.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于召开政治学与公共管理学院第十九次研究生代表大会的通知",
+      "date": "2023/06/03",
+      "url": "https://pspa.sdu.edu.cn/info/1049/15063.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于招募中国城乡社会调查实践-我的家乡调研调研员的通知",
+      "date": "2023/06/03",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15053.htm",
+      "has_body": true
+    },
+    {
+      "title": "中共青岛市委宣传部 关于做好2023年度青岛市社会科学规划 研究项目申报工作的通知",
+      "date": "2023/06/02",
+      "url": "https://pspa.sdu.edu.cn/info/1028/15047.htm",
+      "has_body": true
+    },
+    {
+      "title": "《关于组织申报2023年度山东省文化和旅游研究课题的通知》",
+      "date": "2023/06/02",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=8dee2738-80f3-4e9d-885a-b343151dd3e5",
+      "has_body": false
+    },
+    {
+      "title": "《关于申报2023年度国家社会科学基金后期资助暨优秀博士论文出版项目的通知》",
+      "date": "2023/06/02",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=82d8f1a2-5fe5-4cc4-acb9-5c3c2ef2ca28",
+      "has_body": false
+    },
+    {
+      "title": "山东大学第十五届“我心目中的好导师”候选人——刘昌明",
+      "date": "2023/05/31",
+      "url": "https://pspa.sdu.edu.cn/info/1201/15013.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报第六届山东省文化创新奖工作的通知",
+      "date": "2023/05/29",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10596.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于召开政治学与公共管理学院第二十二次学生代表大会的通知",
+      "date": "2023/05/25",
+      "url": "https://pspa.sdu.edu.cn/info/1049/14988.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展2023年度国际中文教育研究课题申报的通知",
+      "date": "2023/05/25",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=c4431ee5-b457-4e74-9a1a-c799790c917b",
+      "has_body": false
+    },
+    {
+      "title": "关于申请Gale亚太学者-数字人文牛津大学奖学金的通知",
+      "date": "2023/05/24",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=f2ac7e0d-32d9-415f-b1d7-96abf829a5b9",
+      "has_body": false
+    },
+    {
+      "title": "关于人文社科研究项目2023年1-4月结项情况的通报",
+      "date": "2023/05/18",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=1a7ac916-ccb4-4fd9-bc9e-9c85b7acabd2",
+      "has_body": false
+    },
+    {
+      "title": "转发关于征集2023年济南市科技创新智库调研选题的通知",
+      "date": "2023/05/12",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/kxgz_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1679&wbnewsid=11133",
+      "has_body": true
+    },
+    {
+      "title": "转发关于中国科协战略发展部组织申报2023年度“科技智库青年人才计划”的通知",
+      "date": "2023/05/12",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/kxgz_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1679&wbnewsid=11127",
+      "has_body": true
+    },
+    {
+      "title": "关于征集中华优秀传统文化“两创”理论研究成果的通知",
+      "date": "2023/05/12",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=963541cc-eefe-4414-80e3-4e5dc2039bd1",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2023年度国家社科基金教育学项目及重大项目的通知",
+      "date": "2023/05/09",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10566.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申请承办“2023年度山东大学交叉学科青年学术沙龙”的通知",
+      "date": "2023/05/08",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=0a257063-ad52-4b92-a855-41ef2ebc7696",
+      "has_body": false
+    },
+    {
+      "title": "转发关于组织开展2023年度山东省重点研发计划（软科学）项目申报的通知",
+      "date": "2023/05/08",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=11118",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年度国家社科基金教育学项目及重大项目的通知",
+      "date": "2023/05/06",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=3232efe5-41cb-4b75-8b4a-5a69c6917c20",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2023年度山东省人文社会科学课题的通知",
+      "date": "2023/05/06",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=902ed3db-37db-463e-b55e-84312549e727",
+      "has_body": false
+    },
+    {
+      "title": "政管学院举办虚拟仿真实验教学一流课程建设与申报政策解读专题培训会",
+      "date": "2023/05/05",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14805.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院华岗特色班举办“本本优本”系列讲座",
+      "date": "2023/05/05",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14804.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学关于表彰第三届教师教学创新大赛获奖教师（教学团队）和优秀组织单位的决定",
+      "date": "2023/05/05",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14803.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2023年度国家社科基金重大项目选题的通知",
+      "date": "2023/05/04",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=866d11a7-837a-464c-b9b0-5d4f0df79e88",
+      "has_body": false
+    },
+    {
+      "title": "关于开展“奋进新时代，劳动正青春”劳动教育主题团日活动的通知",
+      "date": "2023/04/27",
+      "url": "https://pspa.sdu.edu.cn/info/1049/14747.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院组织教师参加一流课程建设及申报政策解读专题培训会",
+      "date": "2023/04/27",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14746.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院召开2022-2023学年第二学期期中教学检查座谈会",
+      "date": "2023/04/27",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14745.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于2023年度山东省自然科学基金项目结题验收（综合绩效评价）工作安排的通知",
+      "date": "2023/04/26",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=11117",
+      "has_body": true
+    },
+    {
+      "title": "关于开展团员核查及低龄团员认定工作的通知",
+      "date": "2023/04/23",
+      "url": "https://pspa.sdu.edu.cn/info/1049/14694.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年度全省人力资源社会保障课题的通知",
+      "date": "2023/04/23",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=f2dbef59-7125-4421-bed5-a282addade0b",
+      "has_body": false
+    },
+    {
+      "title": "政管学院2023年招收攻读博士学位研究生考试工作安排（含当代社会主义研究所）",
+      "date": "2023/04/22",
+      "url": "https://pspa.sdu.edu.cn/info/1038/14674.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2023年招收攻读博士学位研究生补充说明",
+      "date": "2023/04/18",
+      "url": "https://pspa.sdu.edu.cn/info/1038/14613.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院“公共安全与应急管理”微专业2024年招生简章及培养方案",
+      "date": "2023/04/18",
+      "url": "https://pspa.sdu.edu.cn/info/1033/16388.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院“公共安全与应急管理”微专业招生简章及培养方案",
+      "date": "2023/04/18",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14606.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2023年春季学期接收转专业工作方案",
+      "date": "2023/04/17",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14599.htm",
+      "has_body": true
+    },
+    {
+      "title": "我院学生团队参加“我与党的二十大”课程思政短视频比赛结果通报",
+      "date": "2023/04/17",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14593.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于继续开展教职员工国际化能力提升系列线上课程培训的通知",
+      "date": "2023/04/12",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=e7b4b584-4893-48e4-97b2-118cc910f964",
+      "has_body": false
+    },
+    {
+      "title": "山东大学第十四届学生“五•四”青年科学奖评选安排",
+      "date": "2023/04/10",
+      "url": "https://pspa.sdu.edu.cn/info/1049/14484.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2023年招收攻读博士学位研究生简章 （含当代社会主义研究基地）",
+      "date": "2023/04/07",
+      "url": "https://pspa.sdu.edu.cn/info/1038/14462.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2023年招收博士研究生导师团队介绍",
+      "date": "2023/04/07",
+      "url": "https://pspa.sdu.edu.cn/info/1038/14456.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2023年度国家社会科学基金项目的通知",
+      "date": "2023/04/07",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10526.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年度教育部高校思想政治理论课教师研究专项一般项目的通知",
+      "date": "2023/04/07",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10516.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2023年攻读博士学位研究生中期考核通知",
+      "date": "2023/04/03",
+      "url": "https://pspa.sdu.edu.cn/info/1038/14423.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报第二届山东省机构编制优秀科研成果的通知",
+      "date": "2023/03/30",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=38d3bb37-dfaf-4fd1-846f-bd8d38072636",
+      "has_body": false
+    },
+    {
+      "title": "关于开展市中区科技副职选派工作的通知",
+      "date": "2023/03/24",
+      "url": "https://www.ttc.sdu.edu.cn/info/1046/5524.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2023年度教育部人文社科研究一般项目及专项任务项目的通知",
+      "date": "2023/03/24",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10507.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2023年度山东省社会科学规划研究项目的通知",
+      "date": "2023/03/23",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=91e17ff1-51cc-487e-8164-e7d6254d4ad8",
+      "has_body": false
+    },
+    {
+      "title": "政管学院召开本科教学指导委员会及基层教学组织扩大会议",
+      "date": "2023/03/22",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14293.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院召开本科教育教学评估推进会",
+      "date": "2023/03/21",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14283.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2023年山东大学大学生国家级、省级、校级创新创业训练计划项目的预通知",
+      "date": "2023/03/20",
+      "url": "https://pspa.sdu.edu.cn/info/1049/14253.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2023年学术型硕士研究生复试录取工作安排（含当代社会主义研究所）",
+      "date": "2023/03/17",
+      "url": "https://pspa.sdu.edu.cn/info/1038/14224.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于做好2022年度五四评比表彰工作的通知",
+      "date": "2023/03/17",
+      "url": "https://pspa.sdu.edu.cn/info/1049/14223.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于举办“2023年春季学期山东大学境外学习项目及政策宣讲会”的通知",
+      "date": "2023/03/16",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=10a1eff3-ba6a-41a4-a934-571b7b5331e8",
+      "has_body": false
+    },
+    {
+      "title": "关于推荐优秀本科生、班集体参加2022年度山东省优秀学生、优秀学生干部和先进班集体评选的通知",
+      "date": "2023/03/15",
+      "url": "https://pspa.sdu.edu.cn/info/1049/14204.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选2022年度研究生省级优秀学生、优秀学生干部的通知",
+      "date": "2023/03/15",
+      "url": "https://pspa.sdu.edu.cn/info/1049/14193.htm",
+      "has_body": true
+    },
+    {
+      "title": "第三届山东大学教师教学创新大赛比赛结果",
+      "date": "2023/03/15",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14183.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年度山东大学青年教师教学比赛结果",
+      "date": "2023/03/15",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14173.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于因公临时出国（境）管理系统上线 运行的通知及使用指南",
+      "date": "2023/03/15",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=691364d1-1325-4bbc-a913-388fe3b89750",
+      "has_body": false
+    },
+    {
+      "title": "首届中国数字社会治理高峰论坛征稿启事",
+      "date": "2023/03/13",
+      "url": "https://pspa.sdu.edu.cn/info/1201/14146.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院课程思政建设取得新突破",
+      "date": "2023/03/13",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14127.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学政管学院统战学教学实践基地在无棣县揭牌成立",
+      "date": "2023/03/13",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14123.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2022年度社科理论优秀成果的通知",
+      "date": "2023/03/10",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=75fa584d-0b3a-438b-8d49-4032e99869e2",
+      "has_body": false
+    },
+    {
+      "title": "关于申报第九届（2022年度）山东省人力资源社会保障优秀科研成果的通知",
+      "date": "2023/03/10",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10476.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选2023届省级、校级优秀毕业生的通知",
+      "date": "2023/03/08",
+      "url": "https://pspa.sdu.edu.cn/info/1049/14087.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院组织观摩第三届山东大学教师教学创新大赛",
+      "date": "2023/03/08",
+      "url": "https://pspa.sdu.edu.cn/info/1033/14086.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于推荐第三批民族研究优秀中青年专家的通知",
+      "date": "2023/03/06",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10466.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年度政管学院研究生科研基金项目立项通知",
+      "date": "2023/03/03",
+      "url": "https://pspa.sdu.edu.cn/info/1038/14033.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报日本樱花计划2023年度中日青少年科技交流计划基层对口项目的通知",
+      "date": "2023/03/02",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=19e0c459-b5b0-47dc-96c6-5f0d6ce7e576",
+      "has_body": false
+    },
+    {
+      "title": "【留基委项目】关于遴选2023年度国别和区域研究人才支持计划候选人的通知",
+      "date": "2023/03/01",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=113bdac1-d2aa-474b-b3fd-30eda8a77701",
+      "has_body": false
+    },
+    {
+      "title": "【留基委项目】关于申报2023年“高校国际组织师资出国留学项目”（第一批）的通知",
+      "date": "2023/03/01",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=0dd3daa9-cc19-4b07-adc4-6df5051404d4",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2023年山东大学人文社科高端学术论坛和青年学者学术沙龙的通知",
+      "date": "2023/03/01",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10456.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于在本科课程聘任研究生课程助教岗位的通知-2023年春季学期",
+      "date": "2023/02/23",
+      "url": "https://pspa.sdu.edu.cn/info/1038/13943.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展政管学院2023年团支部“达标升级”工作的通知",
+      "date": "2023/02/20",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13916.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年秋季学期学生赴海外国际学分资助公示（二）",
+      "date": "2023/02/20",
+      "url": "https://pspa.sdu.edu.cn/info/1201/13915.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年秋季学期学生英语雅思/托福考试报名费资助公示",
+      "date": "2023/02/20",
+      "url": "https://pspa.sdu.edu.cn/info/1201/13914.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于做好2023年暑期学校项目申报工作的通知",
+      "date": "2023/02/20",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=519ccae3-263f-49e4-b1c7-88b6a13d1da0",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2023年度教育部哲学社会科学研究重大课题攻关项目选题的通知",
+      "date": "2023/02/17",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10436.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023年春季学期勤工助学岗招聘的通知",
+      "date": "2023/02/14",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13854.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于进行2022年度学术型硕士研究生中期考核的通知",
+      "date": "2023/02/10",
+      "url": "https://pspa.sdu.edu.cn/info/1038/13845.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2023年度青岛市自然科学基金项目的通知",
+      "date": "2023/02/06",
+      "url": "https://kyc.qd.sdu.edu.cn/info/1025/1852.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于2023年度国家自然科学基金项目申请有关事项的通知",
+      "date": "2023/02/06",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/gjjjb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1536&wbnewsid=10877",
+      "has_body": true
+    },
+    {
+      "title": "政管学院春节走访慰问寒假留校学生",
+      "date": "2023/01/18",
+      "url": "https://pspa.sdu.edu.cn/info/1201/13803.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于2022年度国家自然科学基金项目结题的通知",
+      "date": "2023/01/15",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/gjjjb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1536&wbnewsid=10863",
+      "has_body": true
+    },
+    {
+      "title": "政管学院推荐申报“2022年度课程思政示范项目”公示",
+      "date": "2022/12/28",
+      "url": "https://pspa.sdu.edu.cn/info/1033/13715.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展2022年教职工年度考核工作的通知",
+      "date": "2022/12/26",
+      "url": "https://pspa.sdu.edu.cn/info/1201/13693.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于政治学与公共管理学院2022年度基层团支部创新立项经费发放的公示",
+      "date": "2022/12/15",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13643.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于填报2022年度人文社科科研成果信息的通知",
+      "date": "2022/12/09",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10326.htm",
+      "has_body": true
+    },
+    {
+      "title": "2023年度海外优青招聘公告",
+      "date": "2022/12/06",
+      "url": "https://pspa.sdu.edu.cn/info/1201/13564.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报研究阐释党的二十大精神国家社会科学基金重大项目的通知",
+      "date": "2022/12/01",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp;jsessionid=4A6C8FEBEE3F3D5E5BBD619265E87C8E?messageId=ea6bc8bb-bf59-4459-bfb2-6e5256406440",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报第九届高等学校科学研究优秀成果奖（人文社会科学）的通知",
+      "date": "2022/11/30",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10286.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于2022年度政管学院研究生科研基金项目申报的通知",
+      "date": "2022/11/24",
+      "url": "https://pspa.sdu.edu.cn/info/1038/13447.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院关于2021年度研究生精品课程项目、教育教改研究项目、自编教材项目结项的通知",
+      "date": "2022/11/24",
+      "url": "https://pspa.sdu.edu.cn/info/1038/13446.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展2022年度山东省科技计划年度绩效评价的通知",
+      "date": "2022/11/24",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=10797",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报教育部哲学社会科学研究专项（党的二十大精神研究）的通知",
+      "date": "2022/11/22",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp;jsessionid=17120B5254EB8E9C6CEC2F589F4CDE97?messageId=13d33937-6312-45c4-90c9-885c476dcb63",
+      "has_body": false
+    },
+    {
+      "title": "关于表彰政管学院2021-2022学年春季学期“青年大学习”先进团支部、优秀团支部的通知",
+      "date": "2022/11/21",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13413.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2022年度国家社科基金中华学术外译项目的通知",
+      "date": "2022/11/18",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=4d2e393b-8350-4879-907e-d944eab2f432",
+      "has_body": false
+    },
+    {
+      "title": "2022年度本科生班级工作考评暨先进班集体、优良学风班、“十佳/优秀班长”评选安排",
+      "date": "2022/11/10",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13286.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展2022年度“寻找启明星”—— 山东大学自强之星评选活动的通知",
+      "date": "2022/11/10",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13284.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年度本科学生校长奖评选工作的安排",
+      "date": "2022/11/08",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13256.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选政管学院2023年研究生优秀学术成果奖的通知",
+      "date": "2022/11/08",
+      "url": "https://pspa.sdu.edu.cn/info/1038/13255.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2022年度博士研究生学术论文征文比赛通知",
+      "date": "2022/11/08",
+      "url": "https://pspa.sdu.edu.cn/info/1038/13254.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报国家社会科学基金教育学2023年度重大、重点课题选题的通知",
+      "date": "2022/11/08",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10236.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2022年度山东省人民政府决策咨询研究重点课题的通知",
+      "date": "2022/11/08",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10246.htm",
+      "has_body": false
+    },
+    {
+      "title": "2022年度志愿服务先进典型评选的工作安排",
+      "date": "2022/11/07",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13244.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年研究生道德风尚奖学金评审安排",
+      "date": "2022/11/01",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13194.htm",
+      "has_body": true
+    },
+    {
+      "title": "政治学与公共管理学院2022年“榜样的力量”学生年度人物评选活动安排",
+      "date": "2022/10/31",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13174.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年度本科生社会奖学金评选安排",
+      "date": "2022/10/31",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13173.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评定山东大学（青岛）2022-2023学年昱鸿助学金等社会助学金的通知",
+      "date": "2022/10/28",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13163.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年秋季学期学生赴海外国际学分资助公示",
+      "date": "2022/10/24",
+      "url": "https://pspa.sdu.edu.cn/info/1201/13093.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于人文社科研究项目2022年7-9月结项情况的通报",
+      "date": "2022/10/21",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=03c8f0eb-f468-4c87-a1a8-7e4e23469f89",
+      "has_body": false
+    },
+    {
+      "title": "关于组织申报2023年度山东省自然科学基金项目的通知",
+      "date": "2022/10/20",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=10718",
+      "has_body": false
+    },
+    {
+      "title": "关于开展2023年度国家杰青、优青申报摸底的通知",
+      "date": "2022/10/20",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/gjjjb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1536&wbnewsid=10719",
+      "has_body": false
+    },
+    {
+      "title": "2022年度本科生国家励志奖学金、国家助学金和山东省政府励志奖学金评选安排",
+      "date": "2022/10/19",
+      "url": "https://pspa.sdu.edu.cn/info/1049/13026.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展政管学院2022年度基层团支部创新立项工作的通知",
+      "date": "2022/10/17",
+      "url": "https://pspa.sdu.edu.cn/info/1201/13005.htm",
+      "has_body": true
+    },
+    {
+      "title": "22年度本科生国家奖学金评选安排",
+      "date": "2022/10/14",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12963.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于推选山东大学第三十八次学生代表大会和第二十次研究生代表大会代表的通知",
+      "date": "2022/10/14",
+      "url": "https://pspa.sdu.edu.cn/info/1201/12954.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于在本科课程聘任博士研究生课程助教岗位的通知",
+      "date": "2022/10/14",
+      "url": "https://pspa.sdu.edu.cn/info/1038/12953.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2021年度山东大学人文社会科学重大科研成果的通知",
+      "date": "2022/10/04",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10186.htm",
+      "has_body": false
+    },
+    {
+      "title": "2022年度本科生学业奖、三好学生评选工作安排",
+      "date": "2022/10/01",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12837.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展2022年度2019、2020、2021级本科生特长（书院）奖学金评选通知",
+      "date": "2022/10/01",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12836.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选2022年度本科生优秀学生干部的通知",
+      "date": "2022/10/01",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12835.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于招募第十八届中国模拟联合国大会志愿者的通知",
+      "date": "2022/09/22",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12772.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于选拔学生参加第十八届中国模拟联合国大会的通知",
+      "date": "2022/09/22",
+      "url": "https://pspa.sdu.edu.cn/info/1201/12771.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2023年接收免试攻读硕士学位研究生复试工作安排",
+      "date": "2022/09/21",
+      "url": "https://pspa.sdu.edu.cn/info/1038/12745.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2022年度山东省社会科学规划研究专项的通知",
+      "date": "2022/09/20",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=5fc378f7-c1c0-450c-9b8c-0c02abf9ac08",
+      "has_body": false
+    },
+    {
+      "title": "2021—2022学年政管学院学生社会实践活动评比表彰与交流总结工作的通知",
+      "date": "2022/09/14",
+      "url": "https://pspa.sdu.edu.cn/info/1201/12704.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于选拔招募山东大学政治学与公共管理学院团委委员的通知",
+      "date": "2022/09/14",
+      "url": "https://pspa.sdu.edu.cn/info/1201/12703.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于中国模拟联合国大会议事规则培训的通知",
+      "date": "2022/09/08",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12683.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展2022-2023学年研究生生源地助学贷款审核工作的通知",
+      "date": "2022/09/07",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12675.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展2022年度本科生生源地助学贷款审核工作的通知",
+      "date": "2022/09/07",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12674.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年度家庭经济困难学生认定工作的通知",
+      "date": "2022/09/06",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12664.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2022年度国家社会科学基金重大项目的通知",
+      "date": "2022/09/06",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=f2bb7294-b978-4fbf-b756-b65c57290d1f",
+      "has_body": false
+    },
+    {
+      "title": "关于做好2019年立项的国家社科基金年度项目中期检查工作的通知",
+      "date": "2022/09/03",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=41b747a9-e3d2-4dc8-bb19-35185f33f330",
+      "has_body": false
+    },
+    {
+      "title": "关于组织2022年度智库成果认定的通知",
+      "date": "2022/08/30",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=d91df23f-b8d5-4b6b-a24a-59fae5634dd1",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2022年度教育部哲学社会科学研究重大课题攻关项目和高校思想政治理论课教师研究专项重大课题攻关…",
+      "date": "2022/08/30",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=c93daa40-5b3c-405e-b4ab-d0175a9f8848",
+      "has_body": false
+    },
+    {
+      "title": "第十八届中国模拟联合国大会主席招募通知",
+      "date": "2022/07/29",
+      "url": "https://pspa.sdu.edu.cn/info/1201/12524.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2022年度国家社科基金高校思想政治理论课研究专项的通知",
+      "date": "2022/07/18",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10036.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2022年度山东省高等学校青年创新团队发展计划的通知",
+      "date": "2022/07/18",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10046.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于人文社科研究项目2022年4-6月结项情况的通报",
+      "date": "2022/07/07",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=33a5e184-4a47-441d-b7dc-a25ebb485b94",
+      "has_body": false
+    },
+    {
+      "title": "关于申报第二届山东大学人文社会科学青年学者优秀成果奖的通知",
+      "date": "2022/07/01",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/10016.htm",
+      "has_body": false
+    },
+    {
+      "title": "政管学院2022年优秀大学生夏令营公告(报名系统更新）",
+      "date": "2022/06/17",
+      "url": "https://pspa.sdu.edu.cn/info/1038/12353.htm",
+      "has_body": true
+    },
+    {
+      "title": "2022年优秀共产党员、优秀党务工作者、先进基层党组织拟表彰和拟推荐人选公示",
+      "date": "2022/06/15",
+      "url": "https://pspa.sdu.edu.cn/info/1201/12333.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报山东省社会科学普及优秀成果的通知",
+      "date": "2022/06/13",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/9986.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于做好2022年毕业生团员组织关系转接工作的通知",
+      "date": "2022/06/08",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12273.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于青岛市第三十六次社会科学优秀成果奖申报推荐的通知",
+      "date": "2022/06/06",
+      "url": "https://pspa.sdu.edu.cn/info/1028/12243.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2022年山东大学人文社科高端学术论坛的通知",
+      "date": "2022/06/02",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=2dc59a42-5eda-4732-8ef3-dde73f399fc4",
+      "has_body": false
+    },
+    {
+      "title": "2022年春季学期学生赴海外国际学分资助公示",
+      "date": "2022/06/01",
+      "url": "https://pspa.sdu.edu.cn/info/1201/12216.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2022年山东大学人文社科研究专项的通知",
+      "date": "2022/06/01",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp;jsessionid=C0F233BFE263CF75C45E9B10CF14B966?messageId=cffbab0b-85ca-4403-87fa-45fb2d581f6d",
+      "has_body": false
+    },
+    {
+      "title": "关于2022年青岛市教育科研优秀成果奖评选的通知",
+      "date": "2022/06/01",
+      "url": "https://pspa.sdu.edu.cn/info/1028/12208.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于举办“薪火相传‘山大情’，不负韶华‘政青春’” 2022届毕业季系列活动的通知",
+      "date": "2022/05/31",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12205.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于召开政治学与公共管理学院第二十一次学生代表大会的通知",
+      "date": "2022/05/30",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12185.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报2022年度国家社科基金冷门绝学研究专项的通知",
+      "date": "2022/05/30",
+      "url": "https://pspa.sdu.edu.cn/info/1028/12165.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2022年度山东大学人文社科研究重大项目的通知",
+      "date": "2022/05/30",
+      "url": "https://pspa.sdu.edu.cn/info/1028/12163.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于召开政治学与公共管理学院第十八次研究生代表大会的通知",
+      "date": "2022/05/27",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12154.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报首届（2022年度）全省人力资源社会保障课题的通知",
+      "date": "2022/05/26",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/9946.htm",
+      "has_body": false
+    },
+    {
+      "title": "政管学院召开华岗特色班（科学社会主义专业）人才培养和专业建设专题研讨会",
+      "date": "2022/05/24",
+      "url": "https://pspa.sdu.edu.cn/info/1033/12113.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学国家治理研究院招聘非事业编制文员（青岛）面试通知",
+      "date": "2022/05/23",
+      "url": "https://pspa.sdu.edu.cn/info/1201/12109.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于做好青岛市“双百调研工程”2022年度调研课题申报工作的通知",
+      "date": "2022/05/23",
+      "url": "https://pspa.sdu.edu.cn/info/1028/12108.htm",
+      "has_body": true
+    },
+    {
+      "title": "中央社院统一战线高端智库2022年度课题申报公告",
+      "date": "2022/05/23",
+      "url": "https://pspa.sdu.edu.cn/info/1028/12104.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于组织申报山东大学人文社会科学创新团队的通知",
+      "date": "2022/05/23",
+      "url": "https://pspa.sdu.edu.cn/info/1028/12103.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学第十四届“我心目中的好导师”候选人——曹现强",
+      "date": "2022/05/17",
+      "url": "https://pspa.sdu.edu.cn/info/1201/12065.htm",
+      "has_body": true
+    },
+    {
+      "title": "转发关于组织开展2022年山东省重点研发计划（软科学项目）申报的通知",
+      "date": "2022/05/13",
+      "url": "https://www.rd.sdu.edu.cn/kyyzwz/dfzfxmb_content.jsp?urltype=news.NewsContentUrl&wbtreeid=1551&wbnewsid=10277",
+      "has_body": false
+    },
+    {
+      "title": "关于推荐参评2021年度“中国大学生自强之星”奖学金的通知",
+      "date": "2022/05/11",
+      "url": "https://pspa.sdu.edu.cn/info/1049/12019.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院开展“本本优本”系列讲座活动",
+      "date": "2022/05/10",
+      "url": "https://pspa.sdu.edu.cn/info/1033/11988.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学心理健康教育荣誉表彰拟推荐人选公示",
+      "date": "2022/05/06",
+      "url": "https://pspa.sdu.edu.cn/info/1201/11975.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于做好2022年度青岛市社会科学规划研究项目申报工作的通知",
+      "date": "2022/05/03",
+      "url": "https://pspa.sdu.edu.cn/info/1028/11966.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2022年海峡两岸暨港澳科技人文交流资助项目的通知",
+      "date": "2022/04/29",
+      "url": "https://kyc.qd.sdu.edu.cn/info/1025/1632.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于征集山东大学人文社科重大研究项目选题的通知",
+      "date": "2022/04/28",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp;jsessionid=5024A09782D8B7223F81A04B09F108C5?messageId=ae25d5e5-9c49-4baa-86cc-734ce787b841",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2022年度国家社会科学基金后期资助暨优秀博士论文出版项目的通知",
+      "date": "2022/04/25",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/9916.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于评选政管学院优秀心理委员的通知",
+      "date": "2022/04/25",
+      "url": "https://pspa.sdu.edu.cn/info/1049/11883.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选2021年度“校友教育奖”的通知",
+      "date": "2022/04/22",
+      "url": "https://pspa.sdu.edu.cn/info/1201/11875.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选2021年度山东大学政管学院校友奖（助）学金的通知",
+      "date": "2022/04/22",
+      "url": "https://pspa.sdu.edu.cn/info/1049/11867.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院召开2021级本科生专业分流宣讲会",
+      "date": "2022/04/22",
+      "url": "https://pspa.sdu.edu.cn/info/1033/11866.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于评选政管学院第十四届“我心目中的好导师”的通知",
+      "date": "2022/04/21",
+      "url": "https://pspa.sdu.edu.cn/info/1049/11854.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于举办政管学院“我的心‘晴’故事” 心理健康征文比赛的通知",
+      "date": "2022/04/21",
+      "url": "https://pspa.sdu.edu.cn/info/1049/11843.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于人文社科研究项目2022年1-3月结项情况的通报",
+      "date": "2022/04/19",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=1af7b00e-aca3-4860-9933-966209c03411",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2022年度国家社科基金中华学术外译项目选题的通知",
+      "date": "2022/04/19",
+      "url": "https://www.rwsk.sdu.edu.cn/info/1080/9887.htm",
+      "has_body": false
+    },
+    {
+      "title": "关于申报2022年度山东省人文社会科学课题等项目的通知",
+      "date": "2022/04/19",
+      "url": "https://oa.sdu.edu.cn/sdu_cms.jsp?messageId=3249413a-c4a6-40ae-a6ed-c84486d5b424",
+      "has_body": false
+    },
+    {
+      "title": "公共管理+信息双学位介绍和培养方案",
+      "date": "2022/04/18",
+      "url": "https://pspa.sdu.edu.cn/info/1033/11814.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院召开本科教指委会议，推进本科教育教学改革",
+      "date": "2022/04/15",
+      "url": "https://pspa.sdu.edu.cn/info/1033/11795.htm",
+      "has_body": true
+    },
+    {
+      "title": "政管学院2022年秋季学期学院接收转专业工作方案报表",
+      "date": "2022/04/14",
+      "url": "https://pspa.sdu.edu.cn/info/1033/11775.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学科研外协管理办法",
+      "date": "2022/04/14",
+      "url": "https://pspa.sdu.edu.cn/info/1028/11773.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2022年山东大学大学生国家级、省级、校级创新创业训练计划项目的预通知",
+      "date": "2022/04/13",
+      "url": "https://pspa.sdu.edu.cn/info/1049/11766.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于开展宿舍卫生清洁专项劳动教育活动的通知",
+      "date": "2022/04/13",
+      "url": "https://pspa.sdu.edu.cn/info/1049/11765.htm",
+      "has_body": true
+    },
+    {
+      "title": "山东大学（青岛）2021年度“最美团支书”评选安排",
+      "date": "2022/04/11",
+      "url": "https://pspa.sdu.edu.cn/info/1049/11733.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于申报2022年度教育部哲学社会科学研究后期资助项目的通知",
+      "date": "2022/04/07",
+      "url": "https://pspa.sdu.edu.cn/info/1028/11683.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于推荐山东省旅游资源普查专家人选的通知 ​",
+      "date": "2022/04/06",
+      "url": "https://pspa.sdu.edu.cn/info/1028/11675.htm",
+      "has_body": true
+    },
+    {
+      "title": "关于做好2021年度五四评比表彰工作的通知",
+      "date": "2022/04/04",
+      "url": "https://pspa.sdu.edu.cn/info/1049/11674.htm",
+      "has_body": true
+    }
+  ],
+  "achievement": {
+    "total": 597,
+    "by_year": {
+      "2026": 70,
+      "2025": 101,
+      "2024": 86,
+      "2023": 72,
+      "2022": 70,
+      "2021": 65,
+      "2020": 76,
+      "2019": 57
+    },
+    "by_category": {
+      "论文": 553,
+      "著作": 31,
+      "项目": 7,
+      "奖项": 3,
+      "译著": 1,
+      "未分类": 1,
+      "编著": 1
+    },
+    "recent": [
+      {
+        "title": "杨修文 臧秀玲：习近平党建思想的形成背景、科学体系与原创性贡献",
+        "date": "2026/10/15",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18945.htm"
+      },
+      {
+        "title": "方雷 董鲁星：党领导人民政协事业发展的本体论探析",
+        "date": "2026/10/15",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18944.htm"
+      },
+      {
+        "title": "李慧明 李晓宇：特朗普主义冲击下全球气候治理的深层次挑战与中国的战略选择",
+        "date": "2026/10/15",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18943.htm"
+      },
+      {
+        "title": "Liu, HX (Liu, Huaxing)等：A Replication of \"Emotional Responses to Bur…",
+        "date": "2026/09/22",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18926.htm"
+      },
+      {
+        "title": "Liu, H (Liu, Hao)等Communication and Justice in Crisis: An Empirical S…",
+        "date": "2026/09/22",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18925.htm"
+      },
+      {
+        "title": "方雷 曹冬松：规划政治：理解“党的领导”的标识性概念建构",
+        "date": "2026/09/17",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18920.htm"
+      },
+      {
+        "title": "何建春：中国全球治理话语体系建构的价值、维度与策略",
+        "date": "2026/09/17",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18919.htm"
+      },
+      {
+        "title": "陈静等：智能社会治理中的人机协同：概念谱系、研究导向与理论框架",
+        "date": "2026/09/17",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18918.htm"
+      },
+      {
+        "title": "张继亮 高晨：理解“算法政体”：制度主义视野下的算法治理",
+        "date": "2026/09/17",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18917.htm"
+      },
+      {
+        "title": "王鹏权：美日澳菲多边安全合作的机制化进程及影响",
+        "date": "2026/09/04",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18892.htm"
+      },
+      {
+        "title": "孙宗锋 石艳平：“静默动员”：隐性运动式治理及其运作机制研究",
+        "date": "2026/08/12",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18876.htm"
+      },
+      {
+        "title": "臧秀玲：习近平总书记关于加强党的作风建设的重要论述的生成逻辑、核心要义与…",
+        "date": "2026/08/12",
+        "category": "论文",
+        "url": "https://pspa.sdu.edu.cn/info/1030/18875.htm"
+      }
+    ]
+  },
+  "corpus": {
+    "papers": 395,
+    "notices": 899,
+    "notices_with_body": 619,
+    "teacher_profiles": 88
+  },
+  "vocab": 88285,
+  "elapsed_sec": 1.33,
+  "sources": {
+    "official": "https://pspa.sdu.edu.cn（教师名录/教师详情/学术成果/通知公告/学院简介）",
+    "csv": [
+      "Guanwang_papers_full_sum.csv",
+      "CNKI_山东大学 政治与公共管理学院.csv",
+      "teachers.json"
+    ],
+    "policy": [
+      "C:\\zhenguan\\smartzhengguan\\smartzhengguan\\研究生文件规定"
+    ],
+    "platform": [
+      "C:\\zhenguan\\智慧政管平台项目汇报_实在版.md",
+      "C:\\zhenguan\\智慧政管平台项目建设规划书.md"
+    ]
+  }
+}

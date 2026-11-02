@@ -387,6 +387,212 @@
             0% { transform: translateY(0); }
             100% { transform: translateY(-50%); }
         }
+    
+/* ===== 学科分析页面统一优化：沿用科研系统现有视觉规范 ===== */
+body {
+    min-width: 320px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #f0f7ff 0%, #f5f7fa 100%);
+}
+.container {
+    display: flex;
+    position: relative;
+    top: 60px;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    min-height: calc(100vh - 60px);
+    margin-top: 0;
+}
+.sidebar {
+    width: 240px;
+    min-width: 240px;
+    height: calc(100vh - 60px);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    overflow-y: auto;
+    z-index: 100;
+}
+.content {
+    flex: 1;
+    min-width: 0;
+    margin-left: 240px;
+    padding: 24px;
+    height: auto;
+    overflow: visible;
+}
+.page-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    line-height: 1.35;
+}
+.grid-three {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.stat-card {
+    min-width: 0;
+    min-height: 138px;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #eaf4ff 0%, #ffffff 100%);
+    border: 1px solid rgba(64, 158, 255, 0.16);
+    box-shadow: 0 4px 18px rgba(10, 35, 67, 0.07);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(10, 35, 67, 0.11);
+}
+.stat-card .icon {
+    font-size: 23px;
+    margin-bottom: 7px;
+}
+.stat-card .num {
+    font-size: 34px;
+    line-height: 1.25;
+    font-weight: 700;
+    margin: 5px 0 4px;
+    overflow-wrap: anywhere;
+}
+.stat-card .label {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    color: #65748a;
+}
+.card, .combined-card {
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(64, 158, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(10, 35, 67, 0.07);
+    background: #fff;
+}
+.card-title {
+    font-size: 17px;
+    line-height: 1.45;
+    margin-bottom: 16px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid #e8f1ff;
+}
+.chart-full, .chart, .chart-half, .chart-half-ring, .chart-half-bar {
+    width: 100% !important;
+    min-width: 0;
+    height: 340px !important;
+    background: #fff;
+}
+.chart-half {
+    height: 310px !important;
+}
+.filter-bar {
+    gap: 12px;
+    margin-bottom: 18px;
+    padding: 14px 18px;
+    border-radius: 12px;
+}
+.filter-select {
+    background: #fff;
+    min-width: 145px;
+}
+.btn {
+    justify-content: center;
+    transition: background .2s ease, transform .2s ease;
+}
+.btn:hover {
+    background: #2f8ee5;
+    transform: translateY(-1px);
+}
+.grid, .grid-two {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+    gap: 16px;
+    align-items: stretch;
+}
+.grid-stack {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+.flex-row {
+    gap: 16px;
+    align-items: stretch;
+}
+.w-40, .w-60 {
+    min-width: 0;
+}
+.table-container, .table-normal, .table-wrap {
+    max-width: 100%;
+    overflow: auto;
+    border: 1px solid #e8edf5;
+    border-radius: 10px;
+}
+.result-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.result-table th, .result-table td {
+    padding: 12px 14px;
+    border-right: 1px solid #edf0f5;
+    border-bottom: 1px solid #edf0f5;
+    line-height: 1.5;
+}
+.result-table th {
+    background: #f2f7ff;
+    color: #0A2343;
+    font-weight: 600;
+}
+.result-table tbody tr:nth-child(even) {
+    background: #fbfdff;
+}
+.result-table tbody tr:hover {
+    background: #f0f7ff;
+}
+.feature-panel {
+    border: 1px solid #e3efff;
+}
+@media (max-width: 1200px) {
+    .content { padding: 20px; }
+    .grid-three { gap: 12px; }
+    .stat-card .num { font-size: 30px; }
+    .grid, .grid-two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+@media (max-width: 900px) {
+    .sidebar {
+        width: 200px;
+        min-width: 200px;
+    }
+    .content { margin-left: 200px; padding: 16px; }
+    .grid-three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid, .grid-two, .grid-stack { grid-template-columns: minmax(0, 1fr); }
+    .chart-full, .chart, .chart-half, .chart-half-ring, .chart-half-bar { height: 300px !important; }
+}
+@media (max-width: 620px) {
+    .top-nav { padding: 0 12px; }
+    .top-nav .logo-box .title-text { font-size: 14px; }
+    .top-nav .logo-box img { height: 32px; }
+    .top-nav .search-input { width: 150px; }
+    .sidebar { display: none; }
+    .content { margin-left: 0; padding: 14px; }
+    .page-title { font-size: 22px; }
+    .grid-three { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .stat-card { min-height: 120px; padding: 16px 10px; }
+    .stat-card .num { font-size: 27px; }
+    .stat-card .label { font-size: 12px; }
+    .card, .combined-card { padding: 15px; }
+    .filter-bar { align-items: stretch; }
+    .filter-item { flex-wrap: wrap; }
+}
+
     </style>
 </head>
 <body>
@@ -406,7 +612,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 
     <div class="container">
         <div class="sidebar">
@@ -515,16 +721,31 @@
         let lineDoubleChart, horizontalBarChart, ringDonutChart, radarChart, wordCloudChart;
         let currentFundData = {};
 
-        function switchRole(role) { /* 同之前 */ }
-        function goToSmartAnalysis() { /* 同之前 */ }
-        function toggleSubmenu(el) { /* 同之前 */ }
+        function switchRole(role) {
+            currentRole = role;
+            localStorage.setItem('userRole', role);
+            document.getElementById('btnAdmin').style.background = role === 'admin' ? '#409EFF' : '#666';
+            document.getElementById('btnTeacher').style.background = role === 'teacher' ? '#409EFF' : '#666';
+            window.location.href = role === 'admin' ? '/analysis/admin/' : '/analysis/teacher/';
+        }
+        function goToSmartAnalysis() {
+            const role = localStorage.getItem('userRole') || 'admin';
+            window.location.href = role === 'admin' ? '/analysis/admin/' : '/analysis/teacher/';
+        }
+        function toggleSubmenu(el) {
+            const submenu = el.nextElementSibling;
+            const arrow = el.querySelector('.fa-angle-down');
+            if (submenu) submenu.classList.toggle('open');
+            if (arrow) arrow.classList.toggle('rotate');
+        }
 
         async function loadAllData() {
             const year = document.getElementById('year').value;
             const url = `/api/dept/international?year=${year}`;
             try {
                 const res = await fetch(url);
-                const data = await res.json();
+                if (!res.ok) throw new Error(`请求失败：${res.status}`);
+            const data = await res.json();
 
                 // 顶部卡片
                 document.getElementById('countryCoverage').innerText = data.stat_cards.country_coverage;
@@ -626,8 +847,9 @@
             wordCloudChart = echarts.init(document.getElementById('wordCloudChart'));
             loadAllData();
             window.addEventListener('resize', () => {
-                lineDoubleChart.resize(); horizontalBarChart.resize(); ringDonutChart.resize();
-                radarChart.resize(); wordCloudChart.resize();
+                [lineDoubleChart, horizontalBarChart, ringDonutChart, radarChart, wordCloudChart].forEach(chart => {
+                    if (chart) chart.resize();
+                });
             });
         };
     </script>

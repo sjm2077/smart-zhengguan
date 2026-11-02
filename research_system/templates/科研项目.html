@@ -329,11 +329,98 @@
             background: linear-gradient(135deg, #67C23A 0%, #529b2e 100%);
         }
 
+        .table-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin: 4px 0 14px;
+        }
+
+        .table-search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1 1 320px;
+            max-width: 520px;
+            min-width: 220px;
+            height: 40px;
+            padding: 0 12px;
+            border: 1px solid #dcdfe6;
+            border-radius: 8px;
+            background: #fff;
+            transition: var(--transition);
+        }
+
+        .table-search-box:focus-within {
+            border-color: var(--light-blue);
+            box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.1);
+        }
+
+        .table-search-box > i {
+            color: #909399;
+            flex: 0 0 auto;
+        }
+
+        .table-search-box input {
+            flex: 1;
+            min-width: 0;
+            height: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #303133;
+            font-size: 14px;
+        }
+
+        .table-search-clear {
+            border: none;
+            background: transparent;
+            color: #409EFF;
+            cursor: pointer;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .table-toolbar-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .table-count {
+            color: #606266;
+            font-size: 13px;
+        }
+
+        .page-size-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #606266;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .page-size-select {
+            height: 34px;
+            min-width: 76px;
+            padding: 0 8px;
+            border: 1px solid #dcdfe6;
+            border-radius: 6px;
+            background: #fff;
+            color: #303133;
+            outline: none;
+        }
+
         .table-box {
             width: 100%;
-            overflow: hidden;
+            overflow: visible;
             margin-top: 10px;
-            height: 320px;
+            height: auto;
             position: relative;
             border: 1px solid #ebeef5;
             border-radius: 10px;
@@ -341,61 +428,99 @@
 
         .table-scroll {
             width: 100%;
-            height: 100%;
-            overflow-y: auto;
+            max-height: 560px;
+            overflow: auto;
             scrollbar-width: thin;
             scrollbar-color: #409EFF #f5f7fa;
+            border-radius: 10px;
         }
 
-            .table-scroll::-webkit-scrollbar {
-                width: 6px;
-            }
-
-            .table-scroll::-webkit-scrollbar-track {
-                background: #f5f7fa;
-                border-radius: 3px;
-            }
-
-            .table-scroll::-webkit-scrollbar-thumb {
-                background: #409EFF;
-                border-radius: 3px;
-            }
-
-                .table-scroll::-webkit-scrollbar-thumb:hover {
-                    background: #337ecc;
-                }
-
-        .scroll-control {
-            position: absolute;
-            right: 15px;
-            bottom: 15px;
-            z-index: 100;
-            display: flex;
-            gap: 10px;
+        .table-scroll::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
         }
 
-        .scroll-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: none;
-            background: var(--light-blue);
-            color: white;
-            cursor: pointer;
+        .table-scroll::-webkit-scrollbar-track {
+            background: #f5f7fa;
+        }
+
+        .table-scroll::-webkit-scrollbar-thumb {
+            background: #b7d8ff;
+            border-radius: 4px;
+        }
+
+        .table-scroll::-webkit-scrollbar-thumb:hover {
+            background: #409EFF;
+        }
+
+        .pagination-bar {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: var(--transition);
-            box-shadow: 0 2px 8px rgba(64,158,255,0.3);
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            color: #606266;
+            font-size: 13px;
         }
 
-            .scroll-btn:hover {
-                background: var(--main-blue);
-                transform: scale(1.1);
+        .pagination-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            min-width: 66px;
+            height: 34px;
+            padding: 0 10px;
+            border: 1px solid #dcdfe6;
+            border-radius: 6px;
+            background: #fff;
+            color: #303133;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .page-btn:hover:not(:disabled) {
+            border-color: #409EFF;
+            color: #409EFF;
+        }
+
+        .page-btn:disabled {
+            color: #c0c4cc;
+            background: #f5f7fa;
+            cursor: not-allowed;
+        }
+
+        #pageNumber {
+            min-width: 82px;
+            text-align: center;
+            color: #606266;
+        }
+
+        @media (max-width: 700px) {
+            .table-toolbar-right {
+                width: 100%;
+                justify-content: space-between;
             }
 
-        .table {
+            .pagination-bar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .pagination-actions {
+                width: 100%;
+            }
+
+            .page-btn {
+                flex: 1;
+            }
+        }
+
+                .table {
             width: 100%;
             border-collapse: collapse;
             font-size: 14px;
@@ -408,19 +533,36 @@
                 font-weight: bold;
                 color: var(--main-blue);
                 border-bottom: 2px solid #e4e7ed;
-                cursor: pointer;
                 position: sticky;
                 top: 0;
                 z-index: 10;
+                white-space: nowrap;
             }
 
-                .table th::after {
-                    content: " ↕";
-                    font-size: 10px;
-                    color: var(--light-blue);
-                    opacity: 0.8;
-                    margin-left: 5px;
-                }
+            .table th[data-sort-key] {
+                cursor: pointer;
+                user-select: none;
+            }
+
+            .table th[data-sort-key]::after {
+                content: " ↕";
+                font-size: 10px;
+                color: var(--light-blue);
+                opacity: 0.8;
+                margin-left: 5px;
+            }
+
+            .table th.sort-asc::after {
+                content: " ↑";
+                color: #409EFF;
+                opacity: 1;
+            }
+
+            .table th.sort-desc::after {
+                content: " ↓";
+                color: #409EFF;
+                opacity: 1;
+            }
 
             .table td {
                 padding: 14px 12px;
@@ -431,7 +573,6 @@
 
             .table tbody tr:hover {
                 background: #f0f7ff;
-                transform: scale(1.01);
             }
 
         .status {
@@ -551,6 +692,784 @@
             .menu-item .fa-angle-down.rotate {
                 transform: rotate(180deg);
             }
+    
+        /* ================= 项目详情弹窗 ================= */
+        body.project-detail-lock {
+            overflow: hidden;
+        }
+
+        .project-detail-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(8, 22, 44, 0.58);
+            backdrop-filter: blur(3px);
+        }
+
+        .project-detail-modal.open {
+            display: flex;
+        }
+
+        .project-detail-modal [hidden] {
+            display: none !important;
+        }
+
+        .project-detail-dialog {
+            width: min(1080px, 100%);
+            max-height: min(92vh, 940px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid rgba(64, 158, 255, 0.18);
+            border-radius: 18px;
+            box-shadow: 0 24px 70px rgba(10, 35, 67, 0.28);
+            animation: projectDetailAppear 0.18s ease-out;
+        }
+
+        @keyframes projectDetailAppear {
+            from { opacity: 0; transform: translateY(8px) scale(0.99); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .project-detail-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 22px 26px;
+            color: #fff;
+            background: linear-gradient(135deg, #0A2343 0%, #24528b 100%);
+        }
+
+        .project-detail-header-main {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .project-detail-header-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 44px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            font-size: 21px;
+        }
+
+        .project-detail-header h2 {
+            margin: 0;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .project-detail-header p {
+            margin: 5px 0 0;
+            color: rgba(255, 255, 255, 0.76);
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .project-detail-close {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 38px;
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 10px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .project-detail-close:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: rotate(4deg);
+        }
+
+        .project-detail-body {
+            padding: 24px 26px 28px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .project-detail-loading,
+        .project-detail-error {
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #606266;
+            text-align: center;
+        }
+
+        .project-detail-loading i {
+            color: #409EFF;
+            font-size: 30px;
+        }
+
+        .project-detail-error p {
+            margin: 0;
+            max-width: 620px;
+            color: #c45656;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .project-detail-retry {
+            min-height: 36px;
+            padding: 0 18px;
+            border: 0;
+            border-radius: 8px;
+            color: #fff;
+            background: linear-gradient(135deg, #409EFF 0%, #24528b 100%);
+            cursor: pointer;
+        }
+
+        .project-detail-overview {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 28px;
+            margin-bottom: 22px;
+            padding: 20px;
+            border: 1px solid #e5effb;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #f7fbff 0%, #fff 100%);
+        }
+
+        .project-detail-overview-main {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .project-detail-overview h3 {
+            margin: 0 0 12px;
+            color: #17365f;
+            font-size: 21px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .detail-status-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .detail-status {
+            margin: 0;
+        }
+
+        .project-detail-progress {
+            flex: 0 0 230px;
+            width: 230px;
+            padding-top: 4px;
+        }
+
+        .project-detail-progress-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+            color: #606266;
+            font-size: 13px;
+        }
+
+        .project-detail-progress-label strong {
+            color: #24528b;
+            font-size: 15px;
+        }
+
+        .project-detail-progress-track {
+            width: 100%;
+            height: 9px;
+            overflow: hidden;
+            border-radius: 99px;
+            background: #e6edf6;
+        }
+
+        .project-detail-progress-bar {
+            display: block;
+            width: 0;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #409EFF 0%, #67C23A 100%);
+            transition: width 0.3s ease;
+        }
+
+        .project-detail-section {
+            margin-top: 24px;
+        }
+
+        .project-detail-section-title {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 14px;
+            padding-bottom: 11px;
+            border-bottom: 1px solid #e8f1ff;
+            color: #17365f;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .project-detail-section-title i {
+            color: #409EFF;
+            font-size: 17px;
+        }
+
+        .project-detail-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .project-detail-info-item {
+            min-width: 0;
+            padding: 14px 15px;
+            border: 1px solid #edf1f7;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .project-detail-info-item span {
+            display: block;
+            margin-bottom: 7px;
+            color: #909399;
+            font-size: 12px;
+        }
+
+        .project-detail-info-item strong {
+            display: block;
+            color: #303133;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.55;
+            overflow-wrap: anywhere;
+        }
+
+        .project-detail-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .project-detail-summary-card {
+            min-width: 0;
+            padding: 16px;
+            border: 1px solid #e8f1ff;
+            border-radius: 12px;
+            background: #f8fbff;
+        }
+
+        .project-detail-summary-card span {
+            display: block;
+            margin-bottom: 9px;
+            color: #7a8493;
+            font-size: 12px;
+        }
+
+        .project-detail-summary-card strong {
+            display: block;
+            color: #24528b;
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
+        }
+
+        .project-detail-summary-card em {
+            margin-left: 4px;
+            color: #909399;
+            font-size: 11px;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .project-detail-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid #e8edf5;
+            border-radius: 10px;
+        }
+
+        .project-detail-table {
+            width: 100%;
+            min-width: 500px;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .project-detail-table th {
+            padding: 12px 14px;
+            color: #17365f;
+            background: #f4f8fe;
+            border-bottom: 1px solid #e5ebf4;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .project-detail-table td {
+            padding: 12px 14px;
+            color: #4b5563;
+            border-bottom: 1px solid #edf1f7;
+            line-height: 1.55;
+        }
+
+        .project-detail-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .project-detail-table tbody tr:hover {
+            background: #f8fbff;
+        }
+
+        .project-detail-empty {
+            padding: 24px 12px !important;
+            color: #909399 !important;
+            text-align: center;
+        }
+
+
+        .project-detail-summary-card strong span {
+            display: inline;
+            margin: 0;
+            color: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
+        /* 项目名称与详情入口：不增加表格列，尽量保持现有表格宽度 */
+        .project-name-cell {
+            min-width: 220px;
+        }
+
+        .project-name-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .project-name-button {
+            min-width: 0;
+            padding: 0;
+            border: 0;
+            color: #303133;
+            background: transparent;
+            font: inherit;
+            text-align: left;
+            line-height: 1.55;
+            cursor: pointer;
+            overflow-wrap: anywhere;
+        }
+
+        .project-name-button:hover {
+            color: #409EFF;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .project-name-button:focus-visible,
+        .project-detail-button:focus-visible,
+        .project-detail-close:focus-visible,
+        .project-detail-retry:focus-visible {
+            outline: 2px solid #409EFF;
+            outline-offset: 3px;
+        }
+
+        .project-detail-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            flex: 0 0 auto;
+            padding: 5px 9px;
+            border: 1px solid #cfe3ff;
+            border-radius: 7px;
+            color: #337ecc;
+            background: #f4f9ff;
+            font-size: 12px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .project-detail-button:hover {
+            border-color: #409EFF;
+            background: #eaf4ff;
+        }
+
+        .project-name-button:disabled,
+        .project-detail-button:disabled {
+            color: #c0c4cc;
+            cursor: not-allowed;
+            text-decoration: none;
+            border-color: #ebeef5;
+            background: #f5f7fa;
+        }
+
+        @media (max-width: 800px) {
+            .project-detail-modal {
+                padding: 10px;
+            }
+
+            .project-detail-dialog {
+                max-height: 96vh;
+                border-radius: 13px;
+            }
+
+            .project-detail-header {
+                padding: 17px 18px;
+            }
+
+            .project-detail-header h2 {
+                font-size: 18px;
+            }
+
+            .project-detail-body {
+                padding: 18px;
+            }
+
+            .project-detail-overview {
+                flex-direction: column;
+                gap: 18px;
+                padding: 16px;
+            }
+
+            .project-detail-progress {
+                width: 100%;
+                flex-basis: auto;
+            }
+
+            .project-detail-info-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .project-detail-summary-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .project-name-actions {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-detail-info-grid,
+            .project-detail-summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-detail-header-icon {
+                flex-basis: 36px;
+                width: 36px;
+                height: 36px;
+            }
+
+            .project-detail-header-main {
+                gap: 10px;
+            }
+
+            .project-detail-overview h3 {
+                font-size: 18px;
+            }
+        }
+
+    
+        /* ================= 项目新建/编辑弹窗 ================= */
+        body.project-form-lock {
+            overflow: hidden;
+        }
+
+        .project-form-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 22px;
+            background: rgba(8, 22, 44, 0.62);
+            backdrop-filter: blur(3px);
+        }
+
+        .project-form-modal.open {
+            display: flex;
+        }
+
+        .project-form-modal [hidden],
+        #newProjectButton[hidden],
+        #projectEditButton[hidden] {
+            display: none !important;
+        }
+
+        .project-form-dialog {
+            width: min(880px, 100%);
+            max-height: min(92vh, 900px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid rgba(64, 158, 255, 0.2);
+            border-radius: 18px;
+            box-shadow: 0 24px 70px rgba(10, 35, 67, 0.3);
+        }
+
+        .project-form-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 20px 25px;
+            color: #fff;
+            background: linear-gradient(135deg, #0A2343 0%, #24528b 100%);
+        }
+
+        .project-form-header h2 {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+        .project-form-header p {
+            margin: 5px 0 0;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 13px;
+        }
+
+        .project-form-close {
+            flex: 0 0 38px;
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .project-form-body {
+            padding: 24px 26px 26px;
+            overflow-y: auto;
+        }
+
+        .project-form-tip {
+            margin-bottom: 18px;
+            padding: 11px 13px;
+            border: 1px solid #d9eaff;
+            border-radius: 9px;
+            color: #426184;
+            background: #f5f9ff;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .project-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px 20px;
+        }
+
+        .project-form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .project-form-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .project-form-field label {
+            color: #17365f;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .project-form-field label .required-mark {
+            margin-left: 3px;
+            color: #f56c6c;
+        }
+
+        .project-form-field input,
+        .project-form-field select {
+            width: 100%;
+            min-width: 0;
+            height: 41px;
+            padding: 0 12px;
+            border: 1px solid #dcdfe6;
+            border-radius: 8px;
+            outline: none;
+            color: #303133;
+            background: #fff;
+            font: inherit;
+            font-size: 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .project-form-field input:focus,
+        .project-form-field select:focus {
+            border-color: #409EFF;
+            box-shadow: 0 0 0 3px rgba(64, 158, 255, 0.12);
+        }
+
+        .project-form-field input:disabled,
+        .project-form-field select:disabled {
+            color: #909399;
+            background: #f5f7fa;
+            cursor: wait;
+        }
+
+        .project-form-help {
+            color: #909399;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .project-form-error {
+            margin-top: 17px;
+            padding: 10px 12px;
+            border: 1px solid #fbc4c4;
+            border-radius: 8px;
+            color: #c45656;
+            background: #fef0f0;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .project-form-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 18px;
+            border-top: 1px solid #edf1f7;
+        }
+
+        .project-form-secondary,
+        .project-form-submit {
+            min-width: 100px;
+            height: 40px;
+            padding: 0 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+        }
+
+        .project-form-secondary {
+            border: 1px solid #dcdfe6;
+            color: #606266;
+            background: #fff;
+        }
+
+        .project-form-submit {
+            border: 0;
+            color: #fff;
+            background: linear-gradient(135deg, #409EFF 0%, #24528b 100%);
+        }
+
+        .project-form-secondary:hover,
+        .project-form-submit:hover:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        .project-form-submit:disabled {
+            opacity: 0.65;
+            cursor: wait;
+        }
+
+        .project-detail-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            flex: 0 0 auto;
+        }
+
+        .project-detail-edit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            min-height: 38px;
+            padding: 0 13px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 9px;
+            color: #fff;
+            background: rgba(255,255,255,0.12);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .project-detail-edit:hover {
+            background: rgba(255,255,255,0.22);
+        }
+
+        @media (max-width: 650px) {
+            .project-form-modal {
+                padding: 10px;
+            }
+
+            .project-form-dialog {
+                max-height: 96vh;
+                border-radius: 13px;
+            }
+
+            .project-form-header {
+                padding: 17px 18px;
+            }
+
+            .project-form-body {
+                padding: 18px;
+            }
+
+            .project-form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .project-form-field.full-width {
+                grid-column: auto;
+            }
+
+            .project-detail-header-actions {
+                gap: 6px;
+            }
+
+            .project-detail-edit {
+                padding: 0 9px;
+                font-size: 12px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -621,12 +1540,7 @@
                 <div class="filter-item">
                     年份筛选：
                     <select class="filter-select" id="yearFilter">
-                        <option value="all">全部年份</option>
-                        <option>2021</option>
-                        <option>2022</option>
-                        <option>2023</option>
-                        <option>2024</option>
-                        <option>2025</option>
+                        <option value="">加载年份...</option>
                     </select>
                 </div>
                 <div class="filter-item">
@@ -634,6 +1548,7 @@
                     <select class="filter-select" id="subjectFilter">
                         <option value="all">全部学科</option>
                         <option>行政管理</option>
+                        <option>公共管理</option>
                         <option>公共政策</option>
                         <option>政治学理论</option>
                         <option>社会保障</option>
@@ -650,7 +1565,7 @@
                     <div id="pieChart" class="chart"></div>
                 </div>
                 <div class="card">
-                    <div class="card-title"><i class="fa fa-bar-chart"></i> 按学科/年份项目数量统计（近3年）</div>
+                    <div class="card-title"><i class="fa fa-bar-chart"></i> <span id="barChartTitle">按学科/年份项目数量统计（近3年）</span></div>
                     <div id="barChart" class="chart"></div>
                 </div>
             </div>
@@ -685,48 +1600,339 @@
             <div class="card">
                 <div class="card-title">
                     <i class="fa fa-table"></i> 科研项目列表
-                    <span style="font-size:12px;color:#999;margin-left:10px">（按经费金额降序排列，自动滚动展示）</span>
+                    <span style="font-size:12px;color:#999;margin-left:10px">（支持关键词搜索、排序与分页）</span>
                 </div>
-                <div class="table-box">
-                    <div class="scroll-control">
-                        <button class="scroll-btn" id="pauseBtn" onclick="toggleScroll()"><i class="fa fa-pause"></i></button>
-                        <button class="scroll-btn" id="resumeBtn" onclick="toggleScroll()" style="display:none"><i class="fa fa-play"></i></button>
+
+                <div class="table-toolbar">
+                    <div class="table-search-box">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <input
+                            type="search"
+                            id="projectKeyword"
+                            placeholder="搜索项目名称、负责人、学科或状态"
+                            aria-label="搜索科研项目"
+                            autocomplete="off"
+                        >
+                        <button type="button" class="table-search-clear" onclick="clearProjectSearch()">清空</button>
                     </div>
+
+                    <div class="table-toolbar-right">
+                        <button type="button" class="btn project-write-control" id="newProjectButton" hidden>
+                            <i class="fa fa-plus" aria-hidden="true"></i> 新建项目
+                        </button>
+                        <span id="projectCount" class="table-count" aria-live="polite">正在加载项目数据…</span>
+                        <label class="page-size-label" for="pageSizeSelect">
+                            每页显示
+                            <select id="pageSizeSelect" class="page-size-select">
+                                <option value="10" selected>10 条</option>
+                                <option value="20">20 条</option>
+                                <option value="50">50 条</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="table-box">
                     <div class="table-scroll" id="tableScroll">
                         <table class="table" id="projectTable">
                             <thead>
                                 <tr>
-                                    <th onclick="sortTable(0)">序号</th>
-                                    <th onclick="sortTable(1)">项目名称</th>
-                                    <th onclick="sortTable(2)">负责人</th>
-                                    <th onclick="sortTable(3)">学科分类</th>
-                                    <th onclick="sortTable(4)">经费(万)</th>
-                                    <th onclick="sortTable(5)">起止时间</th>
-                                    <th onclick="sortTable(6)">项目状态</th>
+                                    <th scope="col">序号</th>
+                                    <th scope="col" data-sort-key="name" aria-sort="none" onclick="sortTable('name')">项目名称</th>
+                                    <th scope="col" data-sort-key="leader" aria-sort="none" onclick="sortTable('leader')">负责人</th>
+                                    <th scope="col" data-sort-key="subject" aria-sort="none" onclick="sortTable('subject')">学科分类</th>
+                                    <th scope="col" data-sort-key="fund" aria-sort="descending" class="sort-desc" onclick="sortTable('fund')">经费(万)</th>
+                                    <th scope="col" data-sort-key="start_end" aria-sort="none" onclick="sortTable('start_end')">起止时间</th>
+                                    <th scope="col" data-sort-key="status" aria-sort="none" onclick="sortTable('status')">项目状态</th>
                                 </tr>
                             </thead>
                             <tbody id="tableBody">
-                                <tr><td>1</td><td>中国特色政治学理论创新研究</td><td>王教授</td><td>政治学理论</td><td>98</td><td>2023-2026</td><td><span class="status status-ing">在研</span></td></tr>
-                                <tr><td>2</td><td>国家治理现代化与行政改革研究</td><td>张教授</td><td>行政管理</td><td>85</td><td>2022-2025</td><td><span class="status status-ing">在研</span></td></tr>
-                                <tr><td>3</td><td>国际关系与全球治理研究</td><td>陈教授</td><td>国际关系</td><td>72</td><td>2023-2025</td><td><span class="status status-check">审核中</span></td></tr>
-                                <tr><td>4</td><td>公共政策评估体系构建研究</td><td>李教授</td><td>公共政策</td><td>62</td><td>2021-2024</td><td><span class="status status-finish">结题</span></td></tr>
-                                <tr><td>5</td><td>社会保障基金可持续发展研究</td><td>刘教授</td><td>社会保障</td><td>45</td><td>2024-2027</td><td><span class="status status-create">立项</span></td></tr>
-                                <tr><td>6</td><td>基层治理创新实践研究</td><td>赵教授</td><td>行政管理</td><td>38</td><td>2024-2026</td><td><span class="status status-create">立项</span></td></tr>
-                                <tr><td>7</td><td>数字政府建设研究</td><td>孙教授</td><td>公共政策</td><td>32</td><td>2023-2025</td><td><span class="status status-ing">在研</span></td></tr>
-                                <tr><td>8</td><td>乡村振兴与基层治理研究</td><td>周教授</td><td>行政管理</td><td>28</td><td>2024-2026</td><td><span class="status status-create">立项</span></td></tr>
-                                <tr><td>9</td><td>公共服务均等化研究</td><td>吴教授</td><td>公共政策</td><td>25</td><td>2023-2025</td><td><span class="status status-ing">在研</span></td></tr>
-                                <tr><td>10</td><td>跨境治理与国际关系研究</td><td>郑教授</td><td>国际关系</td><td>22</td><td>2024-2026</td><td><span class="status status-check">审核中</span></td></tr>
-                                <tr><td>11</td><td>政治学方法论创新研究</td><td>冯教授</td><td>政治学理论</td><td>19</td><td>2024-2026</td><td><span class="status status-create">立项</span></td></tr>
-                                <tr><td>12</td><td>养老保障体系优化研究</td><td>褚教授</td><td>社会保障</td><td>18</td><td>2023-2025</td><td><span class="status status-ing">在研</span></td></tr>
-                                <tr><td>13</td><td>地方政府治理能力研究</td><td>卫教授</td><td>行政管理</td><td>16</td><td>2022-2025</td><td><span class="status status-finish">结题</span></td></tr>
-                                <tr><td>14</td><td>全球公共政策比较研究</td><td>蒋教授</td><td>公共政策</td><td>15</td><td>2024-2026</td><td><span class="status status-check">审核中</span></td></tr>
-                                <tr><td>15</td><td>区域国际关系研究</td><td>沈教授</td><td>国际关系</td><td>12</td><td>2023-2025</td><td><span class="status status-ing">在研</span></td></tr>
+                                <tr><td colspan="7" style="text-align:center;color:#909399;padding:28px 12px;">正在加载项目数据…</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+
+                <div class="pagination-bar">
+                    <div id="pageInfo" aria-live="polite">第 1 / 1 页</div>
+                    <div class="pagination-actions">
+                        <button type="button" class="page-btn" id="firstPageBtn" onclick="goToProjectPage(1)" disabled>首页</button>
+                        <button type="button" class="page-btn" id="prevPageBtn" onclick="changeProjectPage(-1)" disabled>上一页</button>
+                        <span id="pageNumber">第 1 / 1 页</span>
+                        <button type="button" class="page-btn" id="nextPageBtn" onclick="changeProjectPage(1)" disabled>下一页</button>
+                        <button type="button" class="page-btn" id="lastPageBtn" onclick="goToProjectPage('last')" disabled>末页</button>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
+    </div>
+
+
+
+    <!-- 科研项目新建/编辑弹窗：通过后端项目管理 API 保存。 -->
+    <div id="projectFormModal" class="project-form-modal" aria-hidden="true">
+        <section class="project-form-dialog" role="dialog" aria-modal="true"
+                 aria-labelledby="projectFormHeading" tabindex="-1">
+            <header class="project-form-header">
+                <div>
+                    <h2 id="projectFormHeading">新建科研项目</h2>
+                    <p id="projectFormSubtitle">请填写项目基本信息，带 * 的项目为必填项。</p>
+                </div>
+                <button type="button" id="projectFormClose" class="project-form-close"
+                        aria-label="关闭项目表单" title="关闭">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </header>
+            <div class="project-form-body">
+                <div class="project-form-tip">
+                    项目编号需保持唯一；经费按“万元”录入。保存后，项目列表和统计图表将重新读取后端数据。
+                </div>
+                <form id="projectForm" autocomplete="off">
+                    {% csrf_token %}
+                    <input type="hidden" id="projectFormId" name="id" value="">
+                    <div class="project-form-grid">
+                        <div class="project-form-field">
+                            <label for="projectFormNo">项目编号<span class="required-mark">*</span></label>
+                            <input id="projectFormNo" name="project_no" type="text"
+                                   maxlength="50" required placeholder="请输入项目编号">
+                        </div>
+                        <div class="project-form-field">
+                            <label for="projectFormName">项目名称<span class="required-mark">*</span></label>
+                            <input id="projectFormName" name="project_name" type="text"
+                                   maxlength="200" required placeholder="请输入项目名称">
+                        </div>
+                        <div class="project-form-field">
+                            <label for="projectFormLeader">项目负责人<span class="required-mark">*</span></label>
+                            <select id="projectFormLeader" name="leader_id" required>
+                                <option value="">正在加载负责人…</option>
+                            </select>
+                        </div>
+                        <div class="project-form-field">
+                            <label for="projectFormDept">归属部门</label>
+                            <select id="projectFormDept" name="dept_id">
+                                <option value="">未指定部门</option>
+                            </select>
+                        </div>
+                        <div class="project-form-field">
+                            <label for="projectFormType">项目类型<span class="required-mark">*</span></label>
+                            <select id="projectFormType" name="project_type" required>
+                                <option value="">请选择项目类型</option>
+                            </select>
+                        </div>
+                        <div class="project-form-field">
+                            <label for="projectFormStatus">项目状态<span class="required-mark">*</span></label>
+                            <select id="projectFormStatus" name="status" required>
+                                <option value="">请选择项目状态</option>
+                            </select>
+                        </div>
+                        <div class="project-form-field">
+                            <label for="projectFormFund">项目经费（万元）<span class="required-mark">*</span></label>
+                            <input id="projectFormFund" name="fund_amount" type="number"
+                                   min="0" max="99999999.99" step="0.01" required placeholder="例如：12.50">
+                        </div>
+                        <div class="project-form-field">
+                            <label for="projectFormProgress">实际进度（0–100%）</label>
+                            <input id="projectFormProgress" name="actual_progress" type="number"
+                                   min="0" max="100" step="1" value="0" required>
+                        </div>
+                        <div class="project-form-field">
+                            <label for="projectFormStart">开始日期<span class="required-mark">*</span></label>
+                            <input id="projectFormStart" name="start_date" type="date" required>
+                        </div>
+                        <div class="project-form-field">
+                            <label for="projectFormEnd">结束日期<span class="required-mark">*</span></label>
+                            <input id="projectFormEnd" name="end_date" type="date" required>
+                        </div>
+                        <div class="project-form-field full-width">
+                            <label for="projectFormSubject">学科分类</label>
+                            <input id="projectFormSubject" name="subject" type="text"
+                                   maxlength="50" placeholder="例如：公共管理、政治学理论">
+                            <span class="project-form-help">学科分类可留空；保存后会按实际数据更新筛选选项。</span>
+                        </div>
+                    </div>
+                    <div id="projectFormError" class="project-form-error" role="alert" hidden></div>
+                    <div class="project-form-actions">
+                        <button type="button" id="projectFormCancel" class="project-form-secondary">取消</button>
+                        <button type="submit" id="projectFormSubmit" class="project-form-submit">
+                            <i class="fa fa-save" aria-hidden="true"></i> 保存项目
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- 科研项目详情弹窗：数据通过只读详情 API 加载 -->
+    <div
+        id="projectDetailModal"
+        class="project-detail-modal"
+        aria-hidden="true"
+    >
+        <section
+            class="project-detail-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="projectDetailHeading"
+            tabindex="-1"
+        >
+            <header class="project-detail-header">
+                <div class="project-detail-header-main">
+                    <div class="project-detail-header-icon" aria-hidden="true">
+                        <i class="fa fa-folder-open-o"></i>
+                    </div>
+                    <div>
+                        <h2 id="projectDetailHeading">科研项目详情</h2>
+                        <p id="projectDetailSubtitle">查看项目基本信息、经费及合作记录</p>
+                    </div>
+                </div>
+                <div class="project-detail-header-actions">
+                    <button type="button" id="projectEditButton" class="project-detail-edit"
+                            aria-label="编辑当前项目" hidden>
+                        <i class="fa fa-pencil" aria-hidden="true"></i> 编辑项目
+                    </button>
+                    <button
+                        type="button"
+                        id="projectDetailClose"
+                        class="project-detail-close"
+                        aria-label="关闭项目详情"
+                        title="关闭"
+                    >
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="project-detail-body">
+                <div id="projectDetailLoading" class="project-detail-loading" role="status">
+                    <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                    <span>正在加载项目详情…</span>
+                </div>
+
+                <div id="projectDetailError" class="project-detail-error" role="alert" hidden>
+                    <i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size:28px;color:#F56C6C;"></i>
+                    <p id="projectDetailErrorText">项目详情加载失败，请稍后重试。</p>
+                    <button type="button" id="projectDetailRetry" class="project-detail-retry">重新加载</button>
+                </div>
+
+                <div id="projectDetailContent" hidden>
+                    <div class="project-detail-overview">
+                        <div class="project-detail-overview-main">
+                            <h3 id="detailProjectName">—</h3>
+                            <div class="detail-status-row">
+                                <span id="detailProjectStatus" class="status detail-status">未设置</span>
+                            </div>
+                        </div>
+                        <div class="project-detail-progress">
+                            <div class="project-detail-progress-label">
+                                <span>项目实际进度</span>
+                                <strong id="detailProjectProgress">0%</strong>
+                            </div>
+                            <div
+                                class="project-detail-progress-track"
+                                role="progressbar"
+                                aria-label="项目实际进度"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                aria-valuenow="0"
+                                id="detailProjectProgressTrack"
+                            >
+                                <span id="detailProjectProgressBar" class="project-detail-progress-bar"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="project-detail-section" aria-labelledby="detailBasicHeading">
+                        <h3 class="project-detail-section-title" id="detailBasicHeading">
+                            <i class="fa fa-list-alt" aria-hidden="true"></i> 项目基本信息
+                        </h3>
+                        <div class="project-detail-info-grid">
+                            <div class="project-detail-info-item"><span>项目编号</span><strong id="detailProjectNo">—</strong></div>
+                            <div class="project-detail-info-item"><span>项目负责人</span><strong id="detailProjectLeader">—</strong></div>
+                            <div class="project-detail-info-item"><span>负责人职称</span><strong id="detailProjectLeaderTitle">—</strong></div>
+                            <div class="project-detail-info-item"><span>负责人所属部门</span><strong id="detailLeaderDepartment">—</strong></div>
+                            <div class="project-detail-info-item"><span>项目归属部门</span><strong id="detailProjectDepartment">—</strong></div>
+                            <div class="project-detail-info-item"><span>学科分类</span><strong id="detailProjectSubject">—</strong></div>
+                            <div class="project-detail-info-item"><span>项目类型</span><strong id="detailProjectType">—</strong></div>
+                            <div class="project-detail-info-item"><span>起止日期</span><strong id="detailProjectDates">—</strong></div>
+                            <div class="project-detail-info-item"><span>项目经费</span><strong id="detailProjectFund">—</strong></div>
+                        </div>
+                    </section>
+
+                    <section class="project-detail-section" aria-labelledby="detailFundSummaryHeading">
+                        <h3 class="project-detail-section-title" id="detailFundSummaryHeading">
+                            <i class="fa fa-line-chart" aria-hidden="true"></i> 经费与预算概览
+                        </h3>
+                        <div class="project-detail-summary-grid">
+                            <div class="project-detail-summary-card">
+                                <span>项目登记经费</span>
+                                <strong><span id="detailFundAmountSummary">0.00</span><em>万元</em></strong>
+                            </div>
+                            <div class="project-detail-summary-card">
+                                <span>实际经费明细合计</span>
+                                <strong><span id="detailActualFundTotal">0.00</span><em>万元</em></strong>
+                            </div>
+                            <div class="project-detail-summary-card">
+                                <span>年度预算合计</span>
+                                <strong><span id="detailBudgetTotal">0.00</span><em>万元</em></strong>
+                            </div>
+                            <div class="project-detail-summary-card">
+                                <span>经费明细 / 预算记录</span>
+                                <strong><span id="detailFundRecordCount">0</span><em>条经费</em> / <span id="detailBudgetRecordCount">0</span><em>条预算</em></strong>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="project-detail-section" aria-labelledby="detailFundTableHeading">
+                        <h3 class="project-detail-section-title" id="detailFundTableHeading">
+                            <i class="fa fa-credit-card" aria-hidden="true"></i> 经费明细
+                        </h3>
+                        <div class="project-detail-table-wrap">
+                            <table class="project-detail-table">
+                                <thead>
+                                    <tr><th scope="col">年度</th><th scope="col">经费来源</th><th scope="col">支出类别</th><th scope="col">金额（万元）</th></tr>
+                                </thead>
+                                <tbody id="detailFundTableBody">
+                                    <tr><td colspan="4" class="project-detail-empty">正在加载…</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="project-detail-section" aria-labelledby="detailBudgetTableHeading">
+                        <h3 class="project-detail-section-title" id="detailBudgetTableHeading">
+                            <i class="fa fa-calendar" aria-hidden="true"></i> 年度预算
+                        </h3>
+                        <div class="project-detail-table-wrap">
+                            <table class="project-detail-table">
+                                <thead>
+                                    <tr><th scope="col">年度</th><th scope="col">预算金额（万元）</th></tr>
+                                </thead>
+                                <tbody id="detailBudgetTableBody">
+                                    <tr><td colspan="2" class="project-detail-empty">正在加载…</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="project-detail-section" aria-labelledby="detailCooperationHeading">
+                        <h3 class="project-detail-section-title" id="detailCooperationHeading">
+                            <i class="fa fa-users" aria-hidden="true"></i> 合作记录
+                        </h3>
+                        <div class="project-detail-table-wrap">
+                            <table class="project-detail-table">
+                                <thead>
+                                    <tr><th scope="col">合作来源</th><th scope="col">合作对象</th><th scope="col">合作次数</th></tr>
+                                </thead>
+                                <tbody id="detailCooperationTableBody">
+                                    <tr><td colspan="3" class="project-detail-empty">正在加载…</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
@@ -757,20 +1963,40 @@
     }
 
     function setActiveMenu() {
-        const url = window.location.href;
-        const items = document.querySelectorAll('.sidebar .menu-item');
-        items.forEach(item => {
-            const clickAttr = item.getAttribute('onclick');
-            if (!clickAttr) return;
-            if (clickAttr.includes("location.href='首页.html'") && url.includes('首页.html')) item.classList.add('active');
-            if (clickAttr.includes("location.href='科研项目.html'") && url.includes('科研项目.html')) item.classList.add('active');
-            if (clickAttr.includes("location.href='科研经费.html'") && url.includes('科研经费.html')) item.classList.add('active');
-            if (clickAttr.includes("location.href='科研成果.html'") && url.includes('科研成果.html')) item.classList.add('active');
-            if (clickAttr.includes("科学社会主义系.html") && url.includes('科学社会主义系.html')) { item.classList.add('active'); item.closest('.submenu').classList.add('open'); item.closest('.submenu').previousElementSibling.querySelector('.fa-angle-down').classList.add('rotate'); }
-            if (clickAttr.includes("政治学系.html") && url.includes('政治学系.html')) { item.classList.add('active'); item.closest('.submenu').classList.add('open'); item.closest('.submenu').previousElementSibling.querySelector('.fa-angle-down').classList.add('rotate'); }
-            if (clickAttr.includes("国际政治系.html") && url.includes('国际政治系.html')) { item.classList.add('active'); item.closest('.submenu').classList.add('open'); item.closest('.submenu').previousElementSibling.querySelector('.fa-angle-down').classList.add('rotate'); }
-            if (clickAttr.includes("公共管理系.html") && url.includes('公共管理系.html')) { item.classList.add('active'); item.closest('.submenu').classList.add('open'); item.closest('.submenu').previousElementSibling.querySelector('.fa-angle-down').classList.add('rotate'); }
+        const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+        const routeMap = {
+            '/': '科研总览',
+            '/project': '科研项目',
+            '/fund': '科研经费',
+            '/achievement': '科研成果'
+        };
+
+        document.querySelectorAll('.sidebar .menu-item').forEach(item => {
+            item.classList.remove('active');
+            const clickAttr = item.getAttribute('onclick') || '';
+            const routeMatch = clickAttr.match(/location\.href=['"]([^'"]+)['"]/);
+
+            if (routeMatch) {
+                const targetPath = routeMatch[1].replace(/\/+$/, '') || '/';
+                if (targetPath === currentPath || routeMap[currentPath] === item.textContent.trim().replace(/\s+/g, ' ')) {
+                    item.classList.add('active');
+                }
+            }
         });
+
+        const departmentRoutes = ['/dept/science', '/dept/political', '/dept/international', '/dept/public'];
+        if (departmentRoutes.some(route => currentPath.startsWith(route))) {
+            const submenu = document.querySelector('.submenu');
+            if (submenu) {
+                submenu.classList.add('open');
+                const parent = submenu.previousElementSibling;
+                if (parent) {
+                    parent.classList.add('active');
+                    const arrow = parent.querySelector('.fa-angle-down');
+                    if (arrow) arrow.classList.add('rotate');
+                }
+            }
+        }
     }
 
     function goToSmartAnalysis() {
@@ -782,135 +2008,1151 @@
     }
 }
 
-    // ---------- 图表实例 ----------
+    // ---------- 图表与项目列表状态 ----------
     let pieChart, barChart;
-    let scrollTimer;
-    let isScrolling = true;
+    let currentProjectDetailId = null;
+    let currentProjectDetailData = null;
+    let projectDetailRequestToken = 0;
+    let lastProjectDetailTrigger = null;
+    let projectFormMode = 'create';
+    let projectFormProjectId = null;
+    let projectFormSubmitting = false;
 
-    // 渲染饼图
-    function renderPieChart(data) {
-        pieChart.setOption({
-            tooltip: { trigger: 'item', formatter: '{b}: {c}项 ({d}%)' },
-            legend: { orient: 'horizontal', bottom: 20, left: 'center', itemGap: 20, textStyle: { fontSize: 14 } },
-            color: ['#409EFF', '#67C23A', '#E6A23C', '#909399'],
-            series: [{
-                name: '项目状态', type: 'pie', radius: ['40%', '70%'], center: ['50%', '40%'],
-                data: data, label: { show: true, fontSize: 14 }, labelLine: { length: 20, length2: 10, smooth: true }
-            }]
-        });
-    }
+    // 后端返回当前年份/学科筛选下的全部项目；搜索、排序、分页在前端完成。
+    let allProjectRows = [];
+    let currentProjectPage = 1;
+    let projectPageSize = 10;
+    let currentSortKey = 'fund';
+    let currentSortDirection = 'desc';
+    let projectListEmptyMessage = '暂无符合当前筛选条件的项目';
 
-    // 柱状图（静态数据，不依赖后端）
-    function renderBarChart() {
-        barChart.setOption({
-            tooltip: { trigger: 'axis' },
-            legend: { data: ['2022年', '2023年', '2024年'], bottom: 5, left: 'center' },
-            grid: { left: '3%', right: '4%', bottom: '12%', containLabel: true },
-            xAxis: { type: 'category', data: ['行政管理', '政治学理论', '公共政策', '社会保障', '国际关系'] },
-            yAxis: { type: 'value' },
-            color: ['#409EFF', '#D4AF37', '#67C23A'],
-            series: [
-                { name: '2022年', type: 'bar', data: [12, 9, 8, 5, 4] },
-                { name: '2023年', type: 'bar', data: [15, 10, 9, 6, 5] },
-                { name: '2024年', type: 'bar', data: [18, 11, 10, 7, 6] }
-            ]
-        });
-    }
+    const projectSortConfig = {
+        name: {
+            value: project => project.name ?? '',
+            type: 'text'
+        },
+        leader: {
+            value: project => project.leader ?? '',
+            type: 'text'
+        },
+        subject: {
+            value: project => project.subject ?? '',
+            type: 'text'
+        },
+        fund: {
+            value: project => Number(project.fund ?? 0),
+            type: 'number'
+        },
+        start_end: {
+            value: project => project.start_end ?? '',
+            type: 'text'
+        },
+        status: {
+            value: project => project.status ?? '',
+            type: 'text'
+        }
+    };
 
-    // 渲染项目列表表格
-    function renderProjectTable(projects) {
-        const tbody = document.getElementById('tableBody');
-        tbody.innerHTML = '';
-        projects.forEach((proj, idx) => {
-            let statusClass = '';
-            if (proj.status === '在研') statusClass = 'status-ing';
-            else if (proj.status === '结题') statusClass = 'status-finish';
-            else if (proj.status === '立项') statusClass = 'status-create';
-            else if (proj.status === '审核中') statusClass = 'status-check';
-            const row = `
-                <tr>
-                    <td>${idx+1}</td>
-                    <td>${proj.name}</td>
-                    <td>${proj.leader}</td>
-                    <td>${proj.subject}</td>
-                    <td>${proj.fund}</td>
-                    <td>${proj.start_end}</td>
-                    <td><span class="status ${statusClass}">${proj.status}</span></td>
-                </tr>
-            `;
-            tbody.insertAdjacentHTML('beforeend', row);
-        });
-        // 重启滚动（重置定时器）
-        if (scrollTimer) clearInterval(scrollTimer);
-        startTableScroll();
-    }
 
-    // 获取数据并刷新页面
-    function refreshData() {
-        const year = document.getElementById('yearFilter').value;
-        const subject = document.getElementById('subjectFilter').value;
-        // 饼图
-        fetch(`/api/project/status-pie?year=${year}&subject=${subject}`)
-            .then(res => res.json())
-            .then(data => renderPieChart(data.data))
-            .catch(err => console.error('饼图加载失败', err));
-        // 项目列表
-        fetch(`/api/project/list?year=${year}&subject=${subject}`)
-            .then(res => res.json())
-            .then(data => renderProjectTable(data.projects))
-            .catch(err => console.error('项目列表加载失败', err));
-    }
+    // ==============================================
+    // 动态加载科研项目年份
+    // ==============================================
+    async function loadProjectYears() {
+        const yearSelect = document.getElementById('yearFilter');
+        const subjectSelect = document.getElementById('subjectFilter');
+        const previousSubject = subjectSelect.value || 'all';
+        yearSelect.disabled = true;
+        subjectSelect.disabled = true;
 
-    // 表格滚动
-    function startTableScroll() {
-        const el = document.getElementById('tableScroll');
-        let top = 0;
-        const speed = 1.2;
-        const interval = 40;
-        if (scrollTimer) clearInterval(scrollTimer);
-        scrollTimer = setInterval(() => {
-            if (!isScrolling) return;
-            top += speed;
-            if (top >= el.scrollHeight - el.clientHeight) top = 0;
-            el.scrollTop = top;
-        }, interval);
-    }
+        try {
+            const response = await fetch('/api/years?scope=project');
+            if (!response.ok) {
+                throw new Error(`项目筛选项请求失败：${response.status}`);
+            }
 
-    function toggleScroll() {
-        isScrolling = !isScrolling;
-        const pause = document.getElementById('pauseBtn');
-        const resume = document.getElementById('resumeBtn');
-        if (isScrolling) {
-            pause.style.display = 'flex';
-            resume.style.display = 'none';
-            startTableScroll();
-        } else {
-            pause.style.display = 'none';
-            resume.style.display = 'flex';
+            const data = await response.json();
+            const years = Array.isArray(data.years) ? data.years : [];
+            yearSelect.innerHTML = '';
+
+            const allYearOption = document.createElement('option');
+            allYearOption.value = 'all';
+            allYearOption.textContent = '全部年份';
+            yearSelect.appendChild(allYearOption);
+
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = String(year);
+                option.textContent = `${year}年`;
+                yearSelect.appendChild(option);
+            });
+            yearSelect.value = 'all';
+
+            // 学科选项直接读取项目表，避免前端固定选项与数据库字典不一致。
+            if (Array.isArray(data.subjects)) {
+                subjectSelect.innerHTML = '';
+                const allSubjectOption = document.createElement('option');
+                allSubjectOption.value = 'all';
+                allSubjectOption.textContent = '全部学科';
+                subjectSelect.appendChild(allSubjectOption);
+
+                data.subjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject;
+                    option.textContent = subject;
+                    subjectSelect.appendChild(option);
+                });
+
+                subjectSelect.value = data.subjects.includes(previousSubject)
+                    ? previousSubject
+                    : 'all';
+            }
+        } catch (error) {
+            console.error('加载项目筛选项失败：', error);
+            // 请求失败时保留“全部”选项和页面原有学科选项，保证页面仍可操作。
+            if (!yearSelect.options.length) {
+                yearSelect.innerHTML = '<option value="all">全部年份</option>';
+            }
+        } finally {
+            yearSelect.disabled = false;
+            subjectSelect.disabled = false;
         }
     }
 
-    // 排序（仅对当前DOM有效）
-    function sortTable(col) {
-        const body = document.getElementById('tableBody');
-        const rows = Array.from(body.querySelectorAll('tr'));
-        rows.sort((a, b) => {
-            const va = a.cells[col].textContent.trim();
-            const vb = b.cells[col].textContent.trim();
-            if (col === 4) return parseFloat(vb) - parseFloat(va);
-            return va.localeCompare(vb, 'zh-CN');
+    // 渲染饼图：完全使用后端统计结果，并为无匹配数据提供明确提示。
+    function renderPieChart(data) {
+        const chartData = Array.isArray(data) ? data : [];
+        const hasData = chartData.some(item => Number(item.value) > 0);
+
+        pieChart.setOption({
+            title: {
+                show: !hasData,
+                text: '暂无符合条件的项目数据',
+                left: 'center',
+                top: 'middle',
+                textStyle: { fontSize: 16, color: '#909399', fontWeight: 'normal' }
+            },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}项 ({d}%)' },
+            legend: {
+                show: hasData,
+                orient: 'horizontal',
+                bottom: 20,
+                left: 'center',
+                itemGap: 20,
+                textStyle: { fontSize: 14 }
+            },
+            color: ['#409EFF', '#67C23A', '#E6A23C', '#909399', '#D4AF37', '#7E57C2'],
+            series: [{
+                name: '项目状态',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '40%'],
+                data: hasData ? chartData : [],
+                label: { show: hasData, fontSize: 14 },
+                labelLine: { length: 20, length2: 10, smooth: true }
+            }]
+        }, true);
+    }
+
+    // 柱状图：年份、学科和各年份计数均由后端根据当前筛选条件计算。
+    function renderBarChart(payload) {
+        const data = payload && typeof payload === 'object' ? payload : {};
+        const years = Array.isArray(data.years) ? data.years : [];
+        const subjects = Array.isArray(data.subjects) ? data.subjects : [];
+        const series = Array.isArray(data.series) ? data.series : [];
+        const hasData = series.some(item =>
+            Array.isArray(item.data) && item.data.some(value => Number(value) > 0)
+        );
+
+        const selectedYear = document.getElementById('yearFilter').value;
+        const titleSuffix = selectedYear && selectedYear !== 'all'
+            ? `${selectedYear}年`
+            : (years.length ? `近${years.length}年` : '暂无数据');
+        const titleElement = document.getElementById('barChartTitle');
+        if (titleElement) {
+            titleElement.textContent = `按学科/年份项目数量统计（${titleSuffix}）`;
+        }
+
+        barChart.setOption({
+            title: {
+                show: !hasData,
+                text: '暂无符合条件的项目数据',
+                left: 'center',
+                top: 'middle',
+                textStyle: { fontSize: 16, color: '#909399', fontWeight: 'normal' }
+            },
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            legend: {
+                show: hasData && series.length > 1,
+                data: series.map(item => item.name),
+                bottom: 5,
+                left: 'center'
+            },
+            grid: { left: '5%', right: '4%', top: '8%', bottom: series.length > 1 ? '16%' : '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: subjects,
+                axisLabel: { interval: 0, rotate: subjects.length > 6 ? 25 : 0 }
+            },
+            yAxis: { type: 'value', min: 0, minInterval: 1, name: '项目数' },
+            color: ['#409EFF', '#D4AF37', '#67C23A', '#909399', '#7E57C2'],
+            series: hasData ? series : [],
+            animationDuration: 450
+        }, true);
+    }
+
+    // 按关键词筛选并对完整结果排序；分页只影响当前页面展示，不会截断导出数据。
+    function getFilteredSortedProjects(sourceProjects = allProjectRows, includeKeyword = true) {
+        const keywordInput = document.getElementById('projectKeyword');
+        const keyword = includeKeyword && keywordInput
+            ? keywordInput.value.trim().toLocaleLowerCase()
+            : '';
+
+        const filtered = (Array.isArray(sourceProjects) ? sourceProjects : []).filter(project => {
+            if (!keyword) return true;
+
+            const searchableValues = [
+                project.name,
+                project.leader,
+                project.subject,
+                project.fund,
+                project.start_end,
+                project.status
+            ];
+
+            return searchableValues.some(value =>
+                String(value ?? '').toLocaleLowerCase().includes(keyword)
+            );
         });
-        body.innerHTML = '';
-        rows.forEach((r, i) => {
-            r.cells[0].textContent = i + 1;
-            body.appendChild(r);
+
+        const sortConfig = projectSortConfig[currentSortKey] || projectSortConfig.fund;
+        filtered.sort((a, b) => {
+            const valueA = sortConfig.value(a);
+            const valueB = sortConfig.value(b);
+            let comparison = 0;
+
+            if (sortConfig.type === 'number') {
+                comparison = (Number.isFinite(valueA) ? valueA : 0)
+                    - (Number.isFinite(valueB) ? valueB : 0);
+            } else {
+                comparison = String(valueA).localeCompare(
+                    String(valueB),
+                    'zh-CN',
+                    { numeric: true, sensitivity: 'base' }
+                );
+            }
+
+            return currentSortDirection === 'asc' ? comparison : -comparison;
+        });
+
+        return filtered;
+    }
+
+    function updateSortHeaders() {
+        document.querySelectorAll('#projectTable thead th[data-sort-key]').forEach(th => {
+            const isCurrent = th.dataset.sortKey === currentSortKey;
+            th.classList.toggle('sort-asc', isCurrent && currentSortDirection === 'asc');
+            th.classList.toggle('sort-desc', isCurrent && currentSortDirection === 'desc');
+            th.setAttribute(
+                'aria-sort',
+                isCurrent
+                    ? (currentSortDirection === 'asc' ? 'ascending' : 'descending')
+                    : 'none'
+            );
         });
     }
 
-    // 导出（暂不实现）
-    function exportTable() {
-        alert('导出功能开发中');
+    function updateProjectPagination(total, totalPages) {
+        const pageInfo = document.getElementById('pageInfo');
+        const pageNumber = document.getElementById('pageNumber');
+        const projectCount = document.getElementById('projectCount');
+        const firstButton = document.getElementById('firstPageBtn');
+        const previousButton = document.getElementById('prevPageBtn');
+        const nextButton = document.getElementById('nextPageBtn');
+        const lastButton = document.getElementById('lastPageBtn');
+
+        if (projectCount) {
+            projectCount.textContent = total === allProjectRows.length
+                ? `共 ${total} 条项目`
+                : `共 ${allProjectRows.length} 条，匹配 ${total} 条`;
+        }
+
+        if (pageInfo) {
+            pageInfo.textContent = total
+                ? `显示第 ${(currentProjectPage - 1) * projectPageSize + 1}–${Math.min(currentProjectPage * projectPageSize, total)} 条，共 ${total} 条`
+                : '没有符合条件的项目';
+        }
+
+        const pageText = `第 ${currentProjectPage} / ${totalPages} 页`;
+        if (pageNumber) pageNumber.textContent = pageText;
+
+        if (firstButton) firstButton.disabled = total === 0 || currentProjectPage <= 1;
+        if (previousButton) previousButton.disabled = total === 0 || currentProjectPage <= 1;
+        if (nextButton) nextButton.disabled = total === 0 || currentProjectPage >= totalPages;
+        if (lastButton) lastButton.disabled = total === 0 || currentProjectPage >= totalPages;
     }
+
+    function applyProjectListView() {
+        const tbody = document.getElementById('tableBody');
+        const scrollElement = document.getElementById('tableScroll');
+        const filteredProjects = getFilteredSortedProjects();
+        const total = filteredProjects.length;
+        const totalPages = Math.max(1, Math.ceil(total / projectPageSize));
+
+        currentProjectPage = Math.min(Math.max(currentProjectPage, 1), totalPages);
+
+        const startIndex = (currentProjectPage - 1) * projectPageSize;
+        const pageProjects = filteredProjects.slice(startIndex, startIndex + projectPageSize);
+        tbody.innerHTML = '';
+
+        if (pageProjects.length === 0) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.colSpan = 7;
+            cell.textContent = total === 0 && allProjectRows.length > 0
+                ? '没有找到符合关键词的项目，请尝试其他关键词。'
+                : projectListEmptyMessage;
+            cell.style.textAlign = 'center';
+            cell.style.color = '#909399';
+            cell.style.padding = '28px 12px';
+            row.appendChild(cell);
+            tbody.appendChild(row);
+        } else {
+            pageProjects.forEach((project, index) => {
+                const row = document.createElement('tr');
+                const values = [
+                    String(startIndex + index + 1),
+                    project.name ?? '未命名项目',
+                    project.leader ?? '未指定',
+                    project.subject ?? '未分类',
+                    project.fund == null ? '0' : String(project.fund),
+                    project.start_end ?? '—'
+                ];
+
+                values.forEach((value, valueIndex) => {
+                    const cell = document.createElement('td');
+
+                    if (valueIndex === 1) {
+                        cell.classList.add('project-name-cell');
+
+                        const actions = document.createElement('div');
+                        actions.className = 'project-name-actions';
+
+                        const hasValidProjectId =
+                            Number.isInteger(Number(project.id)) &&
+                            Number(project.id) > 0;
+
+                        const nameButton = document.createElement('button');
+                        nameButton.type = 'button';
+                        nameButton.className = 'project-name-button';
+                        nameButton.textContent = String(value);
+                        nameButton.disabled = !hasValidProjectId;
+                        nameButton.setAttribute('aria-label', `查看项目详情：${String(value)}`);
+                        nameButton.title = hasValidProjectId
+                            ? '点击查看项目详情'
+                            : '该项目缺少有效 ID，暂时无法查看详情';
+
+                        if (hasValidProjectId) {
+                            nameButton.addEventListener('click', () => {
+                                openProjectDetail(project.id, nameButton);
+                            });
+                        }
+
+                        actions.appendChild(nameButton);
+
+                        if (hasValidProjectId) {
+                            const detailButton = document.createElement('button');
+                            detailButton.type = 'button';
+                            detailButton.className = 'project-detail-button';
+                            detailButton.title = `查看“${String(value)}”详情`;
+
+                            const detailIcon = document.createElement('i');
+                            detailIcon.className = 'fa fa-eye';
+                            detailIcon.setAttribute('aria-hidden', 'true');
+
+                            detailButton.appendChild(detailIcon);
+                            detailButton.appendChild(document.createTextNode(' 详情'));
+                            detailButton.addEventListener('click', () => {
+                                openProjectDetail(project.id, detailButton);
+                            });
+
+                            actions.appendChild(detailButton);
+                        }
+
+                        cell.appendChild(actions);
+                    } else {
+                        cell.textContent = String(value);
+                    }
+
+                    row.appendChild(cell);
+                });
+
+                const statusCell = document.createElement('td');
+                const statusTag = document.createElement('span');
+                statusTag.textContent = project.status || '未设置';
+                statusTag.className = 'status';
+
+                const statusClassMap = {
+                    '在研': 'status-ing',
+                    '结题': 'status-finish',
+                    '立项': 'status-create',
+                    '审核中': 'status-check'
+                };
+
+                if (statusClassMap[project.status]) {
+                    statusTag.classList.add(statusClassMap[project.status]);
+                }
+
+                statusCell.appendChild(statusTag);
+                row.appendChild(statusCell);
+                tbody.appendChild(row);
+            });
+        }
+
+        if (scrollElement) scrollElement.scrollTop = 0;
+        updateProjectPagination(total, totalPages);
+        updateSortHeaders();
+    }
+
+    // 接收后端返回的完整筛选结果；后续搜索、排序和分页不再重复请求服务器。
+    function renderProjectTable(projects, emptyMessage = '暂无符合当前筛选条件的项目') {
+        allProjectRows = Array.isArray(projects) ? projects : [];
+        projectListEmptyMessage = emptyMessage;
+        currentProjectPage = 1;
+        applyProjectListView();
+    }
+
+    function clearProjectSearch() {
+        const searchInput = document.getElementById('projectKeyword');
+        if (searchInput) searchInput.value = '';
+        currentProjectPage = 1;
+        applyProjectListView();
+    }
+
+    function changeProjectPage(delta) {
+        currentProjectPage += Number(delta) || 0;
+        applyProjectListView();
+    }
+
+    function goToProjectPage(page) {
+        const filteredCount = getFilteredSortedProjects().length;
+        const totalPages = Math.max(1, Math.ceil(filteredCount / projectPageSize));
+        currentProjectPage = page === 'last' ? totalPages : Number(page);
+        applyProjectListView();
+    }
+
+    // 点击同一列切换升/降序；切换新列时默认升序，经费列默认降序。
+    function sortTable(key) {
+        if (!projectSortConfig[key]) return;
+
+        if (currentSortKey === key) {
+            currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            currentSortKey = key;
+            currentSortDirection = key === 'fund' ? 'desc' : 'asc';
+        }
+
+        currentProjectPage = 1;
+        applyProjectListView();
+    }
+
+    // 获取数据并刷新页面：饼图、柱状图、列表统一使用当前年份和学科筛选条件。
+    async function refreshData() {
+        const year = document.getElementById('yearFilter').value || 'all';
+        const subject = document.getElementById('subjectFilter').value || 'all';
+        const query = `year=${encodeURIComponent(year)}&subject=${encodeURIComponent(subject)}`;
+
+        const requestJson = async (url) => {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`请求失败（HTTP ${response.status}）：${url}`);
+            }
+            const payload = await response.json();
+            if (payload && payload.error) {
+                throw new Error(payload.error);
+            }
+            return payload;
+        };
+
+        const tasks = [
+            requestJson(`/api/project/status-pie?${query}`)
+                .then(data => renderPieChart(data.data))
+                .catch(error => {
+                    console.error('项目状态饼图加载失败：', error);
+                    renderPieChart([]);
+                }),
+            requestJson(`/api/project/subject-year-counts?${query}`)
+                .then(data => renderBarChart(data))
+                .catch(error => {
+                    console.error('学科/年份项目统计图加载失败：', error);
+                    renderBarChart({ years: [], subjects: [], series: [] });
+                }),
+            requestJson(`/api/project/list?${query}`)
+                .then(data => renderProjectTable(data.projects))
+                .catch(error => {
+                    console.error('项目列表加载失败：', error);
+                    renderProjectTable([], '项目列表加载失败，请检查服务后重试');
+                })
+        ];
+
+        await Promise.all(tasks);
+    }
+
+    // 按当前年份、学科筛选条件导出完整项目数据（CSV，兼容 Excel 中文显示）。
+    function csvEscape(value) {
+        const text = value == null ? '' : String(value);
+        return '"' + text.replace(/"/g, '""') + '"';
+    }
+
+    function getLocalDateStamp() {
+        const now = new Date();
+        const pad = value => String(value).padStart(2, '0');
+        return `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}`;
+    }
+
+    async function exportTable() {
+        const year = document.getElementById('yearFilter').value || 'all';
+        const subject = document.getElementById('subjectFilter').value || 'all';
+        const params = new URLSearchParams({ year, subject });
+        const exportButton = document.querySelector('.filter-bar .btn-success');
+        const originalButtonHtml = exportButton ? exportButton.innerHTML : '';
+
+        try {
+            if (exportButton) {
+                exportButton.disabled = true;
+                exportButton.style.opacity = '0.75';
+                exportButton.innerHTML = '<i class="fa fa-spinner fa-spin"></i> 正在导出';
+            }
+
+            const response = await fetch(`/api/project/list?${params.toString()}`, {
+                headers: { 'Accept': 'application/json' }
+            });
+            if (!response.ok) {
+                throw new Error(`服务器返回 HTTP ${response.status}`);
+            }
+
+            const payload = await response.json();
+            if (payload && payload.error) {
+                throw new Error(payload.error);
+            }
+
+            const sourceProjects = Array.isArray(payload.projects) ? payload.projects : [];
+            const projects = getFilteredSortedProjects(sourceProjects, true);
+
+            if (projects.length === 0) {
+                alert('当前筛选条件或关键词下没有可导出的项目。');
+                return;
+            }
+
+            const headers = ['序号', '项目名称', '负责人', '学科分类', '经费（万元）', '起止时间', '项目状态'];
+            const rows = projects.map((project, index) => [
+                index + 1,
+                project.name || '未命名项目',
+                project.leader || '未指定',
+                project.subject || '未分类',
+                project.fund == null ? 0 : project.fund,
+                project.start_end || '—',
+                project.status || '未设置'
+            ]);
+            const csvContent = '\uFEFF' + [headers, ...rows]
+                .map(row => row.map(csvEscape).join(','))
+                .join('\r\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const objectUrl = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            const yearLabel = year === 'all' ? '全部年份' : `${year}年`;
+            const subjectLabel = subject === 'all' ? '全部学科' : subject;
+            const safeName = value => value.replace(/[\\/:*?"<>|]/g, '_');
+
+            link.href = objectUrl;
+            link.download = `科研项目_${safeName(yearLabel)}_${safeName(subjectLabel)}_${getLocalDateStamp()}.csv`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+
+            alert(`导出成功，共 ${projects.length} 条项目记录。`);
+        } catch (error) {
+            console.error('科研项目导出失败：', error);
+            alert(`导出失败：${error.message || '请检查服务后重试。'}`);
+        } finally {
+            if (exportButton) {
+                exportButton.disabled = false;
+                exportButton.style.opacity = '';
+                exportButton.innerHTML = originalButtonHtml;
+            }
+        }
+    }
+
+
+    // ==============================================
+    // 科研项目详情弹窗
+    // 详情数据由只读接口 /api/project/detail 提供。
+    // ==============================================
+    function detailDisplayValue(value, fallback = '—') {
+        if (value === null || value === undefined || String(value).trim() === '') {
+            return fallback;
+        }
+        return String(value);
+    }
+
+    function detailFormatAmount(value) {
+        const number = Number(value);
+        return Number.isFinite(number)
+            ? number.toLocaleString('zh-CN', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })
+            : '0.00';
+    }
+
+    function detailFormatDate(value) {
+        if (!value) return '—';
+        const text = String(value);
+        return /^\d{4}-\d{2}-\d{2}/.test(text) ? text.slice(0, 10) : text;
+    }
+
+    function setProjectDetailText(elementId, value, fallback = '—') {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = detailDisplayValue(value, fallback);
+        }
+    }
+
+    function renderProjectDetailTable(tbodyId, rows, columns, emptyMessage) {
+        const tbody = document.getElementById(tbodyId);
+        if (!tbody) return;
+
+        tbody.replaceChildren();
+
+        if (!Array.isArray(rows) || rows.length === 0) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.colSpan = columns.length;
+            cell.className = 'project-detail-empty';
+            cell.textContent = emptyMessage;
+            row.appendChild(cell);
+            tbody.appendChild(row);
+            return;
+        }
+
+        rows.forEach(item => {
+            const row = document.createElement('tr');
+
+            columns.forEach(column => {
+                const cell = document.createElement('td');
+                let value;
+
+                try {
+                    value = column.value(item);
+                } catch (error) {
+                    value = '—';
+                }
+
+                cell.textContent = detailDisplayValue(value);
+                row.appendChild(cell);
+            });
+
+            tbody.appendChild(row);
+        });
+    }
+
+    function renderProjectDetail(payload) {
+        currentProjectDetailData = payload && payload.project ? payload : null;
+        setProjectWriteControls();
+        const project = payload && payload.project && typeof payload.project === 'object'
+            ? payload.project
+            : {};
+        const fundSummary = payload && payload.fund_summary && typeof payload.fund_summary === 'object'
+            ? payload.fund_summary
+            : {};
+
+        setProjectDetailText('detailProjectName', project.name, '未命名项目');
+        setProjectDetailText('detailProjectNo', project.project_no);
+        setProjectDetailText('detailProjectLeader', project.leader, '未指定');
+        setProjectDetailText('detailProjectLeaderTitle', project.leader_title);
+        setProjectDetailText('detailLeaderDepartment', project.leader_department, '未分配');
+        setProjectDetailText('detailProjectDepartment', project.department, '未分配');
+        setProjectDetailText('detailProjectSubject', project.subject, '未分类');
+        setProjectDetailText('detailProjectType', project.project_type, '未设置');
+
+        const startDate = detailFormatDate(project.start_date);
+        const endDate = detailFormatDate(project.end_date);
+        const dateText = startDate === '—' && endDate === '—'
+            ? '—'
+            : `${startDate} 至 ${endDate}`;
+        setProjectDetailText('detailProjectDates', dateText);
+
+        const registeredFund = Number(project.fund_amount);
+        const registeredFundText = detailFormatAmount(registeredFund);
+        setProjectDetailText('detailProjectFund', `${registeredFundText} 万元`);
+        setProjectDetailText('detailFundAmountSummary', registeredFundText);
+
+        const statusElement = document.getElementById('detailProjectStatus');
+        const status = detailDisplayValue(project.status, '未设置');
+        if (statusElement) {
+            statusElement.textContent = status;
+            statusElement.className = 'status detail-status';
+
+            const statusClassMap = {
+                '在研': 'status-ing',
+                '结题': 'status-finish',
+                '立项': 'status-create',
+                '审核中': 'status-check'
+            };
+            if (statusClassMap[status]) {
+                statusElement.classList.add(statusClassMap[status]);
+            }
+        }
+
+        const progressValue = Number(project.actual_progress);
+        const progress = Number.isFinite(progressValue)
+            ? Math.max(0, Math.min(100, progressValue))
+            : 0;
+        setProjectDetailText('detailProjectProgress', `${progress}%`);
+
+        const progressBar = document.getElementById('detailProjectProgressBar');
+        if (progressBar) progressBar.style.width = `${progress}%`;
+
+        const progressTrack = document.getElementById('detailProjectProgressTrack');
+        if (progressTrack) progressTrack.setAttribute('aria-valuenow', String(progress));
+
+        const subtitle = document.getElementById('projectDetailSubtitle');
+        if (subtitle) {
+            const projectNo = detailDisplayValue(project.project_no, '暂无项目编号');
+            const leader = detailDisplayValue(project.leader, '未指定负责人');
+            subtitle.textContent = `${projectNo} · 负责人：${leader}`;
+        }
+
+        const actualTotal = Number(fundSummary.actual_total);
+        const budgetTotal = Number(fundSummary.budget_total);
+        setProjectDetailText('detailActualFundTotal', detailFormatAmount(actualTotal));
+        setProjectDetailText('detailBudgetTotal', detailFormatAmount(budgetTotal));
+        setProjectDetailText('detailFundRecordCount', Number(fundSummary.fund_detail_count) || 0);
+        setProjectDetailText('detailBudgetRecordCount', Number(fundSummary.budget_record_count) || 0);
+
+        renderProjectDetailTable(
+            'detailFundTableBody',
+            payload.fund_details,
+            [
+                { value: item => item.year },
+                { value: item => item.source_type },
+                { value: item => item.usage_type },
+                { value: item => `${detailFormatAmount(item.amount)} 万元` }
+            ],
+            '该项目暂无经费明细记录'
+        );
+
+        renderProjectDetailTable(
+            'detailBudgetTableBody',
+            payload.budgets,
+            [
+                { value: item => item.year },
+                { value: item => `${detailFormatAmount(item.budget_amount)} 万元` }
+            ],
+            '该项目暂无年度预算记录'
+        );
+
+        renderProjectDetailTable(
+            'detailCooperationTableBody',
+            payload.cooperations,
+            [
+                { value: item => item.source },
+                { value: item => item.target },
+                { value: item => item.count }
+            ],
+            '该项目暂无合作记录'
+        );
+    }
+
+    async function openProjectDetail(projectId, triggerElement) {
+        const id = Number(projectId);
+        if (!Number.isInteger(id) || id <= 0) {
+            alert('当前项目缺少有效的项目 ID，暂时无法查看详情。');
+            return;
+        }
+
+        const modal = document.getElementById('projectDetailModal');
+        const loading = document.getElementById('projectDetailLoading');
+        const errorPanel = document.getElementById('projectDetailError');
+        const content = document.getElementById('projectDetailContent');
+        const closeButton = document.getElementById('projectDetailClose');
+
+        if (!modal || !loading || !errorPanel || !content) {
+            alert('项目详情弹窗初始化失败，请刷新页面后重试。');
+            return;
+        }
+
+        currentProjectDetailId = id;
+        currentProjectDetailData = null;
+        setProjectWriteControls();
+        if (triggerElement) lastProjectDetailTrigger = triggerElement;
+        else lastProjectDetailTrigger = document.activeElement;
+
+        const requestToken = ++projectDetailRequestToken;
+
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('project-detail-lock');
+
+        loading.hidden = false;
+        errorPanel.hidden = true;
+        content.hidden = true;
+
+        const subtitle = document.getElementById('projectDetailSubtitle');
+        if (subtitle) subtitle.textContent = `正在读取项目 ID：${id} 的详情…`;
+
+        if (closeButton) closeButton.focus();
+
+        try {
+            const response = await fetch(
+                `/api/project/detail?id=${encodeURIComponent(id)}`,
+                { headers: { 'Accept': 'application/json' } }
+            );
+
+            let payload;
+            try {
+                payload = await response.json();
+            } catch (parseError) {
+                throw new Error('服务器未返回有效的 JSON 数据');
+            }
+
+            if (!response.ok || (payload && payload.error)) {
+                throw new Error(
+                    (payload && payload.error) ||
+                    `服务器返回 HTTP ${response.status}`
+                );
+            }
+
+            if (requestToken !== projectDetailRequestToken) return;
+
+            renderProjectDetail(payload);
+            loading.hidden = true;
+            errorPanel.hidden = true;
+            content.hidden = false;
+        } catch (error) {
+            if (requestToken !== projectDetailRequestToken) return;
+
+            loading.hidden = true;
+            content.hidden = true;
+            errorPanel.hidden = false;
+
+            const errorText = document.getElementById('projectDetailErrorText');
+            if (errorText) {
+                errorText.textContent = `项目详情加载失败：${error.message || '请检查服务后重试。'}`;
+            }
+
+            const subtitle = document.getElementById('projectDetailSubtitle');
+            if (subtitle) subtitle.textContent = `项目 ID：${id}`;
+            console.error('科研项目详情加载失败：', error);
+        }
+    }
+
+    function closeProjectDetail() {
+        const modal = document.getElementById('projectDetailModal');
+        if (!modal || !modal.classList.contains('open')) return;
+
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('project-detail-lock');
+
+        // 使尚未完成的旧请求失效，避免关闭后异步结果覆盖新状态。
+        projectDetailRequestToken += 1;
+
+        if (lastProjectDetailTrigger && document.contains(lastProjectDetailTrigger)) {
+            lastProjectDetailTrigger.focus();
+        }
+    }
+
+
+    // ==============================================
+    // 科研项目新建/编辑
+    // ==============================================
+    function setProjectWriteControls() {
+        const canWrite = currentRole === 'admin';
+        const createButton = document.getElementById('newProjectButton');
+        const editButton = document.getElementById('projectEditButton');
+        const hasLoadedProject = Boolean(currentProjectDetailData && currentProjectDetailData.project && currentProjectDetailData.project.id);
+        if (createButton) createButton.hidden = !canWrite;
+        if (editButton) editButton.hidden = !(canWrite && hasLoadedProject);
+    }
+
+    function setProjectFormError(message) {
+        const errorBox = document.getElementById('projectFormError');
+        if (!errorBox) return;
+        errorBox.textContent = message || '';
+        errorBox.hidden = !message;
+    }
+
+    function setProjectFormSelect(selectId, options, placeholder, selectedValue = '') {
+        const select = document.getElementById(selectId);
+        if (!select) return;
+
+        select.innerHTML = '';
+        const firstOption = document.createElement('option');
+        firstOption.value = '';
+        firstOption.textContent = placeholder;
+        select.appendChild(firstOption);
+
+        (Array.isArray(options) ? options : []).forEach(item => {
+            const option = document.createElement('option');
+            option.value = String(item.value ?? item.id ?? '');
+            option.textContent = String(item.label ?? item.name ?? item.value ?? '');
+            select.appendChild(option);
+        });
+
+        select.value = selectedValue == null ? '' : String(selectedValue);
+    }
+
+    async function loadProjectFormOptions(project = {}) {
+        const response = await fetch('/api/project/options', {
+            headers: { 'Accept': 'application/json' }
+        });
+
+        let payload;
+        try {
+            payload = await response.json();
+        } catch (error) {
+            throw new Error('服务器未返回有效的选项数据');
+        }
+
+        if (!response.ok || (payload && payload.error)) {
+            throw new Error((payload && payload.error) || `加载选项失败（HTTP ${response.status}）`);
+        }
+
+        const leaders = (Array.isArray(payload.leaders) ? payload.leaders : []).map(item => {
+            const extra = [item.title, item.role, item.department].filter(Boolean).join(' · ');
+            return {
+                value: item.id,
+                label: extra ? `${item.name}（${extra}）` : item.name
+            };
+        });
+        const departments = (Array.isArray(payload.departments) ? payload.departments : []).map(item => ({
+            value: item.id,
+            label: item.name
+        }));
+
+        setProjectFormSelect('projectFormLeader', leaders, '请选择项目负责人', project.leader_id);
+        setProjectFormSelect('projectFormDept', departments, '未指定部门', project.dept_id);
+        setProjectFormSelect(
+            'projectFormType',
+            (Array.isArray(payload.types) ? payload.types : []).map(item => ({
+                value: item.value,
+                label: item.label
+            })),
+            '请选择项目类型',
+            project.project_type
+        );
+        setProjectFormSelect(
+            'projectFormStatus',
+            (Array.isArray(payload.statuses) ? payload.statuses : []).map(item => ({
+                value: item.value,
+                label: item.label
+            })),
+            '请选择项目状态',
+            project.status || '立项'
+        );
+
+        if (!leaders.length) {
+            throw new Error('系统中暂时没有可选择的负责人，请先维护教师/用户数据。');
+        }
+    }
+
+    function closeProjectFormModal() {
+        const modal = document.getElementById('projectFormModal');
+        if (!modal || !modal.classList.contains('open')) return;
+
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('project-form-lock');
+
+        if (currentProjectDetailId && document.getElementById('projectDetailModal')?.classList.contains('open')) {
+            const editButton = document.getElementById('projectEditButton');
+            if (editButton && !editButton.hidden) editButton.focus();
+        } else {
+            const createButton = document.getElementById('newProjectButton');
+            if (createButton && !createButton.hidden) createButton.focus();
+        }
+    }
+
+    async function openProjectForm(mode, project = null) {
+        if (currentRole !== 'admin') {
+            alert('当前页面仅管理员可以新建或编辑项目。');
+            return;
+        }
+
+        const modal = document.getElementById('projectFormModal');
+        const form = document.getElementById('projectForm');
+        const submitButton = document.getElementById('projectFormSubmit');
+        const title = document.getElementById('projectFormHeading');
+        const subtitle = document.getElementById('projectFormSubtitle');
+        if (!modal || !form || !submitButton) return;
+
+        projectFormMode = mode === 'edit' ? 'edit' : 'create';
+        projectFormProjectId = projectFormMode === 'edit' && project ? Number(project.id) : null;
+
+        form.reset();
+        document.getElementById('projectFormId').value = projectFormProjectId || '';
+        document.getElementById('projectFormProgress').value = project?.actual_progress ?? 0;
+        document.getElementById('projectFormFund').value = project?.fund_amount ?? '';
+        document.getElementById('projectFormNo').value = project?.project_no && project.project_no !== '—'
+            ? project.project_no
+            : '';
+        document.getElementById('projectFormName').value = project?.name ?? '';
+        document.getElementById('projectFormStart').value = project?.start_date ?? '';
+        document.getElementById('projectFormEnd').value = project?.end_date ?? '';
+        document.getElementById('projectFormSubject').value = project?.subject && project.subject !== '未分类'
+            ? project.subject
+            : '';
+
+        if (title) title.textContent = projectFormMode === 'edit' ? '编辑科研项目' : '新建科研项目';
+        if (subtitle) {
+            subtitle.textContent = projectFormMode === 'edit'
+                ? '修改项目信息后保存，系统将更新该项目的现有记录。'
+                : '请填写项目基本信息，带 * 的项目为必填项。';
+        }
+
+        setProjectFormError('');
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> 正在加载';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('project-form-lock');
+
+        try {
+            await loadProjectFormOptions(project || {});
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fa fa-save" aria-hidden="true"></i> 保存项目';
+            const firstInput = document.getElementById('projectFormNo');
+            if (firstInput) firstInput.focus();
+        } catch (error) {
+            setProjectFormError(`表单选项加载失败：${error.message || '请检查服务后重试。'}`);
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fa fa-save" aria-hidden="true"></i> 暂不可保存';
+            console.error('科研项目表单选项加载失败：', error);
+        }
+    }
+
+    function openNewProjectForm() {
+        openProjectForm('create');
+    }
+
+    function openProjectEditForm() {
+        const project = currentProjectDetailData && currentProjectDetailData.project;
+        if (!project || !project.id) {
+            alert('当前没有可编辑的项目详情，请重新打开项目详情后再试。');
+            return;
+        }
+        openProjectForm('edit', project);
+    }
+
+    function getProjectCsrfToken() {
+        const tokenInput = document.querySelector('#projectForm input[name="csrfmiddlewaretoken"]');
+        if (tokenInput && tokenInput.value) return tokenInput.value;
+
+        const match = document.cookie.match(/(?:^|; )csrftoken=([^;]+)/);
+        return match ? decodeURIComponent(match[1]) : '';
+    }
+
+    async function submitProjectForm(event) {
+        event.preventDefault();
+        if (projectFormSubmitting) return;
+
+        const form = document.getElementById('projectForm');
+        const submitButton = document.getElementById('projectFormSubmit');
+        if (!form || !submitButton) return;
+
+        if (currentRole !== 'admin') {
+            setProjectFormError('当前页面仅管理员可以新建或编辑项目。');
+            return;
+        }
+
+        if (!form.reportValidity()) return;
+
+        const formData = new FormData(form);
+        const payload = Object.fromEntries(formData.entries());
+        delete payload.csrfmiddlewaretoken;
+
+        payload.project_no = String(payload.project_no || '').trim();
+        payload.project_name = String(payload.project_name || '').trim();
+        payload.leader_id = Number(payload.leader_id);
+        payload.dept_id = payload.dept_id ? Number(payload.dept_id) : null;
+        payload.fund_amount = String(payload.fund_amount || '').trim();
+        payload.start_date = String(payload.start_date || '').trim();
+        payload.end_date = String(payload.end_date || '').trim();
+        payload.project_type = String(payload.project_type || '').trim();
+        payload.status = String(payload.status || '').trim();
+        payload.actual_progress = Number(payload.actual_progress || 0);
+        payload.subject = String(payload.subject || '').trim();
+
+        if (projectFormMode === 'edit') {
+            if (!Number.isInteger(projectFormProjectId) || projectFormProjectId <= 0) {
+                setProjectFormError('项目 ID 无效，请关闭窗口后重新打开项目详情。');
+                return;
+            }
+            payload.id = projectFormProjectId;
+        }
+
+        projectFormSubmitting = true;
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i> 正在保存';
+        setProjectFormError('');
+
+        try {
+            const response = await fetch('/api/project/save', {
+                method: projectFormMode === 'edit' ? 'PUT' : 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getProjectCsrfToken()
+                },
+                body: JSON.stringify(payload)
+            });
+
+            let result;
+            try {
+                result = await response.json();
+            } catch (error) {
+                throw new Error('服务器未返回有效的 JSON 数据');
+            }
+
+            if (!response.ok || (result && result.error)) {
+                throw new Error((result && result.error) || `保存失败（HTTP ${response.status}）`);
+            }
+
+            const savedId = Number(result.project && result.project.id);
+            const savedMode = projectFormMode;
+            closeProjectFormModal();
+
+            if (savedMode === 'create') {
+                const yearFilter = document.getElementById('yearFilter');
+                const subjectFilter = document.getElementById('subjectFilter');
+                if (yearFilter) yearFilter.value = 'all';
+                if (subjectFilter) subjectFilter.value = 'all';
+                clearProjectSearch();
+                await loadProjectYears();
+                if (yearFilter) yearFilter.value = 'all';
+                if (subjectFilter) subjectFilter.value = 'all';
+                await refreshData();
+                alert(result.message || '项目创建成功。');
+            } else {
+                await refreshData();
+                if (savedId > 0) {
+                    await openProjectDetail(savedId, lastProjectDetailTrigger);
+                }
+                alert(result.message || '项目修改成功。');
+            }
+        } catch (error) {
+            setProjectFormError(`保存失败：${error.message || '请检查服务后重试。'}`);
+            console.error('科研项目保存失败：', error);
+        } finally {
+            projectFormSubmitting = false;
+            if (submitButton && document.getElementById('projectFormModal')?.classList.contains('open')) {
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fa fa-save" aria-hidden="true"></i> 保存项目';
+            }
+        }
+    }
+
 
     // 筛选按钮事件
     function filterData() {
@@ -918,19 +3160,109 @@
     }
 
 
-    window.onload = function () {
+    window.onload = async function () {
         document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
         document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
         setActiveMenu();
 
+        const detailModal = document.getElementById('projectDetailModal');
+        const detailCloseButton = document.getElementById('projectDetailClose');
+        const detailRetryButton = document.getElementById('projectDetailRetry');
+
+        if (detailCloseButton) {
+            detailCloseButton.addEventListener('click', closeProjectDetail);
+        }
+
+        if (detailModal) {
+            detailModal.addEventListener('click', event => {
+                if (event.target === detailModal) {
+                    closeProjectDetail();
+                }
+            });
+        }
+
+        if (detailRetryButton) {
+            detailRetryButton.addEventListener('click', () => {
+                if (currentProjectDetailId) {
+                    openProjectDetail(currentProjectDetailId, lastProjectDetailTrigger);
+                }
+            });
+        }
+
+        const projectFormModal = document.getElementById('projectFormModal');
+        const projectFormCloseButton = document.getElementById('projectFormClose');
+        const projectFormCancelButton = document.getElementById('projectFormCancel');
+        const projectForm = document.getElementById('projectForm');
+        const newProjectButton = document.getElementById('newProjectButton');
+        const projectEditButton = document.getElementById('projectEditButton');
+
+        if (newProjectButton) {
+            newProjectButton.addEventListener('click', openNewProjectForm);
+        }
+        if (projectEditButton) {
+            projectEditButton.addEventListener('click', openProjectEditForm);
+        }
+        if (projectFormCloseButton) {
+            projectFormCloseButton.addEventListener('click', closeProjectFormModal);
+        }
+        if (projectFormCancelButton) {
+            projectFormCancelButton.addEventListener('click', closeProjectFormModal);
+        }
+        if (projectForm) {
+            projectForm.addEventListener('submit', submitProjectForm);
+        }
+        if (projectFormModal) {
+            projectFormModal.addEventListener('click', event => {
+                if (event.target === projectFormModal) closeProjectFormModal();
+            });
+        }
+
+        document.addEventListener('keydown', event => {
+            if (event.key !== 'Escape') return;
+
+            if (projectFormModal && projectFormModal.classList.contains('open')) {
+                closeProjectFormModal();
+                return;
+            }
+
+            if (detailModal && detailModal.classList.contains('open')) {
+                closeProjectDetail();
+            }
+        });
+
+        setProjectWriteControls();
+
         pieChart = echarts.init(document.getElementById('pieChart'));
         barChart = echarts.init(document.getElementById('barChart'));
-        renderBarChart();  // 静态柱状图
-        refreshData();     // 加载动态数据
+
+        renderPieChart([]);
+        renderBarChart({ years: [], subjects: [], series: [] });
+
+        await loadProjectYears();
+
+        const keywordInput = document.getElementById('projectKeyword');
+        const pageSizeSelect = document.getElementById('pageSizeSelect');
+
+        if (keywordInput) {
+            keywordInput.addEventListener('input', () => {
+                currentProjectPage = 1;
+                applyProjectListView();
+            });
+        }
+
+        if (pageSizeSelect) {
+            pageSizeSelect.addEventListener('change', () => {
+                projectPageSize = Math.max(1, Number(pageSizeSelect.value) || 10);
+                currentProjectPage = 1;
+                applyProjectListView();
+            });
+        }
+
+        await refreshData();
 
         window.addEventListener('resize', () => {
-            pieChart.resize();
-            barChart.resize();
+            if (pieChart) pieChart.resize();
+            if (barChart) barChart.resize();
         });
     };
 </script>

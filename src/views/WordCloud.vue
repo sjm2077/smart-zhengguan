@@ -13,7 +13,12 @@
     </div>
     <div class="page-header">
       <h2>词云分析</h2>
-      <p>点击关键词查看跨领域关联分析 · 共 {{ totalKeywords }} 个关键词</p>
+      <p>
+        点击关键词查看跨领域关联分析 · 共 {{ totalKeywords }} 个关键词
+        <span class="src-note">数据来源：官网论文题录 375 篇 / 教师个人主页 88 人 / 通知公告 {{ noticeDocs }} 条（真实爬取，非手工词表）</span>
+      </p>
+      <p v-if="wcLoading" class="src-note">正在从学院官网数据计算词频…</p>
+      <p v-else-if="wcError" class="src-note error">{{ wcError }}</p>
     </div>
 
     <div class="galaxy-container">
@@ -24,10 +29,10 @@
         :style="{ '--panel-color': panel.color, '--panel-glow': panel.glow }"
       >
         <div class="panel-header">
-          <div class="panel-icon" :style="{ background: panel.color }"></div>
-          <h3>{{ panel.title }}</h3>
-          <span class="panel-count">{{ panel.data.length }}个关键词</span>
-        </div>
+            <div class="panel-icon" :style="{ background: panel.color }"></div>
+            <h3>{{ panel.title }}</h3>
+            <span class="panel-count">{{ panel.subtitle }} · {{ panel.data.length }}词</span>
+          </div>
         <div class="chart-wrapper" :ref="(el) => setChartRef(el, panel.key)"></div>
         <div class="panel-footer">
           <span>点击词 → 高亮关联</span>
@@ -44,30 +49,30 @@
         <div class="detail-content">
           <div class="weight-section">
             <div class="weight-item">
-              <span class="weight-label">科研权重</span>
+              <span class="weight-label">论文出现</span>
               <div class="weight-bar">
-                <div class="weight-fill research" :style="{ width: researchWeight + '%' }"></div>
+                <div class="weight-fill research" :style="{ width: researchPercent + '%' }"></div>
               </div>
               <span class="weight-value">{{ researchWeight }}</span>
             </div>
             <div class="weight-item">
-              <span class="weight-label">课程权重</span>
+              <span class="weight-label">教师人数</span>
               <div class="weight-bar">
-                <div class="weight-fill course" :style="{ width: courseWeight + '%' }"></div>
+                <div class="weight-fill course" :style="{ width: coursePercent + '%' }"></div>
               </div>
               <span class="weight-value">{{ courseWeight }}</span>
             </div>
             <div class="weight-item">
-              <span class="weight-label">评价权重</span>
+              <span class="weight-label">通知提及</span>
               <div class="weight-bar">
-                <div class="weight-fill evaluation" :style="{ width: evaluationWeight + '%' }"></div>
+                <div class="weight-fill evaluation" :style="{ width: evaluationPercent + '%' }"></div>
               </div>
               <span class="weight-value">{{ evaluationWeight }}</span>
             </div>
           </div>
 
           <div class="trend-section">
-            <h4>五年趋势</h4>
+            <h4>年度分布（官网真实年份）</h4>
             <div class="trend-chart" ref="trendChartRef"></div>
           </div>
 
@@ -99,23 +104,23 @@ const panels = ref([
   {
     key: 'research',
     title: '科研关键词',
-    subtitle: '青色星系',
+    subtitle: '官网论文题录 375 篇',
     color: '#00d4ff',
     glow: 'rgba(0, 212, 255, 0.5)',
     data: []
   },
   {
     key: 'course',
-    title: '课程关键词',
-    subtitle: '紫色星系',
+    title: '教师研究方向',
+    subtitle: '官网个人主页 88 人',
     color: '#a855f7',
     glow: 'rgba(168, 85, 247, 0.5)',
     data: []
   },
   {
     key: 'evaluation',
-    title: '评价关键词',
-    subtitle: '橙色星系',
+    title: '通知公告热词',
+    subtitle: '官网通知 899 条',
     color: '#ff9500',
     glow: 'rgba(255, 149, 0, 0.5)',
     data: []
@@ -128,98 +133,87 @@ const selectedWord = ref(null)
 const chartInstances = ref({})
 const trendChartInstance = ref(null)
 
-const researchWords = [
-  { name: '公共政策', value: 100 }, { name: '政府治理', value: 85 }, { name: '政治学理论', value: 78 },
-  { name: '国际关系', value: 72 }, { name: '公共管理', value: 68 }, { name: '社会治理', value: 65 },
-  { name: '数字政府', value: 62 }, { name: '公共服务', value: 58 }, { name: '比较政治', value: 55 },
-  { name: '国际安全', value: 52 }, { name: '社会保障', value: 48 }, { name: '公共财政', value: 45 },
-  { name: '城市治理', value: 42 }, { name: '政策分析', value: 38 }, { name: '政策评估', value: 35 },
-  { name: '基层治理', value: 33 }, { name: '国家治理', value: 31 }, { name: '法治建设', value: 30 },
-  { name: '全球化', value: 28 }, { name: '区域发展', value: 26 }, { name: '组织行为', value: 25 },
-  { name: '应急管理', value: 24 }, { name: '乡村振兴', value: 23 }, { name: '数据治理', value: 22 },
-  { name: '环境治理', value: 21 }, { name: '科技创新', value: 20 }, { name: '财政政策', value: 19 },
-  { name: '电子政务', value: 18 }, { name: '公众参与', value: 17 }, { name: '绩效评估', value: 16 }
-]
+// 三个面板的词与共现关系全部由后端从官网数据现算（见 /api/real/pspa-wordcloud）
+const panelWords = ref({ research: [], course: [], evaluation: [] })
+const cooccurrenceMap = ref({ research: {}, course: {}, evaluation: {} })
+const edgeMap = ref({ research: [], course: [], evaluation: [] })
+const wcLoading = ref(true)
+const wcError = ref('')
+const wcSource = ref({})
+const noticeDocs = ref(0)
 
-const courseWords = [
-  { name: '政治学原理', value: 100 }, { name: '公共管理学', value: 92 }, { name: '公共政策', value: 88 },
-  { name: '行政法学', value: 82 }, { name: '社会学', value: 78 }, { name: '管理学原理', value: 75 },
-  { name: '组织行为学', value: 70 }, { name: '公共经济学', value: 65 }, { name: '统计学', value: 60 },
-  { name: '研究方法', value: 55 }, { name: '行政管理', value: 50 }, { name: '国际关系', value: 48 },
-  { name: '公共行政', value: 45 }, { name: '政治学方法论', value: 42 }, { name: '数据分析', value: 38 },
-  { name: '公共政策分析', value: 36 }, { name: '宪法与行政法', value: 34 }, { name: '城市管理', value: 32 },
-  { name: '公共部门管理', value: 30 }, { name: '非营利组织', value: 28 }, { name: '领导科学', value: 27 },
-  { name: '公文写作', value: 25 }, { name: '中国政治', value: 24 }, { name: '西方政治', value: 23 },
-  { name: '比较政治制度', value: 22 }, { name: '管理信息系统', value: 21 }, { name: '财政学', value: 20 },
-  { name: '公共政策评估', value: 19 }, { name: '危机管理', value: 18 }, { name: '人力资源管理', value: 17 }
-]
-
-const evaluationWords = [
-  { name: '教学认真', value: 100 }, { name: '课程有趣', value: 95 }, { name: '老师负责', value: 90 },
-  { name: '内容丰富', value: 85 }, { name: '深入浅出', value: 80 }, { name: '互动性强', value: 75 },
-  { name: '作业合理', value: 70 }, { name: '考核公正', value: 65 }, { name: '学术严谨', value: 60 },
-  { name: '思维启发', value: 55 }, { name: '课堂活跃', value: 50 }, { name: '讲解清晰', value: 48 },
-  { name: '答疑及时', value: 45 }, { name: '资料丰富', value: 42 }, { name: '案例生动', value: 38 },
-  { name: '知识渊博', value: 35 }, { name: '逻辑清晰', value: 33 }, { name: '鼓励思考', value: 31 },
-  { name: '态度和蔼', value: 30 }, { name: '板书工整', value: 28 }, { name: '节奏适中', value: 27 },
-  { name: '幽默风趣', value: 26 }, { name: '联系实际', value: 25 }, { name: '重点突出', value: 24 },
-  { name: '视野开阔', value: 23 }, { name: '反馈及时', value: 22 }, { name: '内容前沿', value: 21 },
-  { name: '因材施教', value: 20 }, { name: '跨学科', value: 19 }, { name: '团队合作', value: 18 }
-]
-
-const cooccurrenceMap = {
-  '公共政策': ['行政管理', '社会治理', '政策分析', '政府治理', '公共管理', '公共政策分析', '公共政策评估'],
-  '政府治理': ['公共政策', '社会治理', '数字政府', '城市治理', '公共服务', '国家治理', '基层治理'],
-  '政治学理论': ['比较政治', '国际关系', '政治学方法论', '研究方法', '行政管理', '中国政治', '西方政治'],
-  '国际关系': ['国际安全', '比较政治', '政治学理论', '公共政策', '全球治理', '全球化', '国家安全'],
-  '公共管理': ['行政管理', '公共政策', '公共经济学', '组织行为学', '公共服务', '公共部门管理'],
-  '政治学原理': ['政治学理论', '研究方法', '行政管理', '社会学', '公共管理学', '中国政治'],
-  '公共管理学': ['公共管理', '管理学原理', '组织行为学', '公共经济学', '行政法学', '公共行政'],
-  '行政法学': ['公共管理学', '行政管理', '公共政策', '宪法与行政法', '公共行政', '法治建设'],
-  '教学认真': ['老师负责', '学术严谨', '讲解清晰', '课程有趣', '思维启发', '知识渊博', '答疑及时'],
-  '课程有趣': ['教学认真', '内容丰富', '深入浅出', '案例生动', '课堂活跃', '幽默风趣', '联系实际'],
-  '社会治理': ['政府治理', '公共政策', '基层治理', '公共服务', '城市治理', '国家治理', '乡村振兴'],
-  '数字政府': ['政府治理', '数据分析', '电子政务', '公共服务', '行政管理', '数据治理', '科技创新'],
-  '公共服务': ['公共管理', '政府治理', '社会治理', '电子政务', '行政管理', '公共政策'],
-  '组织行为学': ['管理学原理', '公共管理', '领导科学', '人力资源管理', '组织行为'],
-  '数据分析': ['统计学', '研究方法', '管理信息系统', '数字政府', '数据治理'],
-  '学术严谨': ['教学认真', '老师负责', '思维启发', '知识渊博', '内容前沿', '逻辑清晰'],
-  '内容丰富': ['课程有趣', '深入浅出', '案例生动', '视野开阔', '资料丰富', '跨学科'],
-  '深入浅出': ['内容丰富', '课程有趣', '讲解清晰', '逻辑清晰', '重点突出', '案例生动'],
-  '互动性强': ['课堂活跃', '鼓励思考', '团队合作', '思维启发', '讨论交流', '公众参与'],
-  '行政管理': ['公共管理', '公共行政', '行政法学', '组织行为学', '数字政府', '人力资源管理'],
-  '社会保障': ['公共政策', '公共财政', '社会治理', '公共服务', '政策分析', '财政政策'],
-  '城市治理': ['政府治理', '社会治理', '公共管理', '城市管理', '区域发展', '应急管理'],
-  '环境治理': ['社会治理', '公共政策', '可持续发展', '乡村振兴', '区域发展', '科技创新'],
-  '绩效评估': ['公共管理', '政策评估', '行政管理', '公共部门管理', '政府治理']
+const loadWordcloudData = async () => {
+  wcLoading.value = true
+  wcError.value = ''
+  try {
+    const res = await fetch('/api-research/api/real/pspa-wordcloud')
+    if (!res.ok) throw new Error('HTTP ' + res.status)
+    const json = await res.json()
+    panelWords.value = json.panels || { research: [], course: [], evaluation: [] }
+    cooccurrenceMap.value = json.cooccurrence || { research: {}, course: {}, evaluation: {} }
+    edgeMap.value = json.edges || { research: [], course: [], evaluation: [] }
+    wcSource.value = json.source || {}
+    noticeDocs.value = json.notice_docs || 0
+    panels.value.forEach(p => { p.data = panelWords.value[p.key] || [] })
+  } catch (e) {
+    wcError.value = '官网词云数据加载失败：' + e.message
+  } finally {
+    wcLoading.value = false
+  }
 }
+
+const getWords = (key) => panelWords.value[key] || []
+
+const findWord = (key, name) => getWords(key).find(w => w.name === name)
 
 const researchWeight = computed(() => {
   if (!selectedWord.value) return 0
-  const word = researchWords.find(w => w.name === selectedWord.value.name)
+  const word = findWord('research', selectedWord.value.name)
   return word ? word.value : 0
 })
 
 const courseWeight = computed(() => {
   if (!selectedWord.value) return 0
-  const word = courseWords.find(w => w.name === selectedWord.value.name)
+  const word = findWord('course', selectedWord.value.name)
   return word ? word.value : 0
 })
 
 const evaluationWeight = computed(() => {
   if (!selectedWord.value) return 0
-  const word = evaluationWords.find(w => w.name === selectedWord.value.name)
+  const word = findWord('evaluation', selectedWord.value.name)
   return word ? word.value : 0
 })
 
+const maxWeight = (key) => Math.max(1, ...getWords(key).map(w => w.value))
+
+// 三个面板的量纲不同（论文次数/教师人数/通知提及），进度条按各自最大值归一
+const researchPercent = computed(() => Math.round(researchWeight.value / maxWeight('research') * 100))
+const coursePercent = computed(() => Math.round(courseWeight.value / maxWeight('course') * 100))
+const evaluationPercent = computed(() => Math.round(evaluationWeight.value / maxWeight('evaluation') * 100))
+
 const cooccurrenceWords = computed(() => {
   if (!selectedWord.value) return []
-  return cooccurrenceMap[selectedWord.value.name] || []
+  const name = selectedWord.value.name
+  const merged = []
+  ;['research', 'course', 'evaluation'].forEach(key => {
+    const list = (cooccurrenceMap.value[key] || {})[name] || []
+    list.forEach(w => { if (!merged.includes(w)) merged.push(w) })
+  })
+  return merged.slice(0, 8)
 })
 
-const totalKeywords = computed(() => {
-  return researchWords.length + courseWords.length + evaluationWords.length
+const selectedWordYears = computed(() => {
+  if (!selectedWord.value) return {}
+  const name = selectedWord.value.name
+  const out = {}
+  ;['research', 'evaluation'].forEach(key => {
+    const w = findWord(key, name)
+    if (w && w.years) out[key] = w.years
+  })
+  return out
 })
+
+const totalKeywords = computed(() => getWords('research').length + getWords('course').length + getWords('evaluation').length)
 
 const setChartRef = (el, key) => {
   if (el) {
@@ -232,7 +226,7 @@ const getTagColor = (idx) => {
   return colors[idx % colors.length]
 }
 
-const createBubbleOption = (data, panelColor, highlightWords = []) => {
+const createBubbleOption = (data, panelColor, highlightWords = [], edges = []) => {
   const nodes = data.map(item => ({
     name: item.name,
     value: item.value,
@@ -240,18 +234,17 @@ const createBubbleOption = (data, panelColor, highlightWords = []) => {
     category: 0
   }))
 
-  const links = []
-  for (let i = 0; i < data.length; i++) {
-    for (let j = i + 1; j < data.length; j++) {
-      if (Math.random() > 0.7) {
-        links.push({
-          source: data[i].name,
-          target: data[j].name,
-          value: Math.random() * 5 + 1
-        })
-      }
-    }
-  }
+  // 连线来自官网真实共现（同一篇论文的关键词、同一份教师主页的研究方向、同一条通知里同时出现）
+  const names = new Set(data.map(d => d.name))
+  const links = edges
+    .filter(e => names.has(e.source) && names.has(e.target))
+    .slice(0, 160)
+    .map(e => ({
+      source: e.source,
+      target: e.target,
+      value: e.value,
+      lineStyle: { width: Math.min(5, 1 + e.value * 0.4) }
+    }))
 
   return {
     backgroundColor: 'transparent',
@@ -263,7 +256,10 @@ const createBubbleOption = (data, panelColor, highlightWords = []) => {
       textStyle: { color: '#fff' },
       formatter: (params) => {
         if (params.dataType === 'node') {
-          return `<div><b style="color:${panelColor}">${params.name}</b><br/>权重: ${params.value}</div>`
+          return `<div><b style="color:${panelColor}">${params.name}</b><br/>出现次数: ${params.value}</div>`
+        }
+        if (params.dataType === 'edge') {
+          return `<div>${params.data.source} ↔ ${params.data.target}<br/>共现 ${params.data.value} 次</div>`
         }
         return ''
       }
@@ -352,8 +348,7 @@ const createBubbleOption = (data, panelColor, highlightWords = []) => {
 
 const initCharts = () => {
   panels.value.forEach(panel => {
-    const data = panel.key === 'research' ? researchWords : 
-                 panel.key === 'course' ? courseWords : evaluationWords
+    const data = getWords(panel.key)
     panel.data = data
 
     if (!chartRefs.value[panel.key]) return
@@ -363,7 +358,7 @@ const initCharts = () => {
     }
 
     chartInstances.value[panel.key] = echarts.init(chartRefs.value[panel.key])
-    const option = createBubbleOption(data, panel.color)
+    const option = createBubbleOption(data, panel.color, [], edgeMap.value[panel.key] || [])
     chartInstances.value[panel.key].setOption(option)
 
     chartInstances.value[panel.key].on('click', (params) => {
@@ -382,14 +377,14 @@ const initCharts = () => {
 const handleWordClick = (wordName) => {
   selectedWord.value = { name: wordName }
   
-  const relatedWords = [wordName, ...(cooccurrenceMap[wordName] || [])]
+  const relatedWords = [wordName, ...cooccurrenceWords.value]
 
   panels.value.forEach(panel => {
-    const data = panel.key === 'research' ? researchWords : 
-                 panel.key === 'course' ? courseWords : evaluationWords
-    
-    const option = createBubbleOption(data, panel.color, relatedWords)
-    chartInstances.value[panel.key].setOption(option, true)
+    const data = getWords(panel.key)
+    const option = createBubbleOption(data, panel.color, relatedWords, edgeMap.value[panel.key] || [])
+    if (chartInstances.value[panel.key]) {
+      chartInstances.value[panel.key].setOption(option, true)
+    }
   })
 
   nextTick(() => {
@@ -405,11 +400,11 @@ const clearSelection = () => {
   selectedWord.value = null
   
   panels.value.forEach(panel => {
-    const data = panel.key === 'research' ? researchWords : 
-                 panel.key === 'course' ? courseWords : evaluationWords
-    
-    const option = createBubbleOption(data, panel.color, [])
-    chartInstances.value[panel.key].setOption(option, true)
+    const data = getWords(panel.key)
+    const option = createBubbleOption(data, panel.color, [], edgeMap.value[panel.key] || [])
+    if (chartInstances.value[panel.key]) {
+      chartInstances.value[panel.key].setOption(option, true)
+    }
   })
 
   if (trendChartInstance.value) {
@@ -427,14 +422,27 @@ const initTrendChart = () => {
 
   trendChartInstance.value = echarts.init(trendChartRef.value)
 
-  const years = ['2022', '2023', '2024', '2025', '2026']
-  
-  const generateTrend = (baseValue) => {
-    return years.map(() => {
-      const variation = Math.floor(Math.random() * 30) - 15
-      return Math.max(20, Math.min(100, baseValue + variation))
-    })
-  }
+  const years = ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026']
+  const data = selectedWordYears.value
+
+  const seriesConf = [
+    { key: 'research', name: '论文出现次数', color: '#00d4ff' },
+    { key: 'evaluation', name: '通知提及次数', color: '#ff9500' }
+  ]
+
+  const series = seriesConf
+    .filter(s => data[s.key])
+    .map(s => ({
+      name: s.name,
+      type: 'line',
+      data: years.map(y => data[s.key][y] || 0),
+      smooth: true,
+      symbol: 'circle',
+      symbolSize: 8,
+      lineStyle: { color: s.color, width: 3 },
+      itemStyle: { color: s.color, borderWidth: 2, borderColor: '#fff' },
+      areaStyle: { color: 'rgba(0, 212, 255, 0.08)' }
+    }))
 
   const option = {
     backgroundColor: 'transparent',
@@ -446,7 +454,7 @@ const initTrendChart = () => {
       textStyle: { color: '#fff' }
     },
     legend: {
-      data: ['科研趋势', '课程趋势', '评价趋势'],
+      data: series.map(s => s.name),
       textStyle: { color: 'rgba(255, 255, 255, 0.7)' },
       top: 0
     },
@@ -465,45 +473,18 @@ const initTrendChart = () => {
     },
     yAxis: {
       type: 'value',
+      minInterval: 1,
       axisLabel: { color: 'rgba(255, 255, 255, 0.6)' },
       axisLine: { lineStyle: { color: 'rgba(0, 212, 255, 0.3)' } },
       splitLine: { lineStyle: { color: 'rgba(255, 255, 255, 0.05)' } }
     },
-    series: [
-      {
-        name: '科研趋势',
-        type: 'line',
-        data: generateTrend(researchWeight.value),
-        smooth: true,
-        symbol: 'circle',
-        symbolSize: 8,
-        lineStyle: { color: '#00d4ff', width: 3 },
-        itemStyle: { color: '#00d4ff', borderWidth: 2, borderColor: '#fff' },
-        areaStyle: { color: 'rgba(0, 212, 255, 0.1)' }
-      },
-      {
-        name: '课程趋势',
-        type: 'line',
-        data: generateTrend(courseWeight.value),
-        smooth: true,
-        symbol: 'circle',
-        symbolSize: 8,
-        lineStyle: { color: '#a855f7', width: 3 },
-        itemStyle: { color: '#a855f7', borderWidth: 2, borderColor: '#fff' },
-        areaStyle: { color: 'rgba(168, 85, 247, 0.1)' }
-      },
-      {
-        name: '评价趋势',
-        type: 'line',
-        data: generateTrend(evaluationWeight.value),
-        smooth: true,
-        symbol: 'circle',
-        symbolSize: 8,
-        lineStyle: { color: '#ff9500', width: 3 },
-        itemStyle: { color: '#ff9500', borderWidth: 2, borderColor: '#fff' },
-        areaStyle: { color: 'rgba(255, 149, 0, 0.1)' }
-      }
-    ]
+    title: series.length ? undefined : {
+      text: '该词仅出现在教师研究方向里，官网无逐年数据',
+      left: 'center',
+      top: 'center',
+      textStyle: { color: 'rgba(255,255,255,0.55)', fontSize: 13, fontWeight: 'normal' }
+    },
+    series
   }
 
   trendChartInstance.value.setOption(option)
@@ -526,7 +507,8 @@ watch(selectedWord, () => {
   }
 })
 
-onMounted(() => {
+onMounted(async () => {
+  await loadWordcloudData()
   nextTick(() => {
     initCharts()
   })
@@ -545,6 +527,15 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.src-note {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 12px;
+  color: rgba(0, 212, 255, 0.75);
+}
+.src-note.error {
+  color: #ff7875;
+}
 .wordcloud-page {
   width: 100%;
   height: 100%;

@@ -1,0 +1,3394 @@
+{
+  "audit_type": "read_only_detail",
+  "note": "本报告用于定位数据质量问题；字段缺失或姓名不匹配不自动等于错误，也不代表数据真实性已核验。",
+  "project_identity": {
+    "total_projects": 377,
+    "missing_project_no_count": 299,
+    "missing_project_name_count": 0,
+    "missing_both_count": 0,
+    "both_present_count": 78,
+    "missing_project_no_sample": [
+      {
+        "id": 228,
+        "project_no": "",
+        "project_name": "科技创新的对策研究",
+        "leader__real_name": "Yunsoo Lee",
+        "dept__dept_name": "公共管理系",
+        "project_type": "横向",
+        "status": "结题",
+        "start_date": "2021-07-22",
+        "end_date": "2022-07-14",
+        "actual_progress": 100,
+        "fund_amount": "77.85"
+      },
+      {
+        "id": 229,
+        "project_no": "",
+        "project_name": "法治建设的实践研究",
+        "leader__real_name": "黄靖",
+        "dept__dept_name": "政治学系",
+        "project_type": "国家级",
+        "status": "审核中",
+        "start_date": "2024-11-20",
+        "end_date": "2026-10-16",
+        "actual_progress": 21,
+        "fund_amount": "180.27"
+      },
+      {
+        "id": 230,
+        "project_no": "",
+        "project_name": "产业政策的创新研究",
+        "leader__real_name": "王佃利",
+        "dept__dept_name": "公共管理系",
+        "project_type": "省部级",
+        "status": "审核中",
+        "start_date": "2024-10-19",
+        "end_date": "2027-08-06",
+        "actual_progress": 91,
+        "fund_amount": "138.00"
+      },
+      {
+        "id": 231,
+        "project_no": "",
+        "project_name": "国际贸易的评估研究",
+        "leader__real_name": "赵均佳",
+        "dept__dept_name": "国际政治系",
+        "project_type": "国家级",
+        "status": "立项",
+        "start_date": "2022-01-01",
+        "end_date": "2023-06-05",
+        "actual_progress": 58,
+        "fund_amount": "270.96"
+      },
+      {
+        "id": 232,
+        "project_no": "",
+        "project_name": "公共卫生的路径研究",
+        "leader__real_name": "李延伟",
+        "dept__dept_name": "公共管理系",
+        "project_type": "国家级",
+        "status": "审核中",
+        "start_date": "2022-11-13",
+        "end_date": "2024-05-12",
+        "actual_progress": 33,
+        "fund_amount": "376.11"
+      },
+      {
+        "id": 233,
+        "project_no": "",
+        "project_name": "人工智能治理的评估研究",
+        "leader__real_name": "展妍男",
+        "dept__dept_name": "国际政治系",
+        "project_type": "国家级",
+        "status": "结题",
+        "start_date": "2022-11-17",
+        "end_date": "2023-12-16",
+        "actual_progress": 100,
+        "fund_amount": "433.72"
+      },
+      {
+        "id": 234,
+        "project_no": "",
+        "project_name": "共同富裕的对策研究",
+        "leader__real_name": "刘琳",
+        "dept__dept_name": "政治学系",
+        "project_type": "横向",
+        "status": "立项",
+        "start_date": "2023-07-12",
+        "end_date": "2026-12-19",
+        "actual_progress": 96,
+        "fund_amount": "339.70"
+      },
+      {
+        "id": 235,
+        "project_no": "",
+        "project_name": "金融监管的对策研究",
+        "leader__real_name": "马荣久",
+        "dept__dept_name": "国际政治系",
+        "project_type": "横向",
+        "status": "在研",
+        "start_date": "2024-10-20",
+        "end_date": "2026-09-01",
+        "actual_progress": 78,
+        "fund_amount": "228.24"
+      },
+      {
+        "id": 236,
+        "project_no": "",
+        "project_name": "公共服务的实践研究",
+        "leader__real_name": "张淑兰",
+        "dept__dept_name": "国际政治系",
+        "project_type": "校级",
+        "status": "在研",
+        "start_date": "2024-02-02",
+        "end_date": "2026-08-23",
+        "actual_progress": 54,
+        "fund_amount": "79.51"
+      },
+      {
+        "id": 237,
+        "project_no": "",
+        "project_name": "住房保障的模式研究",
+        "leader__real_name": "李亚洲",
+        "dept__dept_name": "科学社会主义系",
+        "project_type": "校级",
+        "status": "审核中",
+        "start_date": "2024-01-18",
+        "end_date": "2025-07-19",
+        "actual_progress": 89,
+        "fund_amount": "138.30"
+      },
+      {
+        "id": 238,
+        "project_no": "",
+        "project_name": "教育政策的演进研究",
+        "leader__real_name": "黄晴",
+        "dept__dept_name": "公共管理系",
+        "project_type": "省部级",
+        "status": "结题",
+        "start_date": "2023-05-25",
+        "end_date": "2025-11-01",
+        "actual_progress": 100,
+        "fund_amount": "19.70"
+      },
+      {
+        "id": 239,
+        "project_no": "",
+        "project_name": "数据安全的路径研究",
+        "leader__real_name": "米雪",
+        "dept__dept_name": "国际政治系",
+        "project_type": "国家级",
+        "status": "审核中",
+        "start_date": "2023-06-02",
+        "end_date": "2024-01-13",
+        "actual_progress": 78,
+        "fund_amount": "95.35"
+      },
+      {
+        "id": 240,
+        "project_no": "",
+        "project_name": "老龄化的评估研究",
+        "leader__real_name": "王元亮",
+        "dept__dept_name": "公共管理系",
+        "project_type": "省部级",
+        "status": "审核中",
+        "start_date": "2023-08-19",
+        "end_date": "2026-03-28",
+        "actual_progress": 36,
+        "fund_amount": "134.31"
+      },
+      {
+        "id": 241,
+        "project_no": "",
+        "project_name": "人工智能治理的模式研究",
+        "leader__real_name": "滕玉成",
+        "dept__dept_name": "公共管理系",
+        "project_type": "校级",
+        "status": "立项",
+        "start_date": "2024-03-09",
+        "end_date": "2026-10-14",
+        "actual_progress": 4,
+        "fund_amount": "369.29"
+      },
+      {
+        "id": 242,
+        "project_no": "",
+        "project_name": "法治建设的模式研究",
+        "leader__real_name": "吕连仁",
+        "dept__dept_name": "科学社会主义系",
+        "project_type": "横向",
+        "status": "立项",
+        "start_date": "2023-07-14",
+        "end_date": "2026-04-05",
+        "actual_progress": 35,
+        "fund_amount": "154.03"
+      },
+      {
+        "id": 243,
+        "project_no": "",
+        "project_name": "文化自信的机制研究",
+        "leader__real_name": "季丽新",
+        "dept__dept_name": "公共管理系",
+        "project_type": "国家级",
+        "status": "立项",
+        "start_date": "2023-09-26",
+        "end_date": "2024-05-17",
+        "actual_progress": 6,
+        "fund_amount": "427.05"
+      },
+      {
+        "id": 244,
+        "project_no": "",
+        "project_name": "一带一路的模式研究",
+        "leader__real_name": "李广",
+        "dept__dept_name": "公共管理系",
+        "project_type": "国家级",
+        "status": "审核中",
+        "start_date": "2022-01-10",
+        "end_date": "2025-10-21",
+        "actual_progress": 0,
+        "fund_amount": "305.72"
+      },
+      {
+        "id": 245,
+        "project_no": "",
+        "project_name": "城市管理的实践研究",
+        "leader__real_name": "李亚洲",
+        "dept__dept_name": "科学社会主义系",
+        "project_type": "国家级",
+        "status": "结题",
+        "start_date": "2023-06-16",
+        "end_date": "2025-06-06",
+        "actual_progress": 100,
+        "fund_amount": "47.55"
+      },
+      {
+        "id": 246,
+        "project_no": "",
+        "project_name": "数字政府的评估研究",
+        "leader__real_name": "姬生翔",
+        "dept__dept_name": "政治学系",
+        "project_type": "校级",
+        "status": "审核中",
+        "start_date": "2023-10-21",
+        "end_date": "2024-01-05",
+        "actual_progress": 70,
+        "fund_amount": "47.13"
+      },
+      {
+        "id": 247,
+        "project_no": "",
+        "project_name": "就业促进的模式研究",
+        "leader__real_name": "臧秀玲",
+        "dept__dept_name": "科学社会主义系",
+        "project_type": "校级",
+        "status": "审核中",
+        "start_date": "2022-04-23",
+        "end_date": "2023-02-10",
+        "actual_progress": 24,
+        "fund_amount": "374.81"
+      },
+      {
+        "id": 248,
+        "project_no": "",
+        "project_name": "住房保障的创新研究",
+        "leader__real_name": "白江波",
+        "dept__dept_name": "政治学系",
+        "project_type": "省部级",
+        "status": "立项",
+        "start_date": "2023-03-19",
+        "end_date": "2025-02-02",
+        "actual_progress": 86,
+        "fund_amount": "444.52"
+      },
+      {
+        "id": 249,
+        "project_no": "",
+        "project_name": "就业促进的对策研究",
+        "leader__real_name": "刘浩",
+        "dept__dept_name": "公共管理系",
+        "project_type": "横向",
+        "status": "立项",
+        "start_date": "2023-02-20",
+        "end_date": "2026-08-03",
+        "actual_progress": 83,
+        "fund_amount": "180.38"
+      },
+      {
+        "id": 250,
+        "project_no": "",
+        "project_name": "就业促进的路径研究",
+        "leader__real_name": "金淑霞",
+        "dept__dept_name": "科学社会主义系",
+        "project_type": "国家级",
+        "status": "审核中",
+        "start_date": "2023-03-24",
+        "end_date": "2026-04-02",
+        "actual_progress": 46,
+        "fund_amount": "44.21"
+      },
+      {
+        "id": 251,
+        "project_no": "",
+        "project_name": "社区服务的机制研究",
+        "leader__real_name": "吕连仁",
+        "dept__dept_name": "科学社会主义系",
+        "project_type": "校级",
+        "status": "在研",
+        "start_date": "2023-05-09",
+        "end_date": "2026-07-28",
+        "actual_progress": 21,
+        "fund_amount": "298.13"
+      },
+      {
+        "id": 252,
+        "project_no": "",
+        "project_name": "全球治理的机制研究",
+        "leader__real_name": "刘浩",
+        "dept__dept_name": "公共管理系",
+        "project_type": "省部级",
+        "status": "结题",
+        "start_date": "2022-04-22",
+        "end_date": "2024-09-19",
+        "actual_progress": 100,
+        "fund_amount": "496.26"
+      },
+      {
+        "id": 253,
+        "project_no": "",
+        "project_name": "对外开放的实践研究",
+        "leader__real_name": "姬生翔",
+        "dept__dept_name": "政治学系",
+        "project_type": "国家级",
+        "status": "在研",
+        "start_date": "2024-02-11",
+        "end_date": "2026-06-05",
+        "actual_progress": 74,
+        "fund_amount": "382.69"
+      },
+      {
+        "id": 254,
+        "project_no": "",
+        "project_name": "环境治理的演进研究",
+        "leader__real_name": "李梦丹",
+        "dept__dept_name": "公共管理系",
+        "project_type": "省部级",
+        "status": "结题",
+        "start_date": "2021-01-23",
+        "end_date": "2024-10-23",
+        "actual_progress": 100,
+        "fund_amount": "310.87"
+      },
+      {
+        "id": 255,
+        "project_no": "",
+        "project_name": "老龄化的对策研究",
+        "leader__real_name": "黄登学",
+        "dept__dept_name": "国际政治系",
+        "project_type": "国家级",
+        "status": "审核中",
+        "start_date": "2023-10-05",
+        "end_date": "2024-05-06",
+        "actual_progress": 72,
+        "fund_amount": "233.19"
+      },
+      {
+        "id": 256,
+        "project_no": "",
+        "project_name": "公共服务的对策研究",
+        "leader__real_name": "陈仁兴",
+        "dept__dept_name": "公共管理系",
+        "project_type": "横向",
+        "status": "审核中",
+        "start_date": "2024-06-14",
+        "end_date": "2027-07-19",
+        "actual_progress": 11,
+        "fund_amount": "342.87"
+      },
+      {
+        "id": 257,
+        "project_no": "",
+        "project_name": "对外开放的评估研究",
+        "leader__real_name": "楼苏萍",
+        "dept__dept_name": "公共管理系",
+        "project_type": "横向",
+        "status": "在研",
+        "start_date": "2024-05-06",
+        "end_date": "2025-05-27",
+        "actual_progress": 12,
+        "fund_amount": "294.14"
+      }
+    ],
+    "missing_project_name_sample": [],
+    "missing_both_sample": [],
+    "duplicate_project_no": [],
+    "duplicate_project_name": [
+      {
+        "value": "老龄化的对策研究",
+        "count": 6,
+        "records": [
+          {
+            "id": 255,
+            "project_no": "",
+            "project_name": "老龄化的对策研究",
+            "leader": "黄登学"
+          },
+          {
+            "id": 333,
+            "project_no": "",
+            "project_name": "老龄化的对策研究",
+            "leader": "秦亚青"
+          },
+          {
+            "id": 343,
+            "project_no": "",
+            "project_name": "老龄化的对策研究",
+            "leader": "李梦丹"
+          },
+          {
+            "id": 395,
+            "project_no": "",
+            "project_name": "老龄化的对策研究",
+            "leader": "张健彬"
+          },
+          {
+            "id": 399,
+            "project_no": "",
+            "project_name": "老龄化的对策研究",
+            "leader": "杨春林"
+          },
+          {
+            "id": 408,
+            "project_no": "",
+            "project_name": "老龄化的对策研究",
+            "leader": "楚成亚"
+          }
+        ]
+      },
+      {
+        "value": "全球治理的评估研究",
+        "count": 5,
+        "records": [
+          {
+            "id": 265,
+            "project_no": "",
+            "project_name": "全球治理的评估研究",
+            "leader": "王元亮"
+          },
+          {
+            "id": 350,
+            "project_no": "",
+            "project_name": "全球治理的评估研究",
+            "leader": "刘琳"
+          },
+          {
+            "id": 359,
+            "project_no": "",
+            "project_name": "全球治理的评估研究",
+            "leader": "李振"
+          },
+          {
+            "id": 370,
+            "project_no": "",
+            "project_name": "全球治理的评估研究",
+            "leader": "赵婷"
+          },
+          {
+            "id": 412,
+            "project_no": "",
+            "project_name": "全球治理的评估研究",
+            "leader": "孔令栋"
+          }
+        ]
+      },
+      {
+        "value": "全球治理的创新研究",
+        "count": 4,
+        "records": [
+          {
+            "id": 323,
+            "project_no": "",
+            "project_name": "全球治理的创新研究",
+            "leader": "陈静"
+          },
+          {
+            "id": 385,
+            "project_no": "",
+            "project_name": "全球治理的创新研究",
+            "leader": "姬生翔"
+          },
+          {
+            "id": 511,
+            "project_no": "",
+            "project_name": "全球治理的创新研究",
+            "leader": "李宏"
+          },
+          {
+            "id": 525,
+            "project_no": "",
+            "project_name": "全球治理的创新研究",
+            "leader": "王军洋"
+          }
+        ]
+      },
+      {
+        "value": "公共卫生的对策研究",
+        "count": 4,
+        "records": [
+          {
+            "id": 259,
+            "project_no": "",
+            "project_name": "公共卫生的对策研究",
+            "leader": "张乐"
+          },
+          {
+            "id": 308,
+            "project_no": "",
+            "project_name": "公共卫生的对策研究",
+            "leader": "王学玉"
+          },
+          {
+            "id": 440,
+            "project_no": "",
+            "project_name": "公共卫生的对策研究",
+            "leader": "李慧明"
+          },
+          {
+            "id": 497,
+            "project_no": "",
+            "project_name": "公共卫生的对策研究",
+            "leader": "秦亚青"
+          }
+        ]
+      },
+      {
+        "value": "公共服务的演进研究",
+        "count": 4,
+        "records": [
+          {
+            "id": 275,
+            "project_no": "",
+            "project_name": "公共服务的演进研究",
+            "leader": "展妍男"
+          },
+          {
+            "id": 368,
+            "project_no": "",
+            "project_name": "公共服务的演进研究",
+            "leader": "徐会平"
+          },
+          {
+            "id": 507,
+            "project_no": "",
+            "project_name": "公共服务的演进研究",
+            "leader": "俞少宾"
+          },
+          {
+            "id": 508,
+            "project_no": "",
+            "project_name": "公共服务的演进研究",
+            "leader": "李振"
+          }
+        ]
+      },
+      {
+        "value": "国际贸易的机制研究",
+        "count": 4,
+        "records": [
+          {
+            "id": 431,
+            "project_no": "",
+            "project_name": "国际贸易的机制研究",
+            "leader": "李延伟"
+          },
+          {
+            "id": 452,
+            "project_no": "",
+            "project_name": "国际贸易的机制研究",
+            "leader": "方炯升"
+          },
+          {
+            "id": 477,
+            "project_no": "",
+            "project_name": "国际贸易的机制研究",
+            "leader": "王成"
+          },
+          {
+            "id": 526,
+            "project_no": "",
+            "project_name": "国际贸易的机制研究",
+            "leader": "叶紫蒙"
+          }
+        ]
+      },
+      {
+        "value": "碳中和的模式研究",
+        "count": 4,
+        "records": [
+          {
+            "id": 261,
+            "project_no": "",
+            "project_name": "碳中和的模式研究",
+            "leader": "朱贵昌"
+          },
+          {
+            "id": 337,
+            "project_no": "",
+            "project_name": "碳中和的模式研究",
+            "leader": "白江波"
+          },
+          {
+            "id": 424,
+            "project_no": "",
+            "project_name": "碳中和的模式研究",
+            "leader": "马奔"
+          },
+          {
+            "id": 517,
+            "project_no": "",
+            "project_name": "碳中和的模式研究",
+            "leader": "刘琳"
+          }
+        ]
+      },
+      {
+        "value": "一带一路的评估研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 268,
+            "project_no": "",
+            "project_name": "一带一路的评估研究",
+            "leader": "李亚洲"
+          },
+          {
+            "id": 304,
+            "project_no": "",
+            "project_name": "一带一路的评估研究",
+            "leader": "孙宗锋"
+          },
+          {
+            "id": 346,
+            "project_no": "",
+            "project_name": "一带一路的评估研究",
+            "leader": "曹现强"
+          }
+        ]
+      },
+      {
+        "value": "乡村振兴的路径研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 281,
+            "project_no": "",
+            "project_name": "乡村振兴的路径研究",
+            "leader": "杨春林"
+          },
+          {
+            "id": 384,
+            "project_no": "",
+            "project_name": "乡村振兴的路径研究",
+            "leader": "Yunsoo Lee"
+          },
+          {
+            "id": 505,
+            "project_no": "",
+            "project_name": "乡村振兴的路径研究",
+            "leader": "赵均佳"
+          }
+        ]
+      },
+      {
+        "value": "人工智能治理的模式研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 241,
+            "project_no": "",
+            "project_name": "人工智能治理的模式研究",
+            "leader": "滕玉成"
+          },
+          {
+            "id": 382,
+            "project_no": "",
+            "project_name": "人工智能治理的模式研究",
+            "leader": "王成"
+          },
+          {
+            "id": 480,
+            "project_no": "",
+            "project_name": "人工智能治理的模式研究",
+            "leader": "臧秀玲"
+          }
+        ]
+      },
+      {
+        "value": "人工智能治理的评估研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 233,
+            "project_no": "",
+            "project_name": "人工智能治理的评估研究",
+            "leader": "展妍男"
+          },
+          {
+            "id": 310,
+            "project_no": "",
+            "project_name": "人工智能治理的评估研究",
+            "leader": "韩自强"
+          },
+          {
+            "id": 339,
+            "project_no": "",
+            "project_name": "人工智能治理的评估研究",
+            "leader": "方炯升"
+          }
+        ]
+      },
+      {
+        "value": "住房保障的模式研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 237,
+            "project_no": "",
+            "project_name": "住房保障的模式研究",
+            "leader": "李亚洲"
+          },
+          {
+            "id": 389,
+            "project_no": "",
+            "project_name": "住房保障的模式研究",
+            "leader": "李梦丹"
+          },
+          {
+            "id": 451,
+            "project_no": "",
+            "project_name": "住房保障的模式研究",
+            "leader": "季丽新"
+          }
+        ]
+      },
+      {
+        "value": "公共服务的对策研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 256,
+            "project_no": "",
+            "project_name": "公共服务的对策研究",
+            "leader": "陈仁兴"
+          },
+          {
+            "id": 340,
+            "project_no": "",
+            "project_name": "公共服务的对策研究",
+            "leader": "米雪"
+          },
+          {
+            "id": 392,
+            "project_no": "",
+            "project_name": "公共服务的对策研究",
+            "leader": "韩丽华"
+          }
+        ]
+      },
+      {
+        "value": "共同富裕的路径研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 284,
+            "project_no": "",
+            "project_name": "共同富裕的路径研究",
+            "leader": "王元亮"
+          },
+          {
+            "id": 372,
+            "project_no": "",
+            "project_name": "共同富裕的路径研究",
+            "leader": "李宏"
+          },
+          {
+            "id": 426,
+            "project_no": "",
+            "project_name": "共同富裕的路径研究",
+            "leader": "赵志华"
+          }
+        ]
+      },
+      {
+        "value": "区域协调的演进研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 271,
+            "project_no": "",
+            "project_name": "区域协调的演进研究",
+            "leader": "张乐"
+          },
+          {
+            "id": 312,
+            "project_no": "",
+            "project_name": "区域协调的演进研究",
+            "leader": "李梦丹"
+          },
+          {
+            "id": 351,
+            "project_no": "",
+            "project_name": "区域协调的演进研究",
+            "leader": "方雷"
+          }
+        ]
+      },
+      {
+        "value": "就业促进的对策研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 249,
+            "project_no": "",
+            "project_name": "就业促进的对策研究",
+            "leader": "刘浩"
+          },
+          {
+            "id": 502,
+            "project_no": "",
+            "project_name": "就业促进的对策研究",
+            "leader": "王元亮"
+          },
+          {
+            "id": 523,
+            "project_no": "",
+            "project_name": "就业促进的对策研究",
+            "leader": "刘华兴"
+          }
+        ]
+      },
+      {
+        "value": "应急管理的实践研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 277,
+            "project_no": "",
+            "project_name": "应急管理的实践研究",
+            "leader": "李昕蕾"
+          },
+          {
+            "id": 418,
+            "project_no": "",
+            "project_name": "应急管理的实践研究",
+            "leader": "刘玉安"
+          },
+          {
+            "id": 484,
+            "project_no": "",
+            "project_name": "应急管理的实践研究",
+            "leader": "高原"
+          }
+        ]
+      },
+      {
+        "value": "应急管理的模式研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 365,
+            "project_no": "",
+            "project_name": "应急管理的模式研究",
+            "leader": "俞少宾"
+          },
+          {
+            "id": 391,
+            "project_no": "",
+            "project_name": "应急管理的模式研究",
+            "leader": "郑子君"
+          },
+          {
+            "id": 472,
+            "project_no": "",
+            "project_name": "应急管理的模式研究",
+            "leader": "罗聪"
+          }
+        ]
+      },
+      {
+        "value": "教育政策的创新研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 317,
+            "project_no": "",
+            "project_name": "教育政策的创新研究",
+            "leader": "吕连仁"
+          },
+          {
+            "id": 344,
+            "project_no": "",
+            "project_name": "教育政策的创新研究",
+            "leader": "赵均佳"
+          },
+          {
+            "id": 404,
+            "project_no": "",
+            "project_name": "教育政策的创新研究",
+            "leader": "刘玉安"
+          }
+        ]
+      },
+      {
+        "value": "教育政策的演进研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 238,
+            "project_no": "",
+            "project_name": "教育政策的演进研究",
+            "leader": "黄晴"
+          },
+          {
+            "id": 432,
+            "project_no": "",
+            "project_name": "教育政策的演进研究",
+            "leader": "王鹏权"
+          },
+          {
+            "id": 492,
+            "project_no": "",
+            "project_name": "教育政策的演进研究",
+            "leader": "赵志华"
+          }
+        ]
+      },
+      {
+        "value": "数字政府的演进研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 270,
+            "project_no": "",
+            "project_name": "数字政府的演进研究",
+            "leader": "王薪喜"
+          },
+          {
+            "id": 354,
+            "project_no": "",
+            "project_name": "数字政府的演进研究",
+            "leader": "刘昌明"
+          },
+          {
+            "id": 482,
+            "project_no": "",
+            "project_name": "数字政府的演进研究",
+            "leader": "朱林旭"
+          }
+        ]
+      },
+      {
+        "value": "文化自信的模式研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 291,
+            "project_no": "",
+            "project_name": "文化自信的模式研究",
+            "leader": "盛力"
+          },
+          {
+            "id": 327,
+            "project_no": "",
+            "project_name": "文化自信的模式研究",
+            "leader": "朱林旭"
+          },
+          {
+            "id": 444,
+            "project_no": "",
+            "project_name": "文化自信的模式研究",
+            "leader": "李梦丹"
+          }
+        ]
+      },
+      {
+        "value": "环境治理的机制研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 263,
+            "project_no": "",
+            "project_name": "环境治理的机制研究",
+            "leader": "刘华兴"
+          },
+          {
+            "id": 428,
+            "project_no": "",
+            "project_name": "环境治理的机制研究",
+            "leader": "赵均佳"
+          },
+          {
+            "id": 518,
+            "project_no": "",
+            "project_name": "环境治理的机制研究",
+            "leader": "郑子君"
+          }
+        ]
+      },
+      {
+        "value": "碳中和的创新研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 413,
+            "project_no": "",
+            "project_name": "碳中和的创新研究",
+            "leader": "王佃利"
+          },
+          {
+            "id": 429,
+            "project_no": "",
+            "project_name": "碳中和的创新研究",
+            "leader": "吕连仁"
+          },
+          {
+            "id": 443,
+            "project_no": "",
+            "project_name": "碳中和的创新研究",
+            "leader": "魏铭"
+          }
+        ]
+      },
+      {
+        "value": "科技创新的路径研究",
+        "count": 3,
+        "records": [
+          {
+            "id": 296,
+            "project_no": "",
+            "project_name": "科技创新的路径研究",
+            "leader": "刘浩"
+          },
+          {
+            "id": 301,
+            "project_no": "",
+            "project_name": "科技创新的路径研究",
+            "leader": "王成"
+          },
+          {
+            "id": 437,
+            "project_no": "",
+            "project_name": "科技创新的路径研究",
+            "leader": "王学玉"
+          }
+        ]
+      },
+      {
+        "value": "一带一路的机制研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 293,
+            "project_no": "",
+            "project_name": "一带一路的机制研究",
+            "leader": "季丽新"
+          },
+          {
+            "id": 524,
+            "project_no": "",
+            "project_name": "一带一路的机制研究",
+            "leader": "朱林旭"
+          }
+        ]
+      },
+      {
+        "value": "一带一路的路径研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 485,
+            "project_no": "",
+            "project_name": "一带一路的路径研究",
+            "leader": "马永驰"
+          },
+          {
+            "id": 514,
+            "project_no": "",
+            "project_name": "一带一路的路径研究",
+            "leader": "张乐"
+          }
+        ]
+      },
+      {
+        "value": "中国式现代化的创新研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 352,
+            "project_no": "",
+            "project_name": "中国式现代化的创新研究",
+            "leader": "楼苏萍"
+          },
+          {
+            "id": 474,
+            "project_no": "",
+            "project_name": "中国式现代化的创新研究",
+            "leader": "韩自强"
+          }
+        ]
+      },
+      {
+        "value": "中国式现代化的实践研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 388,
+            "project_no": "",
+            "project_name": "中国式现代化的实践研究",
+            "leader": "王军洋"
+          },
+          {
+            "id": 516,
+            "project_no": "",
+            "project_name": "中国式现代化的实践研究",
+            "leader": "王成"
+          }
+        ]
+      },
+      {
+        "value": "中国式现代化的模式研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 289,
+            "project_no": "",
+            "project_name": "中国式现代化的模式研究",
+            "leader": "李梦丹"
+          },
+          {
+            "id": 469,
+            "project_no": "",
+            "project_name": "中国式现代化的模式研究",
+            "leader": "王佃利"
+          }
+        ]
+      },
+      {
+        "value": "乡村振兴的机制研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 264,
+            "project_no": "",
+            "project_name": "乡村振兴的机制研究",
+            "leader": "徐会平"
+          },
+          {
+            "id": 328,
+            "project_no": "",
+            "project_name": "乡村振兴的机制研究",
+            "leader": "孙宗锋"
+          }
+        ]
+      },
+      {
+        "value": "乡村振兴的评估研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 330,
+            "project_no": "",
+            "project_name": "乡村振兴的评估研究",
+            "leader": "赵均佳"
+          },
+          {
+            "id": 489,
+            "project_no": "",
+            "project_name": "乡村振兴的评估研究",
+            "leader": "Yunsoo Lee"
+          }
+        ]
+      },
+      {
+        "value": "产业政策的实践研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 285,
+            "project_no": "",
+            "project_name": "产业政策的实践研究",
+            "leader": "黄登学"
+          },
+          {
+            "id": 305,
+            "project_no": "",
+            "project_name": "产业政策的实践研究",
+            "leader": "黄晴"
+          }
+        ]
+      },
+      {
+        "value": "产业政策的路径研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 360,
+            "project_no": "",
+            "project_name": "产业政策的路径研究",
+            "leader": "胡志伟"
+          },
+          {
+            "id": 427,
+            "project_no": "",
+            "project_name": "产业政策的路径研究",
+            "leader": "朱贵昌"
+          }
+        ]
+      },
+      {
+        "value": "住房保障的创新研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 248,
+            "project_no": "",
+            "project_name": "住房保障的创新研究",
+            "leader": "白江波"
+          },
+          {
+            "id": 459,
+            "project_no": "",
+            "project_name": "住房保障的创新研究",
+            "leader": "黄晴"
+          }
+        ]
+      },
+      {
+        "value": "儿童福利的对策研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 279,
+            "project_no": "",
+            "project_name": "儿童福利的对策研究",
+            "leader": "李辉"
+          },
+          {
+            "id": 521,
+            "project_no": "",
+            "project_name": "儿童福利的对策研究",
+            "leader": "王元亮"
+          }
+        ]
+      },
+      {
+        "value": "儿童福利的演进研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 262,
+            "project_no": "",
+            "project_name": "儿童福利的演进研究",
+            "leader": "黄栋"
+          },
+          {
+            "id": 454,
+            "project_no": "",
+            "project_name": "儿童福利的演进研究",
+            "leader": "庞敏"
+          }
+        ]
+      },
+      {
+        "value": "公共卫生的创新研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 290,
+            "project_no": "",
+            "project_name": "公共卫生的创新研究",
+            "leader": "李昕蕾"
+          },
+          {
+            "id": 318,
+            "project_no": "",
+            "project_name": "公共卫生的创新研究",
+            "leader": "马荣久"
+          }
+        ]
+      },
+      {
+        "value": "公共卫生的实践研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 450,
+            "project_no": "",
+            "project_name": "公共卫生的实践研究",
+            "leader": "程龙"
+          },
+          {
+            "id": 458,
+            "project_no": "",
+            "project_name": "公共卫生的实践研究",
+            "leader": "邢占军"
+          }
+        ]
+      },
+      {
+        "value": "公共卫生的机制研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 353,
+            "project_no": "",
+            "project_name": "公共卫生的机制研究",
+            "leader": "黄栋"
+          },
+          {
+            "id": 520,
+            "project_no": "",
+            "project_name": "公共卫生的机制研究",
+            "leader": "楚成亚"
+          }
+        ]
+      },
+      {
+        "value": "公共卫生的演进研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 286,
+            "project_no": "",
+            "project_name": "公共卫生的演进研究",
+            "leader": "米雪"
+          },
+          {
+            "id": 461,
+            "project_no": "",
+            "project_name": "公共卫生的演进研究",
+            "leader": "刘琳"
+          }
+        ]
+      },
+      {
+        "value": "公共卫生的路径研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 232,
+            "project_no": "",
+            "project_name": "公共卫生的路径研究",
+            "leader": "李延伟"
+          },
+          {
+            "id": 417,
+            "project_no": "",
+            "project_name": "公共卫生的路径研究",
+            "leader": "刘琳"
+          }
+        ]
+      },
+      {
+        "value": "公共服务的实践研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 236,
+            "project_no": "",
+            "project_name": "公共服务的实践研究",
+            "leader": "张淑兰"
+          },
+          {
+            "id": 357,
+            "project_no": "",
+            "project_name": "公共服务的实践研究",
+            "leader": "张继亮"
+          }
+        ]
+      },
+      {
+        "value": "共同富裕的演进研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 478,
+            "project_no": "",
+            "project_name": "共同富裕的演进研究",
+            "leader": "霍文乐"
+          },
+          {
+            "id": 503,
+            "project_no": "",
+            "project_name": "共同富裕的演进研究",
+            "leader": "陈仁兴"
+          }
+        ]
+      },
+      {
+        "value": "区域协调的机制研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 405,
+            "project_no": "",
+            "project_name": "区域协调的机制研究",
+            "leader": "朱贵昌"
+          },
+          {
+            "id": 500,
+            "project_no": "",
+            "project_name": "区域协调的机制研究",
+            "leader": "钟诚"
+          }
+        ]
+      },
+      {
+        "value": "国际贸易的实践研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 358,
+            "project_no": "",
+            "project_name": "国际贸易的实践研究",
+            "leader": "孙宗锋"
+          },
+          {
+            "id": 445,
+            "project_no": "",
+            "project_name": "国际贸易的实践研究",
+            "leader": "臧秀玲"
+          }
+        ]
+      },
+      {
+        "value": "国际贸易的对策研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 377,
+            "project_no": "",
+            "project_name": "国际贸易的对策研究",
+            "leader": "刘昌明"
+          },
+          {
+            "id": 402,
+            "project_no": "",
+            "project_name": "国际贸易的对策研究",
+            "leader": "刘华兴"
+          }
+        ]
+      },
+      {
+        "value": "国际贸易的评估研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 231,
+            "project_no": "",
+            "project_name": "国际贸易的评估研究",
+            "leader": "赵均佳"
+          },
+          {
+            "id": 371,
+            "project_no": "",
+            "project_name": "国际贸易的评估研究",
+            "leader": "杨春林"
+          }
+        ]
+      },
+      {
+        "value": "城市管理的实践研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 245,
+            "project_no": "",
+            "project_name": "城市管理的实践研究",
+            "leader": "李亚洲"
+          },
+          {
+            "id": 515,
+            "project_no": "",
+            "project_name": "城市管理的实践研究",
+            "leader": "高原"
+          }
+        ]
+      },
+      {
+        "value": "城市管理的对策研究",
+        "count": 2,
+        "records": [
+          {
+            "id": 364,
+            "project_no": "",
+            "project_name": "城市管理的对策研究",
+            "leader": "韩丽华"
+          },
+          {
+            "id": 501,
+            "project_no": "",
+            "project_name": "城市管理的对策研究",
+            "leader": "金淑霞"
+          }
+        ]
+      }
+    ]
+  },
+  "teacher_score_coverage": {
+    "score_record_count": 85,
+    "teachers_total": 104,
+    "teachers_with_scores": 17,
+    "teachers_without_scores_count": 87,
+    "records_by_year": {
+      "2021": 17,
+      "2022": 17,
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "teachers_covered_by_year": {
+      "2021": 17,
+      "2022": 17,
+      "2023": 17,
+      "2024": 17,
+      "2025": 17
+    },
+    "teachers_without_scores": [
+      {
+        "teacher_id": 166,
+        "teacher_name": "Yunsoo Lee",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 155,
+        "teacher_name": "俞少宾",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 160,
+        "teacher_name": "冷安丽",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 157,
+        "teacher_name": "刘华兴",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 156,
+        "teacher_name": "刘浩",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 143,
+        "teacher_name": "孙宗锋",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 150,
+        "teacher_name": "季丽新",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 147,
+        "teacher_name": "张乐",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 164,
+        "teacher_name": "张健彬",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 148,
+        "teacher_name": "张天舒",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 135,
+        "teacher_name": "曹现强",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 173,
+        "teacher_name": "朱林旭",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 151,
+        "teacher_name": "李广",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 138,
+        "teacher_name": "李延伟",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 170,
+        "teacher_name": "李梦丹",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 167,
+        "teacher_name": "李欢欢",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 137,
+        "teacher_name": "李辉",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 153,
+        "teacher_name": "杨志",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 141,
+        "teacher_name": "楼苏萍",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 144,
+        "teacher_name": "滕玉成",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 145,
+        "teacher_name": "王佃利",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 154,
+        "teacher_name": "王元亮",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 159,
+        "teacher_name": "程龙",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 172,
+        "teacher_name": "罗聪",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 169,
+        "teacher_name": "褚雷",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 158,
+        "teacher_name": "费立国",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 171,
+        "teacher_name": "赵志华",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 146,
+        "teacher_name": "邢占军",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 165,
+        "teacher_name": "郑国栋",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 162,
+        "teacher_name": "郑子君",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 161,
+        "teacher_name": "陈仁兴",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 168,
+        "teacher_name": "陈静",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 149,
+        "teacher_name": "韩丽华",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 136,
+        "teacher_name": "韩自强",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 139,
+        "teacher_name": "马奔",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 140,
+        "teacher_name": "马永驰",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 163,
+        "teacher_name": "高原",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 152,
+        "teacher_name": "魏铭",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 142,
+        "teacher_name": "黄晴",
+        "department": "公共管理系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 121,
+        "teacher_name": "刘昌明",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 130,
+        "teacher_name": "展妍男",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 126,
+        "teacher_name": "张淑兰",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 128,
+        "teacher_name": "方炯升",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 127,
+        "teacher_name": "朱贵昌",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 120,
+        "teacher_name": "李慧明",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 118,
+        "teacher_name": "李昕蕾",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 125,
+        "teacher_name": "王学玉",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 133,
+        "teacher_name": "王薪喜",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 124,
+        "teacher_name": "盛力",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 122,
+        "teacher_name": "秦亚青",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 132,
+        "teacher_name": "米雪",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 131,
+        "teacher_name": "赵均佳",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 134,
+        "teacher_name": "霍文乐",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 123,
+        "teacher_name": "马荣久",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 129,
+        "teacher_name": "黄栋",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 119,
+        "teacher_name": "黄登学",
+        "department": "国际政治系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 112,
+        "teacher_name": "党成孝",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 107,
+        "teacher_name": "刘琳",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 116,
+        "teacher_name": "叶紫蒙",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 113,
+        "teacher_name": "姬生翔",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 115,
+        "teacher_name": "孔令伟",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 102,
+        "teacher_name": "孔令栋",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 106,
+        "teacher_name": "张继亮",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 110,
+        "teacher_name": "徐会平",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 101,
+        "teacher_name": "方雷",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 104,
+        "teacher_name": "李振",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 103,
+        "teacher_name": "李济时",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 100,
+        "teacher_name": "楚成亚",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 108,
+        "teacher_name": "法帅",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 109,
+        "teacher_name": "王军洋",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 105,
+        "teacher_name": "王成",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 117,
+        "teacher_name": "白江波",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 111,
+        "teacher_name": "钟诚",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 114,
+        "teacher_name": "黄靖",
+        "department": "政治学系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 91,
+        "teacher_name": "刘玉安",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 94,
+        "teacher_name": "吕连仁",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 97,
+        "teacher_name": "庞敏",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 90,
+        "teacher_name": "李亚洲",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 89,
+        "teacher_name": "李宏",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 98,
+        "teacher_name": "杨春林",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 95,
+        "teacher_name": "王鹏权",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 99,
+        "teacher_name": "胡志伟",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 92,
+        "teacher_name": "臧秀玲",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 88,
+        "teacher_name": "蒋锐",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 93,
+        "teacher_name": "赵婷",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 87,
+        "teacher_name": "郭春生",
+        "department": "科学社会主义系",
+        "title": "教授"
+      },
+      {
+        "teacher_id": 96,
+        "teacher_name": "金淑霞",
+        "department": "科学社会主义系",
+        "title": "教授"
+      }
+    ],
+    "teacher_years_detail": [
+      {
+        "teacher_id": 166,
+        "teacher_name": "Yunsoo Lee",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 155,
+        "teacher_name": "俞少宾",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 160,
+        "teacher_name": "冷安丽",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 157,
+        "teacher_name": "刘华兴",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 156,
+        "teacher_name": "刘浩",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 83,
+        "teacher_name": "卫老师",
+        "department": "公共管理系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 77,
+        "teacher_name": "吴教授",
+        "department": "公共管理系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 143,
+        "teacher_name": "孙宗锋",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 150,
+        "teacher_name": "季丽新",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 147,
+        "teacher_name": "张乐",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 164,
+        "teacher_name": "张健彬",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 148,
+        "teacher_name": "张天舒",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 135,
+        "teacher_name": "曹现强",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 173,
+        "teacher_name": "朱林旭",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 151,
+        "teacher_name": "李广",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 138,
+        "teacher_name": "李延伟",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 170,
+        "teacher_name": "李梦丹",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 167,
+        "teacher_name": "李欢欢",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 137,
+        "teacher_name": "李辉",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 153,
+        "teacher_name": "杨志",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 141,
+        "teacher_name": "楼苏萍",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 85,
+        "teacher_name": "沈老师",
+        "department": "公共管理系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 144,
+        "teacher_name": "滕玉成",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 145,
+        "teacher_name": "王佃利",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 154,
+        "teacher_name": "王元亮",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 159,
+        "teacher_name": "程龙",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 172,
+        "teacher_name": "罗聪",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 169,
+        "teacher_name": "褚雷",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 158,
+        "teacher_name": "费立国",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 171,
+        "teacher_name": "赵志华",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 146,
+        "teacher_name": "邢占军",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 165,
+        "teacher_name": "郑国栋",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 162,
+        "teacher_name": "郑子君",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 79,
+        "teacher_name": "钱老师",
+        "department": "公共管理系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 161,
+        "teacher_name": "陈仁兴",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 81,
+        "teacher_name": "陈老师",
+        "department": "公共管理系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 168,
+        "teacher_name": "陈静",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 149,
+        "teacher_name": "韩丽华",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 136,
+        "teacher_name": "韩自强",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 139,
+        "teacher_name": "马奔",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 140,
+        "teacher_name": "马永驰",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 163,
+        "teacher_name": "高原",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 152,
+        "teacher_name": "魏铭",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 142,
+        "teacher_name": "黄晴",
+        "department": "公共管理系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 121,
+        "teacher_name": "刘昌明",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 76,
+        "teacher_name": "周教授",
+        "department": "国际政治系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 130,
+        "teacher_name": "展妍男",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 126,
+        "teacher_name": "张淑兰",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 128,
+        "teacher_name": "方炯升",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 127,
+        "teacher_name": "朱贵昌",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 120,
+        "teacher_name": "李慧明",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 71,
+        "teacher_name": "李教授",
+        "department": "国际政治系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 118,
+        "teacher_name": "李昕蕾",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 125,
+        "teacher_name": "王学玉",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 72,
+        "teacher_name": "王教授",
+        "department": "国际政治系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 133,
+        "teacher_name": "王薪喜",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 124,
+        "teacher_name": "盛力",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 122,
+        "teacher_name": "秦亚青",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 132,
+        "teacher_name": "米雪",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 131,
+        "teacher_name": "赵均佳",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 134,
+        "teacher_name": "霍文乐",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 123,
+        "teacher_name": "马荣久",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 129,
+        "teacher_name": "黄栋",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 119,
+        "teacher_name": "黄登学",
+        "department": "国际政治系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 112,
+        "teacher_name": "党成孝",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 107,
+        "teacher_name": "刘琳",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 116,
+        "teacher_name": "叶紫蒙",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 113,
+        "teacher_name": "姬生翔",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 115,
+        "teacher_name": "孔令伟",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 102,
+        "teacher_name": "孔令栋",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 106,
+        "teacher_name": "张继亮",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 110,
+        "teacher_name": "徐会平",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 86,
+        "teacher_name": "政治学系教师",
+        "department": "政治学系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 101,
+        "teacher_name": "方雷",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 104,
+        "teacher_name": "李振",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 103,
+        "teacher_name": "李济时",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 100,
+        "teacher_name": "楚成亚",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 108,
+        "teacher_name": "法帅",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 109,
+        "teacher_name": "王军洋",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 105,
+        "teacher_name": "王成",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 117,
+        "teacher_name": "白江波",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 111,
+        "teacher_name": "钟诚",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 114,
+        "teacher_name": "黄靖",
+        "department": "政治学系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 80,
+        "teacher_name": "冯老师",
+        "department": "科学社会主义系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 73,
+        "teacher_name": "刘教授",
+        "department": "科学社会主义系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 91,
+        "teacher_name": "刘玉安",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 94,
+        "teacher_name": "吕连仁",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 75,
+        "teacher_name": "孙教授",
+        "department": "科学社会主义系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 97,
+        "teacher_name": "庞敏",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 70,
+        "teacher_name": "张教授",
+        "department": "科学社会主义系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 90,
+        "teacher_name": "李亚洲",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 89,
+        "teacher_name": "李宏",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 98,
+        "teacher_name": "杨春林",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 95,
+        "teacher_name": "王鹏权",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 99,
+        "teacher_name": "胡志伟",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 92,
+        "teacher_name": "臧秀玲",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 84,
+        "teacher_name": "蒋老师",
+        "department": "科学社会主义系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 88,
+        "teacher_name": "蒋锐",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 82,
+        "teacher_name": "褚老师",
+        "department": "科学社会主义系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 93,
+        "teacher_name": "赵婷",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 74,
+        "teacher_name": "赵教授",
+        "department": "科学社会主义系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 78,
+        "teacher_name": "郑老师",
+        "department": "科学社会主义系",
+        "score_years": [
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "score_record_count": 5
+      },
+      {
+        "teacher_id": 87,
+        "teacher_name": "郭春生",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      },
+      {
+        "teacher_id": 96,
+        "teacher_name": "金淑霞",
+        "department": "科学社会主义系",
+        "score_years": [],
+        "score_record_count": 0
+      }
+    ],
+    "duplicate_teacher_year": []
+  },
+  "cooperation_detail": {
+    "record_count": 28,
+    "records_with_both_endpoints_matching_teacher_names": 16,
+    "records_with_at_least_one_teacher_endpoint": 28,
+    "records_with_no_exact_teacher_name_endpoint": 0,
+    "all_records": [
+      {
+        "id": 61,
+        "source": "政治学系教师",
+        "target": "钱老师",
+        "project_id": 176,
+        "project__project_no": "XM202318256",
+        "project__project_name": "政治学系2023年度路径分析",
+        "coop_count": 4,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 62,
+        "source": "周教授",
+        "target": "民政部智库",
+        "project_id": 208,
+        "project__project_no": "XM202220954",
+        "project__project_name": "公共管理系2022年度路径评估",
+        "coop_count": 2,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 63,
+        "source": "吴教授",
+        "target": "省政府研究室",
+        "project_id": 162,
+        "project__project_no": "XM202517564",
+        "project__project_name": "科学社会主义系2025年度分析机制",
+        "coop_count": 2,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 64,
+        "source": "蒋老师",
+        "target": "省政府研究室",
+        "project_id": 204,
+        "project__project_no": "XM202120142",
+        "project__project_name": "公共管理系2021年度研究分析",
+        "coop_count": 5,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 65,
+        "source": "李教授",
+        "target": "钱老师",
+        "project_id": 213,
+        "project__project_no": "XM202320632",
+        "project__project_name": "公共管理系2023年度机制研究",
+        "coop_count": 2,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 66,
+        "source": "王教授",
+        "target": "吴教授",
+        "project_id": 197,
+        "project__project_no": "XM202419980",
+        "project__project_name": "国际政治系2024年度路径评估",
+        "coop_count": 2,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 67,
+        "source": "陈老师",
+        "target": "民政部智库",
+        "project_id": 213,
+        "project__project_no": "XM202320632",
+        "project__project_name": "公共管理系2023年度机制研究",
+        "coop_count": 1,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 68,
+        "source": "孙教授",
+        "target": "沈老师",
+        "project_id": 204,
+        "project__project_no": "XM202120142",
+        "project__project_name": "公共管理系2021年度研究分析",
+        "coop_count": 1,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 69,
+        "source": "李教授",
+        "target": "吴教授",
+        "project_id": 219,
+        "project__project_no": "XM202420697",
+        "project__project_name": "公共管理系2024年度评估分析",
+        "coop_count": 2,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 70,
+        "source": "陈老师",
+        "target": "王教授",
+        "project_id": 162,
+        "project__project_no": "XM202517564",
+        "project__project_name": "科学社会主义系2025年度分析机制",
+        "coop_count": 4,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 71,
+        "source": "孙教授",
+        "target": "民政部智库",
+        "project_id": 181,
+        "project__project_no": "XM202418337",
+        "project__project_name": "政治学系2024年度分析研究",
+        "coop_count": 5,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 72,
+        "source": "张教授",
+        "target": "陈老师",
+        "project_id": 188,
+        "project__project_no": "XM202219951",
+        "project__project_name": "国际政治系2022年度评估分析",
+        "coop_count": 3,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 73,
+        "source": "蒋老师",
+        "target": "褚老师",
+        "project_id": 195,
+        "project__project_no": "XM202419284",
+        "project__project_name": "国际政治系2024年度机制路径",
+        "coop_count": 2,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 74,
+        "source": "钱老师",
+        "target": "郑老师",
+        "project_id": 215,
+        "project__project_no": "XM202320128",
+        "project__project_name": "公共管理系2023年度分析机制",
+        "coop_count": 5,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 76,
+        "source": "钱老师",
+        "target": "兄弟高校公管院",
+        "project_id": 167,
+        "project__project_no": "XM202118304",
+        "project__project_name": "政治学系2021年度机制评估",
+        "coop_count": 4,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 77,
+        "source": "吴教授",
+        "target": "李教授",
+        "project_id": 148,
+        "project__project_no": "XM202117951",
+        "project__project_name": "科学社会主义系2021年度分析机制",
+        "coop_count": 1,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 78,
+        "source": "陈老师",
+        "target": "卫老师",
+        "project_id": 197,
+        "project__project_no": "XM202419980",
+        "project__project_name": "国际政治系2024年度路径评估",
+        "coop_count": 5,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 79,
+        "source": "蒋老师",
+        "target": "山东大学智库",
+        "project_id": 148,
+        "project__project_no": "XM202117951",
+        "project__project_name": "科学社会主义系2021年度分析机制",
+        "coop_count": 4,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 80,
+        "source": "卫老师",
+        "target": "吴教授",
+        "project_id": 176,
+        "project__project_no": "XM202318256",
+        "project__project_name": "政治学系2023年度路径分析",
+        "coop_count": 5,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 81,
+        "source": "刘教授",
+        "target": "陈老师",
+        "project_id": 166,
+        "project__project_no": "XM202118460",
+        "project__project_name": "政治学系2021年度评估路径",
+        "coop_count": 1,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 83,
+        "source": "吴教授",
+        "target": "中国社科院",
+        "project_id": 200,
+        "project__project_no": "XM202519658",
+        "project__project_name": "国际政治系2025年度机制分析",
+        "coop_count": 4,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 84,
+        "source": "赵教授",
+        "target": "卫老师",
+        "project_id": 174,
+        "project__project_no": "XM202318118",
+        "project__project_name": "政治学系2023年度评估路径",
+        "coop_count": 1,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 85,
+        "source": "吴教授",
+        "target": "山东大学智库",
+        "project_id": 162,
+        "project__project_no": "XM202517564",
+        "project__project_name": "科学社会主义系2025年度分析机制",
+        "coop_count": 2,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 86,
+        "source": "赵教授",
+        "target": "山东大学智库",
+        "project_id": 155,
+        "project__project_no": "XM202317969",
+        "project__project_name": "科学社会主义系2023年度机制评估",
+        "coop_count": 1,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 87,
+        "source": "王教授",
+        "target": "刘教授",
+        "project_id": 160,
+        "project__project_no": "XM202417175",
+        "project__project_name": "科学社会主义系2024年度评估分析",
+        "coop_count": 5,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 88,
+        "source": "郑老师",
+        "target": "中国社科院",
+        "project_id": 172,
+        "project__project_no": "XM202218669",
+        "project__project_name": "政治学系2022年度研究机制",
+        "coop_count": 2,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 89,
+        "source": "政治学系教师",
+        "target": "蒋老师",
+        "project_id": 196,
+        "project__project_no": "XM202419683",
+        "project__project_name": "国际政治系2024年度机制评估",
+        "coop_count": 3,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": true,
+        "at_least_one_teacher_endpoint": true
+      },
+      {
+        "id": 90,
+        "source": "赵教授",
+        "target": "山东大学智库",
+        "project_id": 166,
+        "project__project_no": "XM202118460",
+        "project__project_name": "政治学系2021年度评估路径",
+        "coop_count": 5,
+        "source_matches_teacher_name": true,
+        "target_matches_teacher_name": false,
+        "at_least_one_teacher_endpoint": true
+      }
+    ],
+    "note": "source/target 可以是外部机构名称；未匹配教师姓名不应直接当作错误。请结合业务含义核实。"
+  },
+  "risk_warning_review": {
+    "warning_total": 17,
+    "warning_date_after_project_end_count": 9,
+    "records": [
+      {
+        "warning_id": 43,
+        "project_id": 168,
+        "project_no": "XM202118886",
+        "project_name": "政治学系2021年度路径评估",
+        "project_status": "在研",
+        "project_start_date": "2019-04-19",
+        "project_end_date": "2021-07-12",
+        "actual_progress": 27,
+        "warning_date": "2025-02-01",
+        "risk_level": "高",
+        "reason": "进度严重滞后",
+        "suggested_action": "加快调研进度",
+        "is_resolved": false
+      },
+      {
+        "warning_id": 44,
+        "project_id": 169,
+        "project_no": "XM202118232",
+        "project_name": "政治学系2021年度研究评估",
+        "project_status": "立项",
+        "project_start_date": "2019-04-28",
+        "project_end_date": "2022-03-26",
+        "actual_progress": 18,
+        "warning_date": "2025-02-21",
+        "risk_level": "高",
+        "reason": "进度严重滞后",
+        "suggested_action": "加快调研进度",
+        "is_resolved": false
+      },
+      {
+        "warning_id": 38,
+        "project_id": 153,
+        "project_no": "XM202217417",
+        "project_name": "科学社会主义系2022年度研究分析",
+        "project_status": "立项",
+        "project_start_date": "2020-05-17",
+        "project_end_date": "2021-03-14",
+        "actual_progress": 32,
+        "warning_date": "2025-02-23",
+        "risk_level": "中",
+        "reason": "进度偏慢",
+        "suggested_action": "加快调研进度",
+        "is_resolved": false
+      },
+      {
+        "warning_id": 40,
+        "project_id": 160,
+        "project_no": "XM202417175",
+        "project_name": "科学社会主义系2024年度评估分析",
+        "project_status": "在研",
+        "project_start_date": "2022-05-09",
+        "project_end_date": "2024-06-21",
+        "actual_progress": 34,
+        "warning_date": "2025-02-27",
+        "risk_level": "中",
+        "reason": "进度偏慢",
+        "suggested_action": "加快调研进度",
+        "is_resolved": false
+      },
+      {
+        "warning_id": 39,
+        "project_id": 156,
+        "project_no": "XM202317651",
+        "project_name": "科学社会主义系2023年度分析评估",
+        "project_status": "在研",
+        "project_start_date": "2022-12-02",
+        "project_end_date": "2024-06-20",
+        "actual_progress": 24,
+        "warning_date": "2025-03-10",
+        "risk_level": "高",
+        "reason": "进度严重滞后",
+        "suggested_action": "加快调研进度",
+        "is_resolved": false
+      },
+      {
+        "warning_id": 49,
+        "project_id": 203,
+        "project_no": "XM202120509",
+        "project_name": "公共管理系2021年度分析评估",
+        "project_status": "在研",
+        "project_start_date": "2021-01-21",
+        "project_end_date": "2024-01-28",
+        "actual_progress": 22,
+        "warning_date": "2025-03-22",
+        "risk_level": "高",
+        "reason": "进度严重滞后",
+        "suggested_action": "加快调研进度",
+        "is_resolved": false
+      },
+      {
+        "warning_id": 50,
+        "project_id": 210,
+        "project_no": "XM202220967",
+        "project_name": "公共管理系2022年度分析机制",
+        "project_status": "立项",
+        "project_start_date": "2020-08-07",
+        "project_end_date": "2023-03-19",
+        "actual_progress": 29,
+        "warning_date": "2025-04-23",
+        "risk_level": "高",
+        "reason": "进度严重滞后",
+        "suggested_action": "加快调研进度",
+        "is_resolved": false
+      },
+      {
+        "warning_id": 42,
+        "project_id": 166,
+        "project_no": "XM202118460",
+        "project_name": "政治学系2021年度评估路径",
+        "project_status": "立项",
+        "project_start_date": "2020-02-12",
+        "project_end_date": "2022-05-16",
+        "actual_progress": 42,
+        "warning_date": "2025-04-27",
+        "risk_level": "中",
+        "reason": "进度偏慢",
+        "suggested_action": "加快调研进度",
+        "is_resolved": false
+      },
+      {
+        "warning_id": 47,
+        "project_id": 190,
+        "project_no": "XM202219900",
+        "project_name": "国际政治系2022年度路径评估",
+        "project_status": "在研",
+        "project_start_date": "2020-09-27",
+        "project_end_date": "2022-04-05",
+        "actual_progress": 24,
+        "warning_date": "2025-06-05",
+        "risk_level": "高",
+        "reason": "进度严重滞后",
+        "suggested_action": "加快调研进度",
+        "is_resolved": false
+      }
+    ]
+  },
+  "funding_coverage": {
+    "projects_total": 377,
+    "projects_with_fund_details": 253,
+    "projects_without_fund_details": 124,
+    "fund_detail_records": 1475,
+    "projects_with_budgets": 253,
+    "projects_without_budgets": 124,
+    "fund_budget_records": 696,
+    "demo_budget_records": 696,
+    "formal_budget_records": 0,
+    "achievement_records": 1016,
+    "department_resource_records": 20
+  }
+}

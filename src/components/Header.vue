@@ -14,7 +14,7 @@
           </div>
           <div class="weather">
             <span class="weather-icon">☀️</span>
-            <span class="weather-text">晴 29°C</span>
+            <span class="weather-text">晴 17°C</span>
           </div>
         </div>
       </div>

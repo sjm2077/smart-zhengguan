@@ -1,0 +1,26 @@
+{
+  "name": "graduate-management",
+  "version": "1.0.0",
+  "description": "研究生管理系统前端模板，使用 Vue 3 + Element Plus + ECharts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "axios": "^1.20.0",
+    "echarts": "^5.5.2",
+    "element-plus": "^2.3.7",
+    "vue": "^3.3.4",
+    "vue-echarts": "^6.0.0-beta.3",
+    "vue-router": "^4.2.3",
+    "vuedraggable": "^2.24.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^5.0.0"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}

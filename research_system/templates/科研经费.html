@@ -166,8 +166,12 @@
 
         .content {
             flex: 1;
+            min-width: 0;
+            width: calc(100% - 240px);
             margin-left: 240px;
             padding: 30px;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
 
         .page-title {
@@ -352,6 +356,58 @@
             .menu-item .fa-angle-down.rotate {
                 transform: rotate(180deg);
             }
+
+
+        /* 科研经费明细台账 */
+        .fund-ledger-card { margin-top: 25px; min-width: 0; }
+        .fund-ledger-head { display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:16px; min-width:0; }
+        .fund-ledger-tools { display:flex; align-items:center; gap:10px; flex-wrap:wrap; min-width:0; }
+        .fund-ledger-tools input { height:38px; min-width:220px; max-width:100%; padding:0 12px; border:1px solid #dcdfe6; border-radius:6px; outline:none; }
+        .fund-ledger-tools input:focus { border-color:var(--light-blue); }
+        .fund-table-wrap { width:100%; max-width:100%; overflow:hidden; border:1px solid #ebeef5; border-radius:8px; }
+        .fund-table { width:100%; table-layout:fixed; border-collapse:collapse; min-width:0; background:#fff; }
+        .fund-table th,.fund-table td { padding:11px 8px; text-align:left; border-bottom:1px solid #ebeef5; font-size:13px; white-space:normal; overflow-wrap:anywhere; word-break:break-word; }
+        .fund-table th { background:#f5f8fc; color:#53657c; font-weight:600; }
+        .fund-table th:nth-child(1),.fund-table td:nth-child(1) { width:7%; }
+        .fund-table th:nth-child(2),.fund-table td:nth-child(2) { width:21%; }
+        .fund-table th:nth-child(3),.fund-table td:nth-child(3) { width:12%; }
+        .fund-table th:nth-child(4),.fund-table td:nth-child(4) { width:12%; }
+        .fund-table th:nth-child(5),.fund-table td:nth-child(5) { width:12%; }
+        .fund-table th:nth-child(6),.fund-table td:nth-child(6) { width:10%; }
+        .fund-table th:nth-child(7),.fund-table td:nth-child(7) { width:14%; }
+        .fund-table th:nth-child(8),.fund-table td:nth-child(8) { width:12%; }
+        .fund-table tbody tr:hover { background:#f7fbff; }
+        .fund-table tbody tr:last-child td { border-bottom:none; }
+        .fund-table .amount { color:#0A2343; font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap; }
+        .fund-table td:last-child { white-space:nowrap; }
+        .fund-action { border:0; background:transparent; color:#409EFF; cursor:pointer; margin-right:8px; font-size:13px; padding:2px 0; }
+        .fund-action:last-child { margin-right:0; }
+        .fund-empty { padding:28px 12px !important; text-align:center !important; color:#909399; }
+        .fund-ledger-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-top:14px; color:#7b8794; font-size:13px; }
+        .fund-page-buttons { display:flex; gap:8px; align-items:center; }
+        .fund-page-buttons button { height:32px; padding:0 12px; border:1px solid #dcdfe6; background:#fff; border-radius:5px; color:#526174; cursor:pointer; }
+        .fund-page-buttons button:disabled { opacity:.45; cursor:not-allowed; }
+        @media (max-width: 1100px) {
+            .content { padding: 20px; }
+            .fund-table th,.fund-table td { padding: 9px 6px; font-size: 12px; }
+            .fund-action { margin-right: 5px; font-size: 12px; }
+        }
+        .fund-modal-mask { position:fixed; inset:0; background:rgba(10,25,45,.45); display:none; align-items:center; justify-content:center; z-index:2000; padding:18px; }
+        .fund-modal-mask.open { display:flex; }
+        .fund-modal { width:min(620px,100%); max-height:90vh; overflow:auto; background:#fff; border-radius:14px; box-shadow:0 18px 60px rgba(0,0,0,.2); }
+        .fund-modal-head { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid #ebeef5; }
+        .fund-modal-head h3 { color:#0A2343; font-size:18px; }
+        .fund-modal-close { border:0; background:transparent; font-size:24px; color:#909399; cursor:pointer; }
+        .fund-form { padding:22px 24px 24px; display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+        .fund-form-field { display:flex; flex-direction:column; gap:7px; min-width:0; }
+        .fund-form-field.full { grid-column:1/-1; }
+        .fund-form-field label { color:#53657c; font-size:13px; font-weight:600; }
+        .fund-form-field input,.fund-form-field select { width:100%; height:40px; padding:0 11px; border:1px solid #dcdfe6; border-radius:6px; outline:none; background:#fff; }
+        .fund-form-field input:focus,.fund-form-field select:focus { border-color:#409EFF; }
+        .fund-modal-actions { grid-column:1/-1; display:flex; justify-content:flex-end; gap:10px; padding-top:8px; }
+        .fund-btn-secondary { height:38px; padding:0 18px; border:1px solid #dcdfe6; background:#fff; border-radius:6px; cursor:pointer; color:#606266; }
+        @media (max-width:760px) { .fund-form { grid-template-columns:1fr; } .fund-form-field.full,.fund-modal-actions { grid-column:1; } .fund-ledger-head { align-items:flex-start; } .fund-ledger-tools input { min-width:180px; } }
+
     </style>
 </head>
 <body>
@@ -445,23 +501,13 @@
                 <div class="filter-item">
                     年度筛选：
                     <select class="filter-select" id="yearFilter">
-                        <option value="2025">2025年</option>
-                        <option value="2024">2024年</option>
-                        <option value="2023">2023年</option>
-                        <option value="2022">2022年</option>
-                        <option value="2021">2021年</option>
-                        <option value="all">全部年份</option>
+                        <option value="">加载年份...</option>
                     </select>
                 </div>
                 <div class="filter-item">
                     学科筛选：
                     <select class="filter-select" id="subjectFilter">
                         <option value="all">全部学科</option>
-                        <option value="行政管理">行政管理</option>
-                        <option value="公共政策">公共政策</option>
-                        <option value="政治学理论">政治学理论</option>
-                        <option value="社会保障">社会保障</option>
-                        <option value="国际关系">国际关系</option>
                     </select>
                 </div>
                 <button class="btn" onclick="filterData()"><i class="fa fa-search"></i> 查询</button>
@@ -487,6 +533,58 @@
                 <div class="card">
                     <div class="card-title"><i class="fa fa-pie-chart"></i> 各学科经费分配占比</div>
                     <div id="ringChart" class="chart"></div>
+                </div>
+            </div>
+
+
+            <!-- 项目级科研经费明细台账：使用现有 FundDetail / Project 数据 -->
+            <div class="card fund-ledger-card">
+                <div class="fund-ledger-head">
+                    <div class="card-title" style="margin:0"><i class="fa fa-list-alt"></i> 科研经费明细台账</div>
+                    <div class="fund-ledger-tools">
+                        <input id="fundLedgerKeyword" type="search" placeholder="搜索项目名称、负责人或经费来源" aria-label="搜索经费明细">
+                        <button class="btn" type="button" onclick="loadFundLedger(1)"><i class="fa fa-search"></i> 查询</button>
+                        <button class="btn" type="button" onclick="resetFundLedger()" style="background:#909399"><i class="fa fa-refresh"></i> 重置</button>
+                        <button class="btn btn-success" type="button" onclick="openFundModal('create')"><i class="fa fa-plus"></i> 登记经费</button>
+                    </div>
+                </div>
+                <div class="fund-table-wrap">
+                    <table class="fund-table">
+                        <thead><tr>
+                            <th>年度</th><th>项目名称</th><th>项目负责人</th><th>所属学科</th>
+                            <th>经费来源</th><th>经费用途</th><th>经费金额（万元）</th><th>操作</th>
+                        </tr></thead>
+                        <tbody id="fundLedgerBody"><tr><td class="fund-empty" colspan="8">正在加载……</td></tr></tbody>
+                    </table>
+                </div>
+                <div class="fund-ledger-footer">
+                    <span id="fundLedgerCount">共 0 条记录</span>
+                    <div class="fund-page-buttons">
+                        <button type="button" id="fundPrevPage" onclick="changeFundPage(-1)" disabled>上一页</button>
+                        <span id="fundPageInfo">第 1 / 1 页</span>
+                        <button type="button" id="fundNextPage" onclick="changeFundPage(1)" disabled>下一页</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fund-modal-mask" id="fundModalMask" role="dialog" aria-modal="true" aria-labelledby="fundModalTitle">
+                <div class="fund-modal">
+                    <div class="fund-modal-head">
+                        <h3 id="fundModalTitle">登记科研经费</h3>
+                        <button type="button" class="fund-modal-close" onclick="closeFundModal()" aria-label="关闭">&times;</button>
+                    </div>
+                    <form class="fund-form" id="fundDetailForm" onsubmit="submitFundDetail(event)">
+                        <input type="hidden" id="fundDetailId">
+                        <div class="fund-form-field full"><label for="fundProject">关联科研项目 *</label><select id="fundProject" required><option value="">正在加载项目……</option></select></div>
+                        <div class="fund-form-field"><label for="fundYear">经费年度 *</label><input id="fundYear" type="number" min="1900" max="2100" required></div>
+                        <div class="fund-form-field"><label for="fundAmount">经费金额（万元） *</label><input id="fundAmount" type="number" min="0.01" step="0.01" required placeholder="请输入金额"></div>
+                        <div class="fund-form-field"><label for="fundSource">经费来源 *</label><select id="fundSource" required><option value="国家社科">国家社科</option><option value="教育部">教育部</option><option value="省级项目">省级项目</option><option value="横向课题">横向课题</option><option value="政府委托">政府委托</option></select></div>
+                        <div class="fund-form-field"><label for="fundUsage">经费用途 *</label><select id="fundUsage" required><option value="设备费">设备费</option><option value="业务费">业务费</option><option value="劳务费">劳务费</option><option value="会议费">会议费</option><option value="出版费">出版费</option><option value="其他">其他</option></select></div>
+                        <div class="fund-modal-actions">
+                            <button type="button" class="fund-btn-secondary" onclick="closeFundModal()">取消</button>
+                            <button type="submit" class="btn" id="fundSaveButton">保存明细</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -520,15 +618,22 @@
         }
 
         function setActiveMenu() {
-            const url = window.location.href;
-            const items = document.querySelectorAll('.sidebar .menu-item');
-            items.forEach(item => {
-                const clickAttr = item.getAttribute('onclick');
-                if (!clickAttr) return;
-                if (clickAttr.includes("科研总览") && url.includes('/fund/')) item.classList.add('active');
-                if (clickAttr.includes("科研项目") && url.includes('/project/')) item.classList.add('active');
-                if (clickAttr.includes("科研经费") && url.includes('/fund/')) item.classList.add('active');
-                if (clickAttr.includes("科研成果") && url.includes('/achievement/')) item.classList.add('active');
+            const path = window.location.pathname.replace(/\/+$/, '') || '/';
+            const routeByPath = {
+                '/': "location.href='/'",
+                '/project': "location.href='/project/'",
+                '/fund': "location.href='/fund/'",
+                '/achievement': "location.href='/achievement/'"
+            };
+
+            document.querySelectorAll('.sidebar .menu-item').forEach(item => {
+                item.classList.remove('active');
+                const clickAttr = item.getAttribute('onclick') || '';
+                const expectedRoute = routeByPath[path];
+
+                if (expectedRoute && clickAttr.includes(expectedRoute)) {
+                    item.classList.add('active');
+                }
             });
         }
 
@@ -558,6 +663,110 @@
                 ringChart.resize();
             });
         }
+        
+        
+        
+        // 动态加载科研经费可用年份
+        async function loadYearOptions() {
+            const yearSelect = document.getElementById('yearFilter');
+            yearSelect.disabled = true;
+
+            try {
+                const response = await fetch('/api/years?scope=fund');
+
+                if (!response.ok) {
+                    throw new Error(`年份接口请求失败：${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (!Array.isArray(data.years) || data.years.length === 0) {
+                    throw new Error('系统中暂无科研经费年份数据');
+                }
+
+                // 清除“加载年份...”
+                yearSelect.innerHTML = '';
+
+                // 根据后端返回结果动态创建年份选项
+                data.years.forEach(year => {
+                    const option = document.createElement('option');
+                    option.value = String(year);
+                    option.textContent = `${year}年`;
+                    yearSelect.appendChild(option);
+                });
+
+                // 默认选中数据库最新年份
+                yearSelect.value = String(data.latest_year);
+
+                return true;
+            } catch (error) {
+                console.error('加载年份失败：', error);
+                yearSelect.innerHTML = '<option value="">暂无年份数据</option>';
+                return false;
+            } finally {
+                yearSelect.disabled = false;
+            }
+        }
+
+        // 根据当前年份的真实经费数据动态生成学科选项。
+        // 复用已有的环形图接口，不需要新增学科查询接口。
+        const fundSubjectCache = new Map();
+
+        async function loadSubjectOptions(year, preferredSubject = 'all') {
+            const subjectSelect = document.getElementById('subjectFilter');
+            const yearKey = String(year);
+
+            try {
+                let subjects;
+
+                if (fundSubjectCache.has(yearKey)) {
+                    subjects = fundSubjectCache.get(yearKey);
+                } else {
+                    const response = await fetch(
+                        `/api/fund/dept-ring?year=${encodeURIComponent(yearKey)}`
+                    );
+
+                    if (!response.ok) {
+                        throw new Error(`学科数据请求失败：${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    subjects = [...new Set(
+                        (Array.isArray(data.data) ? data.data : [])
+                            .map(item => String(item.name || '').trim())
+                            .filter(Boolean)
+                    )].sort((a, b) => a.localeCompare(b, 'zh-CN'));
+
+                    fundSubjectCache.set(yearKey, subjects);
+                }
+
+                subjectSelect.innerHTML = '';
+
+                const allOption = document.createElement('option');
+                allOption.value = 'all';
+                allOption.textContent = '全部学科';
+                subjectSelect.appendChild(allOption);
+
+                subjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject;
+                    option.textContent = subject;
+                    subjectSelect.appendChild(option);
+                });
+
+                // 年份变化后，若原学科在新年份没有经费记录，则回到“全部学科”。
+                subjectSelect.value = subjects.includes(preferredSubject)
+                    ? preferredSubject
+                    : 'all';
+
+                return true;
+            } catch (error) {
+                console.error('动态加载学科失败：', error);
+                // 接口暂时不可用时保留“全部学科”，不阻断页面其他图表。
+                subjectSelect.innerHTML = '<option value="all">全部学科</option>';
+                return false;
+            }
+        }
 
         // 获取当前筛选条件
         function getFilters() {
@@ -570,34 +779,134 @@
         // 刷新所有图表
         function refreshData() {
             const { year, subject } = getFilters();
+            if (!year) {
+                console.warn('年份尚未加载，暂不请求经费数据');
+                return;
+            }
 
-            // 1. 顶部卡片
-            fetch(`/api/fund/overview?year=${year}`)
-    .then(res => res.json())
-    .then(data => {
-        // 累计到账金额
-        document.querySelector('.data-card:nth-child(1) .value').innerText = `¥ ${data.total_amount} 万`;
-        const trend1 = document.querySelector('.data-card:nth-child(1) .trend');
-        trend1.innerHTML = `<i class="fa fa-arrow-up"></i> 同比增长 ${data.growth_rate}%`;
-        trend1.className = data.growth_rate >= 0 ? 'trend trend-up' : 'trend trend-down';
-        // 预算执行率
-        document.querySelector('.data-card:nth-child(2) .value').innerText = `${data.execution_rate} %`;
-        const trend2 = document.querySelector('.data-card:nth-child(2) .trend');
-        trend2.innerHTML = `<i class="fa fa-arrow-up"></i> 较上期提升 ${(data.execution_rate - 70).toFixed(1)}%`;  // 模拟值，可调整
-        // 经费结余
-        document.querySelector('.data-card:nth-child(3) .value').innerHTML = `¥ ${data.surplus} 万`;
-// 补上下面的趋势更新（即使不显示趋势，也要覆盖掉“加载中...”）
-const trend3 = document.querySelector('.data-card:nth-child(3) .trend');
-trend3.innerHTML = `<i class="fa fa-arrow-down"></i> 结余较去年同期减少 2.5%`;  // 具体数值可自行从后端获取或简单模拟
-        // 增长趋势（第四张卡片）
-        document.querySelector('.data-card:nth-child(4) .value').innerText = data.growth_rate >= 0 ? '稳步上升' : '有所下降';
-        const trend4 = document.querySelector('.data-card:nth-child(4) .trend');
-        trend4.innerHTML = data.growth_rate >= 0
-            ? `<i class="fa fa-arrow-up"></i> 同比增长 ${data.growth_rate}%`
-            : `<i class="fa fa-arrow-down"></i> 同比下降 ${Math.abs(data.growth_rate)}%`;
-        trend4.className = data.growth_rate >= 0 ? 'trend trend-up' : 'trend trend-down';
-    })
-    .catch(err => console.error('加载经费概览失败', err));
+                        // 1. 顶部卡片
+            fetch(`/api/fund/overview?year=${year}&subject=${subject}`)
+                .then(res => res.json())
+                .then(data => {
+                    // 累计到账金额
+                    document.querySelector(
+                        '.data-card:nth-child(1) .value'
+                    ).innerText = `¥ ${data.total_amount} 万`;
+
+                    const trend1 = document.querySelector(
+                        '.data-card:nth-child(1) .trend'
+                    );
+
+                    trend1.innerHTML = data.growth_rate >= 0
+                        ? `<i class="fa fa-arrow-up"></i> 同比增长 ${data.growth_rate}%`
+                        : `<i class="fa fa-arrow-down"></i> 同比下降 ${Math.abs(data.growth_rate)}%`;
+
+                    trend1.className = data.growth_rate >= 0
+                        ? 'trend trend-up'
+                        : 'trend trend-down';
+
+
+                    // 预算执行率
+                    const executionValue = document.querySelector(
+                        '.data-card:nth-child(2) .value'
+                    );
+
+                    const trend2 = document.querySelector(
+                        '.data-card:nth-child(2) .trend'
+                    );
+
+                    if (data.budget_available) {
+                        executionValue.innerText =
+                            `${data.execution_rate} %`;
+
+                        if (data.execution_rate_change !== null) {
+                            const change =
+                                data.execution_rate_change;
+
+                            trend2.innerHTML = change >= 0
+                                ? `<i class="fa fa-arrow-up"></i> 较上年提升 ${change}%`
+                                : `<i class="fa fa-arrow-down"></i> 较上年下降 ${Math.abs(change)}%`;
+
+                            trend2.className = change >= 0
+                                ? 'trend trend-up'
+                                : 'trend trend-down';
+                        } else {
+                            trend2.innerHTML =
+                                '<i class="fa fa-minus"></i> 上年度暂无可比预算';
+
+                            trend2.className = 'trend';
+                        }
+                    } else {
+                        executionValue.innerText = '--';
+
+                        trend2.innerHTML =
+                            '<i class="fa fa-info-circle"></i> 暂无年度预算数据';
+
+                        trend2.className = 'trend';
+                    }
+
+
+                    // 经费结余
+                    const surplusValue = document.querySelector(
+                        '.data-card:nth-child(3) .value'
+                    );
+
+                    const trend3 = document.querySelector(
+                        '.data-card:nth-child(3) .trend'
+                    );
+
+                    if (data.budget_available) {
+                        surplusValue.innerText =
+                            `¥ ${data.surplus} 万`;
+
+                        if (data.surplus >= 0) {
+                            trend3.innerHTML =
+                                '<i class="fa fa-check-circle"></i> 年度预算尚有结余';
+
+                            trend3.className =
+                                'trend trend-up';
+                        } else {
+                            trend3.innerHTML =
+                                '<i class="fa fa-exclamation-triangle"></i> 年度实际经费超过预算';
+
+                            trend3.className =
+                                'trend trend-down';
+                        }
+                    } else {
+                        surplusValue.innerText = '--';
+
+                        trend3.innerHTML =
+                            '<i class="fa fa-info-circle"></i> 暂无年度预算数据';
+
+                        trend3.className = 'trend';
+                    }
+
+
+                    // 增长趋势
+                    document.querySelector(
+                        '.data-card:nth-child(4) .value'
+                    ).innerText = data.growth_rate >= 0
+                        ? '稳步上升'
+                        : '有所下降';
+
+                    const trend4 = document.querySelector(
+                        '.data-card:nth-child(4) .trend'
+                    );
+
+                    trend4.innerHTML = data.growth_rate >= 0
+                        ? `<i class="fa fa-arrow-up"></i> 同比增长 ${data.growth_rate}%`
+                        : `<i class="fa fa-arrow-down"></i> 同比下降 ${Math.abs(data.growth_rate)}%`;
+
+                    trend4.className = data.growth_rate >= 0
+                        ? 'trend trend-up'
+                        : 'trend trend-down';
+                })
+                .catch(err => {
+                    console.error(
+                        '加载经费概览失败',
+                        err
+                    );
+                });
 
             // 2. 桑基图
             fetch(`/api/fund/sankey?year=${year}&subject=${subject}`)
@@ -616,33 +925,122 @@ trend3.innerHTML = `<i class="fa fa-arrow-down"></i> 结余较去年同期减少
                 })
                 .catch(err => console.error('加载桑基图失败', err));
 
-            // 3. 仪表盘
+            
+                        // 3. 年度预算执行仪表盘
             fetch(`/api/fund/gauge?year=${year}&subject=${subject}`)
                 .then(res => res.json())
                 .then(data => {
-                    gaugeChart.setOption({
-                        tooltip: { formatter: '{b}：{c}%' },
-                        series: [{
-                            name: '预算执行',
-                            type: 'gauge',
-                            radius: '75%',
-                            detail: { formatter: '{value}%', fontSize: 24, color: '#0A2343' },
-                            data: [{ value: data.value, name: '执行率' }],
-                            axisLine: {
-                                lineStyle: {
-                                    width: 15,
-                                    color: [[0.3, '#67C23A'], [0.7, '#409EFF'], [1, '#F56C6C']]
-                                }
+                    if (!data.budget_available) {
+                        gaugeChart.setOption(
+                            {
+                                tooltip: {
+                                    formatter:
+                                        '当前年度暂无预算数据'
+                                },
+                                series: [{
+                                    name: '预算执行',
+                                    type: 'gauge',
+                                    radius: '75%',
+                                    pointer: {
+                                        show: false
+                                    },
+                                    progress: {
+                                        show: false
+                                    },
+                                    detail: {
+                                        formatter: '--',
+                                        fontSize: 28,
+                                        color: '#909399'
+                                    },
+                                    title: {
+                                        fontSize: 16,
+                                        color: '#909399'
+                                    },
+                                    data: [{
+                                        value: 0,
+                                        name: '暂无预算'
+                                    }],
+                                    axisLine: {
+                                        lineStyle: {
+                                            width: 15,
+                                            color: [
+                                                [1, '#E4E7ED']
+                                            ]
+                                        }
+                                    },
+                                    axisTick: {
+                                        show: false
+                                    },
+                                    splitLine: {
+                                        show: false
+                                    },
+                                    axisLabel: {
+                                        show: false
+                                    }
+                                }]
                             },
-                            pointer: { width: 4 },
-                            title: { fontSize: 16, color: '#0A2343' }
-                        }]
-                    });
+                            true
+                        );
+
+                        return;
+                    }
+
+                    gaugeChart.setOption(
+                        {
+                            tooltip: {
+                                formatter:
+                                    '{b}：{c}%'
+                            },
+                            series: [{
+                                name: '预算执行',
+                                type: 'gauge',
+                                radius: '75%',
+                                // 执行率超过 100% 时扩展仪表盘上限，避免指针被截断。
+                                max: Math.max(
+                                    100,
+                                    Math.ceil(Number(data.value || 0) / 10) * 10
+                                ),
+                                detail: {
+                                    formatter: '{value}%',
+                                    fontSize: 24,
+                                    color: '#0A2343'
+                                },
+                                data: [{
+                                    value: data.value,
+                                    name: '执行率'
+                                }],
+                                axisLine: {
+                                    lineStyle: {
+                                        width: 15,
+                                        color: [
+                                            [0.3, '#67C23A'],
+                                            [0.7, '#409EFF'],
+                                            [1, '#F56C6C']
+                                        ]
+                                    }
+                                },
+                                pointer: {
+                                    show: true,
+                                    width: 4
+                                },
+                                title: {
+                                    fontSize: 16,
+                                    color: '#0A2343'
+                                }
+                            }]
+                        },
+                        true
+                    );
                 })
-                .catch(err => console.error('加载仪表盘失败', err));
+                .catch(err => {
+                    console.error(
+                        '加载仪表盘失败',
+                        err
+                    );
+                });
 
             // 4. 近三年经费支出柱状图
-            fetch(`/api/fund/expense-bar?subject=${subject}`)
+            fetch(`/api/fund/expense-bar?year=${year}&subject=${subject}`)
                 .then(res => res.json())
                 .then(data => {
                     barChart.setOption({
@@ -675,14 +1073,42 @@ trend3.innerHTML = `<i class="fa fa-arrow-down"></i> 结余较去年同期减少
                             textStyle: { fontSize: 14, color: '#333' },
                             formatter: name => name
                         },
-                        color: ['#2E86AB', '#67C23A', '#E6A23C', '#909399', '#F56C6C'],
+                        // 为每个学科固定指定颜色，避免类别数量或后端排序导致颜色重复。
+                        color: ['#4682B4', '#70AD47', '#E6A23C', '#909399', '#E96B70', '#9B59B6'],
                         series: [{
                             name: '经费分配',
                             type: 'pie',
                             radius: ['40%', '70%'],
                             center: ['50%', '40%'],
-                            data: data.data,
-                            label: { show: true, position: 'outside', formatter: '{b}', fontSize: 14 },
+                            data: (Array.isArray(data.data) ? data.data : []).map((item, index) => {
+                                const departmentName = String(item.name || '').trim();
+                                const departmentColors = {
+                                    '社会保障': '#4682B4',
+                                    '政治学理论': '#70AD47',
+                                    '行政管理': '#E6A23C',
+                                    '公共政策': '#909399',
+                                    '国际关系': '#E96B70',
+                                    '公共管理': '#9B59B6'
+                                };
+                                const fallbackColors = ['#4682B4', '#70AD47', '#E6A23C', '#909399', '#E96B70', '#9B59B6'];
+                                return {
+                                    ...item,
+                                    itemStyle: {
+                                        ...(item.itemStyle || {}),
+                                        color: departmentColors[departmentName] || fallbackColors[index % fallbackColors.length]
+                                    }
+                                };
+                            }),
+                            label: {
+                                show: true,
+                                position: 'outside',
+                                // 右侧可用空间较窄时，将“政治学理论”换行显示，避免标签被截断。
+                                formatter: function (params) {
+                                    return params.name === '政治学理论' ? '政治学\n理论' : params.name;
+                                },
+                                overflow: 'break',
+                                fontSize: 14
+                            },
                             labelLine: { length: 15, length2: 10 },
                             itemStyle: { borderWidth: 2, borderColor: '#fff' }
                         }]
@@ -691,24 +1117,275 @@ trend3.innerHTML = `<i class="fa fa-arrow-down"></i> 结余较去年同期减少
                 .catch(err => console.error('加载环形图失败', err));
         }
 
-        // 筛选按钮事件
-        function filterData() {
+        // 查询前同步当前年份的真实学科选项，再刷新图表。
+        async function filterData() {
+            const year = document.getElementById('yearFilter').value;
+            const preferredSubject = document.getElementById('subjectFilter').value || 'all';
+
+            if (!year) {
+                alert('请先选择有效的科研经费年度。');
+                return;
+            }
+
+            await loadSubjectOptions(year, preferredSubject);
             refreshData();
+            loadFundLedger(1);
         }
 
-        // 导出（占位）
-        function exportTable() {
-            alert('导出功能开发中');
+        // 导出当前筛选条件下的科研经费明细 CSV。
+        // 需要同时在 Django 后端注册 /api/fund/export 接口。
+        async function exportTable() {
+            const { year, subject } = getFilters();
+
+            if (!year) {
+                alert('请先选择有效的科研经费年度。');
+                return;
+            }
+
+            const params = new URLSearchParams({
+                year: String(year),
+                subject: subject || 'all'
+            });
+
+            try {
+                const response = await fetch(`/api/fund/export?${params.toString()}`);
+
+                if (!response.ok) {
+                    let message = '导出失败，请稍后重试。';
+                    try {
+                        const errorData = await response.json();
+                        if (errorData && errorData.error) {
+                            message = errorData.error;
+                        }
+                    } catch (_) {
+                        // 后端未返回 JSON 错误信息时使用默认提示。
+                    }
+                    throw new Error(message);
+                }
+
+                const blob = await response.blob();
+                if (!blob.size) {
+                    throw new Error('导出文件为空，请检查当前筛选条件。');
+                }
+
+                const downloadUrl = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                const subjectLabel = subject === 'all' ? '全部学科' : subject;
+
+                link.href = downloadUrl;
+                link.download = `科研经费明细_${year}_${subjectLabel}.csv`;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+            } catch (error) {
+                console.error('导出科研经费明细失败：', error);
+                alert(error.message || '导出失败，请检查后端接口是否已配置。');
+            }
         }
+
+
+
+        // =====================================================
+        // 科研经费明细台账：分页查询、详情、登记与编辑
+        // =====================================================
+        let fundLedgerPage = 1;
+        const fundLedgerPageSize = 10;
+        let fundLedgerTotalPages = 1;
+        let fundProjectsLoaded = false;
+        let fundProjectOptions = [];
+
+        function escapeFundHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, char => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[char]));
+        }
+
+        function getCookieValue(name) {
+            const prefix = `${name}=`;
+            const item = document.cookie.split(';').map(value => value.trim()).find(value => value.startsWith(prefix));
+            return item ? decodeURIComponent(item.slice(prefix.length)) : '';
+        }
+
+        async function loadFundProjectOptions() {
+            if (fundProjectsLoaded) return fundProjectOptions;
+            const response = await fetch('/api/fund/projects');
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || '科研项目列表加载失败');
+            fundProjectOptions = Array.isArray(data.data) ? data.data : [];
+            const select = document.getElementById('fundProject');
+            select.innerHTML = '<option value="">请选择关联项目</option>' + fundProjectOptions.map(item =>
+                `<option value="${escapeFundHtml(item.id)}">${escapeFundHtml(item.project_no)} · ${escapeFundHtml(item.project_name)}（${escapeFundHtml(item.leader_name || '未指定负责人')}）</option>`
+            ).join('');
+            fundProjectsLoaded = true;
+            return fundProjectOptions;
+        }
+
+        async function loadFundLedger(page = 1) {
+            fundLedgerPage = Math.max(1, Number(page) || 1);
+            const body = document.getElementById('fundLedgerBody');
+            body.innerHTML = '<tr><td class="fund-empty" colspan="8">正在加载经费明细……</td></tr>';
+            const filters = getFilters();
+            const params = new URLSearchParams({
+                page: String(fundLedgerPage),
+                page_size: String(fundLedgerPageSize),
+                year: filters.year || '',
+                subject: filters.subject || 'all',
+                keyword: document.getElementById('fundLedgerKeyword').value.trim()
+            });
+            try {
+                const response = await fetch(`/api/fund/details?${params.toString()}`);
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || '经费明细加载失败');
+                const rows = Array.isArray(data.results) ? data.results : [];
+                fundLedgerTotalPages = Math.max(1, Number(data.total_pages) || 1);
+                if (!rows.length) {
+                    body.innerHTML = '<tr><td class="fund-empty" colspan="8">当前筛选条件下暂无经费明细</td></tr>';
+                } else {
+                    body.innerHTML = rows.map(item => `<tr>
+                        <td>${escapeFundHtml(item.year)}</td>
+                        <td title="${escapeFundHtml(item.project_name)}">${escapeFundHtml(item.project_name)}</td>
+                        <td>${escapeFundHtml(item.leader_name || '未指定')}</td>
+                        <td>${escapeFundHtml(item.subject || '未分类')}</td>
+                        <td>${escapeFundHtml(item.source_type)}</td>
+                        <td>${escapeFundHtml(item.usage_type)}</td>
+                        <td class="amount">${Number(item.amount || 0).toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+                        <td><button type="button" class="fund-action" onclick="viewFundDetail(${Number(item.id)})">详情</button><button type="button" class="fund-action" onclick="editFundDetail(${Number(item.id)})">编辑</button></td>
+                    </tr>`).join('');
+                }
+                document.getElementById('fundLedgerCount').textContent = `共 ${Number(data.total || 0)} 条记录`;
+                document.getElementById('fundPageInfo').textContent = `第 ${fundLedgerPage} / ${fundLedgerTotalPages} 页`;
+                document.getElementById('fundPrevPage').disabled = fundLedgerPage <= 1;
+                document.getElementById('fundNextPage').disabled = fundLedgerPage >= fundLedgerTotalPages;
+            } catch (error) {
+                body.innerHTML = '<tr><td class="fund-empty" colspan="8">经费明细加载失败，请检查后端接口</td></tr>';
+                console.error('加载科研经费明细失败：', error);
+            }
+        }
+
+        function changeFundPage(delta) {
+            const nextPage = fundLedgerPage + delta;
+            if (nextPage >= 1 && nextPage <= fundLedgerTotalPages) loadFundLedger(nextPage);
+        }
+
+        function resetFundLedger() {
+            document.getElementById('fundLedgerKeyword').value = '';
+            loadFundLedger(1);
+        }
+
+        async function openFundModal(mode, record = null) {
+            const form = document.getElementById('fundDetailForm');
+            form.reset();
+            document.getElementById('fundDetailId').value = record?.id || '';
+            document.getElementById('fundModalTitle').textContent = mode === 'view' ? '经费明细详情' : (mode === 'edit' ? '编辑科研经费' : '登记科研经费');
+            document.getElementById('fundSaveButton').style.display = mode === 'view' ? 'none' : '';
+            try {
+                await loadFundProjectOptions();
+            } catch (error) {
+                alert(error.message || '项目列表加载失败');
+                return;
+            }
+            document.getElementById('fundYear').value = record?.year || document.getElementById('yearFilter').value || new Date().getFullYear();
+            document.getElementById('fundProject').value = record?.project_id || '';
+            document.getElementById('fundAmount').value = record?.amount ?? '';
+            document.getElementById('fundSource').value = record?.source_type || '国家社科';
+            document.getElementById('fundUsage').value = record?.usage_type || '设备费';
+            form.querySelectorAll('input:not([type="hidden"]),select').forEach(el => { el.disabled = mode === 'view'; });
+            document.getElementById('fundModalMask').classList.add('open');
+        }
+
+        function closeFundModal() {
+            document.getElementById('fundModalMask').classList.remove('open');
+            document.getElementById('fundDetailForm').querySelectorAll('input,select').forEach(el => { el.disabled = false; });
+            document.getElementById('fundSaveButton').style.display = '';
+        }
+
+        async function fetchFundRecord(id) {
+            const response = await fetch(`/api/fund/details?id=${encodeURIComponent(id)}`);
+            const data = await response.json();
+            if (!response.ok || !data.record) throw new Error(data.error || '未找到该经费明细');
+            return data.record;
+        }
+
+        async function viewFundDetail(id) {
+            try { await openFundModal('view', await fetchFundRecord(id)); }
+            catch (error) { alert(error.message || '读取经费详情失败'); }
+        }
+
+        async function editFundDetail(id) {
+            try { await openFundModal('edit', await fetchFundRecord(id)); }
+            catch (error) { alert(error.message || '读取经费详情失败'); }
+        }
+
+        async function submitFundDetail(event) {
+            event.preventDefault();
+            const id = document.getElementById('fundDetailId').value;
+            const payload = {
+                project_id: document.getElementById('fundProject').value,
+                year: document.getElementById('fundYear').value,
+                amount: document.getElementById('fundAmount').value,
+                source_type: document.getElementById('fundSource').value,
+                usage_type: document.getElementById('fundUsage').value
+            };
+            if (id) payload.id = id;
+            const saveButton = document.getElementById('fundSaveButton');
+            saveButton.disabled = true;
+            saveButton.textContent = '保存中…';
+            try {
+                const response = await fetch('/api/fund/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookieValue('csrftoken')
+                    },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error || '保存失败');
+                closeFundModal();
+                await loadFundLedger(1);
+                // 新增/编辑后同步刷新原有图表和概览，保持展示数据一致。
+                refreshData();
+                alert(data.message || '经费明细保存成功');
+            } catch (error) {
+                alert(error.message || '保存失败，请检查后端接口');
+            } finally {
+                saveButton.disabled = false;
+                saveButton.textContent = '保存明细';
+            }
+        }
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') closeFundModal();
+        });
+        document.getElementById('fundModalMask')?.addEventListener('click', event => {
+            if (event.target.id === 'fundModalMask') closeFundModal();
+        });
 
         // 页面加载
-        window.onload = function () {
-            document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
-            document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
+        window.onload = async function () {
+            document.getElementById('btnAdmin').style.background =
+                currentRole === 'admin' ? '#409EFF' : '#666';
+
+            document.getElementById('btnTeacher').style.background =
+                currentRole === 'teacher' ? '#409EFF' : '#666';
+
             setActiveMenu();
             initCharts();
-            refreshData();
+
+            // 先加载数据库中的真实年份，再加载该年度的真实学科选项，最后刷新图表。
+            const yearLoaded = await loadYearOptions();
+
+            if (yearLoaded) {
+                const year = document.getElementById('yearFilter').value;
+                await loadSubjectOptions(year, 'all');
+                refreshData();
+                loadFundLedger(1);
+            } else {
+                loadFundLedger(1);
+            }
         };
+
     </script>
 <script src="/static/js/search.js"></script>
 </body>

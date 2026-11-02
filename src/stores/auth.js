@@ -1,111 +1,113 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
+// 演示账号：角色是学院真实存在的岗位，账号与密码是本平台演示用的，
+// 不使用任何真实教师的账号信息；岗位职责展示见登录页“官网岗位对照”。
 const MOCK_USERS = [
-  { 
-    id: 1, 
-    username: 'dean', 
-    password: '123456', 
-    role: 'dean', 
-    roleName: '院长', 
+  {
+    id: 1,
+    username: 'dean',
+    password: '123456',
+    role: 'dean',
+    roleName: '院长',
     avatar: '👔',
-    name: '张明辉',
+    name: '院长（演示）',
     college: '政治学与公共管理学院',
-    email: 'dean@sdu.edu.cn',
-    phone: '13800138001',
-    office: '学院办公楼301室',
-    joinDate: '2015-09-01'
+    email: 'dean@demo.local',
+    office: '学院办公楼',
+    joinDate: '2015-09-01',
+    dutyKey: '院长'
   },
-  { 
-    id: 2, 
-    username: 'admin', 
-    password: '123456', 
-    role: 'admin', 
-    roleName: '系统管理员', 
+  {
+    id: 2,
+    username: 'admin',
+    password: '123456',
+    role: 'admin',
+    roleName: '系统管理员',
     avatar: '👨‍💼',
-    name: '李管理员',
+    name: '系统管理员（演示）',
     college: '信息化中心',
-    email: 'admin@sdu.edu.cn',
-    phone: '13800138002',
-    office: '信息中心201室',
-    joinDate: '2018-03-15'
+    email: 'admin@demo.local',
+    office: '信息中心',
+    joinDate: '2018-03-15',
+    dutyKey: ''
   },
-  { 
-    id: 3, 
-    username: 'jw', 
-    password: '123456', 
-    role: 'jw', 
-    roleName: '教务教师', 
+  {
+    id: 3,
+    username: 'jw',
+    password: '123456',
+    role: 'jw',
+    roleName: '教务教师',
     avatar: '👨‍🏫',
-    name: '王教务',
+    name: '教务教师（演示）',
     college: '教务处',
-    email: 'jw@sdu.edu.cn',
-    phone: '13800138003',
-    office: '教务处102室',
-    joinDate: '2019-07-01'
+    email: 'jw@demo.local',
+    office: '教务处',
+    joinDate: '2019-07-01',
+    dutyKey: '分管本科教学'
   },
-  { 
-    id: 4, 
-    username: 'ky', 
-    password: '123456', 
-    role: 'ky', 
-    roleName: '科研教师', 
+  {
+    id: 4,
+    username: 'ky',
+    password: '123456',
+    role: 'ky',
+    roleName: '科研教师',
     avatar: '🔬',
-    name: '陈科研',
+    name: '科研教师（演示）',
     college: '科研管理办公室',
-    email: 'ky@sdu.edu.cn',
-    phone: '13800138004',
-    office: '科研楼203室',
-    joinDate: '2020-01-10'
+    email: 'ky@demo.local',
+    office: '科研楼',
+    joinDate: '2020-01-10',
+    dutyKey: '分管科研'
   },
-  { 
-    id: 5, 
-    username: 'rs', 
-    password: '123456', 
-    role: 'rs', 
-    roleName: '人事教师', 
+  {
+    id: 5,
+    username: 'rs',
+    password: '123456',
+    role: 'rs',
+    roleName: '人事教师',
     avatar: '👩‍💼',
-    name: '赵人事',
+    name: '人事教师（演示）',
     college: '人事处',
-    email: 'rs@sdu.edu.cn',
-    phone: '13800138005',
-    office: '人事处301室',
-    joinDate: '2019-09-01'
+    email: 'rs@demo.local',
+    office: '人事处',
+    joinDate: '2019-09-01',
+    dutyKey: '分管人事'
   },
-  { 
-    id: 6, 
-    username: 'yjs', 
-    password: '123456', 
-    role: 'yjs', 
-    roleName: '研究生教师', 
+  {
+    id: 6,
+    username: 'yjs',
+    password: '123456',
+    role: 'yjs',
+    roleName: '研究生教师',
     avatar: '🎓',
-    name: '刘研究生',
+    name: '研究生教师（演示）',
     college: '研究生管理办公室',
-    email: 'yjs@sdu.edu.cn',
-    phone: '13800138006',
-    office: '研究生院105室',
-    joinDate: '2021-03-01'
+    email: 'yjs@demo.local',
+    office: '研究生院',
+    joinDate: '2021-03-01',
+    dutyKey: '分管研究生'
   },
-  { 
-    id: 7, 
-    username: 'student', 
-    password: '123456', 
-    role: 'student', 
-    roleName: '学生', 
+  {
+    id: 7,
+    username: 'student',
+    password: '123456',
+    role: 'student',
+    roleName: '学生',
     avatar: '🎒',
-    name: '孙同学',
+    name: '学生（演示）',
     college: '政治学与公共管理学院',
-    email: 'student@sdu.edu.cn',
-    phone: '13800138007',
+    email: 'student@demo.local',
+    office: '学生公寓',
+    joinDate: '2022-09-01',
     studentId: '2022010101',
     major: '行政管理',
     grade: '2022级',
-    advisor: '张明辉教授',
-    dormitory: '学生公寓A栋302',
+    studentIdNote: '演示学号',
     enrollmentDate: '2022-09-01',
-    gpa: '3.85',
-    credits: '68',
-    coursesCompleted: '24门'
+    gpa: '—',
+    credits: '—',
+    coursesCompleted: '—'
   }
 ]
 
@@ -123,6 +125,9 @@ const MENU_CONFIG = [
 
 const KPI_PERMISSIONS = {
   students: { roles: ['dean', 'admin', 'jw', 'ky', 'rs', 'yjs', 'student'], level: 'full' },
+  undergrad: { roles: ['dean', 'admin', 'jw', 'rs', 'yjs', 'student'], level: 'full', else: '--' },
+  master: { roles: ['dean', 'admin', 'jw', 'rs', 'yjs', 'student'], level: 'full', else: '--' },
+  doctor: { roles: ['dean', 'admin', 'jw', 'rs', 'yjs', 'student'], level: 'full', else: '--' },
   staff: { roles: ['dean', 'admin', 'jw', 'ky', 'rs', 'yjs', 'student'], level: 'full' },
   projects: { roles: ['dean', 'admin', 'ky'], level: 'full', else: '--' },
   funding: { roles: ['dean', 'admin', 'ky'], level: 'full', else: '--' },
@@ -130,10 +135,20 @@ const KPI_PERMISSIONS = {
 }
 
 export const useAuthStore = defineStore('auth', () => {
+  // 演示用登录态：本地 token + 12 小时有效期（与真实 SSO 的会话超时口径一致）
+  const SESSION_HOURS = 12
   const token = ref(localStorage.getItem('token') || '')
   const userInfo = ref(JSON.parse(localStorage.getItem('userInfo') || 'null'))
+  const expireAt = ref(Number(localStorage.getItem('tokenExpire') || 0))
 
-  const isLoggedIn = computed(() => !!token.value && !!userInfo.value)
+  const isExpired = computed(() => !expireAt.value || Date.now() > expireAt.value)
+
+  const isLoggedIn = computed(() => !!token.value && !!userInfo.value && !isExpired.value)
+
+  const sessionRemain = computed(() => {
+    if (!expireAt.value) return 0
+    return Math.max(0, Math.round((expireAt.value - Date.now()) / 60000))
+  })
 
   const currentRole = computed(() => userInfo.value?.role || '')
 
@@ -164,8 +179,10 @@ export const useAuthStore = defineStore('auth', () => {
       throw new Error('用户名或密码错误')
     }
 
-    const mockToken = `mock_token_${Date.now()}_${user.id}`
+    const mockToken = `demo_token_${Date.now()}_${user.id}`
+    const deadline = Date.now() + SESSION_HOURS * 3600 * 1000
     token.value = mockToken
+    expireAt.value = deadline
     userInfo.value = {
       id: user.id,
       username: user.username,
@@ -175,14 +192,13 @@ export const useAuthStore = defineStore('auth', () => {
       name: user.name,
       college: user.college,
       email: user.email,
-      phone: user.phone,
       office: user.office,
       joinDate: user.joinDate,
+      dutyKey: user.dutyKey,
+      isDemoAccount: true,
       studentId: user.studentId,
       major: user.major,
       grade: user.grade,
-      advisor: user.advisor,
-      dormitory: user.dormitory,
       enrollmentDate: user.enrollmentDate,
       gpa: user.gpa,
       credits: user.credits,
@@ -190,6 +206,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     localStorage.setItem('token', mockToken)
+    localStorage.setItem('tokenExpire', String(deadline))
     localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
 
     return userInfo.value
@@ -198,17 +215,24 @@ export const useAuthStore = defineStore('auth', () => {
   const logout = () => {
     token.value = ''
     userInfo.value = null
+    expireAt.value = 0
     localStorage.removeItem('token')
+    localStorage.removeItem('tokenExpire')
     localStorage.removeItem('userInfo')
   }
 
   const checkAuth = () => {
     const savedToken = localStorage.getItem('token')
     const savedUserInfo = localStorage.getItem('userInfo')
-    
-    if (savedToken && savedUserInfo) {
+    const savedExpire = Number(localStorage.getItem('tokenExpire') || 0)
+
+    if (savedToken && savedUserInfo && savedExpire && Date.now() <= savedExpire) {
       token.value = savedToken
       userInfo.value = JSON.parse(savedUserInfo)
+      expireAt.value = savedExpire
+    } else if (savedToken || savedUserInfo) {
+      // 过期或数据不完整：直接清掉，避免半登录态
+      logout()
     }
   }
 
@@ -220,7 +244,10 @@ export const useAuthStore = defineStore('auth', () => {
   return {
     token,
     userInfo,
+    expireAt,
+    isExpired,
     isLoggedIn,
+    sessionRemain,
     currentRole,
     menuList,
     hasPermission,

@@ -38,6 +38,59 @@ class FundDetail(models.Model):
     year = models.IntegerField()
     usage_type = models.CharField(max_length=20, choices=USAGE_CHOICES)
 
+
+class FundBudget(models.Model):
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        related_name='budgets'
+    )
+    year = models.IntegerField()
+    budget_amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    # 是否为演示预算
+    is_demo = models.BooleanField(
+        default=False
+    )
+
+    # 数据来源：
+    # manual = 人工/真实预算
+    # DEMO_BUDGET_V1 = 系统演示预算
+    data_source = models.CharField(
+        max_length=50,
+        default='manual'
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['project', 'year'],
+                name='unique_project_year_budget'
+            )
+        ]
+        ordering = [
+            'year',
+            'project_id'
+        ]
+
+    def __str__(self):
+        source_label = (
+            '演示'
+            if self.is_demo
+            else '正式'
+        )
+
+        return (
+            f'{self.project.project_name} - '
+            f'{self.year}年度预算'
+            f'（{source_label}）'
+        )
+    def __str__(self):
+        return f'{self.project.project_name} - {self.year}年度预算'
+
 class Achievement(models.Model):
     TYPE_CHOICES = [('期刊论文','期刊论文'),('学术著作','学术著作'),('研究报告','研究报告'),('专利','专利'),('获奖','获奖'),('决策咨询','决策咨询')]
     title = models.CharField(max_length=200)
@@ -57,12 +110,44 @@ class TeacherScore(models.Model):
     teaching_score = models.DecimalField(max_digits=5, decimal_places=2)
     service_score = models.DecimalField(max_digits=5, decimal_places=2)
     comprehensive_score = models.DecimalField(max_digits=5, decimal_places=2)
+    
+    # 是否为演示数据：原有记录默认不是演示数据
+    is_demo = models.BooleanField(
+        default=False,
+        db_index=True,
+        verbose_name="是否为演示数据"
+    )
+
+    # 数据来源：原有记录默认为 existing
+    data_source = models.CharField(
+        max_length=50,
+        default="existing",
+        db_index=True,
+        verbose_name="数据来源"
+    )
+
 
 class Cooperation(models.Model):
     source = models.CharField(max_length=100)   # 可为教师名或外部机构名
     target = models.CharField(max_length=100)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     coop_count = models.IntegerField(default=1)
+    
+    # 是否为演示数据：原有记录默认不是演示数据
+    is_demo = models.BooleanField(
+        default=False,
+        db_index=True,
+        verbose_name="是否为演示数据"
+    )
+
+    # 数据来源：原有记录默认为 existing
+    data_source = models.CharField(
+        max_length=50,
+        default="existing",
+        db_index=True,
+        verbose_name="数据来源"
+    )
+
 
 class DeptResource(models.Model):
     dept = models.ForeignKey(Dept, on_delete=models.CASCADE)

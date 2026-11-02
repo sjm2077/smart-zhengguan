@@ -19,6 +19,14 @@
 
     <div v-if="activeTab === 'teacher'" class="teacher-section">
       <!-- 教师子标签：整体画像 / 个人画像 -->
+      <div class="data-source-bar">
+        <span class="src-tag src-a">A 官网真实</span>
+        <span>教师 93 人 / 个人主页 88 人、学术成果 597 条、通知 899 条</span>
+        <span class="src-tag src-b">B 真实采集</span>
+        <span>学院绩效评分 CSV 103 人（按姓名匹配 88 人）、官网论文题录 375 篇</span>
+        <span v-if="portraitLoading" class="src-loading">正在加载…</span>
+        <span v-else-if="portraitError" class="src-error">{{ portraitError }}</span>
+      </div>
       <div class="sub-tab-container">
         <button
           :class="['sub-tab-btn', { active: teacherView === 'overall' }]"
@@ -50,19 +58,19 @@
         <!-- 第一行：4个Mini图表 -->
         <div class="overall-charts-row four-cols">
           <div class="mini-chart-card">
-            <div class="mc-header">📄 近六年科研论文总数</div>
+            <div class="mc-header">📄 官网学术成果年度新增</div>
             <div ref="overallPaperChart" class="mc-body"></div>
           </div>
           <div class="mini-chart-card">
-            <div class="mc-header">📋 近六年科研项目总数</div>
+            <div class="mc-header">📋 官网学术成果类别</div>
             <div ref="overallProjectChart" class="mc-body"></div>
           </div>
           <div class="mini-chart-card">
-            <div class="mc-header">💰 近六年科研经费合计</div>
+            <div class="mc-header">🏛️ 官网教师职称构成</div>
             <div ref="overallFeeChart" class="mc-body"></div>
           </div>
           <div class="mini-chart-card">
-            <div class="mc-header">👥 教师总人数趋势</div>
+            <div class="mc-header">📣 官网通知公告年度发布</div>
             <div ref="overallTeacherChart" class="mc-body"></div>
           </div>
         </div>
@@ -73,9 +81,8 @@
             <div class="mc-header">
               <span>📊 师资力量</span>
               <div class="strength-legend">
-                <span class="legend-item"><span class="legend-dot" style="background:#7b2cbf"></span>博士</span>
-                <span class="legend-item"><span class="legend-dot" style="background:#00d4ff"></span>硕士</span>
-                <span class="legend-item"><span class="legend-dot" style="background:#52c41a"></span>学士</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#7b2cbf"></span>已纳入绩效评分</span>
+                <span class="legend-item"><span class="legend-dot" style="background:rgba(0,212,255,0.45)"></span>未纳入评分</span>
               </div>
             </div>
             <div class="strength-body">
@@ -114,10 +121,13 @@
           </div>
         </div>
 
-        <!-- 第三行：培养经历3D地球 + 绩效指标雷达 -->
+        <!-- 第三行：培养经历世界地图 + 绩效指标雷达 -->
         <div class="overall-charts-row">
           <div class="wide-chart-card">
-            <div class="mc-header">🌍 培养经历（教师教育背景全球分布）</div>
+            <div class="mc-header">
+              <span>🌍 培养经历（教师教育背景全球分布）</span>
+              <span v-if="globeStat" class="mc-sub">{{ globeStat }}</span>
+            </div>
             <div ref="overallGlobeChart" class="mc-body globe-body"></div>
           </div>
           <div class="half-chart-card">
@@ -164,9 +174,9 @@
           </div>
           <select v-model="teacherSearch.title" @change="filterTeachers">
             <option value="">全部职称</option>
-            <option value="教授">教授</option>
-            <option value="副教授">副教授</option>
-            <option value="讲师">讲师</option>
+            <option v-for="t in ((portraitMeta && portraitMeta.titles) || [])" :key="t.name" :value="t.name">
+              {{ t.name }}（{{ t.value }}人）
+            </option>
           </select>
           <select v-model="teacherSearch.research" @change="filterTeachers">
             <option value="">全部研究方向</option>
@@ -190,25 +200,28 @@
             <div class="basic-info">
               <h2 class="teacher-name">{{ currentTeacher.name }}</h2>
               <p class="teacher-title">{{ currentTeacher.title }} · {{ currentTeacher.department }}</p>
-              <p class="teacher-email">{{ currentTeacher.email }}</p>
+              <p class="teacher-email">
+                <a v-if="currentTeacher.homepage" :href="currentTeacher.homepage" target="_blank" rel="noopener">学院官网个人主页 ↗</a>
+                <span v-else>{{ currentTeacher.email }}</span>
+              </p>
             </div>
           </div>
           <div class="info-cards-row">
             <div class="info-mini-card wide">
-              <span class="info-mini-label">入职时间</span>
-              <span class="info-mini-value">{{ currentTeacher.joinYear }}年</span>
+              <span class="info-mini-label">绩效评分年度</span>
+              <span class="info-mini-value">{{ currentTeacher.joinYear }}</span>
             </div>
             <div class="info-mini-card wide">
               <span class="info-mini-label">研究方向</span>
               <span class="info-mini-value">{{ currentTeacher.research }}</span>
             </div>
             <div class="info-mini-card">
-              <span class="info-mini-label">学历</span>
+              <span class="info-mini-label">评分状态</span>
               <span class="info-mini-value">{{ currentTeacher.education }}</span>
             </div>
             <div class="info-mini-card">
-              <span class="info-mini-label">指导学生</span>
-              <span class="info-mini-value">{{ currentTeacher.students }}人</span>
+              <span class="info-mini-label">收录论文</span>
+              <span class="info-mini-value">{{ currentTeacher.students }}篇</span>
             </div>
           </div>
         </div>
@@ -226,38 +239,38 @@
             <div class="bar-stats-list">
               <div class="bar-stat-item">
                 <div class="bar-stat-header">
-                  <span class="bar-stat-label">授课课时</span>
-                  <span class="bar-stat-value">{{ currentTeacher.courses * 48 }}课时</span>
+                  <span class="bar-stat-label">教学绩效分</span>
+                  <span class="bar-stat-value">{{ currentTeacher.courses }} / {{ scoreMax.course }}</span>
                 </div>
                 <div class="bar-stat-track">
-                  <div class="bar-stat-fill bar-1" :style="{ width: (currentTeacher.courses / 12 * 100) + '%' }"></div>
+                  <div class="bar-stat-fill bar-1" :style="{ width: Math.min(100, currentTeacher.courses / (scoreMax.course || 1) * 100) + '%' }"></div>
                 </div>
               </div>
               <div class="bar-stat-item">
                 <div class="bar-stat-header">
-                  <span class="bar-stat-label">项目数量</span>
+                  <span class="bar-stat-label">科研项目数</span>
                   <span class="bar-stat-value">{{ currentTeacher.projects }}项</span>
                 </div>
                 <div class="bar-stat-track">
-                  <div class="bar-stat-fill bar-2" :style="{ width: (currentTeacher.projects / 20 * 100) + '%' }"></div>
+                  <div class="bar-stat-fill bar-2" :style="{ width: Math.min(100, currentTeacher.projects / 10 * 100) + '%' }"></div>
                 </div>
               </div>
               <div class="bar-stat-item">
                 <div class="bar-stat-header">
-                  <span class="bar-stat-label">论文成果</span>
-                  <span class="bar-stat-value">{{ currentTeacher.papers }}篇</span>
+                  <span class="bar-stat-label">论文绩效分</span>
+                  <span class="bar-stat-value">{{ currentTeacher.papers }} / {{ scoreMax.paper }}</span>
                 </div>
                 <div class="bar-stat-track">
-                  <div class="bar-stat-fill bar-3" :style="{ width: (currentTeacher.papers / 70 * 100) + '%' }"></div>
+                  <div class="bar-stat-fill bar-3" :style="{ width: Math.min(100, currentTeacher.papers / (scoreMax.paper || 1) * 100) + '%' }"></div>
                 </div>
               </div>
               <div class="bar-stat-item">
                 <div class="bar-stat-header">
-                  <span class="bar-stat-label">获奖情况</span>
-                  <span class="bar-stat-value">{{ currentTeacher.awards }}项</span>
+                  <span class="bar-stat-label">获奖绩效分</span>
+                  <span class="bar-stat-value">{{ currentTeacher.awardScore }} / {{ scoreMax.award }}</span>
                 </div>
                 <div class="bar-stat-track">
-                  <div class="bar-stat-fill bar-4" :style="{ width: (currentTeacher.awards / 15 * 100) + '%' }"></div>
+                  <div class="bar-stat-fill bar-4" :style="{ width: Math.min(100, currentTeacher.awardScore / (scoreMax.award || 1) * 100) + '%' }"></div>
                 </div>
               </div>
             </div>
@@ -267,12 +280,12 @@
         <div class="bottom-charts-row">
           <div class="chart-card level1-card">
             <div class="card-topline"></div>
-            <h4 class="card-title">纵向职称分布</h4>
+            <h4 class="card-title">全院职称分布（高亮本人）</h4>
             <div ref="titleDistributionChart" class="chart-container"></div>
           </div>
           <div class="chart-card level1-card">
             <div class="card-topline"></div>
-            <h4 class="card-title">科研项目等级</h4>
+            <h4 class="card-title">论文分级（A+/A/B/C/D）</h4>
             <div ref="projectLevelChart" class="chart-container"></div>
           </div>
         </div>
@@ -280,12 +293,12 @@
         <div class="bottom-charts-row">
           <div class="chart-card level1-card">
             <div class="card-topline"></div>
-            <h4 class="card-title">历年招生趋势</h4>
+            <h4 class="card-title">绩效六维评分</h4>
             <div ref="enrollmentChart" class="chart-container"></div>
           </div>
           <div class="chart-card level1-card">
             <div class="card-topline"></div>
-            <h4 class="card-title">学生评价评分</h4>
+            <h4 class="card-title">与全院均值对比</h4>
             <div ref="studentEvalChart" class="chart-container"></div>
           </div>
         </div>
@@ -299,6 +312,11 @@
     </div>
 
     <div v-if="activeTab === 'student'" class="student-section">
+      <p class="demo-note">
+        数据说明：学生个体明细（姓名 / 学号 / 绩点 / 导师）不属于官网公开信息，本页为<b>结构演示</b>——
+        姓名统一为“示例学生A–L”、学号统一为“示例学号”、导师一栏留待研究生系统接入；
+        招生规模可对照官网《学院简介》：每年本科 150 人、学术硕士 120 人、博士 35 人、MPA 400 人、留学生 40 人。
+      </p>
       <div class="sub-tab-container">
         <button 
           :class="['sub-tab-btn', { active: studentView === 'individual' }]"
@@ -919,7 +937,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, watch, computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick, watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import * as echarts from 'echarts'
 import 'echarts-gl'
@@ -971,6 +989,7 @@ const overallFeeChart = ref(null)
 const overallTeacherChart = ref(null)
 const overallWordCloud = ref(null)
 const overallGlobeChart = ref(null)
+const globeStat = ref('')
 const overallRadarChart = ref(null)
 const undergraduateData = ref(null)
 const graduateData = ref(null)
@@ -988,332 +1007,88 @@ const studentSearch = ref({
   level: ''
 })
 
-const teacherResearchOptions = ['公共政策', '政府治理', '政治学理论', '比较政治', '国际关系', '国际安全', '公共管理', '社会保障']
 const studentMajorOptions = ['行政管理', '政治学理论', '国际政治', '公共管理', '政治学与行政学']
 
-const teachers = [
-  {
-    id: 1,
-    name: '张伟',
-    title: '教授',
-    department: '行政管理系',
-    email: 'zhangwei@sdu.edu.cn',
-    phone: '0531-88366001',
-    office: '逸夫楼A座301室',
-    joinYear: 2008,
-    research: '公共政策、政府治理',
-    education: '博士',
-    degree: '北京大学政府管理学院',
-    students: 25,
-    phdStudents: 12,
-    masterStudents: 13,
-    courses: 8,
-    projects: 12,
-    nationalProjects: 5,
-    provincialProjects: 7,
-    papers: 45,
-    sciePapers: 8,
-    cssciPapers: 30,
-    awards: 8,
-    nationalAwards: 2,
-    provincialAwards: 6,
-    tags: ['公共政策', '政府治理', '博士生导师', '长江学者', '国家级项目', '教学名师'],
-    radarData: [85, 92, 88, 90, 85, 80],
-    teachingCourses: ['公共政策分析', '公共管理学', '政策评估'],
-    achievements: ['主持国家社科基金重大项目1项', '发表SSCI论文5篇', '获省部级教学成果一等奖'],
-    honors: ['长江学者特聘教授', '国务院特殊津贴专家', '山东省教学名师']
-  },
-  {
-    id: 2,
-    name: '李娜',
-    title: '副教授',
-    department: '政治学系',
-    email: 'lina@sdu.edu.cn',
-    phone: '0531-88366002',
-    office: '逸夫楼B座205室',
-    joinYear: 2015,
-    research: '政治学理论、比较政治',
-    education: '博士',
-    degree: '复旦大学国际关系与公共事务学院',
-    students: 15,
-    phdStudents: 0,
-    masterStudents: 15,
-    courses: 6,
-    projects: 8,
-    nationalProjects: 2,
-    provincialProjects: 6,
-    papers: 28,
-    sciePapers: 3,
-    cssciPapers: 20,
-    awards: 5,
-    nationalAwards: 0,
-    provincialAwards: 5,
-    tags: ['政治学理论', '比较政治', '硕士生导师', '省部级项目', '青年学者'],
-    radarData: [78, 85, 90, 82, 88, 75],
-    teachingCourses: ['政治学原理', '比较政治学', '西方政治思想史'],
-    achievements: ['主持国家社科基金青年项目1项', '发表CSSCI论文20篇'],
-    honors: ['山东大学青年教学能手', '山东省社科优秀成果奖']
-  },
-  {
-    id: 3,
-    name: '王强',
-    title: '教授',
-    department: '国际政治系',
-    email: 'wangqiang@sdu.edu.cn',
-    phone: '0531-88366003',
-    office: '逸夫楼C座402室',
-    joinYear: 2010,
-    research: '国际关系、国际安全',
-    education: '博士',
-    degree: '中国人民大学国际关系学院',
-    students: 20,
-    phdStudents: 8,
-    masterStudents: 12,
-    courses: 7,
-    projects: 10,
-    nationalProjects: 4,
-    provincialProjects: 6,
-    papers: 35,
-    sciePapers: 6,
-    cssciPapers: 25,
-    awards: 6,
-    nationalAwards: 1,
-    provincialAwards: 5,
-    tags: ['国际关系', '国际安全', '博士生导师', '国家级项目', '智库专家'],
-    radarData: [88, 80, 85, 92, 82, 88],
-    teachingCourses: ['国际政治学', '国际关系理论', '国际安全研究'],
-    achievements: ['主持国家社科基金重点项目2项', '参与外交部政策咨询'],
-    honors: ['山东省智库专家', '中国国际关系学会理事']
-  },
-  {
-    id: 4,
-    name: '赵敏',
-    title: '讲师',
-    department: '公共管理系',
-    email: 'zhaomin@sdu.edu.cn',
-    phone: '0531-88366004',
-    office: '逸夫楼A座108室',
-    joinYear: 2018,
-    research: '公共管理、社会保障',
-    education: '博士',
-    degree: '中山大学政治与公共事务管理学院',
-    students: 8,
-    phdStudents: 0,
-    masterStudents: 8,
-    courses: 5,
-    projects: 4,
-    nationalProjects: 0,
-    provincialProjects: 4,
-    papers: 15,
-    sciePapers: 1,
-    cssciPapers: 10,
-    awards: 2,
-    nationalAwards: 0,
-    provincialAwards: 2,
-    tags: ['公共管理', '社会保障', '青年教师', '博士后'],
-    radarData: [72, 88, 80, 75, 90, 82],
-    teachingCourses: ['公共管理学', '社会保障概论', '公共经济学'],
-    achievements: ['主持山东省社科规划项目1项', '发表CSSCI论文10篇'],
-    honors: ['山东大学优秀博士后', '青年教师讲课比赛三等奖']
-  },
-  {
-    id: 5,
-    name: '陈建国',
-    title: '教授',
-    department: '行政管理系',
-    email: 'chenjg@sdu.edu.cn',
-    phone: '0531-88366005',
-    office: '逸夫楼A座305室',
-    joinYear: 2005,
-    research: '公共政策、行政管理',
-    education: '博士',
-    degree: '武汉大学政治与公共管理学院',
-    students: 32,
-    phdStudents: 15,
-    masterStudents: 17,
-    courses: 10,
-    projects: 18,
-    nationalProjects: 6,
-    provincialProjects: 12,
-    papers: 60,
-    sciePapers: 10,
-    cssciPapers: 40,
-    awards: 12,
-    nationalAwards: 3,
-    provincialAwards: 9,
-    tags: ['公共政策', '行政管理', '博士生导师', '泰山学者', '国家级项目'],
-    radarData: [92, 95, 90, 88, 85, 87],
-    teachingCourses: ['行政管理学', '公共政策学', '电子政务'],
-    achievements: ['主持国家自然科学基金项目3项', '发表SCI/SSCI论文10篇'],
-    honors: ['泰山学者特聘教授', '山东省有突出贡献中青年专家']
-  },
-  {
-    id: 6,
-    name: '刘洋',
-    title: '副教授',
-    department: '国际政治系',
-    email: 'liuyang@sdu.edu.cn',
-    phone: '0531-88366006',
-    office: '逸夫楼C座303室',
-    joinYear: 2012,
-    research: '国际关系、全球治理',
-    education: '博士',
-    degree: '清华大学国际关系学院',
-    students: 18,
-    phdStudents: 5,
-    masterStudents: 13,
-    courses: 7,
-    projects: 9,
-    nationalProjects: 3,
-    provincialProjects: 6,
-    papers: 32,
-    sciePapers: 5,
-    cssciPapers: 22,
-    awards: 7,
-    nationalAwards: 1,
-    provincialAwards: 6,
-    tags: ['国际关系', '全球治理', '硕士生导师', '省部级项目', '青年拔尖'],
-    radarData: [85, 82, 88, 90, 86, 84],
-    teachingCourses: ['当代中国外交', '全球治理', '国际组织'],
-    achievements: ['主持国家社科基金一般项目2项', '发表SSCI论文5篇'],
-    honors: ['山东大学青年拔尖人才', '山东省优秀青年知识分子']
-  },
-  {
-    id: 7,
-    name: '王芳',
-    title: '讲师',
-    department: '政治学系',
-    email: 'wangf@sdu.edu.cn',
-    phone: '0531-88366007',
-    office: '逸夫楼B座106室',
-    joinYear: 2020,
-    research: '政治学理论、中国政治',
-    education: '博士',
-    degree: '南京大学政府管理学院',
-    students: 6,
-    phdStudents: 0,
-    masterStudents: 6,
-    courses: 4,
-    projects: 3,
-    nationalProjects: 1,
-    provincialProjects: 2,
-    papers: 12,
-    sciePapers: 0,
-    cssciPapers: 8,
-    awards: 1,
-    nationalAwards: 0,
-    provincialAwards: 1,
-    tags: ['政治学理论', '中国政治', '青年教师', '新锐学者'],
-    radarData: [78, 80, 85, 82, 88, 76],
-    teachingCourses: ['中国政府与政治', '政治学方法论', '政治社会学'],
-    achievements: ['主持国家社科基金青年项目1项', '发表CSSCI论文8篇'],
-    honors: ['山东大学新锐青年学者', '优秀班主任']
-  },
-  {
-    id: 8,
-    name: '马丽',
-    title: '副教授',
-    department: '公共管理系',
-    email: 'mali@sdu.edu.cn',
-    phone: '0531-88366008',
-    office: '逸夫楼A座209室',
-    joinYear: 2016,
-    research: '社会保障、社会政策',
-    education: '博士',
-    degree: '南开大学周恩来政府管理学院',
-    students: 14,
-    phdStudents: 3,
-    masterStudents: 11,
-    courses: 6,
-    projects: 7,
-    nationalProjects: 2,
-    provincialProjects: 5,
-    papers: 25,
-    sciePapers: 2,
-    cssciPapers: 18,
-    awards: 4,
-    nationalAwards: 0,
-    provincialAwards: 4,
-    tags: ['社会保障', '社会政策', '硕士生导师', '省部级项目'],
-    radarData: [82, 86, 84, 88, 80, 85],
-    teachingCourses: ['社会保障学', '社会政策', '社会工作概论'],
-    achievements: ['主持国家社科基金一般项目1项', '发表CSSCI论文18篇'],
-    honors: ['山东省社会科学优秀成果奖', '山东大学优秀教师']
-  },
-  {
-    id: 9,
-    name: '刘建国',
-    title: '教授',
-    department: '政治学与行政学系',
-    email: 'liujg@sdu.edu.cn',
-    phone: '0531-88366009',
-    office: '逸夫楼B座401室',
-    joinYear: 2006,
-    research: '政治学方法论、定量研究',
-    education: '博士',
-    degree: '香港大学政治与公共行政学系',
-    students: 28,
-    phdStudents: 10,
-    masterStudents: 18,
-    courses: 9,
-    projects: 15,
-    nationalProjects: 5,
-    provincialProjects: 10,
-    papers: 55,
-    sciePapers: 12,
-    cssciPapers: 35,
-    awards: 10,
-    nationalAwards: 2,
-    provincialAwards: 8,
-    tags: ['政治学方法论', '定量研究', '博士生导师', '国家级项目', '大数据'],
-    radarData: [88, 90, 85, 95, 82, 86],
-    teachingCourses: ['政治学研究方法', '统计分析', '数据可视化'],
-    achievements: ['主持国家自然科学基金项目3项', '发表SCI论文12篇'],
-    honors: ['教育部新世纪优秀人才', '山东省优秀研究生导师']
-  },
-  {
-    id: 10,
-    name: '孙丽华',
-    title: '副教授',
-    department: '行政管理系',
-    email: 'sunlh@sdu.edu.cn',
-    phone: '0531-88366010',
-    office: '逸夫楼A座307室',
-    joinYear: 2014,
-    research: '行政法学、政府法制',
-    education: '博士',
-    degree: '中国政法大学法学院',
-    students: 12,
-    phdStudents: 2,
-    masterStudents: 10,
-    courses: 6,
-    projects: 6,
-    nationalProjects: 1,
-    provincialProjects: 5,
-    papers: 22,
-    sciePapers: 0,
-    cssciPapers: 15,
-    awards: 3,
-    nationalAwards: 0,
-    provincialAwards: 3,
-    tags: ['行政法学', '政府法制', '硕士生导师', '法律顾问'],
-    radarData: [80, 84, 88, 82, 86, 83],
-    teachingCourses: ['行政法学', '行政诉讼法', '公务员法'],
-    achievements: ['主持司法部项目1项', '出版专著2部'],
-    honors: ['山东省政府法律顾问', '山东大学优秀共产党员']
+const teachers = ref([])
+const portraitMeta = ref(null)
+const portraitRank = ref([])
+const portraitLoading = ref(true)
+const portraitError = ref('')
+const scoreMax = ref({ course: 20, paper: 100, research: 84, partjob: 5, award: 25, eduachievement: 29 })
+const teacherResearchOptions = ref([])
+
+// 教师画像数据：官网名录（93 人）+ 学院真实绩效评分 CSV（103 人，姓名去空格后匹配 88 人）
+const loadPortraitData = async () => {
+  portraitLoading.value = true
+  portraitError.value = ''
+  try {
+    const res = await fetch('/api-research/api/real/pspa-faculty-portrait')
+    if (!res.ok) throw new Error('HTTP ' + res.status)
+    const json = await res.json()
+    const overall = json.overall || {}
+    portraitMeta.value = overall
+    portraitRank.value = json.rank || []
+    scoreMax.value = overall.score_max || scoreMax.value
+    scoreData.value = (json.rank || []).slice(0, 20).map(r => ({ name: r.name, score: r.score }))
+
+    teachers.value = (json.faculty || []).map((f, i) => {
+      const sc = f.score || null
+      const pg = f.paper_grade || {}
+      const paperTotal = (pg.a_plus || 0) + (pg.a || 0) + (pg.b || 0) + (pg.c || 0) + (pg.d || 0)
+      return {
+        id: i + 1,
+        name: f.name,
+        title: f.title,
+        department: f.dept,
+        homepage: f.url || '',
+        email: f.url ? '学院官网个人主页' : '学院官网未收录个人主页',
+        joinYear: sc ? (sc.year + ' 年度') : '未纳入绩效评分',
+        research: f.research || '官网未采集到研究方向',
+        education: sc ? '已纳入绩效评分' : '未纳入绩效评分',
+        students: paperTotal,
+        courses: sc ? sc.course : 0,
+        projects: f.project ? f.project.project_count : 0,
+        papers: sc ? sc.paper : 0,
+        awards: f.award ? f.award.count : 0,
+        awardScore: sc ? sc.award : 0,
+        matched: !!f.matched,
+        hasProfile: !!f.has_profile,
+        score: sc,
+        paperGrade: pg,
+        projectInfo: f.project || null,
+        awardInfo: f.award || null,
+        radarData: sc ? [sc.course, sc.paper, sc.research, sc.partjob, sc.award, sc.eduachievement] : [0, 0, 0, 0, 0, 0]
+      }
+    })
+
+    // 研究方向筛选项：从官网真实研究方向里取高频词
+    const counter = {}
+    teachers.value.forEach(t => {
+      if (!t.research || t.research.startsWith('官网未')) return
+      t.research.split(/[、，,；;\/]+/).forEach(w => {
+        w = w.trim().slice(0, 12)
+        if (w.length >= 2) counter[w] = (counter[w] || 0) + 1
+      })
+    })
+    teacherResearchOptions.value = Object.entries(counter)
+      .sort((a, b) => b[1] - a[1]).slice(0, 12).map(x => x[0])
+  } catch (e) {
+    portraitError.value = '教师画像数据加载失败：' + e.message
+  } finally {
+    portraitLoading.value = false
   }
-]
+}
 
 const students = [
   {
     id: 1001,
-    name: '陈小明',
+    name: '示例学生A',
     major: '行政管理',
     level: '博士研究生',
-    studentId: '2023001',
+    studentId: '示例学号',
     enrollYear: 2023,
     origin: '山东济南',
-    supervisor: '张伟',
+    supervisor: '待接入研究生系统',
     gpa: '3.85',
     coursesCompleted: 28,
     scholarships: 3,
@@ -1324,13 +1099,13 @@ const students = [
   },
   {
     id: 1002,
-    name: '刘芳',
+    name: '示例学生B',
     major: '政治学理论',
     level: '硕士研究生',
-    studentId: '2024002',
+    studentId: '示例学号',
     enrollYear: 2024,
     origin: '河南郑州',
-    supervisor: '李娜',
+    supervisor: '待接入研究生系统',
     gpa: '3.92',
     coursesCompleted: 20,
     scholarships: 2,
@@ -1341,13 +1116,13 @@ const students = [
   },
   {
     id: 1003,
-    name: '孙浩',
+    name: '示例学生C',
     major: '国际政治',
     level: '本科生',
-    studentId: '2022003',
+    studentId: '示例学号',
     enrollYear: 2022,
     origin: '江苏南京',
-    supervisor: '王强',
+    supervisor: '待接入研究生系统',
     gpa: '3.78',
     coursesCompleted: 35,
     scholarships: 1,
@@ -1358,13 +1133,13 @@ const students = [
   },
   {
     id: 1004,
-    name: '周婷',
+    name: '示例学生D',
     major: '公共管理',
     level: 'MPA',
-    studentId: '2023004',
+    studentId: '示例学号',
     enrollYear: 2023,
     origin: '广东深圳',
-    supervisor: '赵敏',
+    supervisor: '待接入研究生系统',
     gpa: '3.88',
     coursesCompleted: 18,
     scholarships: 1,
@@ -1375,13 +1150,13 @@ const students = [
   },
   {
     id: 1005,
-    name: '赵磊',
+    name: '示例学生E',
     major: '行政管理',
     level: '硕士研究生',
-    studentId: '2023005',
+    studentId: '示例学号',
     enrollYear: 2023,
     origin: '山东青岛',
-    supervisor: '陈建国',
+    supervisor: '待接入研究生系统',
     gpa: '3.75',
     coursesCompleted: 22,
     scholarships: 2,
@@ -1392,13 +1167,13 @@ const students = [
   },
   {
     id: 1006,
-    name: '孙梦瑶',
+    name: '示例学生F',
     major: '政治学与行政学',
     level: '本科生',
-    studentId: '2022006',
+    studentId: '示例学号',
     enrollYear: 2022,
     origin: '山东烟台',
-    supervisor: '王芳',
+    supervisor: '待接入研究生系统',
     gpa: '3.82',
     coursesCompleted: 32,
     scholarships: 2,
@@ -1409,13 +1184,13 @@ const students = [
   },
   {
     id: 1007,
-    name: '李伟',
+    name: '示例学生G',
     major: '国际政治',
     level: '博士研究生',
-    studentId: '2022007',
+    studentId: '示例学号',
     enrollYear: 2022,
     origin: '北京',
-    supervisor: '刘洋',
+    supervisor: '待接入研究生系统',
     gpa: '3.95',
     coursesCompleted: 30,
     scholarships: 4,
@@ -1426,13 +1201,13 @@ const students = [
   },
   {
     id: 1008,
-    name: '张雪',
+    name: '示例学生H',
     major: '公共管理',
     level: '硕士研究生',
-    studentId: '2024008',
+    studentId: '示例学号',
     enrollYear: 2024,
     origin: '山东潍坊',
-    supervisor: '马丽',
+    supervisor: '待接入研究生系统',
     gpa: '3.70',
     coursesCompleted: 16,
     scholarships: 1,
@@ -1443,13 +1218,13 @@ const students = [
   },
   {
     id: 1009,
-    name: '王建国',
+    name: '示例学生I',
     major: '行政管理',
     level: 'MPA',
-    studentId: '2023009',
+    studentId: '示例学号',
     enrollYear: 2023,
     origin: '山东淄博',
-    supervisor: '陈建国',
+    supervisor: '待接入研究生系统',
     gpa: '3.65',
     coursesCompleted: 15,
     scholarships: 0,
@@ -1460,13 +1235,13 @@ const students = [
   },
   {
     id: 1010,
-    name: '李娜',
+    name: '示例学生J',
     major: '政治学理论',
     level: '本科生',
-    studentId: '2024010',
+    studentId: '示例学号',
     enrollYear: 2024,
     origin: '山东临沂',
-    supervisor: '李娜',
+    supervisor: '待接入研究生系统',
     gpa: '3.68',
     coursesCompleted: 12,
     scholarships: 0,
@@ -1477,13 +1252,13 @@ const students = [
   },
   {
     id: 1011,
-    name: '赵强',
+    name: '示例学生K',
     major: '国际政治',
     level: '硕士研究生',
-    studentId: '2023011',
+    studentId: '示例学号',
     enrollYear: 2023,
     origin: '山东济宁',
-    supervisor: '王强',
+    supervisor: '待接入研究生系统',
     gpa: '3.80',
     coursesCompleted: 21,
     scholarships: 2,
@@ -1494,13 +1269,13 @@ const students = [
   },
   {
     id: 1012,
-    name: '陈静',
+    name: '示例学生L',
     major: '公共管理',
     level: '博士研究生',
-    studentId: '2022012',
+    studentId: '示例学号',
     enrollYear: 2022,
     origin: '山东泰安',
-    supervisor: '赵敏',
+    supervisor: '待接入研究生系统',
     gpa: '3.90',
     coursesCompleted: 29,
     scholarships: 3,
@@ -1512,7 +1287,7 @@ const students = [
 ]
 
 const filteredTeachers = computed(() => {
-  return teachers.filter(t => {
+  return teachers.value.filter(t => {
     const nameMatch = !teacherSearch.value.name || t.name.includes(teacherSearch.value.name)
     const titleMatch = !teacherSearch.value.title || t.title === teacherSearch.value.title
     const researchMatch = !teacherSearch.value.research || t.research.includes(teacherSearch.value.research)
@@ -1540,27 +1315,42 @@ const filterStudents = () => {
   currentStudent.value = null
 }
 
-const initTeacherRadar = (data) => {
+const initTeacherRadar = (data, maxes = {}) => {
   if (!radarChart.value) return
   
-  const chart = echarts.init(radarChart.value)
+  const el = radarChart.value
+  // 复用已有实例，切换教师时不再重复 init（否则会叠加多个 canvas 并造成尺寸错乱）
+  const chart = echarts.getInstanceByDom(el) || echarts.init(el)
+  el._chart = chart
+  const m = {
+    course: maxes.course || 20,
+    paper: maxes.paper || 100,
+    research: maxes.research || 84,
+    partjob: maxes.partjob || 5,
+    award: maxes.award || 25,
+    eduachievement: maxes.eduachievement || 29
+  }
   
   const option = {
     backgroundColor: 'transparent',
     radar: {
+      center: ['50%', '48%'],
+      radius: '58%',
+      axisNameGap: 8,
       indicator: [
-        { name: '教学能力', max: 100 },
-        { name: '科研能力', max: 100 },
-        { name: '学术影响力', max: 100 },
-        { name: '团队协作', max: 100 },
-        { name: '创新能力', max: 100 },
-        { name: '社会服务', max: 100 }
+        { name: '教学绩效', max: m.course },
+        { name: '论文绩效', max: m.paper },
+        { name: '科研绩效', max: m.research },
+        { name: '兼职绩效', max: m.partjob },
+        { name: '获奖绩效', max: m.award },
+        { name: '教育成果', max: m.eduachievement }
       ],
       shape: 'polygon',
-      splitNumber: 5,
+      splitNumber: 4,
       axisName: {
-        color: '#fff',
-        fontSize: 12
+        color: 'rgba(255,255,255,0.88)',
+        fontSize: 11,
+        padding: [2, 4]
       },
       splitLine: {
         lineStyle: {
@@ -1603,15 +1393,22 @@ const initTeacherRadar = (data) => {
     }]
   }
   
-  chart.setOption(option)
-  
-  window.addEventListener('resize', () => chart.resize())
+  chart.setOption(option, true)
+
+  // 只绑定一次 resize，避免切换教师时不断累积监听
+  if (!el._resizeBound) {
+    el._resizeBound = true
+    window.addEventListener('resize', () => chart.resize())
+  }
 }
 
-const initTitleDistributionChart = () => {
+const initTitleDistributionChart = (teacher) => {
   if (!titleDistributionChart.value) return
   
   const chart = echarts.init(titleDistributionChart.value)
+  const titles = (portraitMeta.value || {}).titles || []
+  const palette = ['#7b2cbf', '#00d4ff', '#52c41a', '#faad14', '#ff7a45', '#36cfc9']
+  const currentTitle = teacher?.title || ''
   
   const option = {
     backgroundColor: 'transparent',
@@ -1620,7 +1417,8 @@ const initTitleDistributionChart = () => {
       backgroundColor: 'rgba(10, 25, 50, 0.95)',
       borderColor: 'rgba(0, 212, 255, 0.4)',
       borderWidth: 1,
-      textStyle: { color: '#fff', fontSize: 12 }
+      textStyle: { color: '#fff', fontSize: 12 },
+      formatter: p => `${p.name}：${p.value} 人（${p.percent}%）`
     },
     legend: {
       orient: 'vertical',
@@ -1629,7 +1427,7 @@ const initTitleDistributionChart = () => {
       textStyle: { color: 'rgba(255,255,255,0.7)', fontSize: 12 },
       itemWidth: 12,
       itemHeight: 12,
-      itemGap: 15
+      itemGap: 12
     },
     series: [{
       type: 'pie',
@@ -1644,11 +1442,15 @@ const initTitleDistributionChart = () => {
         fontWeight: 'bold'
       },
       labelLine: { show: false },
-      data: [
-        { value: 37, name: '教授', itemStyle: { color: '#7b2cbf' } },
-        { value: 35, name: '副教授', itemStyle: { color: '#00d4ff' } },
-        { value: 28, name: '讲师', itemStyle: { color: '#52c41a' } }
-      ],
+      data: titles.map((t, i) => ({
+        value: t.value,
+        name: t.name,
+        itemStyle: {
+          color: t.name === currentTitle ? '#ff4d4f' : palette[i % palette.length],
+          borderColor: t.name === currentTitle ? '#fff' : 'transparent',
+          borderWidth: t.name === currentTitle ? 3 : 0
+        }
+      })),
       emphasis: {
         itemStyle: { shadowBlur: 20, shadowColor: 'rgba(0, 212, 255, 0.5)' }
       }
@@ -1663,6 +1465,10 @@ const initProjectLevelChart = (teacher) => {
   if (!projectLevelChart.value) return
   
   const chart = echarts.init(projectLevelChart.value)
+  const pg = teacher.paperGrade || {}
+  const labels = ['A+', 'A', 'B', 'C', 'D']
+  const values = [pg.a_plus || 0, pg.a || 0, pg.b || 0, pg.c || 0, pg.d || 0]
+  const colors = ['#7b2cbf', '#00d4ff', '#36cfc9', '#faad14', '#ff7a45']
   
   const option = {
     backgroundColor: 'transparent',
@@ -1674,7 +1480,7 @@ const initProjectLevelChart = (teacher) => {
       borderWidth: 1,
       textStyle: { color: '#fff', fontSize: 12 }
     },
-    grid: { left: 80, right: 50, top: 20, bottom: 30 },
+    grid: { left: 60, right: 50, top: 20, bottom: 30 },
     xAxis: {
       type: 'value',
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
@@ -1683,19 +1489,17 @@ const initProjectLevelChart = (teacher) => {
     },
     yAxis: {
       type: 'category',
-      data: ['国家级', '省部级', '市厅级', '横向合作'],
+      data: labels.slice().reverse(),
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
       axisLabel: { color: 'rgba(255,255,255,0.85)', fontSize: 12 }
     },
     series: [{
       type: 'bar',
       barWidth: 16,
-      data: [
-        { value: teacher.nationalProjects || 5, itemStyle: { color: '#7b2cbf', borderRadius: [0, 6, 6, 0] } },
-        { value: teacher.provincialProjects || 7, itemStyle: { color: '#00d4ff', borderRadius: [0, 6, 6, 0] } },
-        { value: Math.floor((teacher.projects - (teacher.nationalProjects || 5) - (teacher.provincialProjects || 7)) * 0.6) || 3, itemStyle: { color: '#faad14', borderRadius: [0, 6, 6, 0] } },
-        { value: Math.floor((teacher.projects - (teacher.nationalProjects || 5) - (teacher.provincialProjects || 7)) * 0.4) || 2, itemStyle: { color: '#52c41a', borderRadius: [0, 6, 6, 0] } }
-      ],
+      data: values.slice().reverse().map((v, i) => ({
+        value: v,
+        itemStyle: { color: colors[labels.length - 1 - i], borderRadius: [0, 6, 6, 0] }
+      })),
       label: {
         show: true,
         position: 'right',
@@ -1714,9 +1518,9 @@ const initEnrollmentChart = (teacher) => {
   if (!enrollmentChart.value) return
   
   const chart = echarts.init(enrollmentChart.value)
-  
-  const years = ['2020', '2021', '2022', '2023', '2024']
-  const base = Math.floor(teacher.students / 3)
+  const sc = teacher.score || {}
+  const labels = ['教学', '论文', '科研', '兼职', '获奖', '教育成果']
+  const values = [sc.course || 0, sc.paper || 0, sc.research || 0, sc.partjob || 0, sc.award || 0, sc.eduachievement || 0]
   
   const option = {
     backgroundColor: 'transparent',
@@ -1725,13 +1529,13 @@ const initEnrollmentChart = (teacher) => {
       backgroundColor: 'rgba(10, 25, 50, 0.95)',
       borderColor: 'rgba(0, 212, 255, 0.4)',
       borderWidth: 1,
-      textStyle: { color: '#fff', fontSize: 12 }
+      textStyle: { color: '#fff', fontSize: 12 },
+      formatter: p => `${p[0].name}绩效：<b>${p[0].value}</b> 分`
     },
-    grid: { left: 50, right: 20, top: 25, bottom: 30 },
+    grid: { left: 50, right: 20, top: 30, bottom: 40 },
     xAxis: {
       type: 'category',
-      boundaryGap: false,
-      data: years,
+      data: labels,
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
       axisLabel: { color: 'rgba(255,255,255,0.7)', fontSize: 11 }
     },
@@ -1742,18 +1546,17 @@ const initEnrollmentChart = (teacher) => {
       splitLine: { lineStyle: { color: 'rgba(0,212,255,0.08)' } }
     },
     series: [{
-      type: 'line',
-      smooth: true,
-      data: [base - 2, base, base + 1, base + 2, base + 3],
-      lineStyle: { color: '#00d4ff', width: 3 },
-      areaStyle: {
+      type: 'bar',
+      barWidth: '45%',
+      data: values,
+      itemStyle: {
         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          { offset: 0, color: 'rgba(0,212,255,0.3)' },
-          { offset: 1, color: 'rgba(0,212,255,0.02)' }
-        ])
+          { offset: 0, color: 'rgba(0,212,255,0.9)' },
+          { offset: 1, color: 'rgba(0,212,255,0.15)' }
+        ]),
+        borderRadius: [4, 4, 0, 0]
       },
-      symbolSize: 8,
-      itemStyle: { color: '#00d4ff' }
+      label: { show: true, position: 'top', color: '#fff', fontSize: 11 }
     }]
   }
   
@@ -1765,9 +1568,11 @@ const initStudentEvalChart = (teacher) => {
   if (!studentEvalChart.value) return
   
   const chart = echarts.init(studentEvalChart.value)
-  
-  const categories = ['教学态度', '教学内容', '教学方法', '教学效果', '师生互动']
-  const scores = [95, 92, 90, 93, 88].map(s => Math.min(99, s + Math.floor(Math.random() * 5)))
+  const sc = teacher.score || {}
+  const avg = (portraitMeta.value || {}).score_avg || {}
+  const categories = ['教育成果', '获奖', '兼职', '科研', '论文', '教学']
+  const mine = [sc.eduachievement || 0, sc.award || 0, sc.partjob || 0, sc.research || 0, sc.paper || 0, sc.course || 0]
+  const means = [avg.eduachievement || 0, avg.award || 0, avg.partjob || 0, avg.research || 0, avg.paper || 0, avg.course || 0]
   
   const option = {
     backgroundColor: 'transparent',
@@ -1779,42 +1584,41 @@ const initStudentEvalChart = (teacher) => {
       borderWidth: 1,
       textStyle: { color: '#fff', fontSize: 12 }
     },
-    grid: { left: 70, right: 40, top: 20, bottom: 30 },
+    legend: {
+      top: 0,
+      textStyle: { color: 'rgba(255,255,255,0.7)', fontSize: 11 },
+      itemWidth: 12,
+      itemHeight: 10
+    },
+    grid: { left: 90, right: 40, top: 35, bottom: 25 },
     xAxis: {
       type: 'value',
-      min: 70,
-      max: 100,
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
       axisLabel: { color: 'rgba(255,255,255,0.6)', fontSize: 11 },
       splitLine: { lineStyle: { color: 'rgba(0,212,255,0.08)' } }
     },
     yAxis: {
       type: 'category',
-      data: categories.reverse(),
+      data: categories,
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
       axisLabel: { color: 'rgba(255,255,255,0.85)', fontSize: 12 }
     },
-    series: [{
-      type: 'bar',
-      barWidth: 14,
-      data: scores.reverse().map((val, i) => ({
-        value: val,
-        itemStyle: {
-          color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-            { offset: 0, color: 'rgba(123,44,191,0.3)' },
-            { offset: 1, color: '#7b2cbf' }
-          ]),
-          borderRadius: [0, 6, 6, 0]
-        }
-      })),
-      label: {
-        show: true,
-        position: 'right',
-        color: '#fff',
-        fontSize: 12,
-        fontWeight: 'bold'
+    series: [
+      {
+        name: '本人',
+        type: 'bar',
+        barWidth: 10,
+        data: mine,
+        itemStyle: { color: '#00d4ff', borderRadius: [0, 6, 6, 0] }
+      },
+      {
+        name: '全院均值',
+        type: 'bar',
+        barWidth: 10,
+        data: means,
+        itemStyle: { color: 'rgba(123,44,191,0.75)', borderRadius: [0, 6, 6, 0] }
       }
-    }]
+    ]
   }
   
   chart.setOption(option)
@@ -1837,11 +1641,15 @@ const initStudentRadar = (data) => {
         { name: '外语能力', max: 100 },
         { name: '团队协作', max: 100 }
       ],
+      center: ['50%', '48%'],
+      radius: '58%',
+      axisNameGap: 8,
       shape: 'polygon',
-      splitNumber: 5,
+      splitNumber: 4,
       axisName: {
-        color: '#fff',
-        fontSize: 12
+        color: 'rgba(255,255,255,0.88)',
+        fontSize: 11,
+        padding: [2, 4]
       },
       splitLine: {
         lineStyle: {
@@ -2104,32 +1912,32 @@ const initStudentInternChart = (student) => {
   window.addEventListener('resize', () => chart.resize())
 }
 
-// ====== 整体教师画像数据 ======
-const overallKpi = [
-  { icon: '📄', value: '268', unit: '篇', label: '近六年科研论文总数', trend: '↑ 同比增长12%', trendColor: '#52c41a', bg: 'linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,212,255,0.05))' },
-  { icon: '📋', value: '96', unit: '项', label: '近六年科研项目总数', trend: '↑ 同比增长18%', trendColor: '#52c41a', bg: 'linear-gradient(135deg, rgba(123,44,191,0.2), rgba(123,44,191,0.05))' },
-  { icon: '💰', value: '3010', unit: '万元', label: '近六年科研经费合计', trend: '↑ 同比增长7%', trendColor: '#52c41a', bg: 'linear-gradient(135deg, rgba(54,207,201,0.2), rgba(54,207,201,0.05))' },
-  { icon: '👥', value: '103', unit: '人', label: '2026年教师总人数', trend: '↑ 较去年+1人', trendColor: '#52c41a', bg: 'linear-gradient(135deg, rgba(82,196,26,0.2), rgba(82,196,26,0.05))' }
-]
+// ====== 整体教师画像数据（全部来自画像接口，未加载前显示占位） ======
+const overallKpi = computed(() => {
+  const m = portraitMeta.value || {}
+  return [
+    { icon: '👥', value: m.teacher_count ?? '—', unit: '人', label: '官网在职教师总数', trend: `官网个人主页已采集 ${m.profile_count ?? '—'} 人`, trendColor: '#00d4ff', bg: 'linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,212,255,0.05))' },
+    { icon: '📊', value: m.profile_count ?? '—', unit: '人', label: '教师详情页可检索', trend: `覆盖 ${m.teacher_count ? Math.round((m.profile_count || 0) / m.teacher_count * 100) : 0}% 官网名录`, trendColor: '#52c41a', bg: 'linear-gradient(135deg, rgba(82,196,26,0.2), rgba(82,196,26,0.05))' },
+    { icon: '🏅', value: m.score_matched ?? '—', unit: '人', label: '匹配到绩效评分', trend: `评分表共 ${m.score_total ?? '—'} 人，按姓名匹配`, trendColor: '#faad14', bg: 'linear-gradient(135deg, rgba(250,173,20,0.2), rgba(250,173,20,0.05))' },
+    { icon: '📄', value: m.achievement_count ?? '—', unit: '条', label: '官网学术成果', trend: `官网通知 ${m.notice_count ?? '—'} 条`, trendColor: '#00d4ff', bg: 'linear-gradient(135deg, rgba(123,44,191,0.2), rgba(123,44,191,0.05))' }
+  ]
+})
 
-const teacherStrength = [
-  { title: '教授', total: 37, icon: '👨‍🏫', bars: [{ label: '博士', count: 27, percent: 73, color: '#7b2cbf' }, { label: '硕士', count: 10, percent: 27, color: '#00d4ff' }] },
-  { title: '副教授', total: 30, icon: '👨‍🔬', bars: [{ label: '博士', count: 19, percent: 63.33, color: '#7b2cbf' }, { label: '硕士', count: 10, percent: 33.33, color: '#00d4ff' }, { label: '学士', count: 1, percent: 3.34, color: '#52c41a' }] },
-  { title: '副研究员', total: 1, icon: '🔬', bars: [{ label: '博士', count: 1, percent: 100, color: '#7b2cbf' }] },
-  { title: '讲师', total: 5, icon: '📖', bars: [{ label: '博士', count: 2, percent: 40, color: '#7b2cbf' }, { label: '硕士', count: 2, percent: 40, color: '#00d4ff' }, { label: '学士', count: 1, percent: 20, color: '#52c41a' }] },
-  { title: '助理研究员', total: 16, icon: '💡', bars: [{ label: '博士', count: 10, percent: 62.5, color: '#7b2cbf' }, { label: '硕士', count: 4, percent: 25, color: '#00d4ff' }, { label: '学士', count: 2, percent: 12.5, color: '#52c41a' }] },
-  { title: '博士后', total: 14, icon: '🎓', bars: [{ label: '博士', count: 14, percent: 100, color: '#7b2cbf' }] }
-]
+const teacherStrength = computed(() => {
+  const titles = (portraitMeta.value || {}).titles || []
+  return titles.map(t => {
+    const matched = t.matched || 0
+    const rest = Math.max(0, t.value - matched)
+    const bars = [
+      { label: '已评分', count: matched, percent: t.value ? +(matched / t.value * 100).toFixed(1) : 0, color: '#7b2cbf' },
+      { label: '未评分', count: rest, percent: t.value ? +(rest / t.value * 100).toFixed(1) : 0, color: 'rgba(0,212,255,0.45)' }
+    ].filter(b => b.count > 0)
+    return { title: t.name, total: t.value, icon: '👨‍🏫', bars }
+  })
+})
 
-const scoreData = [
-  { name: '张伟', score: 95 }, { name: '李娜', score: 88 }, { name: '王强', score: 92 },
-  { name: '赵敏', score: 78 }, { name: '陈建国', score: 97 }, { name: '刘洋', score: 86 },
-  { name: '王芳', score: 75 }, { name: '马丽', score: 84 }, { name: '刘建国', score: 93 },
-  { name: '孙丽华', score: 82 }, { name: '陈小明', score: 72 }, { name: '刘芳', score: 79 },
-  { name: '孙浩', score: 70 }, { name: '周婷', score: 76 }, { name: '赵磊', score: 81 },
-  { name: '孙梦瑶', score: 83 }, { name: '李伟', score: 90 }, { name: '张雪', score: 74 },
-  { name: '王建国', score: 68 }, { name: '赵强', score: 77 }
-]
+
+const scoreData = ref([])
 
 const fullscreenChart = ref(null)
 const wordCloudZoom = ref(1)
@@ -2149,12 +1957,11 @@ const adjustWordCloudZoom = (delta) => {
 }
 
 const adjustRadarZoom = (delta) => {
-  radarZoom.value = Math.max(0.4, Math.min(2.5, radarZoom.value + delta))
+  radarZoom.value = Math.max(0.7, Math.min(1.4, +(radarZoom.value + delta).toFixed(2)))
   const chart = overallRadarChart.value?._chart
   if (chart) {
-    const el = overallRadarChart.value
-    el.style.height = (240 * radarZoom.value) + 'px'
-    chart.resize()
+    // 缩放只调雷达半径，避免改变容器高度导致图例/轴标签再次错位
+    chart.setOption({ radar: { radius: Math.round(55 * radarZoom.value) + '%' } })
   }
 }
 
@@ -2177,7 +1984,7 @@ const initMiniBarChart = (el, data, color = '#57a8d9') => {
     grid: { left: '1%', right: '1%', top: '5%', bottom: '1%', containLabel: true },
     xAxis: { type: 'category', data: data.map(d => d.year), show: false },
     yAxis: { type: 'value', show: false },
-    tooltip: { trigger: 'axis', backgroundColor: 'rgba(24,141,240,0.4)', textStyle: { color: '#fff', fontWeight: 'bold' }, formatter: p => `<div style="padding:4px 8px"><span>年份: ${p[0].name}</span><br><span>数值: ${p[0].value}</span></div>` },
+    tooltip: { trigger: 'axis', backgroundColor: 'rgba(24,141,240,0.4)', textStyle: { color: '#fff', fontWeight: 'bold' }, formatter: p => `<div style="padding:4px 8px"><span>${p[0].name}</span><br><span>${p[0].value}</span></div>` },
     series: [{ type: 'bar', data: data.map(d => d.count), itemStyle: { color, borderRadius: [3,3,0,0] }, barWidth: '50%', emphasis: { itemStyle: { color: '#f66a64' } } }]
   })
   return chart
@@ -2191,50 +1998,39 @@ const initMiniLineChart = (el, data, color = '#57a8d9') => {
     grid: { left: '1%', right: '1%', top: '10%', bottom: '1%', containLabel: true },
     xAxis: { type: 'category', data: data.map(d => d.year), show: false },
     yAxis: { type: 'value', show: false },
-    tooltip: { trigger: 'axis', backgroundColor: 'rgba(24,141,240,0.4)', textStyle: { color: '#fff', fontWeight: 'bold' }, formatter: p => `<div style="padding:4px 8px"><span>年份: ${p[0].name}</span><br><span>数值: ${p[0].value}</span></div>` },
+    tooltip: { trigger: 'axis', backgroundColor: 'rgba(24,141,240,0.4)', textStyle: { color: '#fff', fontWeight: 'bold' }, formatter: p => `<div style="padding:4px 8px"><span>${p[0].name}</span><br><span>${p[0].value}</span></div>` },
     series: [{ type: 'line', data: data.map(d => d.count), smooth: true, symbol: 'circle', symbolSize: 5, lineStyle: { color, width: 3 }, itemStyle: { color, borderColor: '#fff', borderWidth: 2 } }]
   })
   return chart
 }
 
-const initOverallCharts = () => {
-  // 师资力量 - 手动HTML布局（无ECharts图表）
-  // 数据由 teacherStrength 驱动，模板直接渲染
+// 绩效雷达自动轮播定时器
+let radarCarouselTimer = null
 
-  // 论文柱状图
-  initMiniBarChart(overallPaperChart.value, [
-    { year: 2019, count: 34 }, { year: 2020, count: 23 }, { year: 2021, count: 42 },
-    { year: 2022, count: 48 }, { year: 2023, count: 66 }, { year: 2024, count: 55 }
-  ])
-  // 项目折线图
-  initMiniLineChart(overallProjectChart.value, [
-    { year: 2019, count: 12 }, { year: 2020, count: 15 }, { year: 2021, count: 14 },
-    { year: 2022, count: 18 }, { year: 2023, count: 17 }, { year: 2024, count: 20 }
-  ])
-  // 经费柱状图
-  initMiniBarChart(overallFeeChart.value, [
-    { year: 2019, count: 46 }, { year: 2020, count: 48 }, { year: 2021, count: 51 },
-    { year: 2022, count: 49 }, { year: 2023, count: 52 }, { year: 2024, count: 55 }
-  ], '#36cfc9')
-  // 教师人数折线图
-  initMiniLineChart(overallTeacherChart.value, [
-    { year: 2019, count: 94 }, { year: 2020, count: 95 }, { year: 2021, count: 97 },
-    { year: 2022, count: 105 }, { year: 2023, count: 102 }, { year: 2024, count: 103 }
-  ], '#52c41a')
-  
-  // 研究领域词云
+const initOverallCharts = () => {
+  // 绩效雷达自动轮播定时器（重复进入整体画像时先清理，避免叠加）
+  // 师资力量 - 手动HTML布局（由 teacherStrength 驱动）
+  // 数据来自官网教师名录 + 真实绩效评分匹配结果
+  const meta = portraitMeta.value || {}
+
+  // 学术成果年度新增（官网 /xsky/xscg.htm 爬取）
+  initMiniBarChart(overallPaperChart.value,
+    (meta.achievement_year || []).map(d => ({ year: String(d.year), count: d.count })))
+  // 学术成果类别（官网栏目口径）
+  initMiniBarChart(overallProjectChart.value,
+    (meta.achievement_category || []).map(d => ({ year: d.name, count: d.value })), '#36cfc9')
+  // 职称构成（官网 /jytd/qzjs.htm）
+  initMiniBarChart(overallFeeChart.value,
+    (meta.titles || []).map(d => ({ year: d.name, count: d.value })), '#7b2cbf')
+  // 通知公告年度发布（官网 /tzgg1.htm）
+  initMiniLineChart(overallTeacherChart.value,
+    (meta.notice_year || []).map(d => ({ year: String(d.year), count: d.count })), '#52c41a')
+
+  // 研究方向/论文关键词词云（官网论文题录 375 篇的真实关键词）
   if (overallWordCloud.value) {
     const wc = echarts.init(overallWordCloud.value)
     overallWordCloud.value._chart = wc
-    const wordData = {
-      "治理": 400, "发展": 338, "中国": 314, "社会": 294, "制度": 240, "政治": 237, "研究": 218,
-      "政策": 213, "国家": 202, "政府": 160, "影响": 155, "组织": 142, "建设": 139, "全球": 137,
-      "体系": 137, "现代化": 137, "理论": 136, "国际": 126, "城市": 122, "政党": 121, "技术": 119,
-      "关系": 114, "机制": 114, "安全": 113, "问题": 110, "分析": 109, "能力": 103, "创新": 101,
-      "实践": 100, "基层": 98, "乡村": 97, "社会主义": 97, "数字": 96, "路径": 94, "战略": 93,
-      "推进": 92, "经济": 92, "能源": 91, "转型": 88, "提升": 87, "推动": 87, "构建": 86,
-      "基础": 84, "时代": 82, "风险": 79, "气候": 79, "公共服务": 60, "民主": 53, "回应": 52
-    }
+    const kw = (meta.paper_keywords || [])
     wc.setOption({
       backgroundColor: 'transparent',
       series: [{
@@ -2242,158 +2038,229 @@ const initOverallCharts = () => {
         sizeRange: [10, 34], rotationRange: [-30, 30], gridSize: 4,
         textStyle: { fontFamily: 'Microsoft YaHei', color: () => `hsl(${Math.random() * 360}, 100%, 70%)` },
         emphasis: { textStyle: { color: '#fff', fontSize: 36, textShadowBlur: 20, textShadowColor: '#00d4ff' } },
-        data: Object.entries(wordData).map(([name, value]) => ({ name, value }))
+        data: kw.length ? kw : [{ name: '暂无关键词数据', value: 1 }]
       }]
     })
   }
 
-  // 雷达图
+  // 六维绩效雷达（全院均值 vs 自动轮播真实教师）
   if (overallRadarChart.value) {
-    const radar = echarts.init(overallRadarChart.value)
+    const radar = echarts.getInstanceByDom(overallRadarChart.value) || echarts.init(overallRadarChart.value)
     overallRadarChart.value._chart = radar
+    if (!overallRadarChart.value._resizeBound) {
+      overallRadarChart.value._resizeBound = true
+      window.addEventListener('resize', () => radar.resize())
+    }
+    const avg = meta.score_avg || {}
+    const max = meta.score_max || {}
+    const avgVal = [avg.course, avg.paper, avg.research, avg.partjob, avg.award, avg.eduachievement].map(v => v || 0)
     radar.setOption({
       backgroundColor: 'transparent',
       tooltip: { trigger: 'item' },
+      legend: {
+        bottom: 2,
+        left: 'center',
+        icon: 'circle',
+        itemWidth: 8,
+        itemHeight: 8,
+        itemGap: 24,
+        textStyle: { color: 'rgba(255,255,255,0.75)', fontSize: 11 },
+        // 长姓名的图例截断，避免小卡片内图例相互挤压
+        formatter: name => (name || '').length > 8 ? `${name.slice(0, 8)}…` : name
+      },
       radar: {
+        center: ['50%', '46%'],
+        radius: '55%',
+        splitNumber: 4,
+        axisNameGap: 8,
         indicator: [
-          { name: '教学', max: 12 }, { name: '科研论文', max: 55 }, { name: '科研项目', max: 50 },
-          { name: '兼职工作', max: 3 }, { name: '荣誉表彰', max: 15 }, { name: '教育成果', max: 16 }
+          { name: '教学', max: max.course || 20 }, { name: '论文', max: max.paper || 100 },
+          { name: '科研', max: max.research || 84 }, { name: '兼职', max: max.partjob || 5 },
+          { name: '获奖', max: max.award || 25 }, { name: '教育成果', max: max.eduachievement || 29 }
         ],
-        name: { textStyle: { color: '#fff', fontSize: 11 } },
+        axisName: {
+          color: 'rgba(255,255,255,0.88)',
+          fontSize: 11,
+          padding: [2, 4]
+        },
         axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } },
         splitLine: { lineStyle: { color: 'rgba(0,255,255,0.5)' } },
         splitArea: { areaStyle: { color: ['rgba(0,212,255,0.02)', 'rgba(0,212,255,0.05)'] } }
       },
       series: [{
         type: 'radar', symbolSize: 6,
-        data: [{ value: [1.9, 19.7, 21.1, 0.4, 1.1, 3.8], name: '平均分', lineStyle: { color: '#11e5fc' }, areaStyle: { color: 'rgba(0,212,255,0.15)' }, itemStyle: { color: '#e7feb8' } }]
+        data: [{ value: avgVal, name: '全院均值', lineStyle: { color: '#11e5fc' }, areaStyle: { color: 'rgba(0,212,255,0.15)' }, itemStyle: { color: '#e7feb8' } }]
       }]
     })
-    // 自动轮播
-    const indv = {
-      '张伟': [0.0, 10.2, 30.0, 0.0, 0.0, 11.8], '李娜': [0.0, 27.2, 16.0, 0.0, 0.0, 5.9],
-      '王强': [0.0, 49.3, 16.1, 0.0, 1.6, 0.0], '陈建国': [4.8, 10.0, 14.1, 1.0, 1.0, 0.0],
-      '刘洋': [0.0, 6.8, 23.1, 0.0, 0.5, 0.5], '赵敏': [0.0, 19.9, 10.8, 0.0, 1.6, 9.7]
-    }
-    const names = Object.keys(indv)
+    // 自动轮播：绩效总分前 6 名的真实教师
+    const names = (portraitRank.value || []).slice(0, 6).map(r => r.name)
     let idx = 0
-    setInterval(() => {
-      const name = names[idx]
-      radar.setOption({
-        series: [{
-          data: [
-            { value: [1.9, 19.7, 21.1, 0.4, 1.1, 3.8], name: '平均分', lineStyle: { color: '#11e5fc', opacity: 0.5 }, areaStyle: { color: '#e7feb8' }, itemStyle: { color: '#e7feb8' } },
-            { value: indv[name], name, lineStyle: { color: '#0ef9fe', width: 3 }, areaStyle: { color: '#d890fa' }, itemStyle: { color: '#8ff9f8' } }
-          ]
-        }]
-      })
-      idx = (idx + 1) % names.length
-    }, 3500)
+    if (radarCarouselTimer) {
+      clearInterval(radarCarouselTimer)
+      radarCarouselTimer = null
+    }
+    if (names.length) {
+      radarCarouselTimer = setInterval(() => {
+        const name = names[idx]
+        const t = teachers.value.find(x => x.name === name)
+        const sc = (t && t.score) || {}
+        radar.setOption({
+          series: [{
+            data: [
+              { value: avgVal, name: '全院均值', lineStyle: { color: '#11e5fc', opacity: 0.5 }, areaStyle: { color: '#e7feb8' }, itemStyle: { color: '#e7feb8' } },
+              {
+                value: [sc.course || 0, sc.paper || 0, sc.research || 0, sc.partjob || 0, sc.award || 0, sc.eduachievement || 0],
+                name,
+                lineStyle: { color: '#0ef9fe', width: 3 },
+                areaStyle: { color: '#d890fa' },
+                itemStyle: { color: '#8ff9f8' }
+              }
+            ]
+          }]
+        })
+        idx = (idx + 1) % names.length
+      }, 3500)
+    }
   }
 
-  // 3D地球 - 使用真实教师数据
+  // 培养经历：2D 世界地图 + 学缘飞线
+  // 原 3D 地球（geo3D distance:15）在小卡片里视角过近，只会显示一块放大的残缺大陆，
+  // 因此改为 2D 世界地图 + 飞线动效，保证轮廓完整、院校点与连线清晰可辨。
   if (overallGlobeChart.value) {
-    // 注册世界地图
     registerWorldMap(echarts)
-    
-    const globe = echarts.init(overallGlobeChart.value)
-    
-    // 加载教师数据
+
+    const el = overallGlobeChart.value
+    const globe = echarts.getInstanceByDom(el) || echarts.init(el)
+    el._chart = globe
+    if (!el._resizeBound) {
+      el._resizeBound = true
+      window.addEventListener('resize', () => globe.resize())
+    }
+
     fetch('/data/teachers.json')
       .then(res => res.json())
       .catch(() => ({ teachers: [] }))
       .then(data => {
-        const teachers = data.teachers || []
-        
-        // 提取所有院校点
-        const points = []
+        const list = data.teachers || []
+        const pointMap = new Map()
         const routeData = []
-        
-        teachers.forEach(t => {
-          const insts = []
-          if (t.undergraduate) {
-            points.push({ value: [t.undergraduate.longitude, t.undergraduate.latitude], name: t.undergraduate.name })
-            insts.push([t.undergraduate.longitude, t.undergraduate.latitude])
+
+        const isValidInst = inst =>
+          inst && Number.isFinite(Number(inst.longitude)) && Number.isFinite(Number(inst.latitude))
+
+        const addPoint = (inst, teacherName) => {
+          if (!isValidInst(inst)) return
+          const instName = inst.name || `${inst.longitude},${inst.latitude}`
+          if (!pointMap.has(instName)) {
+            pointMap.set(instName, {
+              name: instName,
+              value: [Number(inst.longitude), Number(inst.latitude)],
+              teachers: []
+            })
           }
-          if (t.graduate) {
-            points.push({ value: [t.graduate.longitude, t.graduate.latitude], name: t.graduate.name })
-            insts.push([t.graduate.longitude, t.graduate.latitude])
+          pointMap.get(instName).teachers.push(teacherName)
+        }
+
+        list.forEach(t => {
+          const insts = [t.undergraduate, t.graduate, t.doctorate, t['other institutions']]
+            .filter(isValidInst)
+          insts.forEach(inst => addPoint(inst, t.name))
+          for (let i = 1; i < insts.length; i++) {
+            routeData.push({
+              coords: [
+                [Number(insts[i - 1].longitude), Number(insts[i - 1].latitude)],
+                [Number(insts[i].longitude), Number(insts[i].latitude)]
+              ]
+            })
           }
-          if (t.doctorate) {
-            points.push({ value: [t.doctorate.longitude, t.doctorate.latitude], name: t.doctorate.name })
-            insts.push([t.doctorate.longitude, t.doctorate.latitude])
-          }
-          if (t['other institutions']) {
-            points.push({ value: [t['other institutions'].longitude, t['other institutions'].latitude], name: t['other institutions'].name })
-            insts.push([t['other institutions'].longitude, t['other institutions'].latitude])
-          }
-          if (insts.length >= 2) routeData.push(insts)
         })
-      globe.setOption({
-        backgroundColor: 'transparent',
-        tooltip: {
-          show: true,
-          trigger: 'item',
-          formatter: p => p.data?.name || '',
-          backgroundColor: 'rgba(24,141,240,0.4)',
-          textStyle: { color: '#ffffff' }
-        },
-        geo3D: {
-          map: 'world',
-          environment: 'none',
-          shading: 'realistic',
-          realisticMaterial: { roughness: 0.6, metalness: 0.2 },
-          light: {
-            main: { intensity: 2, alpha: 50, beta: 10 },
-            ambient: { intensity: 0.4 }
+
+        const points = Array.from(pointMap.values()).map(p => ({
+          name: p.name,
+          value: p.value,
+          teacherCount: p.teachers.length,
+          teachers: p.teachers
+        }))
+
+        if (!points.length) {
+          globeStat.value = '暂无教育背景数据'
+          globe.setOption({
+            backgroundColor: 'transparent',
+            graphic: {
+              type: 'text',
+              left: 'center',
+              top: 'middle',
+              style: { text: '暂无教师教育背景数据', fill: 'rgba(255,255,255,0.45)', fontSize: 13 }
+            }
+          }, true)
+          return
+        }
+
+        globeStat.value = `${points.length} 所院校 · ${routeData.length} 条学缘`
+        globe.setOption({
+          backgroundColor: 'transparent',
+          tooltip: {
+            trigger: 'item',
+            backgroundColor: 'rgba(6, 26, 48, 0.92)',
+            borderColor: 'rgba(0, 212, 255, 0.45)',
+            borderWidth: 1,
+            textStyle: { color: '#fff', fontSize: 12 },
+            formatter: p => {
+              const d = p.data || {}
+              if (!d.teacherCount) return ''
+              const names = (d.teachers || []).slice(0, 6).join('、')
+              const more = (d.teachers || []).length > 6 ? ' 等' : ''
+              return `${p.name}<br/>${d.teacherCount} 位教师<br/><span style="color:#9ad8ff">${names}${more}</span>`
+            }
           },
-          viewControl: {
-            distance: 15,
-            alpha: 50,
-            beta: 0,
-            autoRotate: true,
-            autoRotateSpeed: 3,
-            panMouseButton: 'left',
-            rotateMouseButton: 'right'
-          },
-          itemStyle: {
-            color: 'rgb(24,141,240)',
-            opacity: 0.8
-          },
-          regionHeight: 1.5
-        },
-        series: [
-          {
-            type: 'lines3D',
-            coordinateSystem: 'geo3D',
-            effect: {
-              show: true,
-              trailWidth: 1,
-              trailOpacity: 0.8,
-              trailLength: 0.5,
-              constantSpeed: 6
-            },
-            blendMode: 'lighter',
-            lineStyle: {
-              width: 1,
-              opacity: 1,
-              color: 'rgb(255,0,0)'
-            },
-            data: routeData
-          },
-          {
-            type: 'scatter3D',
-            coordinateSystem: 'geo3D',
-            symbolSize: 8,
+          geo: {
+            map: 'world',
+            roam: true,
+            zoom: 1.15,
+            center: [40, 26],
+            label: { show: false },
             itemStyle: {
-              color: 'rgba(255,255,255,0.7)',
-              opacity: 1
+              areaColor: 'rgba(10, 58, 102, 0.55)',
+              borderColor: 'rgba(0, 212, 255, 0.45)',
+              borderWidth: 0.6
             },
-            data: points
-          }
-        ]
-      })
-    }) // end fetch
+            emphasis: {
+              label: { show: false },
+              itemStyle: { areaColor: 'rgba(0, 212, 255, 0.22)' }
+            }
+          },
+          series: [
+            {
+              type: 'lines',
+              coordinateSystem: 'geo',
+              zlevel: 2,
+              silent: true,
+              effect: {
+                show: true,
+                period: 5,
+                trailLength: 0.45,
+                symbol: 'arrow',
+                symbolSize: 5
+              },
+              lineStyle: {
+                color: 'rgba(0, 212, 255, 0.55)',
+                width: 0.8,
+                curveness: 0.25
+              },
+              data: routeData
+            },
+            {
+              type: 'effectScatter',
+              coordinateSystem: 'geo',
+              zlevel: 3,
+              rippleEffect: { brushType: 'stroke', scale: 3 },
+              symbolSize: 5,
+              itemStyle: { color: '#ffd666', shadowBlur: 6, shadowColor: '#ffd666' },
+              data: points
+            }
+          ]
+        }, true)
+      }) // end fetch
   }
 }
 
@@ -2407,13 +2274,13 @@ const loadTeacherData = () => {
     return
   }
   
-  const teacher = teachers.find(t => t.id == selectedTeacher.value)
+  const teacher = teachers.value.find(t => t.id == selectedTeacher.value)
   currentTeacher.value = teacher
   
   nextTick(() => {
     if (teacher) {
-      initTeacherRadar(teacher.radarData)
-      initTitleDistributionChart()
+      initTeacherRadar(teacher.radarData, scoreMax.value)
+      initTitleDistributionChart(teacher)
       initProjectLevelChart(teacher)
       initEnrollmentChart(teacher)
       initStudentEvalChart(teacher)
@@ -2845,11 +2712,15 @@ const initGroupRadar = (el, data) => {
         { name: '外语能力', max: 100 },
         { name: '团队协作', max: 100 }
       ],
+      center: ['50%', '48%'],
+      radius: '58%',
+      axisNameGap: 8,
       shape: 'polygon',
-      splitNumber: 5,
+      splitNumber: 4,
       axisName: {
-        color: '#fff',
-        fontSize: 12
+        color: 'rgba(255,255,255,0.88)',
+        fontSize: 11,
+        padding: [2, 4]
       },
       splitLine: {
         lineStyle: {
@@ -2981,39 +2852,48 @@ watch(studentView, () => {
 })
 
 onMounted(() => {
-  nextTick(() => {
-    // 处理URL参数
-    if (route.query.type && route.query.name) {
-      if (route.query.type === 'teacher') {
-        activeTab.value = 'teacher'
-        teacherSearch.value.name = route.query.name
-        const teacher = teachers.find(t => t.name.includes(route.query.name))
-        if (teacher) {
-          selectedTeacher.value = teacher.id.toString()
-        }
-      } else if (route.query.type === 'student') {
-        activeTab.value = 'student'
-        studentView.value = 'individual'
-        studentSearch.value.name = route.query.name
-        const student = students.find(s => s.name.includes(route.query.name))
-        if (student) {
-          selectedStudent.value = student.id.toString()
+  loadPortraitData().then(() => {
+    nextTick(() => {
+      // 处理URL参数
+      if (route.query.type && route.query.name) {
+        if (route.query.type === 'teacher') {
+          activeTab.value = 'teacher'
+          teacherSearch.value.name = route.query.name
+          const teacher = teachers.value.find(t => t.name.includes(route.query.name))
+          if (teacher) {
+            selectedTeacher.value = teacher.id.toString()
+          }
+        } else if (route.query.type === 'student') {
+          activeTab.value = 'student'
+          studentView.value = 'individual'
+          studentSearch.value.name = route.query.name
+          const student = students.find(s => s.name.includes(route.query.name))
+          if (student) {
+            selectedStudent.value = student.id.toString()
+          }
         }
       }
-    }
-    
-    // 默认选择
-    if (!selectedTeacher.value && teachers.length > 0) {
-      selectedTeacher.value = teachers[0].id.toString()
-    }
-    if (!selectedStudent.value && students.length > 0) {
-      selectedStudent.value = students[0].id.toString()
-    }
-    
-    loadTeacherData()
-    loadStudentData()
-    loadOverallTeacher()
+
+      // 默认选择
+      if (!selectedTeacher.value && teachers.value.length > 0) {
+        selectedTeacher.value = teachers.value[0].id.toString()
+      }
+      if (!selectedStudent.value && students.length > 0) {
+        selectedStudent.value = students[0].id.toString()
+      }
+
+      loadTeacherData()
+      loadStudentData()
+      loadOverallTeacher()
+    })
   })
+})
+
+onBeforeUnmount(() => {
+  if (radarCarouselTimer) {
+    clearInterval(radarCarouselTimer)
+    radarCarouselTimer = null
+  }
 })
 </script>
 
@@ -3024,6 +2904,63 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+/* 数据来源条 / 示例说明 */
+.data-source-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 16px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 212, 255, 0.06);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 10px;
+}
+
+.src-tag {
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.src-tag.src-a {
+  background: rgba(82, 196, 26, 0.18);
+  color: #73d13d;
+  border: 1px solid rgba(82, 196, 26, 0.35);
+}
+
+.src-tag.src-b {
+  background: rgba(0, 212, 255, 0.16);
+  color: #00d4ff;
+  border: 1px solid rgba(0, 212, 255, 0.35);
+}
+
+.src-loading {
+  color: rgba(0, 212, 255, 0.8);
+}
+
+.src-error {
+  color: #ff7875;
+}
+
+.demo-note {
+  margin-bottom: 14px;
+  padding: 12px 16px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(250, 173, 20, 0.08);
+  border: 1px solid rgba(250, 173, 20, 0.28);
+  border-radius: 10px;
+}
+
+.demo-note b {
+  color: #faad14;
 }
 
 .page-header {
@@ -3768,6 +3705,14 @@ onMounted(() => {
   gap: 8px;
 }
 
+.mc-sub {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(0, 212, 255, 0.7);
+  white-space: nowrap;
+}
+
 .mc-body {
   height: 100px;
   width: 100%;
@@ -3896,16 +3841,13 @@ onMounted(() => {
 }
 
 .globe-body {
-  height: 280px;
+  height: 300px;
   width: 100%;
 }
 
 .radar-body {
-  height: 240px;
+  height: 300px;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: height 0.3s ease;
 }
 

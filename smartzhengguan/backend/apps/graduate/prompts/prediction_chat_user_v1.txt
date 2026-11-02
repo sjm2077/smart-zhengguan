@@ -1,0 +1,21 @@
+任务：回答研究生智能预测中的风险、趋势或治理类问题。
+
+学生姓名：{student_name}
+用户问题：{question}
+当前风险等级：{risk_level}
+主要风险领域：{risk_field}
+关键影响因子：{key_factors}
+当前综合发展指数：{current_index}
+未来趋势序列：{forecast_trend}
+群体对比：{peer_compare}
+检索状态：{knowledge_state}
+命中文档标题：{retrieved_titles}
+历史对话：{chat_history}
+
+输出要求：
+1. 直接输出 JSON，不要包裹 Markdown，不要输出额外说明文字。
+2. directAnswer 必须直接回答当前这一个问题，不要被历史对话带偏。
+3. reasoning 生成 2-3 条，优先解释当前风险、趋势变化、群体差异和关键影响因子。
+4. actionPlan 生成 2-3 条，必须具体、可执行，适合辅导员、教学秘书或学院管理者落地。
+5. citations 至少包含结构化预测数据来源；如果引用了制度知识，只引用与当前问题最相关的片段。
+6. 如果本次没有检索到与问题直接匹配的制度依据，可以说明“本次回答主要基于结构化预测数据生成”，不要写“知识库未接入”。

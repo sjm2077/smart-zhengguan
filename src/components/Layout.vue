@@ -44,9 +44,12 @@ const dashboardStore = useDashboardStore()
 
 const aiData = computed(() => ({
   students: dashboardStore.students,
+  undergrad: dashboardStore.undergrad,
+  master: dashboardStore.master,
+  doctor: dashboardStore.doctor,
   staff: dashboardStore.staff,
-  projects: dashboardStore.projects,
   funding: dashboardStore.funding,
+  projects: dashboardStore.projects,
   budget: dashboardStore.budget,
   maleRatio: dashboardStore.maleRatio,
   femaleRatio: dashboardStore.femaleRatio
@@ -60,6 +63,7 @@ const allNavItems = [
   { path: '/research', label: '科研管理', icon: '🔬', roles: ['dean', 'admin', 'ky'] },
   { path: '/hr', label: '人事系统', icon: '🏢', roles: ['dean', 'admin', 'rs'] },
   { path: '/graduate', label: '研究生管理', icon: '🎓', roles: ['dean', 'admin', 'yjs'] },
+  { path: '/knowledge', label: '知识库问答', icon: '🧠', roles: ['dean', 'admin', 'jw', 'ky', 'rs', 'yjs', 'student'] },
   { path: '/warning', label: '智能预警', icon: '⚠️', roles: ['dean', 'admin'] },
   { path: '/portrait', label: '师生画像', icon: '👤', roles: ['dean', 'admin', 'rs'] },
   { path: '/wordcloud', label: '词云分析', icon: '☁️', roles: ['dean', 'admin', 'ky'] },
@@ -102,7 +106,8 @@ const handleRefresh = () => {
 .main-content {
   flex: 1;
   overflow: auto;
-  padding: 20px;
+  /* 底部预留固定导航栏（70px）+ 间隙，避免页面内容被导航栏遮挡 */
+  padding: 20px 20px 90px;
   background: linear-gradient(135deg, #0a1f44 0%, #0d2a4d 50%, #050d1f 100%);
 }
 

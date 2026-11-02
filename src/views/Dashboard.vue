@@ -36,35 +36,37 @@
         :gradient="kpi.gradient"
         :color="kpi.color"
         :permission="kpi.permission"
+        :source-text="kpi.sourceText"
+        :source-type="kpi.sourceType"
       />
     </section>
 
     <!-- 中部主体：三栏布局 -->
     <section class="main-section">
-      <!-- 左塔：学生学情数据（3张） -->
+      <!-- 左塔：全院学生规模（3张） -->
       <div class="col-left">
         <div class="section-title">
           <span class="title-bar"></span>
-          <span class="title-name">学生学情数据</span>
+          <span class="title-name">全院学生规模与结构</span>
         </div>
         <div class="cards-wrapper">
           <div class="chart-card">
             <div class="card-header">
-              <h3 class="card-title">近五年在院生趋势</h3>
+              <h3 class="card-title">各培养层次年招生规模（人/年）<span class="demo-tag official">学院官网</span></h3>
             </div>
             <div ref="lineChartRef" class="chart-body"></div>
           </div>
 
           <div class="chart-card">
             <div class="card-header">
-              <h3 class="card-title">政管学院男女比例</h3>
+              <h3 class="card-title">全院在院生构成<span class="demo-tag">官网×学制估算</span></h3>
             </div>
             <div ref="pieChartRef" class="chart-body"></div>
           </div>
 
           <div class="chart-card">
             <div class="card-header">
-              <h3 class="card-title">学业完成率</h3>
+              <h3 class="card-title">学业完成率<span class="demo-tag">教学系统</span></h3>
             </div>
             <div ref="gaugeChartRef" class="chart-body"></div>
           </div>
@@ -75,7 +77,7 @@
       <div class="col-center">
         <div class="section-title center-title">
           <span class="title-bar"></span>
-          <span class="title-name">生源地域分布</span>
+          <span class="title-name">生源地域分布<span class="demo-tag">全院示意估算</span></span>
           <span class="title-bar title-bar-right"></span>
         </div>
         <div class="map-wrapper">
@@ -96,7 +98,7 @@
 
         <div class="chart-card wordcloud-card">
           <div class="card-header">
-            <h3 class="card-title">学术研究关键词</h3>
+            <h3 class="card-title">学术研究关键词<span class="demo-tag official">官网论文</span></h3>
           </div>
           <div ref="wordCloudChartRef" class="chart-body wordcloud-body"></div>
         </div>
@@ -111,21 +113,21 @@
         <div class="cards-wrapper">
           <div class="chart-card">
             <div class="card-header">
-              <h3 class="card-title">就业率趋势</h3>
+              <h3 class="card-title">就业率趋势<span class="demo-tag">演示数据</span></h3>
             </div>
             <div ref="employmentChartRef" class="chart-body"></div>
           </div>
 
           <div class="chart-card">
             <div class="card-header">
-              <h3 class="card-title">专业人数TOP6</h3>
+              <h3 class="card-title">各系专任教师规模<span class="demo-tag official">学院官网</span></h3>
             </div>
             <div ref="barChartRef" class="chart-body"></div>
           </div>
 
           <div class="chart-card">
             <div class="card-header">
-              <h3 class="card-title">教师职称分布</h3>
+              <h3 class="card-title">教师职称分布<span class="demo-tag official">学院官网</span></h3>
             </div>
             <div ref="facultyChartRef" class="chart-body"></div>
           </div>
@@ -142,28 +144,28 @@
       <div class="bottom-cards">
         <div class="chart-card bottom-card">
           <div class="card-header">
-            <h3 class="card-title">科研项目级别分布</h3>
+            <h3 class="card-title">科研项目级别分布<span class="demo-tag official">学院官网</span></h3>
           </div>
           <div ref="bar3ChartRef" class="chart-body"></div>
         </div>
 
         <div class="chart-card bottom-card">
           <div class="card-header">
-            <h3 class="card-title">科研经费来源</h3>
+            <h3 class="card-title">官网学术成果年度分布<span class="demo-tag official">官网爬取</span></h3>
           </div>
           <div ref="fundingChartRef" class="chart-body"></div>
         </div>
 
         <div class="chart-card bottom-card">
           <div class="card-header">
-            <h3 class="card-title">学院综合实力测评</h3>
+            <h3 class="card-title">官网科研产出构成<span class="demo-tag official">官网原文</span></h3>
           </div>
           <div ref="radarChartRef" class="chart-body"></div>
         </div>
 
         <div class="chart-card bottom-card">
           <div class="card-header">
-            <h3 class="card-title">课程类型分布</h3>
+            <h3 class="card-title">课程类型分布<span class="demo-tag">教学系统</span></h3>
           </div>
           <div ref="courseChartRef" class="chart-body"></div>
         </div>
@@ -228,42 +230,64 @@ let fundingChart = null
 let courseChart = null
 let wordCloudChart = null
 
-// KPI数据
+// KPI数据（全院口径：本科 + 硕士 + 博士 + MPA + 留学生，不再只统计研究生子系统）
+// 官网《学院简介》只公布“每年招生规模”，在校生数按 年招生 × 标准学制 换算，卡片角标如实标注“估算”。
+// sourceText/sourceType：official=学院官网原文；est=官网口径换算的估算值；sub=子系统；demo=演示
 const kpiData = reactive([
-  { key: 'students', title: '在院生总数', value: 1320, unit: '人', trend: 13.5, trendDirection: 'up', gradient: 'linear-gradient(135deg, #00d4ff, #0099cc)', color: '#00d4ff', permission: '' },
-  { key: 'staff', title: '专任教职工', value: 93, unit: '人', trend: 2.3, trendDirection: 'up', gradient: 'linear-gradient(135deg, #7b2cbf, #9b59b6)', color: '#7b2cbf', permission: '' },
-  { key: 'projects', title: '在研项目数', value: 307, unit: '项', trend: 8.2, trendDirection: 'up', gradient: 'linear-gradient(135deg, #eb2f96, #ff6b9d)', color: '#eb2f96', permission: '' },
-  { key: 'funding', title: '五年科研经费', value: 4000, unit: '万元', trend: 15.6, trendDirection: 'up', gradient: 'linear-gradient(135deg, #faad14, #ffc53d)', color: '#faad14', permission: '' },
-  { key: 'budget', title: '年度预算执行', value: 910, unit: '万元', trend: 5.1, trendDirection: 'up', gradient: 'linear-gradient(135deg, #52c41a, #73d13d)', color: '#52c41a', permission: '' }
+  { key: 'students', title: '全院在校生', value: 2420, unit: '人', trend: 0, trendDirection: 'up', gradient: 'linear-gradient(135deg, #00d4ff, #0099cc)', color: '#00d4ff', permission: '', sourceText: '官网招生×学制', sourceType: 'est' },
+  { key: 'undergrad', title: '本科在校生', value: 600, unit: '人', trend: 0, trendDirection: 'up', gradient: 'linear-gradient(135deg, #13c2c2, #36cfc9)', color: '#13c2c2', permission: '', sourceText: '150人/年×4年', sourceType: 'est' },
+  { key: 'master', title: '硕士在校生', value: 1560, unit: '人', trend: 0, trendDirection: 'up', gradient: 'linear-gradient(135deg, #2f54eb, #597ef7)', color: '#2f54eb', permission: '', sourceText: '学硕360+MPA1200', sourceType: 'est' },
+  { key: 'doctor', title: '博士在校生', value: 140, unit: '人', trend: 0, trendDirection: 'up', gradient: 'linear-gradient(135deg, #52c41a, #73d13d)', color: '#52c41a', permission: '', sourceText: '35人/年×4年', sourceType: 'est' },
+  { key: 'staff', title: '专任教师', value: 93, unit: '人', trend: 0, trendDirection: 'up', gradient: 'linear-gradient(135deg, #7b2cbf, #9b59b6)', color: '#7b2cbf', permission: '', sourceText: '学院官网', sourceType: 'official' },
+  { key: 'funding', title: '近五年科研经费', value: 6000, unit: '万元', trend: 0, trendDirection: 'up', gradient: 'linear-gradient(135deg, #faad14, #ffc53d)', color: '#faad14', permission: '', sourceText: '学院官网', sourceType: 'official' }
 ])
 
 kpiData.forEach(kpi => { kpi.permission = authStore.getKpiPermission(kpi.key) })
 
-// 学生性别数据
-const studentData = [
-  { value: 502, name: '男生', itemStyle: { color: '#00d4ff' } },
-  { value: 818, name: '女生', itemStyle: { color: '#7b2cbf' } }
+// 全院在院生构成：官网《学院简介》年招生规模 × 标准学制（估算）
+// 数据由 /api/real/pspa-college-overview 回填，此处仅为接口不可用时的兜底默认值
+const levelData = [
+  { value: 600, name: '本科生', itemStyle: { color: '#13c2c2' } },
+  { value: 360, name: '学术型硕士', itemStyle: { color: '#00d4ff' } },
+  { value: 140, name: '博士研究生', itemStyle: { color: '#52c41a' } },
+  { value: 1200, name: '公共管理硕士（MPA）', itemStyle: { color: '#7b2cbf' } },
+  { value: 120, name: '全英文项目留学生', itemStyle: { color: '#faad14' } }
 ]
 
-// 专业人数数据
-const majorData = [
-  { name: 'MPA公共管理', value: 300 },
-  { name: '行政管理', value: 210 },
-  { name: '政治学理论', value: 135 },
-  { name: '中共党史', value: 60 },
-  { name: '世界史', value: 52 },
-  { name: '国际政治', value: 45 }
+// 各培养层次年招生规模（官网原文，人/年）
+const enrollPerYearData = [
+  { name: '本科生', value: 150 },
+  { name: '学术型硕士', value: 120 },
+  { name: '博士研究生', value: 35 },
+  { name: '公共管理硕士（MPA）', value: 400 },
+  { name: '全英文项目留学生', value: 40 }
 ]
 
-// 在院生趋势数据 - 本科生:研究生=2:1比例
-const trendData = {
-  years: ['2022', '2023', '2024', '2025', '2026'],
-  total: [1280, 1300, 1310, 1315, 1320],
-  graduate: [427, 433, 437, 438, 440],      // 约占总数1/3
-  undergraduate: [853, 867, 873, 877, 880]  // 约占总数2/3
+// 柱状图横轴简称：卡片宽度只够放 5 个短标签，用简称避免标签互相压字；
+// 完整名称在 tooltip 中仍按原名显示（tooltip 的 {b} 取横轴原始类目名）
+const SHORT_LEVEL = {
+  本科生: '本科',
+  学术型硕士: '学硕',
+  博士研究生: '博士',
+  '公共管理硕士（MPA）': 'MPA',
+  全英文项目留学生: '留学生'
 }
 
-// 就业率数据
+// 各系专任教师规模（官网全职教师页面）
+const deptData = [
+  { name: '公共管理系', value: 39 },
+  { name: '政治学系', value: 19 },
+  { name: '国际政治系', value: 17 },
+  { name: '科社系', value: 13 },
+  { name: '公共治理研究院', value: 5 }
+]
+
+// 全院在校生总数（用于生源地地图占比与 tooltip）
+const collegeStudentTotal = ref(2420)
+// 全英文项目留学生在校生（用于国际地图 tooltip 占比）
+const intlStudentTotal = ref(120)
+
+// 就业率数据（暂无官方数据源，保留演示数据，接口就绪后可替换）
 const employmentData = {
   years: ['2021', '2022', '2023', '2024', '2025'],
   rate: [93, 94, 95, 96, 97],
@@ -271,17 +295,17 @@ const employmentData = {
   enterprise: [35, 36, 37, 38, 39]
 }
 
-// 雷达图数据 - 文字换行处理
-const radarData = {
-  indicator: [
-    { name: '科研\n产出', max: 100 },
-    { name: '师资\n力量', max: 100 },
-    { name: '国际\n化办学', max: 100 },
-    { name: '社会\n服务', max: 100 },
-    { name: '人才\n培养质量', max: 100 }
-  ],
-  value: [88, 92, 75, 85, 90]
-}
+// 学业完成率（教学系统 3621 条真实成绩及格率；0 = 未加载用默认值）
+const completionRate = ref(0)
+
+// 官网科研产出构成（《学院简介》原文：论文600/CSSCI500/SSCI100/著作100/智库报告300）
+const researchOutputData = [
+  { name: '发表论文', value: 600 },
+  { name: 'CSSCI 来源期刊', value: 500 },
+  { name: 'SSCI 论文', value: 100 },
+  { name: '出版著作', value: 100 },
+  { name: '智库报告', value: 300 }
+]
 
 // 教师职称数据
 const facultyData = [
@@ -290,13 +314,16 @@ const facultyData = [
   { name: '讲师', value: 27, itemStyle: { color: '#52c41a' } }
 ]
 
-// 科研经费数据
-const fundingData = [
-  { name: '国家级课题', value: 1650 },
-  { name: '省部级课题', value: 1320 },
-  { name: '横向合作', value: 790 },
-  { name: '校级科研', value: 240 }
+// 科研项目级别数据（官网《学院简介》原文：重大攻关10+国家社科30+国自然10+部委50）
+const projectLevelData = [
+  { name: '重大攻关', value: 10 },
+  { name: '国家社科', value: 30 },
+  { name: '国自然', value: 10 },
+  { name: '部委项目', value: 50 }
 ]
+
+// 官网学术成果年度分布（爬虫采集 /xsky/xscg.htm，按发布日期年份聚合）
+const achievementYearData = []
 
 // 课程类型数据
 const courseData = [
@@ -304,14 +331,6 @@ const courseData = [
   { name: '公共基础课', value: 34 },
   { name: '社会实践实训', value: 13 },
   { name: '通识选修课', value: 7 }
-]
-
-// 科研项目级别数据
-const projectLevelData = [
-  { name: '国家级', value: 36 },
-  { name: '省部级', value: 112 },
-  { name: '市厅级', value: 94 },
-  { name: '横向合作', value: 65 }
 ]
 
 // 学术研究关键词数据
@@ -368,6 +387,10 @@ const worldMapData = [
 
 const isChinaMap = ref(true)
 
+// 生源地基准结构（经验分布，仅用于按全院在校生规模等比放大成“示意估算”）
+const MAP_BASE = mapData.map(d => ({ name: d.name, value: d.value }))
+const WORLD_BASE = worldMapData.map(d => ({ name: d.name, value: d.value }))
+
 // 小省份列表 - 默认隐藏标签
 const smallProvinces = ['天津', '上海', '北京', '宁夏', '海南', '台湾', '香港', '澳门']
 
@@ -379,7 +402,7 @@ const tooltipStyle = {
   textStyle: { color: '#fff', fontSize: 12 }
 }
 
-// 初始化饼图 - 男女比例
+// 初始化饼图 - 全院在院生构成
 const initPieChart = () => {
   if (!pieChartRef.value) return
   pieChart = echarts.init(pieChartRef.value)
@@ -388,26 +411,30 @@ const initPieChart = () => {
     tooltip: { ...tooltipStyle, trigger: 'item', formatter: '{b}: {c}人 ({d}%)' },
     legend: {
       orient: 'horizontal',
-      bottom: 8,
-      textStyle: { color: 'rgba(255,255,255,0.7)', fontSize: 13 },
-      itemWidth: 14,
-      itemHeight: 14,
-      itemGap: 20
+      bottom: 4,
+      textStyle: { color: 'rgba(255,255,255,0.7)', fontSize: 11 },
+      itemWidth: 10,
+      itemHeight: 10,
+      itemGap: 12
     },
     series: [{
       type: 'pie',
-      radius: ['45%', '72%'],
-      center: ['50%', '45%'],
+      // 卡片高约 260px，底部两行图例约占 36px，饼图收敛尺寸并上移，避免与图例压字
+      radius: ['40%', '64%'],
+      center: ['50%', '43%'],
+      minAngle: 6,
       label: {
         show: true,
         position: 'inside',
-        formatter: '{d}%',
+        formatter: function (p) {
+          return p.percent >= 4 ? p.percent + '%' : ''
+        },
         color: '#fff',
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 'bold'
       },
       labelLine: { show: false },
-      data: studentData,
+      data: levelData,
       emphasis: {
         itemStyle: { shadowBlur: 25, shadowColor: 'rgba(0, 212, 255, 0.5)' }
       }
@@ -415,14 +442,14 @@ const initPieChart = () => {
   })
 }
 
-// 初始化横向柱状图 - 专业人数
+// 初始化横向柱状图 - 各系专任教师规模
 const initBarChart = () => {
   if (!barChartRef.value) return
   barChart = echarts.init(barChartRef.value)
   barChart.setOption({
     backgroundColor: 'transparent',
-    tooltip: { ...tooltipStyle, trigger: 'axis', axisPointer: { type: 'shadow' } },
-    grid: { left: 100, right: 60, top: 18, bottom: 35 },
+    tooltip: { ...tooltipStyle, trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: {c} 人' },
+    grid: { left: 108, right: 60, top: 18, bottom: 35 },
     xAxis: {
       type: 'value',
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
@@ -431,14 +458,14 @@ const initBarChart = () => {
     },
     yAxis: {
       type: 'category',
-      data: majorData.map(item => item.name).reverse(),
+      data: deptData.map(item => item.name).reverse(),
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
       axisLabel: { color: 'rgba(255,255,255,0.85)', fontSize: 12 }
     },
     series: [{
       type: 'bar',
       barWidth: 20,
-      data: majorData.slice().reverse().map(item => ({
+      data: deptData.slice().reverse().map(item => ({
         value: item.value,
         itemStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
@@ -460,77 +487,53 @@ const initBarChart = () => {
   })
 }
 
-// 初始化折线图 - 在院生趋势
+// 初始化柱状图 - 各培养层次年招生规模（官网原文）
 const initLineChart = () => {
   if (!lineChartRef.value) return
   lineChart = echarts.init(lineChartRef.value)
-  const totalGradient = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-    { offset: 0, color: 'rgba(0,212,255,0.3)' },
-    { offset: 1, color: 'rgba(0,212,255,0.02)' }
-  ])
-  const gradGradient = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-    { offset: 0, color: 'rgba(123,44,191,0.3)' },
-    { offset: 1, color: 'rgba(123,44,191,0.02)' }
-  ])
-  const underGradient = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-    { offset: 0, color: 'rgba(82,196,26,0.3)' },
-    { offset: 1, color: 'rgba(82,196,26,0.02)' }
-  ])
-
   lineChart.setOption({
     backgroundColor: 'transparent',
-    tooltip: { ...tooltipStyle, trigger: 'axis' },
-    legend: {
-      data: ['总人数', '研究生', '本科生'],
-      bottom: 5,
-      textStyle: { color: 'rgba(255,255,255,0.7)', fontSize: 12 },
-      itemWidth: 16,
-      itemHeight: 8,
-      itemGap: 18
-    },
-    grid: { left: 55, right: 25, top: 18, bottom: 48 },
+    tooltip: { ...tooltipStyle, trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: {c} 人/年' },
+    grid: { left: 52, right: 22, top: 20, bottom: 30 },
     xAxis: {
       type: 'category',
-      boundaryGap: false,
-      data: trendData.years,
+      data: enrollPerYearData.map(d => d.name),
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
-      axisLabel: { color: 'rgba(255,255,255,0.75)', fontSize: 12 }
+      axisLabel: {
+        color: 'rgba(255,255,255,0.75)',
+        fontSize: 11,
+        interval: 0,
+        margin: 8,
+        // 卡片较窄（5 个类目），用简称避免标签重叠
+        formatter: function (v) {
+          return SHORT_LEVEL[v] || v
+        }
+      }
     },
     yAxis: {
       type: 'value',
-      min: 400,
-      max: 1400,
-      interval: 200,
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
       axisLabel: { color: 'rgba(255,255,255,0.6)', fontSize: 12 },
       splitLine: { lineStyle: { color: 'rgba(0,212,255,0.08)' } }
     },
-    series: [
-      {
-        name: '总人数', type: 'line', smooth: true,
-        data: trendData.total,
-        lineStyle: { color: '#00d4ff', width: 3 },
-        areaStyle: { color: totalGradient },
-        symbolSize: 8,
-        itemStyle: { color: '#00d4ff' }
-      },
-      {
-        name: '研究生', type: 'line', smooth: true,
-        data: trendData.graduate,
-        lineStyle: { color: '#7b2cbf', width: 3 },
-        areaStyle: { color: gradGradient },
-        symbolSize: 8,
-        itemStyle: { color: '#7b2cbf' }
-      },
-      {
-        name: '本科生', type: 'line', smooth: true,
-        data: trendData.undergraduate,
-        lineStyle: { color: '#52c41a', width: 3 },
-        areaStyle: { color: underGradient },
-        symbolSize: 8,
-        itemStyle: { color: '#52c41a' }
+    series: [{
+      type: 'bar',
+      barWidth: 24,
+      data: enrollPerYearData.map((item, index) => ({
+        value: item.value,
+        itemStyle: {
+          color: ['#13c2c2', '#00d4ff', '#52c41a', '#7b2cbf', '#faad14'][index],
+          borderRadius: [6, 6, 0, 0]
+        }
+      })),
+      label: {
+        show: true,
+        position: 'top',
+        color: '#fff',
+        fontSize: 12,
+        fontWeight: 'bold'
       }
-    ]
+    }]
   })
 }
 
@@ -549,33 +552,25 @@ const initEmploymentChart = () => {
       itemHeight: 7,
       itemGap: 16
     },
-    grid: { left: 55, right: 55, top: 18, bottom: 48 },
+    grid: { left: 52, right: 30, top: 18, bottom: 48 },
     xAxis: {
       type: 'category',
       data: employmentData.years,
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
       axisLabel: { color: 'rgba(255,255,255,0.75)', fontSize: 12, margin: 8 }
     },
-    yAxis: [
-      {
-        type: 'value',
-        min: 80,
-        max: 100,
-        interval: 5,
-        axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
-        axisLabel: { color: 'rgba(255,255,255,0.6)', formatter: '{value}%', fontSize: 12 },
-        splitLine: { lineStyle: { color: 'rgba(0,212,255,0.08)' } }
-      },
-      {
-        type: 'value',
-        min: 30,
-        max: 60,
-        interval: 10,
-        axisLine: { lineStyle: { color: 'rgba(123,44,191,0.25)' } },
-        axisLabel: { color: 'rgba(255,255,255,0.6)', formatter: '{value}%', fontSize: 12 },
-        splitLine: { show: false }
-      }
-    ],
+    // 三条曲线都是百分比，统一用一根纵轴，避免双轴造成“数值被拉伸/无法直接比较”的误读
+    yAxis: {
+      type: 'value',
+      min: 0,
+      max: 100,
+      interval: 20,
+      name: '百分比(%)',
+      nameTextStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 11, padding: [0, 0, 4, 0] },
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
+      axisLabel: { color: 'rgba(255,255,255,0.6)', formatter: '{value}%', fontSize: 12 },
+      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.08)' } }
+    },
     series: [
       {
         name: '总就业率', type: 'line', smooth: true,
@@ -585,14 +580,14 @@ const initEmploymentChart = () => {
         itemStyle: { color: '#52c41a' }
       },
       {
-        name: '公职单位', type: 'line', yAxisIndex: 1, smooth: true,
+        name: '公职单位', type: 'line', smooth: true,
         data: employmentData.state,
         lineStyle: { color: '#00d4ff', width: 3 },
         symbol: 'circle', symbolSize: 8,
         itemStyle: { color: '#00d4ff' }
       },
       {
-        name: '企业', type: 'line', yAxisIndex: 1, smooth: true,
+        name: '企业', type: 'line', smooth: true,
         data: employmentData.enterprise,
         lineStyle: { color: '#faad14', width: 3 },
         symbol: 'circle', symbolSize: 8,
@@ -602,47 +597,50 @@ const initEmploymentChart = () => {
   })
 }
 
-// 初始化雷达图 - 学院综合实力
+// 初始化科研产出构成图（官网《学院简介》原文数字）
 const initRadarChart = () => {
   if (!radarChartRef.value) return
   radarChart = echarts.init(radarChartRef.value)
-  const radarAreaColor = new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
-    { offset: 0, color: 'rgba(0,212,255,0.25)' },
-    { offset: 1, color: 'rgba(0,212,255,0.05)' }
-  ])
+  const colors = ['#00d4ff', '#7b2cbf', '#eb2f96', '#faad14', '#52c41a']
 
   radarChart.setOption({
     backgroundColor: 'transparent',
-    tooltip: { ...tooltipStyle },
-    radar: {
-      indicator: radarData.indicator,
-      shape: 'polygon',
-      splitNumber: 4,
-      radius: '65%',
-      center: ['50%', '55%'],
-      axisName: {
-        color: 'rgba(255,255,255,0.85)',
-        fontSize: 12,
-        lineHeight: 16,
-        padding: [8, 0, 8, 0]
-      },
-      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.2)' } },
-      splitArea: {
-        areaStyle: {
-          color: ['rgba(0,212,255,0.02)', 'rgba(0,212,255,0.05)']
-        }
-      },
-      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } }
+    tooltip: { ...tooltipStyle, trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: {c}' },
+    // 左侧类目名最长“CSSCI 来源期刊”，留足宽度避免被截断/压到绘图区
+    grid: { left: 112, right: 48, top: 18, bottom: 30 },
+    xAxis: {
+      type: 'value',
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
+      axisLabel: { color: 'rgba(255,255,255,0.65)', fontSize: 12, margin: 10 },
+      splitLine: { lineStyle: { color: 'rgba(0,212,255,0.08)' } }
+    },
+    yAxis: {
+      type: 'category',
+      data: researchOutputData.map(d => d.name).reverse(),
+      axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
+      axisLabel: { color: 'rgba(255,255,255,0.85)', fontSize: 12 }
     },
     series: [{
-      type: 'radar',
-      data: [{
-        value: radarData.value,
-        name: '综合评分',
-        areaStyle: { opacity: 0.25, color: radarAreaColor },
-        lineStyle: { color: '#00d4ff', width: 2.5 },
-        itemStyle: { color: '#00d4ff' }
-      }]
+      type: 'bar',
+      barWidth: 18,
+      data: researchOutputData.slice().reverse().map((item, index) => ({
+        value: item.value,
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+            { offset: 0, color: 'rgba(255,255,255,0.08)' },
+            { offset: 1, color: colors[(researchOutputData.length - 1 - index) % colors.length] }
+          ]),
+          borderRadius: [0, 6, 6, 0]
+        }
+      })),
+      label: {
+        show: true,
+        position: 'right',
+        color: '#fff',
+        fontSize: 12,
+        fontWeight: 'bold',
+        distance: 10
+      }
     }]
   })
 }
@@ -684,16 +682,16 @@ const initFacultyChart = () => {
   })
 }
 
-// 初始化科研经费来源图
+// 初始化官网学术成果年度分布图（真实爬取）
 const initFundingChart = () => {
   if (!fundingChartRef.value) return
   fundingChart = echarts.init(fundingChartRef.value)
-  const colors = ['#7b2cbf', '#00d4ff', '#faad14', '#52c41a']
+  const colors = ['#7b2cbf', '#00d4ff', '#faad14', '#52c41a', '#eb2f96', '#13c2c2']
 
   fundingChart.setOption({
     backgroundColor: 'transparent',
     tooltip: { ...tooltipStyle, trigger: 'axis', axisPointer: { type: 'shadow' } },
-    grid: { left: 90, right: 55, top: 18, bottom: 35 },
+    grid: { left: 70, right: 55, top: 18, bottom: 35 },
     xAxis: {
       type: 'value',
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
@@ -702,26 +700,26 @@ const initFundingChart = () => {
         fontSize: 12,
         margin: 10,
         formatter: function(v) {
-          return v >= 1000 ? (v / 1000).toFixed(1) + '千万' : v + '万'
+          return v + ' 篇'
         }
       },
       splitLine: { lineStyle: { color: 'rgba(0,212,255,0.08)' } }
     },
     yAxis: {
       type: 'category',
-      data: fundingData.map(item => item.name),
+      data: achievementYearData.map(item => item.name),
       axisLine: { lineStyle: { color: 'rgba(0,212,255,0.25)' } },
       axisLabel: { color: 'rgba(255,255,255,0.85)', fontSize: 12 }
     },
     series: [{
       type: 'bar',
       barWidth: 18,
-      data: fundingData.map((item, index) => ({
+      data: achievementYearData.map((item, index) => ({
         value: item.value,
         itemStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-            { offset: 0, color: colors[index] + '25' },
-            { offset: 1, color: colors[index] }
+            { offset: 0, color: colors[index % colors.length] + '25' },
+            { offset: 1, color: colors[index % colors.length] }
           ]),
           borderRadius: [0, 6, 6, 0]
         }
@@ -793,12 +791,19 @@ const initMapChart = () => {
 
   const currentMap = isChinaMap.value ? 'china' : 'world'
   const currentData = isChinaMap.value ? mapData : worldMapData
-  const maxValue = isChinaMap.value ? 500 : 52
+  const maxValue = isChinaMap.value
+    ? Math.max(...mapData.map(d => d.value), 1)
+    : Math.max(...worldMapData.map(d => d.value), 1)
 
   const worldLabelFormatter = function(params) {
     const hasData = worldMapData.some(item => item.name === params.name)
     return hasData ? params.name : ''
   }
+
+  // 分档阈值随数据最大值动态缩放，避免换数据后图例与实际分布不匹配
+  const p1 = Math.round(maxValue * 0.8)
+  const p2 = Math.round(maxValue * 0.4)
+  const p3 = Math.round(maxValue * 0.2)
 
   mapChart.setOption({
     backgroundColor: 'transparent',
@@ -806,7 +811,8 @@ const initMapChart = () => {
       ...tooltipStyle,
       trigger: 'item',
       formatter: function(params) {
-        const total = isChinaMap.value ? 1320 : 300
+        if (params.value == null || params.value === '-') return params.name + '：暂无数据'
+        const total = isChinaMap.value ? collegeStudentTotal.value : intlStudentTotal.value
         return params.name + ': ' + params.value + '人 (' + ((params.value / total) * 100).toFixed(1) + '%)'
       }
     },
@@ -817,15 +823,15 @@ const initMapChart = () => {
       orient: 'vertical',
       textStyle: { color: 'rgba(255,255,255,0.7)', fontSize: 11 },
       pieces: isChinaMap.value ? [
-        { max: 500, min: 400, label: '>400', color: '#7b2cbf' },
-        { max: 399, min: 100, label: '100-399', color: '#00b8d4' },
-        { max: 99, min: 50, label: '50-99', color: '#00698c' },
-        { max: 49, min: 0, label: '<50', color: '#004a66' }
+        { min: p1, label: '>=' + p1, color: '#7b2cbf' },
+        { max: p1 - 1, min: p2, label: p2 + '-' + (p1 - 1), color: '#00b8d4' },
+        { max: p2 - 1, min: p3, label: p3 + '-' + (p2 - 1), color: '#00698c' },
+        { max: p3 - 1, min: 0, label: '<' + p3, color: '#004a66' }
       ] : [
-        { max: 52, min: 30, label: '>30', color: '#7b2cbf' },
-        { max: 29, min: 15, label: '15-29', color: '#00b8d4' },
-        { max: 14, min: 5, label: '5-14', color: '#00698c' },
-        { max: 4, min: 0, label: '<5', color: '#004a66' }
+        { min: p1, label: '>=' + p1, color: '#7b2cbf' },
+        { max: p1 - 1, min: p2, label: p2 + '-' + (p1 - 1), color: '#00b8d4' },
+        { max: p2 - 1, min: p3, label: p3 + '-' + (p2 - 1), color: '#00698c' },
+        { max: p3 - 1, min: 0, label: '<' + p3, color: '#004a66' }
       ],
       itemWidth: 14,
       itemHeight: 14,
@@ -983,7 +989,7 @@ const initGaugeChart = () => {
         color: 'rgba(255,255,255,0.75)',
         fontWeight: '500'
       },
-      data: [{ value: 94 }]
+      data: [{ value: completionRate.value || 94 }]
     }]
   })
 }
@@ -1083,20 +1089,170 @@ const handleDblclick = () => {
   })
 }
 
+// ============ 数据接入 ============
+// 大屏口径 = 全院（本科 + 学硕 + 博士 + MPA + 留学生），不再只统计研究生子系统。
+//   A 官网原文：学院简介指标 / 全职教师名录 / 学术成果页 / 论文题录 / 通知公告
+//   B 教学系统（同组同学子系统）课程与成绩
+//   估算项：在校生 = 官网年招生规模 × 标准学制，页面上明确标注“估算”
+// 任一接口失败时保留页面兜底值，不影响渲染
+const fetchRealKpi = async () => {
+  const get = (url) => fetch(url).then(r => r.ok ? r.json() : null).catch(() => null)
+
+  const [college, paperKeywords, courseDist,
+    pspaFaculty, gradeStat, pspaProfile, pspaAchievementStats] =
+    await Promise.all([
+      get('/api-research/api/real/pspa-college-overview'),
+      get('/api-research/api/real/paper-keywords?limit=40'),
+      get('/api-research/api/real/course-type-dist'),
+      get('/api-research/api/real/pspa-faculty-title-dist'),
+      get('/api-research/api/real/grade-stat'),
+      get('/api-research/api/real/pspa-profile'),
+      get('/api-research/api/real/pspa-achievement-stats'),
+    ])
+
+  const setKpi = (key, value) => {
+    if (value == null || value === '' || Number.isNaN(Number(value))) return
+    const row = kpiData.find(k => k.key === key)
+    if (row) row.value = Number(value)
+  }
+
+  const profile = pspaProfile?.data || {}
+
+  // ---- KPI：全院口径（本科 + 硕士 + 博士 + MPA + 留学生）----
+  const sumEnroll = (keys) => (college?.enrollment || [])
+    .filter(e => keys.includes(e.key))
+    .reduce((s, e) => s + (e.in_school || 0), 0)
+
+  if (college?.totals) {
+    setKpi('students', college.totals.all)
+    setKpi('undergrad', college.totals.undergrad)
+    setKpi('master', sumEnroll(['master', 'mpa']))
+    setKpi('doctor', sumEnroll(['doctor']))
+    collegeStudentTotal.value = college.totals.all || collegeStudentTotal.value
+    setKpi('staff', college.faculty?.total ?? profile.teacher_total)
+    setKpi('funding', college.research?.fund_total ?? profile.fund_total)
+  } else {
+    setKpi('staff', profile.teacher_total)
+    setKpi('funding', profile.fund_total)
+  }
+
+  // ---- 各培养层次年招生规模 / 在院生构成（官网原文 + 学制换算）----
+  if (college?.enrollment?.length) {
+    const palette = ['#13c2c2', '#00d4ff', '#52c41a', '#7b2cbf', '#faad14']
+    levelData.length = 0
+    enrollPerYearData.length = 0
+    college.enrollment.forEach((e, i) => {
+      levelData.push({
+        value: e.in_school || 0,
+        name: e.name,
+        itemStyle: { color: palette[i % palette.length] }
+      })
+      enrollPerYearData.push({ name: e.name, value: e.per_year || 0 })
+    })
+  }
+
+  // ---- 各系专任教师规模（官网全职教师名录按系聚合）----
+  if (college?.dept_dist?.length) {
+    deptData.length = 0
+    college.dept_dist.forEach(d => deptData.push({ name: d.name, value: d.value }))
+  }
+
+  // ---- 官网科研产出构成（学院简介近五年统计）----
+  if (college?.research) {
+    const r = college.research
+    researchOutputData.length = 0
+    const push = (name, value) => {
+      if (value != null) researchOutputData.push({ name, value })
+    }
+    push('发表论文', r.paper_total)
+    push('CSSCI 来源期刊', r.paper_cssci)
+    push('SSCI 论文', r.paper_ssci)
+    push('出版著作', r.book_total)
+    push('智库报告', r.thinktank_report)
+  }
+
+  // ---- 科研项目级别分布（官网学院简介原文数字）----
+  if (profile.project_major != null) {
+    projectLevelData.length = 0
+    projectLevelData.push({ name: '重大攻关', value: profile.project_major })
+    projectLevelData.push({ name: '国家社科', value: profile.project_nssf || 0 })
+    projectLevelData.push({ name: '国自然', value: profile.project_nsfc || 0 })
+    projectLevelData.push({ name: '部委项目', value: profile.project_ministry || 0 })
+  }
+
+  // ---- 官网学术成果年度分布（爬虫采集，按发布年份聚合）----
+  if (pspaAchievementStats?.by_year?.length) {
+    achievementYearData.length = 0
+    pspaAchievementStats.by_year.forEach(y => achievementYearData.push({ name: y.name, value: y.value }))
+  }
+
+  // ---- 学术关键词词云（官网 375 篇论文关键词真实聚合）----
+  if (paperKeywords?.data?.length) {
+    wordCloudData.length = 0
+    paperKeywords.data.forEach(d => wordCloudData.push({ name: d.name, value: d.value }))
+  }
+
+  // ---- 生源地地图：官网不公布分省生源，按全院在校生规模做示意估算 ----
+  // 省份结构为学院生源的经验分布，总量与全院在校生一致，页面标注“示意估算”。
+  const allStudents = college?.totals?.all || collegeStudentTotal.value
+  collegeStudentTotal.value = allStudents
+  const mapBaseTotal = MAP_BASE.reduce((s, d) => s + d.value, 0) || 1
+  const ratio = allStudents / mapBaseTotal
+  MAP_BASE.forEach((base, i) => {
+    if (mapData[i]) mapData[i].value = Math.max(1, Math.round(base.value * ratio))
+  })
+
+  // 国际地图按全英文项目留学生在校生规模等比放大
+  const intl = college?.enrollment?.find(e => e.key === 'intl')
+  const intlTotal = intl?.in_school || intlStudentTotal.value
+  intlStudentTotal.value = intlTotal
+  const worldBaseTotal = WORLD_BASE.reduce((s, d) => s + d.value, 0) || 1
+  const worldRatio = intlTotal / worldBaseTotal
+  WORLD_BASE.forEach((base, i) => {
+    if (worldMapData[i]) worldMapData[i].value = Math.max(1, Math.round(base.value * worldRatio))
+  })
+
+  // ---- 课程类型分布（教学系统课程库）----
+  if (courseDist?.data?.length) {
+    courseData.length = 0
+    courseDist.data.forEach(d => courseData.push({ name: d.name, value: d.value }))
+  }
+
+  // ---- 教师职称分布（学院官网全职教师页面，93 人）----
+  if (pspaFaculty?.data?.length) {
+    const colorMap = {
+      教授: '#7b2cbf', 副教授: '#00d4ff', 副研究员: '#13c2c2',
+      讲师: '#52c41a', 助理研究员: '#95de64', 博士后: '#faad14', 未标注: '#8c8c8c'
+    }
+    facultyData.length = 0
+    pspaFaculty.data.forEach(d => {
+      facultyData.push({ name: d.name, value: d.value, itemStyle: { color: colorMap[d.name] || '#13c2c2' } })
+    })
+  }
+
+  // ---- 学业完成率（教学系统成绩库及格率）----
+  if (gradeStat?.pass_rate != null) {
+    completionRate.value = Math.round(gradeStat.pass_rate)
+  }
+
+  // 说明：本函数在 onMounted 中先于 initCharts() 完成（已 await），
+  // 上述数组就地更新后，图表首次渲染即为当前数据，无需二次重绘。
+}
+
 // 生命周期
-onMounted(() => {
+onMounted(async () => {
+  await fetchRealKpi()
+
+  const num = (key) => kpiData.find(k => k.key === key)?.value || 0
   dashboardStore.updateData({
-    students: kpiData.find(k => k.key === 'students')?.value || 1320,
-    staff: kpiData.find(k => k.key === 'staff')?.value || 93,
-    projects: kpiData.find(k => k.key === 'projects')?.value || 307,
-    funding: kpiData.find(k => k.key === 'funding')?.value || 4000,
-    budget: kpiData.find(k => k.key === 'budget')?.value || 910,
-    maleRatio: ((studentData.find(s => s.name === '男生')?.value || 0) / 
-               ((studentData.find(s => s.name === '男生')?.value || 0) + 
-                (studentData.find(s => s.name === '女生')?.value || 0)) * 100).toFixed(2) || 38.03,
-    femaleRatio: ((studentData.find(s => s.name === '女生')?.value || 0) / 
-                 ((studentData.find(s => s.name === '男生')?.value || 0) + 
-                  (studentData.find(s => s.name === '女生')?.value || 0)) * 100).toFixed(2) || 61.97
+    students: num('students'),
+    undergrad: num('undergrad'),
+    master: num('master'),
+    doctor: num('doctor'),
+    staff: num('staff'),
+    funding: num('funding'),
+    maleRatio: '--',
+    femaleRatio: '--'
   })
   
   nextTick(() => {
@@ -1135,7 +1291,8 @@ onUnmounted(() => {
 /* ==================== 全局基础 ==================== */
 .dashboard {
   width: 100%;
-  min-height: calc(100vh - 170px - 20px);
+  /* 父容器（Layout.main-content）已为固定底部导航预留 90px，这里只填满可见区域 */
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1207,8 +1364,8 @@ onUnmounted(() => {
 .kpi-section {
   flex-shrink: 0;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
 }
 
 /* ==================== 中部主体区 ==================== */
@@ -1284,6 +1441,28 @@ onUnmounted(() => {
   font-weight: 600;
   margin: 0;
   letter-spacing: 0.5px;
+}
+
+/* 数据来源标注：默认橙色=子系统/演示数据，official 绿色=学院官网真实数据 */
+.demo-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #faad14;
+  border: 1px solid rgba(250, 173, 20, 0.45);
+  border-radius: 8px;
+  background: rgba(250, 173, 20, 0.08);
+  vertical-align: middle;
+  letter-spacing: 0;
+}
+
+.demo-tag.official {
+  color: #52c41a;
+  border-color: rgba(82, 196, 26, 0.45);
+  background: rgba(82, 196, 26, 0.1);
 }
 
 .chart-body {
@@ -1403,7 +1582,7 @@ onUnmounted(() => {
 }
 
 @media (max-width: 1366px) {
-  .dashboard { height: calc(100vh - 160px - 15px); }
+  .dashboard { min-height: 100%; }
   .card-title { font-size: 12px; }
   .title-name { font-size: 14px; }
   .bottom-section { height: 220px; }

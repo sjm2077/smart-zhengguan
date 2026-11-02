@@ -18,6 +18,7 @@
         body {
             background: linear-gradient(135deg, #f0f7ff 0%, #f5f7fa 100%);
             color: #333;
+            overflow-x: hidden;
         }
 
         :root {
@@ -99,7 +100,10 @@
                 }
 
         .container {
-            display: flex;
+            /* 侧栏采用 fixed 定位，不参与普通文档流；主容器不再使用 flex 叠加宽度 */
+            display: block;
+            width: 100%;
+            max-width: 100%;
             min-height: calc(100vh - 60px);
             margin-top: 60px;
         }
@@ -169,9 +173,14 @@
                 }
 
         .content {
-            flex: 1;
+            /* 主内容宽度扣除固定侧栏，避免页面整体向右溢出并产生底部横向滚动条 */
+            display: block;
+            width: calc(100% - 240px);
+            max-width: calc(100% - 240px);
+            min-width: 0;
             margin-left: 240px;
             padding: 30px;
+            box-sizing: border-box;
         }
 
         .page-title {
@@ -348,6 +357,106 @@
             .menu-item .fa-angle-down.rotate {
                 transform: rotate(180deg);
             }
+
+
+        /* 科研成果登记与管理 */
+        .achievement-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .achievement-toolbar input,
+        .achievement-toolbar select {
+            height: 36px;
+            padding: 0 11px;
+            border: 1px solid #dcdfe6;
+            border-radius: 7px;
+            background: #fff;
+            color: #303133;
+            font-size: 13px;
+            outline: none;
+        }
+        .achievement-toolbar input:focus,
+        .achievement-toolbar select:focus,
+        .achievement-form-grid input:focus,
+        .achievement-form-grid select:focus {
+            border-color: #409eff;
+            box-shadow: 0 0 0 2px rgba(64,158,255,.12);
+        }
+        .achievement-search-input { min-width: 220px; flex: 1 1 240px; }
+        .achievement-toolbar select { min-width: 120px; }
+        .achievement-btn {
+            height: 36px;
+            padding: 0 14px;
+            border: 1px solid #dcdfe6;
+            border-radius: 7px;
+            color: #36577e;
+            background: #fff;
+            cursor: pointer;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .achievement-btn:hover { border-color: #409eff; color: #409eff; }
+        .achievement-btn.primary {
+            color: #fff;
+            border-color: #3276cf;
+            background: linear-gradient(135deg, #409eff, #17375e);
+        }
+        .achievement-btn.primary:hover { opacity: .92; color: #fff; }
+        .achievement-btn.export { color: #2f8f5b; border-color: #b7e4ca; background: #f4fbf6; }
+        .achievement-table-wrap { width: 100%; overflow-x: auto; border: 1px solid #e7edf5; border-radius: 10px; }
+        .achievement-table { width: 100%; min-width: 1080px; border-collapse: collapse; background: #fff; }
+        .achievement-table th, .achievement-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #edf1f7;
+            text-align: left;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+        .achievement-table th { background: #f2f7fd; color: #17375e; font-weight: 700; white-space: nowrap; }
+        .achievement-table tbody tr:hover { background: #f8fbff; }
+        .achievement-title-cell { max-width: 260px; min-width: 200px; font-weight: 600; color: #254d7b; overflow-wrap: anywhere; }
+        .achievement-type-pill { display: inline-block; padding: 4px 9px; border-radius: 12px; color: #2863a6; background: #edf5ff; white-space: nowrap; }
+        .achievement-actions { display: flex; gap: 6px; white-space: nowrap; }
+        .achievement-action-btn { border: 1px solid #d5e5fa; background: #f7fbff; color: #3978c5; border-radius: 5px; padding: 5px 8px; cursor: pointer; font-size: 12px; }
+        .achievement-action-btn:hover { background: #e8f3ff; }
+        .achievement-action-btn.edit { color: #b7791f; border-color: #f4ddb2; background: #fffaf0; }
+        .achievement-empty { text-align: center !important; padding: 34px 12px !important; color: #909399; }
+        .achievement-pagination { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px; color: #606266; font-size: 13px; }
+        .achievement-pagination select { height: 30px; border: 1px solid #dcdfe6; border-radius: 6px; padding: 0 8px; background: #fff; }
+        .achievement-pagination button { height: 30px; min-width: 62px; border: 1px solid #dcdfe6; border-radius: 6px; background: #fff; color: #36577e; cursor: pointer; }
+        .achievement-pagination button:disabled { color: #c0c4cc; background: #f5f7fa; cursor: not-allowed; }
+        .achievement-modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; align-items: center; justify-content: center; padding: 20px; background: rgba(9, 25, 48, .52); }
+        .achievement-modal-overlay.open { display: flex; }
+        .achievement-modal { width: min(760px, 100%); max-height: min(90vh, 900px); overflow-y: auto; border-radius: 16px; background: #fff; box-shadow: 0 20px 70px rgba(0,0,0,.25); }
+        .achievement-modal-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 20px 24px; color: #fff; background: linear-gradient(120deg, #102747, #315b91); }
+        .achievement-modal-header h3 { margin: 0; font-size: 20px; }
+        .achievement-modal-close { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.35); border-radius: 8px; color: #fff; background: rgba(255,255,255,.12); cursor: pointer; font-size: 20px; }
+        .achievement-modal form { padding: 22px 24px 24px; }
+        .achievement-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .achievement-form-grid label { display: flex; flex-direction: column; gap: 7px; color: #606266; font-size: 13px; font-weight: 600; }
+        .achievement-form-grid label.span-2 { grid-column: 1 / -1; }
+        .achievement-form-grid input:not([type="checkbox"]), .achievement-form-grid select {
+            width: 100%; height: 39px; padding: 0 11px; border: 1px solid #dcdfe6; border-radius: 7px; background: #fff; color: #303133; font-size: 14px; outline: none;
+        }
+        .achievement-form-grid input:disabled, .achievement-form-grid select:disabled { color: #606266; background: #f5f7fa; cursor: not-allowed; }
+        .achievement-form-grid .checkbox-label { flex-direction: row; align-items: center; align-self: end; min-height: 39px; }
+        .achievement-form-grid input[type="checkbox"] { width: 16px; height: 16px; }
+        .achievement-modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #edf1f7; }
+        .achievement-modal-actions button { height: 38px; padding: 0 18px; border-radius: 7px; cursor: pointer; }
+        .achievement-cancel-btn { border: 1px solid #dcdfe6; background: #fff; color: #606266; }
+        .achievement-save-btn { border: 1px solid #3276cf; background: #3276cf; color: #fff; }
+        .achievement-save-btn:disabled { opacity: .6; cursor: wait; }
+        @media (max-width: 760px) {
+            .content { padding: 16px; }
+            .achievement-form-grid { grid-template-columns: 1fr; }
+            .achievement-form-grid label.span-2 { grid-column: auto; }
+            .achievement-modal form { padding: 18px; }
+            .achievement-modal-header { padding: 16px 18px; }
+        }
+
     </style>
 </head>
 <body>
@@ -414,6 +523,56 @@
                 <i class="fa fa-trophy" style="color:#409EFF"></i> 科研成果管理
             </div>
 
+            <div class="card achievement-management-card">
+                <div class="card-title">
+                    <i class="fa fa-database"></i> 成果登记与管理
+                    <span id="achievementTotalBadge" style="margin-left:auto;color:#6b7f99;font-size:13px;font-weight:normal;">正在加载成果记录…</span>
+                </div>
+                <div class="achievement-toolbar">
+                    <input class="achievement-search-input" id="achievementSearchInput" type="search" maxlength="100" placeholder="搜索成果名称、作者或学科">
+                    <select id="achievementYearFilter" aria-label="发表年份筛选"><option value="all">全部年份</option></select>
+                    <select id="achievementTypeFilter" aria-label="成果类型筛选"><option value="all">全部类型</option></select>
+                    <select id="achievementLevelFilter" aria-label="成果级别筛选"><option value="all">全部级别</option></select>
+                    <select id="achievementDeptFilter" aria-label="所属系别筛选"><option value="all">全部系别</option></select>
+                    <button class="achievement-btn primary" type="button" id="btnAchievementSearch"><i class="fa fa-search"></i> 查询</button>
+                    <button class="achievement-btn" type="button" id="btnAchievementReset">重置</button>
+                    <button class="achievement-btn primary" type="button" id="btnAddAchievement"><i class="fa fa-plus"></i> 登记成果</button>
+                    <button class="achievement-btn export" type="button" id="btnExportAchievement"><i class="fa fa-download"></i> 导出 CSV</button>
+                </div>
+                <div class="achievement-table-wrap">
+                    <table class="achievement-table">
+                        <thead>
+                            <tr>
+                                <th>成果名称</th>
+                                <th>作者</th>
+                                <th>所属系别</th>
+                                <th>成果类型</th>
+                                <th>级别/收录</th>
+                                <th>发表年份</th>
+                                <th>被引次数</th>
+                                <th>国际发表</th>
+                                <th>所属学科</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="achievementManagementBody">
+                            <tr><td class="achievement-empty" colspan="10">正在加载成果记录…</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="achievement-pagination">
+                    <div>共 <strong id="achievementTotalCount">0</strong> 项成果</div>
+                    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                        <label for="achievementPageSize">每页显示</label>
+                        <select id="achievementPageSize"><option value="10">10 条</option><option value="20">20 条</option><option value="50">50 条</option></select>
+                        <button type="button" id="btnAchievementPrev">上一页</button>
+                        <span id="achievementPageInfo">第 1 / 1 页</span>
+                        <button type="button" id="btnAchievementNext">下一页</button>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="card">
                 <div class="card-title"><i class="fa fa-circle-o"></i> 成果分类分布气泡图</div>
                 <div class="filter-bar-small">
@@ -471,6 +630,53 @@
                 <div class="card-title"><i class="fa fa-cloud"></i> 成果词云（关键词/期刊/研究方向）</div>
                 <div id="wordCloudChart" class="chart-full"></div>
             </div>
+        </div>
+    </div>
+
+
+    <div class="achievement-modal-overlay" id="achievementModal" aria-hidden="true">
+        <div class="achievement-modal" role="dialog" aria-modal="true" aria-labelledby="achievementModalTitle">
+            <div class="achievement-modal-header">
+                <h3 id="achievementModalTitle">登记科研成果</h3>
+                <button type="button" class="achievement-modal-close" id="btnCloseAchievementModal" aria-label="关闭">×</button>
+            </div>
+            <form id="achievementForm">
+                <input type="hidden" id="achievementRecordId">
+                <div class="achievement-form-grid">
+                    <label class="span-2">成果名称（必填）
+                        <input type="text" id="achievementTitleInput" maxlength="200" required placeholder="请输入论文、著作、研究报告等成果名称">
+                    </label>
+                    <label>成果作者（必填）
+                        <select id="achievementAuthorInput" required><option value="">请选择教师</option></select>
+                    </label>
+                    <label>所属系别
+                        <select id="achievementDeptInput"><option value="">跟随作者所属系别</option></select>
+                    </label>
+                    <label>成果类型（必填）
+                        <select id="achievementTypeInput" required><option value="">请选择成果类型</option></select>
+                    </label>
+                    <label>成果级别 / 收录情况
+                        <input type="text" id="achievementLevelInput" maxlength="50" placeholder="例如：CSSCI、核心期刊、国家级">
+                    </label>
+                    <label>发表年份（必填）
+                        <input type="number" id="achievementYearInput" min="1900" max="2027" required>
+                    </label>
+                    <label>被引次数
+                        <input type="number" id="achievementCitationInput" min="0" max="2147483647" step="1" value="0" required>
+                    </label>
+                    <label>所属学科
+                        <input type="text" id="achievementSubjectInput" maxlength="50" placeholder="例如：公共政策、社会保障">
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="achievementInternationalInput">
+                        国际发表成果
+                    </label>
+                </div>
+                <div class="achievement-modal-actions">
+                    <button type="button" class="achievement-cancel-btn" id="btnCancelAchievementModal">关闭</button>
+                    <button type="submit" class="achievement-save-btn" id="btnSaveAchievement">保存成果</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -562,19 +768,46 @@
         }
 
         // 2. 柱状图
+        function showChartMessage(chart, message) {
+            if (!chart) return;
+            chart.clear();
+            chart.setOption({
+                title: {
+                    text: message,
+                    left: 'center',
+                    top: 'middle',
+                    textStyle: { color: '#909399', fontSize: 14, fontWeight: 'normal' }
+                }
+            });
+        }
+
         function refreshBarChart() {
-            fetch('/api/achievement/bar?years=2022,2023,2024')
+            const years = ((achievementOptions && achievementOptions.years) || [])
+                .slice(0, 3).map(Number).sort((a, b) => a - b);
+            if (!years.length) {
+                showChartMessage(resultBarChart, '暂无成果数据');
+                return;
+            }
+            fetch(`/api/achievement/bar?years=${years.join(',')}`)
                 .then(res => res.json())
                 .then(data => {
+                    const legendYears = (data.years || years).map(String);
+                    if (!data.series || !data.series.length) {
+                        showChartMessage(resultBarChart, '暂无成果数据');
+                        return;
+                    }
                     resultBarChart.setOption({
                         tooltip: { trigger: 'axis' },
-                        legend: { data: ['2022', '2023', '2024'], top: 0 },
-                        xAxis: { type: 'category', data: data.subjects },
+                        legend: { data: legendYears, top: 0 },
+                        xAxis: { type: 'category', data: data.subjects || [] },
                         yAxis: { type: 'value', name: '成果数量（项）' },
                         series: data.series
-                    });
+                    }, true);
                 })
-                .catch(err => console.error('柱状图加载失败', err));
+                .catch(err => {
+                    console.error('柱状图加载失败', err);
+                    showChartMessage(resultBarChart, '成果统计加载失败');
+                });
         }
 
         // 3. 高影响力成果榜单
@@ -584,17 +817,21 @@
                 .then(data => {
                     const tbody = document.getElementById('topTableBody');
                     tbody.innerHTML = '';
-                    data.data.forEach(item => {
+                    (data.data || []).forEach(item => {
                         const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${item.rank}</td>
-                            <td>${item.type}</td>
-                            <td>${item.subject}</td>
-                            <td>${item.level}</td>
-                            <td>${item.year}</td>
-                        `;
+                        [item.rank, item.type, item.subject, item.level, item.year].forEach(value => {
+                            const cell = document.createElement('td');
+                            cell.textContent = value == null || value === '' ? '—' : String(value);
+                            row.appendChild(cell);
+                        });
                         tbody.appendChild(row);
                     });
+                    if (!(data.data || []).length) {
+                        const row = document.createElement('tr');
+                        const cell = document.createElement('td'); cell.colSpan = 5;
+                        cell.style.textAlign = 'center'; cell.textContent = '暂无成果数据';
+                        row.appendChild(cell); tbody.appendChild(row);
+                    }
                 })
                 .catch(err => {
                     console.error('榜单加载失败', err);
@@ -630,8 +867,357 @@
                 .catch(err => console.error('词云加载失败', err));
         }
 
+
+        // ==============================================
+        // 科研成果登记、查询、详情、编辑与导出
+        // ==============================================
+        let achievementOptions = null;
+        let achievementCurrentPage = 1;
+        let achievementCurrentPages = 1;
+        let achievementLoading = false;
+
+        async function achievementFetchJson(url, options = {}) {
+            const response = await fetch(url, {
+                ...options,
+                credentials: options.credentials || 'same-origin',
+                headers: { 'Accept': 'application/json', ...(options.headers || {}) }
+            });
+            let payload;
+            try {
+                payload = await response.json();
+            } catch (error) {
+                throw new Error('服务器返回的数据不是有效 JSON');
+            }
+            if (!response.ok) throw new Error(payload.error || `请求失败（HTTP ${response.status}）`);
+            return payload;
+        }
+
+        function setSelectOptions(selectId, firstLabel, items, getValue = item => item.value, getLabel = item => item.label) {
+            const select = document.getElementById(selectId);
+            if (!select) return;
+            const previous = select.value || 'all';
+            select.replaceChildren();
+            const first = document.createElement('option');
+            first.value = 'all';
+            first.textContent = firstLabel;
+            select.appendChild(first);
+            items.forEach(item => {
+                const option = document.createElement('option');
+                option.value = String(getValue(item));
+                option.textContent = String(getLabel(item));
+                select.appendChild(option);
+            });
+            if ([...select.options].some(option => option.value === previous)) select.value = previous;
+        }
+
+        async function loadAchievementOptions() {
+            achievementOptions = await achievementFetchJson('/api/achievement/options');
+
+            setSelectOptions('achievementYearFilter', '全部年份', (achievementOptions.years || []).map(year => ({ value: year, label: `${year} 年` })));
+            setSelectOptions('achievementTypeFilter', '全部类型', achievementOptions.types || []);
+            const levels = (achievementOptions.levels || []).map(level => ({ value: level, label: level }));
+            if (achievementOptions.has_unclassified_level) levels.push({ value: '__unclassified__', label: '未填写级别' });
+            setSelectOptions('achievementLevelFilter', '全部级别', levels);
+            const departments = (achievementOptions.departments || []).map(dept => ({ value: dept.id, label: dept.name }));
+            if (achievementOptions.has_unassigned_department) departments.push({ value: '__unassigned__', label: '未分配系别' });
+            setSelectOptions('achievementDeptFilter', '全部系别', departments);
+
+            const bubbleYear = document.getElementById('bubbleYearFilter');
+            if (bubbleYear) {
+                bubbleYear.replaceChildren();
+                const allYears = document.createElement('option');
+                allYears.value = 'all'; allYears.textContent = '全部年份'; bubbleYear.appendChild(allYears);
+                (achievementOptions.years || []).forEach(year => {
+                    const option = document.createElement('option');
+                    option.value = String(year); option.textContent = `${year}年`; bubbleYear.appendChild(option);
+                });
+            }
+            const bubbleSubject = document.getElementById('bubbleSubFilter');
+            if (bubbleSubject) {
+                bubbleSubject.replaceChildren();
+                const allSubjects = document.createElement('option');
+                allSubjects.value = 'all'; allSubjects.textContent = '全部学科'; bubbleSubject.appendChild(allSubjects);
+                (achievementOptions.subjects || []).forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject; option.textContent = subject; bubbleSubject.appendChild(option);
+                });
+                if (achievementOptions.has_unclassified_subject) {
+                    const option = document.createElement('option');
+                    option.value = '__unclassified__'; option.textContent = '未分类'; bubbleSubject.appendChild(option);
+                }
+            }
+
+            const authorSelect = document.getElementById('achievementAuthorInput');
+            authorSelect.replaceChildren();
+            const authorPlaceholder = document.createElement('option');
+            authorPlaceholder.value = ''; authorPlaceholder.textContent = '请选择教师'; authorSelect.appendChild(authorPlaceholder);
+            (achievementOptions.authors || []).forEach(author => {
+                const option = document.createElement('option');
+                option.value = String(author.id);
+                option.textContent = author.dept_name ? `${author.name}（${author.dept_name}）` : author.name;
+                option.dataset.deptId = author.dept_id == null ? '' : String(author.dept_id);
+                authorSelect.appendChild(option);
+            });
+
+            const deptSelect = document.getElementById('achievementDeptInput');
+            deptSelect.replaceChildren();
+            const defaultDept = document.createElement('option');
+            defaultDept.value = ''; defaultDept.textContent = '跟随作者所属系别'; deptSelect.appendChild(defaultDept);
+            (achievementOptions.departments || []).forEach(dept => {
+                const option = document.createElement('option');
+                option.value = String(dept.id); option.textContent = dept.name; deptSelect.appendChild(option);
+            });
+
+            const typeSelect = document.getElementById('achievementTypeInput');
+            typeSelect.replaceChildren();
+            const typePlaceholder = document.createElement('option');
+            typePlaceholder.value = ''; typePlaceholder.textContent = '请选择成果类型'; typeSelect.appendChild(typePlaceholder);
+            (achievementOptions.types || []).forEach(type => {
+                const option = document.createElement('option');
+                option.value = type.value; option.textContent = type.label; typeSelect.appendChild(option);
+            });
+        }
+
+        function achievementQueryParams(includePaging = true) {
+            const params = new URLSearchParams();
+            const q = document.getElementById('achievementSearchInput').value.trim();
+            const year = document.getElementById('achievementYearFilter').value;
+            const type = document.getElementById('achievementTypeFilter').value;
+            const level = document.getElementById('achievementLevelFilter').value;
+            const deptId = document.getElementById('achievementDeptFilter').value;
+            if (q) params.set('q', q);
+            if (year !== 'all') params.set('year', year);
+            if (type !== 'all') params.set('type', type);
+            if (level !== 'all') params.set('level', level);
+            if (deptId !== 'all') params.set('dept_id', deptId);
+            if (includePaging) {
+                params.set('page', String(achievementCurrentPage));
+                params.set('page_size', document.getElementById('achievementPageSize').value);
+            }
+            return params;
+        }
+
+        function makeAchievementCell(row, text, className = '') {
+            const cell = document.createElement('td');
+            cell.textContent = text == null || text === '' ? '—' : String(text);
+            if (className) cell.className = className;
+            row.appendChild(cell);
+            return cell;
+        }
+
+        async function loadAchievementList() {
+            if (achievementLoading) return;
+            achievementLoading = true;
+            const tbody = document.getElementById('achievementManagementBody');
+            tbody.replaceChildren();
+            const loadingRow = document.createElement('tr');
+            const loadingCell = document.createElement('td');
+            loadingCell.colSpan = 10; loadingCell.className = 'achievement-empty'; loadingCell.textContent = '正在加载成果记录…';
+            loadingRow.appendChild(loadingCell); tbody.appendChild(loadingRow);
+            try {
+                const params = achievementQueryParams(true);
+                const payload = await achievementFetchJson(`/api/achievement/list?${params.toString()}`);
+                const items = payload.items || [];
+                const paging = payload.pagination || {};
+                achievementCurrentPage = paging.page || 1;
+                achievementCurrentPages = paging.pages || 1;
+                document.getElementById('achievementTotalCount').textContent = String(paging.total || 0);
+                document.getElementById('achievementTotalBadge').textContent = `共 ${paging.total || 0} 项成果`;
+                document.getElementById('achievementPageInfo').textContent = `第 ${achievementCurrentPage} / ${achievementCurrentPages} 页`;
+                document.getElementById('btnAchievementPrev').disabled = achievementCurrentPage <= 1;
+                document.getElementById('btnAchievementNext').disabled = achievementCurrentPage >= achievementCurrentPages;
+                tbody.replaceChildren();
+                if (!items.length) {
+                    const row = document.createElement('tr');
+                    const cell = document.createElement('td'); cell.colSpan = 10; cell.className = 'achievement-empty'; cell.textContent = '暂无符合条件的科研成果';
+                    row.appendChild(cell); tbody.appendChild(row); return;
+                }
+                items.forEach(item => {
+                    const row = document.createElement('tr');
+                    makeAchievementCell(row, item.title, 'achievement-title-cell');
+                    makeAchievementCell(row, item.author_name);
+                    makeAchievementCell(row, item.dept_name);
+                    const typeCell = document.createElement('td');
+                    const pill = document.createElement('span'); pill.className = 'achievement-type-pill'; pill.textContent = item.achievement_type || '未分类';
+                    typeCell.appendChild(pill); row.appendChild(typeCell);
+                    makeAchievementCell(row, item.level || '未填写');
+                    makeAchievementCell(row, item.publish_year);
+                    makeAchievementCell(row, item.citation_count || 0);
+                    makeAchievementCell(row, item.is_international ? '是' : '否');
+                    makeAchievementCell(row, item.subject || '未分类');
+                    const actionCell = document.createElement('td');
+                    const actions = document.createElement('div'); actions.className = 'achievement-actions';
+                    const detailBtn = document.createElement('button');
+                    detailBtn.type = 'button'; detailBtn.className = 'achievement-action-btn'; detailBtn.dataset.action = 'detail'; detailBtn.dataset.id = String(item.id); detailBtn.textContent = '详情'; actions.appendChild(detailBtn);
+                    if (currentRole === 'admin') {
+                        const editBtn = document.createElement('button');
+                        editBtn.type = 'button'; editBtn.className = 'achievement-action-btn edit'; editBtn.dataset.action = 'edit'; editBtn.dataset.id = String(item.id); editBtn.textContent = '编辑'; actions.appendChild(editBtn);
+                    }
+                    actionCell.appendChild(actions); row.appendChild(actionCell); tbody.appendChild(row);
+                });
+            } catch (error) {
+                tbody.replaceChildren();
+                const row = document.createElement('tr'); const cell = document.createElement('td');
+                cell.colSpan = 10; cell.className = 'achievement-empty'; cell.textContent = `成果列表加载失败：${error.message}`;
+                row.appendChild(cell); tbody.appendChild(row);
+                document.getElementById('achievementTotalBadge').textContent = '加载失败';
+            } finally {
+                achievementLoading = false;
+            }
+        }
+
+        function closeAchievementModal() {
+            const modal = document.getElementById('achievementModal');
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        async function openAchievementModal(mode, id = null) {
+            if ((mode === 'create' || mode === 'edit') && currentRole !== 'admin') {
+                alert('当前演示身份仅允许查看成果；请切换管理员身份进行登记或编辑。');
+                return;
+            }
+            try {
+                if (!achievementOptions) await loadAchievementOptions();
+                const form = document.getElementById('achievementForm');
+                form.reset();
+                document.getElementById('achievementRecordId').value = '';
+                document.getElementById('achievementCitationInput').value = '0';
+                document.getElementById('achievementYearInput').max = String(new Date().getFullYear() + 1);
+                document.getElementById('achievementYearInput').value = String(new Date().getFullYear());
+                let item = null;
+                if (id != null) {
+                    const payload = await achievementFetchJson(`/api/achievement/detail?id=${encodeURIComponent(id)}`);
+                    item = payload.item;
+                }
+                if (item) {
+                    document.getElementById('achievementRecordId').value = String(item.id);
+                    document.getElementById('achievementTitleInput').value = item.title || '';
+                    document.getElementById('achievementAuthorInput').value = item.author_id == null ? '' : String(item.author_id);
+                    document.getElementById('achievementDeptInput').value = item.dept_id == null ? '' : String(item.dept_id);
+                    document.getElementById('achievementTypeInput').value = item.achievement_type || '';
+                    document.getElementById('achievementLevelInput').value = item.level || '';
+                    document.getElementById('achievementYearInput').value = item.publish_year || '';
+                    document.getElementById('achievementCitationInput').value = item.citation_count || 0;
+                    document.getElementById('achievementSubjectInput').value = item.subject || '';
+                    document.getElementById('achievementInternationalInput').checked = Boolean(item.is_international);
+                }
+                const readonly = mode === 'detail';
+                form.querySelectorAll('input, select').forEach(input => {
+                    if (input.id !== 'achievementRecordId') input.disabled = readonly;
+                });
+                document.getElementById('btnSaveAchievement').style.display = readonly ? 'none' : '';
+                document.getElementById('achievementModalTitle').textContent = mode === 'detail' ? '科研成果详情' : (mode === 'edit' ? '编辑科研成果' : '登记科研成果');
+                document.getElementById('btnCancelAchievementModal').textContent = readonly ? '关闭' : '取消';
+                const modal = document.getElementById('achievementModal');
+                modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
+            } catch (error) {
+                alert(`打开成果表单失败：${error.message}`);
+            }
+        }
+
+        async function exportAchievementCsv() {
+            const params = achievementQueryParams(false);
+            window.location.href = `/api/achievement/export?${params.toString()}`;
+        }
+
+        function refreshAchievementAnalytics() {
+            refreshBubbleChart();
+            refreshBarChart();
+            refreshTopTable();
+            refreshWordCloud();
+        }
+
+        function initializeAchievementManagement() {
+            const addButton = document.getElementById('btnAddAchievement');
+            if (currentRole !== 'admin') addButton.style.display = 'none';
+            document.getElementById('btnAchievementSearch').addEventListener('click', () => {
+                achievementCurrentPage = 1;
+                loadAchievementList();
+            });
+            document.getElementById('achievementSearchInput').addEventListener('keydown', event => {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); achievementCurrentPage = 1; loadAchievementList();
+                }
+            });
+            document.getElementById('btnAchievementReset').addEventListener('click', () => {
+                document.getElementById('achievementSearchInput').value = '';
+                document.getElementById('achievementYearFilter').value = 'all';
+                document.getElementById('achievementTypeFilter').value = 'all';
+                document.getElementById('achievementLevelFilter').value = 'all';
+                document.getElementById('achievementDeptFilter').value = 'all';
+                document.getElementById('achievementPageSize').value = '10';
+                achievementCurrentPage = 1; loadAchievementList();
+            });
+            document.getElementById('achievementPageSize').addEventListener('change', () => {
+                achievementCurrentPage = 1; loadAchievementList();
+            });
+            document.getElementById('btnAchievementPrev').addEventListener('click', () => {
+                if (achievementCurrentPage > 1) { achievementCurrentPage -= 1; loadAchievementList(); }
+            });
+            document.getElementById('btnAchievementNext').addEventListener('click', () => {
+                if (achievementCurrentPage < achievementCurrentPages) { achievementCurrentPage += 1; loadAchievementList(); }
+            });
+            document.getElementById('btnAddAchievement').addEventListener('click', () => openAchievementModal('create'));
+            document.getElementById('btnExportAchievement').addEventListener('click', exportAchievementCsv);
+            document.getElementById('btnCloseAchievementModal').addEventListener('click', closeAchievementModal);
+            document.getElementById('btnCancelAchievementModal').addEventListener('click', closeAchievementModal);
+            document.getElementById('achievementModal').addEventListener('click', event => {
+                if (event.target.id === 'achievementModal') closeAchievementModal();
+            });
+            document.getElementById('achievementManagementBody').addEventListener('click', event => {
+                const button = event.target.closest('button[data-action]');
+                if (!button) return;
+                const action = button.dataset.action;
+                const id = button.dataset.id;
+                openAchievementModal(action, id);
+            });
+            document.getElementById('achievementAuthorInput').addEventListener('change', event => {
+                const selected = event.target.selectedOptions[0];
+                const deptId = selected ? selected.dataset.deptId : '';
+                const deptSelect = document.getElementById('achievementDeptInput');
+                if (deptId && !deptSelect.value) deptSelect.value = deptId;
+            });
+            document.getElementById('achievementForm').addEventListener('submit', async event => {
+                event.preventDefault();
+                if (currentRole !== 'admin') { alert('当前演示身份无权登记或编辑成果。'); return; }
+                const recordId = document.getElementById('achievementRecordId').value;
+                const payload = {
+                    title: document.getElementById('achievementTitleInput').value.trim(),
+                    author_id: document.getElementById('achievementAuthorInput').value,
+                    dept_id: document.getElementById('achievementDeptInput').value,
+                    achievement_type: document.getElementById('achievementTypeInput').value,
+                    level: document.getElementById('achievementLevelInput').value.trim(),
+                    publish_year: document.getElementById('achievementYearInput').value,
+                    citation_count: document.getElementById('achievementCitationInput').value,
+                    subject: document.getElementById('achievementSubjectInput').value.trim(),
+                    is_international: document.getElementById('achievementInternationalInput').checked,
+                };
+                if (recordId) payload.id = recordId;
+                const saveButton = document.getElementById('btnSaveAchievement');
+                saveButton.disabled = true; saveButton.textContent = '保存中…';
+                try {
+                    const result = await achievementFetchJson('/api/achievement/save', {
+                        method: recordId ? 'PUT' : 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                    });
+                    closeAchievementModal();
+                    alert(result.message || '保存成功');
+                    await loadAchievementOptions();
+                    await loadAchievementList();
+                    refreshAchievementAnalytics();
+                } catch (error) {
+                    alert(`保存成果失败：${error.message}`);
+                } finally {
+                    saveButton.disabled = false; saveButton.textContent = '保存成果';
+                }
+            });
+        }
+
+
         // 页面加载
-        window.onload = function () {
+        window.onload = async function () {
             document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
             document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
             setActiveMenu();
@@ -640,6 +1226,15 @@
             resultBarChart = echarts.init(document.getElementById('resultBarChart'));
             wordCloudChart = echarts.init(document.getElementById('wordCloudChart'));
 
+            initializeAchievementManagement();
+            try {
+                await loadAchievementOptions();
+                await loadAchievementList();
+            } catch (error) {
+                document.getElementById('achievementManagementBody').innerHTML = '<tr><td class="achievement-empty" colspan="10">成果管理初始化失败，请检查后端接口。</td></tr>';
+                document.getElementById('achievementTotalBadge').textContent = '初始化失败';
+                console.error('成果管理初始化失败', error);
+            }
             refreshBubbleChart();
             refreshBarChart();
             refreshTopTable();
