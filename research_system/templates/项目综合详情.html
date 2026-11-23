@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目综合详情 - 政治学与公共管理学院</title>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<link rel="stylesheet" href="/static/css/research-platform-theme.css?v=20261122-v2">
+<link rel="stylesheet" href="/static/css/research-final-polish-v4.css?v=20261123-v4">
+<link rel="stylesheet" href="/static/css/research-project-overview-v1.css?v=20261123-pd1">
+    <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
+</head>
+<body>
+<div class="top-nav">
+  <div class="logo-box">
+    <img src="https://img.icons8.com/fluency/96/ffffff/university.png" alt="logo">
+    <div class="title-text">政治学与公共管理学院</div>
+  </div>
+  <div class="search-box">
+    <input type="text" class="search-input" placeholder="项目综合详情" disabled>
+  </div>
+  <div class="user-info">
+    <img src="https://img.icons8.com/fluency/96/ffffff/user-male-circle.png" alt="用户">
+    <div><button id="btnAdmin">管理员</button><button id="btnTeacher">教师</button></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="sidebar">
+    <div class="menu-item" onclick="location.href='/'"><i class="fa fa-dashboard"></i> 科研总览</div>
+    <div class="menu-item" onclick="location.href='/research-query/'"><i class="fa fa-search"></i> 综合查询</div>
+    <div class="menu-item active" onclick="location.href='/project/'"><i class="fa fa-folder-open"></i> 科研项目</div>
+    <div class="menu-item" onclick="location.href='/fund/'"><i class="fa fa-money"></i> 科研经费</div>
+    <div class="menu-item" onclick="location.href='/achievement/'"><i class="fa fa-trophy"></i> 科研成果</div>
+    <div class="menu-item" onclick="goToSmartAnalysis()"><i class="fa fa-lightbulb-o"></i> 智能分析</div>
+    <div class="menu-item" onclick="toggleSubmenu(this)"><i class="fa fa-book"></i> 学科分析<i class="fa fa-angle-down" style="margin-left:auto;"></i></div>
+    <div class="submenu">
+      <div class="menu-item" onclick="location.href='/dept/science/'"><i class="fa fa-angle-right"></i> 科学社会主义系</div>
+      <div class="menu-item" onclick="location.href='/dept/political/'"><i class="fa fa-angle-right"></i> 政治学系</div>
+      <div class="menu-item" onclick="location.href='/dept/international/'"><i class="fa fa-angle-right"></i> 国际政治系</div>
+      <div class="menu-item" onclick="location.href='/dept/public/'"><i class="fa fa-angle-right"></i> 公共管理系</div>
+    </div>
+  </div>
+
+  <main class="content project-overview-page">
+    <div class="project-overview-head">
+      <div>
+        <div class="page-title"><i class="fa fa-folder-open"></i> 项目综合详情</div>
+        <div class="project-breadcrumb">
+          <a href="/research-query/">综合查询</a>
+          <i class="fa fa-angle-right"></i>
+          <span id="projectBreadcrumbName">项目详情</span>
+        </div>
+      </div>
+      <div class="project-head-actions">
+        <a href="javascript:history.back()" class="secondary-link"><i class="fa fa-angle-left"></i> 返回上一页</a>
+        <a href="/project/" class="secondary-link">进入项目管理</a>
+      </div>
+    </div>
+
+    <section class="project-hero-card">
+      <div class="project-hero-main">
+        <div class="project-kicker" id="projectNo">—</div>
+        <h1 id="projectName">正在加载项目…</h1>
+        <div class="project-meta-line">
+          <span id="projectLeader">—</span>
+          <span id="projectDept">—</span>
+          <span id="projectSubject">—</span>
+          <span id="projectType">—</span>
+        </div>
+      </div>
+      <div class="project-hero-side">
+        <span class="project-status" id="projectStatus">—</span>
+        <div class="progress-block">
+          <div class="progress-top"><span>项目进度</span><strong id="projectProgressText">—</strong></div>
+          <div class="progress-track"><div id="projectProgressBar"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-kpi-grid">
+      <div class="project-kpi-card"><span>立项经费（万元）</span><strong id="kpiFundAmount">—</strong></div>
+      <div class="project-kpi-card"><span>经费记录合计（万元）</span><strong id="kpiFundDetail">—</strong></div>
+      <div class="project-kpi-card"><span>预算合计（万元）</span><strong id="kpiBudget">—</strong></div>
+      <div class="project-kpi-card"><span>未解决风险</span><strong id="kpiRisk">—</strong></div>
+    </section>
+
+    <div class="project-two-col">
+      <section class="project-card">
+        <div class="project-card-head"><h2><i class="fa fa-info-circle"></i> 基本信息</h2></div>
+        <div class="project-info-grid" id="projectInfoGrid"></div>
+      </section>
+
+      <section class="project-card">
+        <div class="project-card-head"><h2><i class="fa fa-user"></i> 项目负责人</h2></div>
+        <div class="leader-panel">
+          <div class="leader-avatar"><i class="fa fa-user"></i></div>
+          <div class="leader-main">
+            <h3 id="leaderName">—</h3>
+            <p id="leaderMeta">—</p>
+            <div class="leader-stats">
+              <span>主持项目 <b id="leaderProjectCount">—</b></span>
+              <span>科研成果 <b id="leaderAchievementCount">—</b></span>
+            </div>
+            <a id="leaderProfileLink" href="#" class="primary-text-link">查看教师科研画像 <i class="fa fa-angle-right"></i></a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="project-two-col">
+      <section class="project-card">
+        <div class="project-card-head"><h2><i class="fa fa-line-chart"></i> 经费与预算</h2></div>
+        <div id="fundTrendChart" class="project-chart"></div>
+        <div class="project-table-wrap">
+          <table class="project-detail-table">
+            <thead><tr><th>年份</th><th>来源</th><th>用途</th><th>金额（万元）</th></tr></thead>
+            <tbody id="fundTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="project-card">
+        <div class="project-card-head">
+          <h2><i class="fa fa-exclamation-triangle"></i> 风险与提醒</h2>
+          <span class="small-count" id="riskCountBadge">0</span>
+        </div>
+        <div id="deadlinePanel" class="deadline-panel"></div>
+        <div id="riskList" class="risk-list"></div>
+      </section>
+    </div>
+
+    <div class="project-two-col">
+      <section class="project-card">
+        <div class="project-card-head"><h2><i class="fa fa-users"></i> 项目合作关系</h2></div>
+        <div id="cooperationList" class="cooperation-list"></div>
+      </section>
+
+      
+    </div>
+  
+<div id="relationNote" style="display:none!important" aria-hidden="true"></div>
+</main>
+</div>
+
+<script src="/static/js/research-project-overview-v1.js?v=20261123-pd2"></script>
+    <script src="/static/js/research-ui-cleanup-v1.js?v=20261123-clean2"></script>
+    <script src="/static/js/research-detail-navigation-v1.js?v=20261123-v1"></script>
+</body>
+</html>

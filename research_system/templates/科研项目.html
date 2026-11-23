@@ -1474,6 +1474,7 @@
     <link rel="stylesheet" href="/static/css/research-platform-theme.css?v=20261122-v2">
     <script src="/static/js/research-chart-theme-v2.js?v=20261122-v2"></script>
     <link rel="stylesheet" href="/static/css/research-final-polish-v4.css?v=20261123-v4">
+    <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
 </head>
 <body>
 
@@ -1500,6 +1501,10 @@
     <div class="menu-item" onclick="location.href='/'">
         <i class="fa fa-dashboard"></i> 科研总览
     </div>
+            <div class="menu-item" onclick="location.href='/research-query/'">
+                <i class="fa fa-search"></i> 综合查询
+            </div>
+
     <div class="menu-item" onclick="location.href='/project/'">
         <i class="fa fa-folder-open"></i> 科研项目
     </div>
@@ -1574,36 +1579,9 @@
             </div>
 
             <div class="card">
-                <div class="card-title"><i class="fa fa-file-text-o"></i> 项目合同快速入口</div>
-                <div class="contract-group">
-                    <!-- 为合同入口添加跳转链接 -->
-                    <div class="contract-item" onclick="window.location.href='contract-active.html'">
-                        <i class="fa fa-file-pdf-o"></i>
-                        <span>在研合同</span>
-                    </div>
-                    <div class="contract-item" onclick="window.location.href='contract-finish.html'">
-                        <i class="fa fa-file-word-o"></i>
-                        <span>结题材料</span>
-                    </div>
-                    <div class="contract-item" onclick="window.location.href='contract-create.html'">
-                        <i class="fa fa-file-text-o"></i>
-                        <span>立项书</span>
-                    </div>
-                    <div class="contract-item" onclick="window.location.href='contract-fund.html'">
-                        <i class="fa fa-file-excel-o"></i>
-                        <span>经费预算</span>
-                    </div>
-                    <div class="contract-item" onclick="window.location.href='contract-all.html'">
-                        <i class="fa fa-folder-o"></i>
-                        <span>全部档案</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
                 <div class="card-title">
-                    <i class="fa fa-table"></i> 科研项目列表
-                    <span style="font-size:12px;color:#999;margin-left:10px">（支持关键词搜索、排序与分页）</span>
+                    <i class="fa fa-table"></i> 项目台账
+                    <span style="font-size:12px;color:#999;margin-left:10px">（项目检索、排序、分页与维护）</span>
                 </div>
 
                 <div class="table-toolbar">
@@ -3270,6 +3248,7 @@
     };
 </script>
 <script src="/static/js/search.js"></script>
+    <script src="/static/js/research-ui-cleanup-v1.js?v=20261123-clean2"></script>
 </body>
 </html>
 

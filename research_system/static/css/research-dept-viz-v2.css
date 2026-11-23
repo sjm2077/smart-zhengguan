@@ -1,0 +1,17 @@
+
+/* 学科分析可视化 2.0 */
+.dept-viz-v2 .chart-full { height: 390px !important; min-height: 390px !important; }
+.dept-viz-v2 .chart-half,
+.dept-viz-v2 .chart-half-bar,
+.dept-viz-v2 .chart-half-ring { height: 340px !important; min-height: 340px !important; }
+.dept-viz-v2 .card { min-width:0; }
+.dept-viz-v2 .card-title { margin-bottom: 4px; }
+.dept-viz-v2 .viz-meta-note {
+  margin-left:12px;font-size:13px;font-weight:400;color:#7a8599;
+}
+@media(max-width:1000px){
+  .dept-viz-v2 .chart-full,
+  .dept-viz-v2 .chart-half,
+  .dept-viz-v2 .chart-half-bar,
+  .dept-viz-v2 .chart-half-ring { height:320px !important; min-height:320px !important; }
+}

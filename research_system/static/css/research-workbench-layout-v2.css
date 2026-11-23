@@ -1,0 +1,113 @@
+﻿.grid-6{
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:12px!important;
+  margin-bottom:16px!important;
+}
+.grid-6 .mini-card{
+  min-height:92px!important;
+  padding:16px 10px!important;
+  border-radius:8px!important;
+  box-shadow:0 2px 8px rgba(0,0,0,.04)!important;
+}
+.grid-6 .mini-card .label{
+  margin-bottom:6px!important;
+  font-size:13px!important;
+  color:#667085!important;
+}
+.grid-6 .mini-card .value{
+  font-size:24px!important;
+  line-height:1.2!important;
+}
+
+.research-workbench{
+  margin:0 0 16px!important;
+}
+.workbench-query-card{
+  padding:14px 16px!important;
+  margin-bottom:12px!important;
+  background:#F8FAFC!important;
+  box-shadow:none!important;
+}
+.workbench-title{
+  font-size:15px!important;
+}
+.workbench-subtitle{
+  max-width:760px;
+  font-size:12px!important;
+}
+.workbench-filters{
+  margin-top:12px!important;
+}
+
+.workbench-summary{
+  display:flex!important;
+  flex-wrap:wrap;
+  gap:8px!important;
+  margin-top:12px!important;
+}
+.workbench-summary[hidden]{
+  display:none!important;
+}
+.workbench-summary-item{
+  display:inline-flex!important;
+  align-items:center;
+  gap:6px;
+  min-width:0!important;
+  padding:5px 9px!important;
+  border:1px solid #D8E5FF!important;
+  border-radius:999px!important;
+  background:#F5F8FF!important;
+}
+.workbench-summary-label{
+  font-size:12px!important;
+  color:#667085!important;
+}
+.workbench-summary-value{
+  margin:0!important;
+  font-size:13px!important;
+  color:#165DFF!important;
+  font-weight:600!important;
+}
+
+.workbench-grid{
+  grid-template-columns:minmax(0,1.45fr) minmax(320px,.55fr)!important;
+  gap:12px!important;
+}
+.workbench-result-card,
+.workbench-todo-card{
+  padding:14px 16px!important;
+  box-shadow:none!important;
+}
+.workbench-result-groups{
+  gap:10px!important;
+  margin-top:12px!important;
+}
+.workbench-list-item{
+  padding:8px 9px!important;
+}
+.workbench-todo-item{
+  padding:8px 10px!important;
+}
+
+.grid-container{
+  margin-bottom:14px!important;
+}
+.grid-container .data-card{
+  min-height:150px!important;
+}
+
+@media(max-width:1500px){
+  .grid-6{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:1100px){
+  .workbench-grid{
+    grid-template-columns:1fr!important;
+  }
+}
+@media(max-width:760px){
+  .grid-6{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}

@@ -1,0 +1,29 @@
+﻿.grid-container .data-card {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 150px !important;
+    overflow: hidden !important;
+}
+
+.grid-container .data-card .data-label {
+    flex: 0 0 auto !important;
+}
+
+.grid-container .data-card .data-num {
+    flex: 0 0 auto !important;
+    margin-bottom: 2px !important;
+}
+
+.grid-container .data-card .mini-chart {
+    display: block !important;
+    width: 100% !important;
+    height: 54px !important;
+    min-height: 54px !important;
+    margin-top: auto !important;
+    overflow: hidden !important;
+    background: transparent !important;
+}
+
+.grid-container .data-card .mini-chart canvas {
+    display: block !important;
+}

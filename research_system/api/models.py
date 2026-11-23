@@ -1,9 +1,12 @@
-from django.db import models
+﻿from django.db import models
 
 # Create your models here.
 
 class Dept(models.Model):
     dept_name = models.CharField(max_length=50, verbose_name="系别名称")
+
+    class Meta:
+        db_table = 'dept'
 
 class User(models.Model):
     ROLE_CHOICES = [('admin', '管理员'), ('teacher', '教师')]
@@ -28,6 +31,12 @@ class Project(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
     actual_progress = models.IntegerField(default=0)
     subject = models.CharField(max_length=50, blank=True, null=True, verbose_name="学科分类")
+
+    research_direction = models.CharField(max_length=100, blank=True, null=True, verbose_name="研究方向")
+    region = models.CharField(max_length=50, blank=True, null=True, verbose_name="研究区域")
+    country_or_region = models.CharField(max_length=100, blank=True, null=True, verbose_name="国家或地区")
+    keywords = models.CharField(max_length=500, blank=True, null=True, verbose_name="分析关键词")
+
 
 class FundDetail(models.Model):
     SOURCE_CHOICES = [('国家社科','国家社科'),('教育部','教育部'),('省级项目','省级项目'),('横向课题','横向课题'),('政府委托','政府委托')]
@@ -102,6 +111,12 @@ class Achievement(models.Model):
     citation_count = models.IntegerField(default=0)
     is_international = models.BooleanField(default=False)
     subject = models.CharField(max_length=50, blank=True, null=True, verbose_name="学科分类")
+
+    research_direction = models.CharField(max_length=100, blank=True, null=True, verbose_name="研究方向")
+    region = models.CharField(max_length=50, blank=True, null=True, verbose_name="研究区域")
+    country_or_region = models.CharField(max_length=100, blank=True, null=True, verbose_name="国家或地区")
+    keywords = models.CharField(max_length=500, blank=True, null=True, verbose_name="分析关键词")
+
 
 class TeacherScore(models.Model):
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name='scores')

@@ -609,8 +609,12 @@ body {
     <script src="/static/js/research-chart-theme-v2.js?v=20261122-v2"></script>
     <link rel="stylesheet" href="/static/css/research-department-theme-v3.css?v=20261123-v3">
     <link rel="stylesheet" href="/static/css/research-final-polish-v4.css?v=20261123-v4">
+    <link rel="stylesheet" href="/static/css/research-navigation-unify-v1.css?v=20261123-nav1">
+    <link rel="stylesheet" href="/static/css/research-dept-drilldown-v1.css?v=20261123-dd1">
+    <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
+    <link rel="stylesheet" href="/static/css/research-dept-viz-v2.css?v=20261123-v2">
 </head>
-<body>
+<body class="dept-viz-v2">
 
 <div class="top-nav">
     <div class="logo-box">
@@ -635,6 +639,10 @@ body {
     <div class="menu-item" onclick="location.href='/'">
         <i class="fa fa-dashboard"></i> 科研总览
     </div>
+            <div class="menu-item" onclick="location.href='/research-query/'">
+                <i class="fa fa-search"></i> 综合查询
+            </div>
+
     <div class="menu-item" onclick="location.href='/project/'">
         <i class="fa fa-folder-open"></i> 科研项目
     </div>
@@ -711,11 +719,11 @@ body {
             <!-- 环形图 + 柱状图 -->
             <div class="grid-two">
                 <div class="card"><div class="card-title"><i class="fa fa-pie-chart"></i> 学术成果结构环形图</div><div id="ringChart" class="chart-half-ring"></div></div>
-                <div class="card"><div class="card-title"><i class="fa fa-bar-chart"></i> 成果来源层级分布</div><div id="sourceBarChart" class="chart-half-bar"></div></div>
+                <div class="card"><div class="card-title"><i class="fa fa-bar-chart"></i> 成果级别 / 收录分布</div><div id="sourceBarChart" class="chart-half-bar"></div></div>
             </div>
 
             <!-- 雷达图 -->
-            <div class="card"><div class="card-title"><i class="fa fa-radar"></i> 五大研究方向维度实力雷达图</div><div id="radarChart" class="chart-full"></div></div>
+            <div class="card"><div class="card-title"><i class="fa fa-radar"></i> 五大研究方向相对活跃度</div><div id="radarChart" class="chart-full"></div></div>
 
             <!-- 词云图 -->
             <div class="card"><div class="card-title"><i class="fa fa-cloud"></i> 政治学系研究热点词云</div><div id="wordCloudChart" class="chart-full"></div></div>
@@ -744,7 +752,8 @@ body {
         </div>
     </div>
 
-    <script>
+    <script src="/static/js/research-dept-viz-v2.js?v=20261123-v2"></script>
+<script>
         let currentRole = localStorage.getItem('userRole') || 'admin';
         let fundLineChart, ringChart, sourceBarChart, radarChart, wordCloudChart;
         let currentFundData = {};
@@ -808,7 +817,7 @@ body {
                 document.getElementById('fundTotal').innerText = data.stat_cards.total_fund;
                 document.getElementById('achievementCount').innerText = data.stat_cards.achievement_count;
                 document.getElementById('highLevelRatio').innerText = data.stat_cards.high_level_ratio + '%';
-                document.getElementById('csciGrowth').innerText = (data.stat_cards.csci_growth >= 0 ? '+' : '') + data.stat_cards.csci_growth + '%';
+                document.getElementById('csciGrowth').innerText = data.stat_cards.csci_growth == null ? '--' : ((data.stat_cards.csci_growth >= 0 ? '+' : '') + data.stat_cards.csci_growth + '%');
 
                 currentFundData = data.fund_trend;
                 refreshFundChart();
@@ -818,34 +827,22 @@ body {
                     series: [{ type: 'pie', radius: ['35%','65%'], data: data.ring_data, label: { show: true, formatter: '{b}' } }]
                 });
 
-                sourceBarChart.setOption({
-                    tooltip: { trigger: 'axis' },
-                    xAxis: { type: 'category', data: data.bar_categories },
-                    yAxis: { type: 'value' },
-                    series: [{ type: 'bar', data: data.bar_values, itemStyle: { color: (params) => ['#409EFF','#D4AF37','#67C23A'][params.dataIndex] } }]
-                });
+                ResearchDeptViz.bar(sourceBarChart, data.bar_categories, data.bar_values, {emptyText:'当前筛选范围暂无成果级别数据'});
 
-                radarChart.setOption({
-                    radar: { indicator: [
-                        { name:'政治思想研究', max:100 }, { name:'比较政治制度', max:100 },
-                        { name:'政党政治研究', max:100 }, { name:'民主与治理', max:100 },
-                        { name:'智库政策研究', max:100 }
-                    ] },
-                    series: [{ type: 'radar', data: [{ value: data.radar_data, name: '政治学系综合实力' }], areaStyle: { color: 'rgba(64,158,255,0.2)' } }]
-                });
+                ResearchDeptViz.radar(radarChart, data.radar_labels || ['政治思想与理论','比较政治与制度','政党政治','民主与治理','公共政策与智库'], data.radar_data, '当前筛选范围暂无研究方向数据');
 
-                wordCloudChart.setOption({
-                    series: [{ type: 'wordCloud', gridSize: 6, sizeRange: [8,55], rotationRange: [-60,60], shape: 'circle', data: data.wordcloud_data, textStyle: { color: () => ['#409EFF','#D4AF37','#67C23A','#F56C6C','#9C27B0','#17A2B8','#FF9800'][Math.floor(Math.random()*7)] } }]
-                });
+                ResearchDeptViz.wordCloud(wordCloudChart, data.wordcloud_data, '当前筛选范围暂无可提取研究主题');
 
                 const achBody = document.getElementById('achievementsTableBody');
                 achBody.innerHTML = '';
+                if (!data.achievements_table.length) achBody.innerHTML = '<tr><td colspan="5">暂无数据</td></tr>';
                 data.achievements_table.forEach(row => {
                     achBody.innerHTML += `<tr><td>${row.序号}</td><td>${row.成果名称}</td><td>${row.负责人}</td><td>${row.成果类型}</td><td>${row.年度}</td></tr>`;
                 });
 
                 const projBody = document.getElementById('projectsTableBody');
                 projBody.innerHTML = '';
+                if (!data.projects_table.length) projBody.innerHTML = '<tr><td colspan="5">暂无数据</td></tr>';
                 data.projects_table.forEach(proj => {
                     projBody.innerHTML += `<tr><td>${proj.项目名称}</td><td>${proj.负责人}</td><td>${proj.项目类型}</td><td>${proj.进度}</td><td>${proj.状态}</td></tr>`;
                 });
@@ -876,6 +873,8 @@ body {
         };
     </script>
 <script src="/static/js/search.js"></script>
+    <script src="/static/js/research-dept-drilldown-v1.js?v=20261123-dd1"></script>
+    <script src="/static/js/research-ui-cleanup-v1.js?v=20261123-clean2"></script>
 </body>
 </html>
 

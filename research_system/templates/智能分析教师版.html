@@ -109,6 +109,10 @@
     <link rel="stylesheet" href="/static/css/research-platform-theme.css?v=20261122-v2">
     <script src="/static/js/research-chart-theme-v2.js?v=20261122-v2"></script>
     <link rel="stylesheet" href="/static/css/research-final-polish-v4.css?v=20261123-v4">
+    <link rel="stylesheet" href="/static/css/research-teacher-direct-v1.css?v=20261123-td1">
+    <link rel="stylesheet" href="/static/css/research-navigation-unify-v1.css?v=20261123-nav1">
+    <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
+    <link rel="stylesheet" href="/static/css/research-teacher-data-clean-v1.css?v=20261123-d1">
 </head>
 <body>
 
@@ -129,6 +133,10 @@
 <div class="container">
     <div class="sidebar">
         <div class="menu-item" onclick="location.href='/'"><i class="fa fa-dashboard"></i> 科研总览</div>
+            <div class="menu-item" onclick="location.href='/research-query/'">
+                <i class="fa fa-search"></i> 综合查询
+            </div>
+
         <div class="menu-item" onclick="location.href='/project/'"><i class="fa fa-folder-open"></i> 科研项目</div>
         <div class="menu-item" onclick="location.href='/fund/'"><i class="fa fa-money"></i> 科研经费</div>
         <div class="menu-item" onclick="location.href='/achievement/'"><i class="fa fa-trophy"></i> 科研成果</div>
@@ -145,8 +153,12 @@
     <div class="content">
         <div class="page-title"><i class="fa fa-user-circle"></i> 教师科研画像</div>
 
+        <div id="teacherDirectToolbar" class="teacher-direct-toolbar">
+            <button id="backTeacherDirectoryBtn" type="button"><i class="fa fa-address-book"></i> 返回教师目录</button>
+        </div>
+
         <!-- 教师目录：仅展示数据库中的教师记录 -->
-        <div class="card">
+        <div class="card teacher-directory-card">
             <div class="card-title"><i class="fa fa-address-book"></i> 教师目录</div>
             <div class="filter-bar">
                 <input id="teacherDirectorySearch" class="directory-search" type="search" placeholder="搜索教师姓名、职称或所属系别" autocomplete="off">
@@ -178,7 +190,7 @@
                     <div class="impact-metric"><div class="num" id="hIndex">--</div><div class="label">H指数</div></div>
                 </div>
             </div>
-            <div id="profileStatus" class="profile-status">请从上方教师目录选择一位教师，查看数据库记录；如包含演示数据，将单独标注。</div>
+            <div id="profileStatus" class="profile-status">请从上方教师目录选择一位教师查看科研画像。</div>
             <hr style="margin:15px 0; border-color:#eee;">
             <div class="grid-3">
                 <div class="personal-metric" style="border-bottom:none; padding:5px 0;"><div class="metric-label">综合得分<span id="scoreDemoBadge" class="demo-badge" hidden>演示数据</span></div><div><span id="comprehensiveScore" class="metric-value">--</span><span class="metric-unit">/ 100</span></div></div>
@@ -227,7 +239,7 @@
         <div class="grid-2">
             <div class="card">
                 <div class="card-title"><i class="fa fa-bar-chart"></i> 经费使用分析</div>
-                <div class="filter-bar"><label>选择项目：</label><select class="filter-select" id="projectFundFilter"></select></div>
+                <div class="filter-bar"><label>选择项目：</label><select class="filter-select" id="projectFundFilter"></select><button class="btn entity-open-project-btn" id="openSelectedTeacherProject" type="button" onclick="openSelectedTeacherProject()" disabled>查看项目详情</button></div>
                 <div id="personalFundUse" class="chart-half"></div>
             </div>
             <div class="card">
@@ -335,29 +347,10 @@
     }
     function setProfileStatusFromTeacherInfo(prefix) {
         const info = selectedTeacherInfo;
-        if (!info) {
-            setProfileStatus(prefix || '请从上方教师目录选择一位教师，查看数据库记录。');
-            return;
-        }
-        const demoParts = [];
-        if (Number(info.demo_score_count || 0) > 0) {
-            demoParts.push(`年度绩效评分 ${Number(info.demo_score_count)} 条`);
-        }
-        if (Number(info.demo_cooperation_count || 0) > 0) {
-            demoParts.push(`合作关系 ${Number(info.demo_cooperation_count)} 条`);
-        }
-        const base = prefix || `已加载 ${info.real_name || '所选教师'} 的数据库记录。未记录的指标显示为“暂无数据”。`;
-        if (demoParts.length) {
-            setProfileStatus(
-                `${base} 注意：${demoParts.join('、')}为模拟演示数据，已在对应指标和图表中标注，不代表真实绩效考核或真实合作事实。`,
-                false,
-                true
-            );
-        } else {
-            setProfileStatus(`${base} 当前教师画像未发现演示评分或演示合作关系。`, false, false);
-        }
+        if (!info) { setProfileStatus(prefix || '请选择教师查看科研画像。'); return; }
+        setProfileStatus(prefix || `已加载 ${info.real_name || '所选教师'} 的科研数据。`);
     }
-    function resetProfileView(message = '请从上方教师目录选择一位教师，查看数据库记录；如包含演示数据，将单独标注。') {
+    function resetProfileView(message = '请从上方教师目录选择一位教师查看科研画像。') {
         selectedTeacherInfo = null;
         ['scoreDemoBadge', 'cooperationDemoBadgeMetric', 'growthDemoBadge', 'trendDemoBadge', 'abilityDemoBadge', 'cooperationDemoBadge', 'cooperationDemoLegend']
             .forEach(id => setBadgeVisible(id, false));
@@ -429,11 +422,25 @@
                 <td><button class="directory-action" type="button" data-teacher-id="${Number(teacher.id)}">查看画像</button></td>
             </tr>`).join('');
     }
+    function applyTeacherDirectMode() {
+        const direct = Boolean(TEACHER_ID);
+        document.body.classList.toggle('teacher-direct-mode', direct);
+    }
+    function backToTeacherDirectory() {
+        TEACHER_ID = '';
+        const url = new URL(window.location.href);
+        url.searchParams.delete('teacher_id');
+        window.history.replaceState({}, '', url.toString());
+        document.body.classList.remove('teacher-direct-mode');
+        resetProfileView();
+        document.querySelector('.teacher-directory-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     async function selectTeacher(teacherId) {
         TEACHER_ID = String(teacherId);
         const url = new URL(window.location.href);
         url.searchParams.set('teacher_id', TEACHER_ID);
         window.history.replaceState({}, '', url.toString());
+        applyTeacherDirectMode();
         await loadSelectedTeacher();
     }
 
@@ -595,6 +602,7 @@
         fundSelect.innerHTML = '<option value="all">全部项目</option>' + projects.map(project =>
             `<option value="${Number(project.id)}">${escapeHtml(project.name)}</option>`
         ).join('');
+        updateTeacherProjectDetailButton();
         await refreshPersonalFundUse();
     }
     async function loadAchievements() {
@@ -674,6 +682,17 @@
             }]
         }, true);
     }
+    function updateTeacherProjectDetailButton() {
+        const select = document.getElementById('projectFundFilter');
+        const button = document.getElementById('openSelectedTeacherProject');
+        if (!select || !button) return;
+        button.disabled = !select.value || select.value === 'all';
+    }
+    function openSelectedTeacherProject() {
+        const select = document.getElementById('projectFundFilter');
+        if (!select || !select.value || select.value === 'all') return;
+        window.location.href = `/project-detail/?id=${encodeURIComponent(select.value)}`;
+    }
     async function refreshPersonalFundUse() {
         const selectedProject = document.getElementById('projectFundFilter').value;
         const params = selectedProject && selectedProject !== 'all' ? { project_id: selectedProject } : {};
@@ -699,7 +718,7 @@
             tbody.innerHTML = data.warnings.map(warning => `
                 <tr class="${warning.risk_level === '高' ? 'high-risk' : 'medium-risk'}">
                     <td>${escapeHtml(warning.project_no)}</td>
-                    <td>${escapeHtml(warning.project_name)}</td>
+                    <td>${warning.project_id ? `<a class="entity-detail-link" href="/project-detail/?id=${Number(warning.project_id)}">${escapeHtml(warning.project_name)}</a>` : escapeHtml(warning.project_name)}</td>
                     <td>${escapeHtml(warning.end_date)}</td>
                     <td>${Number.isFinite(Number(warning.progress)) ? Number(warning.progress) : 0}%</td>
                     <td>${escapeHtml(warning.risk_level)}风险</td>
@@ -713,7 +732,7 @@
     }
     async function loadSelectedTeacher() {
         if (!TEACHER_ID) { resetProfileView(); return; }
-        resetProfileView('正在加载所选教师的数据库记录并识别演示数据...');
+        resetProfileView('正在加载所选教师科研画像...');
         try {
             await loadTeacherInfo();
         } catch (error) {
@@ -731,7 +750,7 @@
             setProfileStatus(`教师基本信息已加载，但有 ${failures.length} 个图表模块加载失败；可检查对应 API 请求。`, true);
         } else {
             setProfileStatusFromTeacherInfo(
-                `已加载 ${document.getElementById('teacherName').textContent} 的数据库记录。图表不会补造缺失指标。`
+                `已加载 ${document.getElementById('teacherName').textContent} 的科研数据。`
             );
         }
     }
@@ -833,6 +852,8 @@
 
     // ==================== 初始化 ====================
     window.addEventListener('load', async function() {
+        applyTeacherDirectMode();
+        document.getElementById('backTeacherDirectoryBtn')?.addEventListener('click', backToTeacherDirectory);
         document.getElementById('btnAdmin').style.background = currentRole === 'admin' ? '#409EFF' : '#666';
         document.getElementById('btnTeacher').style.background = currentRole === 'teacher' ? '#409EFF' : '#666';
         setActiveMenu();
@@ -860,6 +881,7 @@
             Promise.allSettled([loadAbilityRadar(), loadAchievements()]);
         });
         document.getElementById('projectFundFilter').addEventListener('change', () => {
+            updateTeacherProjectDetailButton();
             if (TEACHER_ID) refreshPersonalFundUse().catch(error => setProfileStatus(`经费图加载失败：${error.message}`, true));
         });
         window.addEventListener('resize', () => {
@@ -870,6 +892,8 @@
     });
 </script>
 <script src="/static/js/search.js"></script>
+    <script src="/static/js/research-ui-cleanup-v1.js?v=20261123-clean2"></script>
+    <script src="/static/js/research-detail-navigation-v1.js?v=20261123-v1"></script>
 </body>
 </html>
 

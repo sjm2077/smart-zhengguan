@@ -1,7 +1,8 @@
-from django.urls import path
+﻿from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('admin/teacher-status', views.admin_teacher_status, name='admin_teacher_status'),
     path('stat/main-card', views.main_card),
     path('stat/mini-cards', views.mini_cards),
     path('trend/project-count', views.trend_project_count),
@@ -16,6 +17,7 @@ urlpatterns = [
     path('project/subject-year-counts', views.project_subject_year_counts),
     path('project/list', views.project_list_api),
     path('project/detail', views.project_detail_api),
+    path('project/overview', views.project_overview_api),
     path('project/options', views.project_options_api),
     path('project/save', views.project_save_api),
     path('years', views.available_years),
@@ -57,5 +59,10 @@ urlpatterns = [
     path('dept/political', views.dept_political),
     path('dept/international', views.dept_international),
     path('dept/public', views.dept_public),
+    path('workbench/options', views.workbench_options),
+    path('workbench/overview', views.workbench_overview),
+    path('workbench/search', views.workbench_search_api),
     path('search/', views.search),
+    path('research-query/options2', views.research_query_options_v2),
+    path('research-query/search2', views.research_query_search_v2),
 ]

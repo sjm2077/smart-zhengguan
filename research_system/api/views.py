@@ -1,5 +1,5 @@
-from decimal import Decimal, InvalidOperation
-from datetime import date
+﻿from decimal import Decimal, InvalidOperation
+from datetime import date, timedelta
 import json
 import csv
 from collections import Counter
@@ -14,7 +14,8 @@ from django.db.models import (
     Count,
     Avg,
     Max,
-    Q
+    Q,
+    F,
 )
 
 from .models import (
@@ -26,8 +27,13 @@ from .models import (
     TeacherScore,
     Cooperation,
     Dept,
-    DeptResource
+    DeptResource,
+    RiskWarning
 )
+from .research_analysis import keyword_cloud, direction_counts, geo_counts
+
+from .research_metrics import teacher_research_metrics, teacher_real_score_rows, teacher_real_years
+
 # ==================================================
 # 公共年份工具
 # ==================================================
@@ -323,6 +329,7 @@ def cooperation_network(request):
                 Q(source=teacher.real_name)
                 | Q(target=teacher.real_name)
             )
+            .filter(is_demo=False)
             .select_related('project')
             .order_by('id')
         )
@@ -351,9 +358,9 @@ def cooperation_network(request):
                     'target': target,
                     'value': item.coop_count or 1,
                     'project_name': item.project.project_name,
-                    'is_demo': bool(item.is_demo),
+                    'is_demo': False,
                     'data_source': item.data_source or 'unknown',
-                    'source_label': '演示数据' if item.is_demo else '原有记录',
+                    'source_label': '正式记录',
                 })
 
         nodes = [
@@ -374,7 +381,7 @@ def cooperation_network(request):
                 'existing_records': existing_count,
                 'demo_records': demo_count,
             },
-            'has_demo_data': demo_count > 0,
+            'has_demo_data': False,
         })
 
     # 全院网络兼容模式：不展示模拟关系，防止其他页面无标识地使用演示数据。
@@ -1002,191 +1009,59 @@ def project_save_api(request):
 
 
 def fund_overview(request):
-    """科研经费顶部概览：实际经费 + 年度预算"""
+    """科研经费顶部概览：实际经费使用 FundDetail；预算只使用正式 FundBudget。"""
+    year = int(request.GET.get('year', get_latest_year()))
+    subject = request.GET.get('subject', 'all')
 
-    year = int(
-        request.GET.get(
-            'year',
-            get_latest_year()
-        )
-    )
-    subject = request.GET.get(
-        'subject',
-        'all'
-    )
+    actual_qs = FundDetail.objects.filter(year=year)
+    last_actual_qs = FundDetail.objects.filter(year=year - 1)
+    budget_qs = FundBudget.objects.filter(year=year, is_demo=False)
+    last_budget_qs = FundBudget.objects.filter(year=year - 1, is_demo=False)
 
-    # 当前年度实际经费
-    actual_qs = FundDetail.objects.filter(
-        year=year
-    )
-
-    # 当前年度预算
-    budget_qs = FundBudget.objects.filter(
-        year=year
-    )
-
-    # 上一年度实际经费
-    last_actual_qs = FundDetail.objects.filter(
-        year=year - 1
-    )
-
-    # 上一年度预算
-    last_budget_qs = FundBudget.objects.filter(
-        year=year - 1
-    )
-
-    # 学科筛选
     if subject != 'all':
-        actual_qs = actual_qs.filter(
-            project__subject=subject
-        )
-        budget_qs = budget_qs.filter(
-            project__subject=subject
-        )
-        last_actual_qs = last_actual_qs.filter(
-            project__subject=subject
-        )
-        last_budget_qs = last_budget_qs.filter(
-            project__subject=subject
-        )
+        actual_qs = actual_qs.filter(project__subject=subject)
+        last_actual_qs = last_actual_qs.filter(project__subject=subject)
+        budget_qs = budget_qs.filter(project__subject=subject)
+        last_budget_qs = last_budget_qs.filter(project__subject=subject)
 
-    total_amount = (
-        actual_qs.aggregate(
-            total=Sum('amount')
-        )['total']
-        or Decimal(0)
+    total_amount = actual_qs.aggregate(total=Sum('amount'))['total'] or Decimal(0)
+    last_year_total = last_actual_qs.aggregate(total=Sum('amount'))['total'] or Decimal(0)
+    budget_total = budget_qs.aggregate(total=Sum('budget_amount'))['total'] or Decimal(0)
+    last_budget_total = last_budget_qs.aggregate(total=Sum('budget_amount'))['total'] or Decimal(0)
+
+    growth_rate = (
+        float((total_amount - last_year_total) / last_year_total * 100)
+        if last_year_total else 0
     )
-
-    budget_total = (
-        budget_qs.aggregate(
-            total=Sum('budget_amount')
-        )['total']
-        or Decimal(0)
-    )
-
-    last_year_total = (
-        last_actual_qs.aggregate(
-            total=Sum('amount')
-        )['total']
-        or Decimal(0)
-    )
-
-    last_budget_total = (
-        last_budget_qs.aggregate(
-            total=Sum('budget_amount')
-        )['total']
-        or Decimal(0)
-    )
-
-    # 判断当前预算数据类型
-    has_demo_budget = budget_qs.filter(
-        is_demo=True
-    ).exists()
-
-    has_real_budget = budget_qs.filter(
-        is_demo=False
-    ).exists()
-
-    if has_demo_budget and has_real_budget:
-        budget_data_mode = 'mixed'
-    elif has_demo_budget:
-        budget_data_mode = 'demo'
-    elif has_real_budget:
-        budget_data_mode = 'real'
-    else:
-        budget_data_mode = 'none'
-
-    budget_sources = list(
-        budget_qs.order_by()
-        .values_list(
-            'data_source',
-            flat=True
-        )
-        .distinct()
-    )
-
-    # 经费同比增长
-    if last_year_total:
-        growth_rate = float(
-            (total_amount - last_year_total)
-            / last_year_total
-            * 100
-        )
-    else:
-        growth_rate = 0
 
     budget_available = budget_total > 0
+    execution_rate = None
+    surplus = None
+    execution_rate_change = None
 
-    # 当前年度预算执行率与结余
     if budget_available:
-        execution_rate = float(
-            total_amount
-            / budget_total
-            * 100
-        )
-
-        surplus = (
-            budget_total
-            - total_amount
-        )
-    else:
-        execution_rate = None
-        surplus = None
-
-    # 上年度预算执行率
-    if last_budget_total > 0:
-        last_execution_rate = float(
-            last_year_total
-            / last_budget_total
-            * 100
-        )
-    else:
-        last_execution_rate = None
-
-    # 执行率同比变化
-    if (
-        execution_rate is not None
-        and last_execution_rate is not None
-    ):
-        execution_rate_change = (
-            execution_rate
-            - last_execution_rate
-        )
-    else:
-        execution_rate_change = None
+        execution_rate = float(total_amount / budget_total * 100)
+        surplus = budget_total - total_amount
+        if last_budget_total > 0:
+            last_execution_rate = float(last_year_total / last_budget_total * 100)
+            execution_rate_change = execution_rate - last_execution_rate
 
     return JsonResponse({
         'year': year,
-        'total_amount': round(
-            float(total_amount),
-            2
-        ),
-        'budget_total': round(
-            float(budget_total),
-            2
-        ),
+        'total_amount': round(float(total_amount), 2),
+        'budget_total': round(float(budget_total), 2) if budget_available else None,
         'budget_available': budget_available,
-        'budget_data_mode': budget_data_mode,
-        'budget_sources': budget_sources,
-        'execution_rate': (
-            round(execution_rate, 2)
-            if execution_rate is not None
-            else None
+        'budget_data_mode': 'real' if budget_available else 'none',
+        'budget_sources': list(
+            budget_qs.order_by().values_list('data_source', flat=True).distinct()
         ),
+        'execution_rate': round(execution_rate, 2) if execution_rate is not None else None,
         'execution_rate_change': (
             round(execution_rate_change, 2)
-            if execution_rate_change is not None
-            else None
+            if execution_rate_change is not None else None
         ),
-        'surplus': (
-            round(float(surplus), 2)
-            if surplus is not None
-            else None
-        ),
-        'growth_rate': round(
-            growth_rate,
-            2
-        ),
+        'surplus': round(float(surplus), 2) if surplus is not None else None,
+        'growth_rate': round(growth_rate, 2),
     })
 
 def fund_sankey(request):
@@ -1233,113 +1108,40 @@ def fund_sankey(request):
     return JsonResponse({'nodes': nodes, 'links': links})
 
 def fund_gauge(request):
-    """年度预算执行率仪表盘"""
+    """年度预算执行率仪表盘：仅使用正式预算。"""
+    year = int(request.GET.get('year', get_latest_year()))
+    subject = request.GET.get('subject', 'all')
 
-    year = int(
-        request.GET.get(
-            'year',
-            get_latest_year()
-        )
-    )
-
-    subject = request.GET.get(
-        'subject',
-        'all'
-    )
-
-    actual_qs = FundDetail.objects.filter(
-        year=year
-    )
-
-    budget_qs = FundBudget.objects.filter(
-        year=year
-    )
+    actual_qs = FundDetail.objects.filter(year=year)
+    budget_qs = FundBudget.objects.filter(year=year, is_demo=False)
 
     if subject != 'all':
-        actual_qs = actual_qs.filter(
-            project__subject=subject
-        )
+        actual_qs = actual_qs.filter(project__subject=subject)
+        budget_qs = budget_qs.filter(project__subject=subject)
 
-        budget_qs = budget_qs.filter(
-            project__subject=subject
-        )
-
-    actual_total = (
-        actual_qs.aggregate(
-            total=Sum('amount')
-        )['total']
-        or Decimal(0)
-    )
-
-    budget_total = (
-        budget_qs.aggregate(
-            total=Sum('budget_amount')
-        )['total']
-        or Decimal(0)
-    )
-
-    # 判断预算数据类型
-    has_demo_budget = budget_qs.filter(
-        is_demo=True
-    ).exists()
-
-    has_real_budget = budget_qs.filter(
-        is_demo=False
-    ).exists()
-
-    if has_demo_budget and has_real_budget:
-        budget_data_mode = 'mixed'
-    elif has_demo_budget:
-        budget_data_mode = 'demo'
-    elif has_real_budget:
-        budget_data_mode = 'real'
-    else:
-        budget_data_mode = 'none'
-
-    budget_sources = list(
-        budget_qs.order_by()
-        .values_list(
-            'data_source',
-            flat=True
-        )
-        .distinct()
-    )
+    actual_total = actual_qs.aggregate(total=Sum('amount'))['total'] or Decimal(0)
+    budget_total = budget_qs.aggregate(total=Sum('budget_amount'))['total'] or Decimal(0)
 
     if budget_total <= 0:
         return JsonResponse({
             'budget_available': False,
-            'budget_data_mode': budget_data_mode,
-            'budget_sources': budget_sources,
+            'budget_data_mode': 'none',
+            'budget_sources': [],
             'value': None,
-            'actual_total': round(
-                float(actual_total),
-                2
-            ),
-            'budget_total': 0,
+            'actual_total': round(float(actual_total), 2),
+            'budget_total': None,
         })
 
-    rate = float(
-        actual_total
-        / budget_total
-        * 100
-    )
-
+    rate = float(actual_total / budget_total * 100)
     return JsonResponse({
         'budget_available': True,
-        'budget_data_mode': budget_data_mode,
-        'budget_sources': budget_sources,
-        'value': round(
-            rate,
-            2
+        'budget_data_mode': 'real',
+        'budget_sources': list(
+            budget_qs.order_by().values_list('data_source', flat=True).distinct()
         ),
-        'actual_total': round(
-            float(actual_total),
-            2
-        ),
-        'budget_total': round(
-            float(budget_total),
-            2
-        ),
+        'value': round(rate, 2),
+        'actual_total': round(float(actual_total), 2),
+        'budget_total': round(float(budget_total), 2),
     })
 
 def fund_expense_bar(request):
@@ -2312,263 +2114,125 @@ def _teacher_from_request(request):
 
 
 def _teacher_data_years(teacher):
-    """汇总该教师实际存在的绩效、项目、经费和成果年份。"""
-    years = set()
-
-    score_years = TeacherScore.objects.filter(
-        teacher=teacher
-    ).values_list('year', flat=True).distinct()
-    years.update(int(year) for year in score_years if year is not None)
-
-    project_years = Project.objects.filter(
-        leader=teacher
-    ).values_list('start_date__year', flat=True).distinct()
-    years.update(int(year) for year in project_years if year is not None)
-
-    fund_years = FundDetail.objects.filter(
-        project__leader=teacher
-    ).values_list('year', flat=True).distinct()
-    years.update(int(year) for year in fund_years if year is not None)
-
-    achievement_years = Achievement.objects.filter(
-        author=teacher
-    ).values_list('publish_year', flat=True).distinct()
-    years.update(int(year) for year in achievement_years if year is not None)
-
-    return sorted(years)
-
+    return teacher_real_years(teacher)
 
 def teacher_directory(request):
-    """教师目录：支持按姓名、职称和系别搜索。"""
     query = request.GET.get('q', '').strip()
-    teachers = User.objects.filter(role='teacher').select_related('dept').annotate(
-        project_count=Count('projects', distinct=True),
-        achievement_count=Count('achievements', distinct=True),
-    )
-
+    teachers = User.objects.filter(role='teacher').select_related('dept')
     if query:
         teachers = teachers.filter(
             Q(real_name__icontains=query)
             | Q(title__icontains=query)
             | Q(dept__dept_name__icontains=query)
         )
-
     teachers = teachers.order_by('dept__dept_name', 'real_name', 'id')
-    data = [
-        {
+    data = []
+    for teacher in teachers:
+        metrics = teacher_research_metrics(teacher)
+        data.append({
             'id': teacher.id,
             'real_name': teacher.real_name,
             'title': teacher.title or '',
             'dept': teacher.dept.dept_name if teacher.dept else '未分配',
-            'project_count': teacher.project_count,
-            'achievement_count': teacher.achievement_count,
-        }
-        for teacher in teachers
-    ]
+            'project_count': metrics['project_count'],
+            'achievement_count': metrics['achievements_count'],
+        })
     return JsonResponse({'teachers': data, 'total': len(data)})
 
-
 def teacher_info(request):
-    """返回教师基本信息和核心指标；如含演示绩效/合作记录，明确返回来源标记。"""
     teacher, error_response = _teacher_from_request(request)
     if error_response is not None:
         return error_response
-
-    score_rows = list(
-        TeacherScore.objects.filter(teacher=teacher).order_by('year', 'id')
-    )
-    score_by_year = {}
-    for score in score_rows:
-        score_by_year[score.year] = score
-
-    latest_score_year = max(score_by_year) if score_by_year else None
-    latest_score = score_by_year.get(latest_score_year) if latest_score_year is not None else None
-
-    demo_scores = [score for score in score_rows if score.is_demo]
-    existing_scores = [score for score in score_rows if not score.is_demo]
-    demo_score_years = sorted({score.year for score in demo_scores})
-
-    projects = Project.objects.filter(leader=teacher)
-    ongoing_projects = projects.filter(status='在研').count()
-    fund_total = FundDetail.objects.filter(
-        project__leader=teacher
-    ).aggregate(total=Sum('amount'))['total'] or Decimal('0')
-
-    achievements = Achievement.objects.filter(author=teacher)
-    achievement_count = achievements.count()
-    citation_values = list(
-        achievements.order_by('-citation_count').values_list('citation_count', flat=True)
-    )
-
-    if achievement_count:
-        total_citation = sum(int(value or 0) for value in citation_values)
-        h_index = max(
-            (rank for rank, citation_count in enumerate(citation_values, start=1)
-             if int(citation_count or 0) >= rank),
-            default=0,
-        )
-    else:
-        # 无成果记录时不把缺失数据包装成真实的 0 次引用。
-        total_citation = None
-        h_index = None
-
-    growth_rate = None
-    growth_rate_is_demo = False
-    if score_by_year:
-        recent_scores = [
-            score_by_year[year]
-            for year in sorted(score_by_year)
-            if latest_score_year - 2 <= year <= latest_score_year
-        ]
-        if len(recent_scores) >= 2:
-            first_score = float(recent_scores[0].comprehensive_score)
-            last_score = float(recent_scores[-1].comprehensive_score)
-            if first_score != 0 and recent_scores[-1].year > recent_scores[0].year:
-                growth_rate = round((last_score - first_score) / first_score * 100, 1)
-                growth_rate_is_demo = any(score.is_demo for score in recent_scores)
-
-    years = _teacher_data_years(teacher)
-    cooperation_queryset = Cooperation.objects.filter(project__leader=teacher)
-    demo_cooperation_count = cooperation_queryset.filter(is_demo=True).count()
-    existing_cooperation_count = cooperation_queryset.filter(is_demo=False).count()
-
+    metrics = teacher_research_metrics(teacher)
     return JsonResponse({
         'id': teacher.id,
         'real_name': teacher.real_name,
         'title': teacher.title or '',
         'dept': teacher.dept.dept_name if teacher.dept else '未分配',
-        # User 模型目前没有入职年份字段，故明确返回 null。
         'join_year': None,
-        'comprehensive': (
-            round(float(latest_score.comprehensive_score), 2)
-            if latest_score is not None else None
-        ),
-        'score_year': latest_score_year,
-        'score_is_demo': bool(latest_score.is_demo) if latest_score is not None else False,
-        'score_data_source': latest_score.data_source if latest_score is not None else None,
-        'ongoing_projects': ongoing_projects,
-        'fund_total': round(float(fund_total), 2),
-        'achievements_count': achievement_count,
-        'total_citation': total_citation,
-        'h_index': h_index,
-        'cooperation_count': existing_cooperation_count + demo_cooperation_count,
-        'existing_cooperation_count': existing_cooperation_count,
-        'demo_cooperation_count': demo_cooperation_count,
-        'score_count': len(score_rows),
-        'existing_score_count': len(existing_scores),
-        'demo_score_count': len(demo_scores),
-        'demo_score_years': demo_score_years,
-        'has_demo_score_data': bool(demo_scores),
-        'has_demo_cooperation_data': demo_cooperation_count > 0,
-        'has_demo_data': bool(demo_scores) or demo_cooperation_count > 0,
-        'growth_rate': growth_rate,
-        'growth_rate_is_demo': growth_rate_is_demo,
-        'years': years,
-        'score_years': sorted(score_by_year),
-        'latest_year': years[-1] if years else None,
+        'project_count': metrics['project_count'],
+        'ongoing_projects': metrics['ongoing_projects'],
+        'fund_total': metrics['fund_total'],
+        'achievements_count': metrics['achievements_count'],
+        'total_citation': metrics['total_citation'],
+        'h_index': metrics['h_index'],
+        'cooperation_count': metrics['cooperation_count'],
+        'comprehensive': metrics['comprehensive'],
+        'score_year': metrics['score_year'],
+        'growth_rate': metrics['growth_rate'],
+        'years': metrics['years'],
+        'score_years': metrics['score_years'],
+        'latest_year': metrics['years'][-1] if metrics['years'] else None,
+        'score_is_demo': False,
+        'growth_rate_is_demo': False,
+        'demo_score_count': 0,
+        'demo_cooperation_count': 0,
+        'existing_cooperation_count': metrics['cooperation_count'],
+        'has_demo_score_data': False,
+        'has_demo_cooperation_data': False,
+        'has_demo_data': False,
     })
 
 def teacher_trend(request):
-    """返回教师实际年度绩效、项目数和成果数；逐年附带绩效记录来源标记。"""
     teacher, error_response = _teacher_from_request(request)
     if error_response is not None:
         return error_response
-
     trend_type = request.GET.get('type', '5year')
     limits = {'5year': 5, '3year': 3, 'all': None}
     if trend_type not in limits:
-        return JsonResponse(
-            {'error': 'type 仅支持 5year、3year 或 all'},
-            status=400
-        )
-
-    years = _teacher_data_years(teacher)
+        return JsonResponse({'error': 'type 仅支持 5year、3year 或 all'}, status=400)
+    years = teacher_real_years(teacher)
     limit = limits[trend_type]
     if limit is not None:
         years = years[-limit:]
-
+    score_map = {}
+    for score in teacher_real_score_rows(teacher):
+        score_map[score.year] = score
     scores = []
-    score_is_demo = []
-    score_data_sources = []
-    project_counts = []
-    achievement_counts = []
-
+    projects = []
+    achievements = []
     for year in years:
-        score = TeacherScore.objects.filter(
-            teacher=teacher,
-            year=year
-        ).order_by('-id').first()
-
-        scores.append(
-            round(float(score.comprehensive_score), 2) if score is not None else None
-        )
-        score_is_demo.append(bool(score.is_demo) if score is not None else False)
-        score_data_sources.append(score.data_source if score is not None else None)
-        project_counts.append(
-            Project.objects.filter(leader=teacher, start_date__year=year).count()
-        )
-        achievement_counts.append(
-            Achievement.objects.filter(author=teacher, publish_year=year).count()
-        )
-
+        score = score_map.get(year)
+        scores.append(round(float(score.comprehensive_score), 2) if score else None)
+        projects.append(Project.objects.filter(leader=teacher, start_date__year=year).count())
+        achievements.append(Achievement.objects.filter(author=teacher, publish_year=year).count())
     return JsonResponse({
         'years': years,
         'scores': scores,
-        'score_is_demo': score_is_demo,
-        'score_data_sources': score_data_sources,
-        'projects': project_counts,
-        'achievements': achievement_counts,
-        'has_demo_scores': any(score_is_demo),
+        'projects': projects,
+        'achievements': achievements,
+        'score_is_demo': [False for _ in years],
+        'score_data_sources': ['formal' if value is not None else None for value in scores],
+        'has_demo_scores': False,
     })
 
 def teacher_ability(request):
-    """返回绩效表中真实记录的科研、教学、服务评分，并标明是否为演示数据。"""
     teacher, error_response = _teacher_from_request(request)
     if error_response is not None:
         return error_response
-
     raw_year = request.GET.get('year', '').strip()
+    scores = teacher_real_score_rows(teacher)
     if raw_year:
         try:
             year = int(raw_year)
         except (TypeError, ValueError):
             return JsonResponse({'error': 'year 必须是有效年份'}, status=400)
     else:
-        year = TeacherScore.objects.filter(
-            teacher=teacher
-        ).order_by('-year').values_list('year', flat=True).first()
-
+        year = scores.order_by('-year', '-id').values_list('year', flat=True).first()
     if year is None:
-        return JsonResponse({
-            'year': None,
-            'data': [],
-            'is_demo': False,
-            'data_source': None,
-        })
-
-    score = TeacherScore.objects.filter(
-        teacher=teacher,
-        year=year
-    ).order_by('-id').first()
+        return JsonResponse({'year': None, 'data': [], 'is_demo': False, 'data_source': None})
+    score = scores.filter(year=year).order_by('-id').first()
     if score is None:
-        return JsonResponse({
-            'year': year,
-            'data': [],
-            'is_demo': False,
-            'data_source': None,
-        })
-
-    data = [
-        {'name': '科研得分', 'value': round(float(score.research_score), 2)},
-        {'name': '教学得分', 'value': round(float(score.teaching_score), 2)},
-        {'name': '服务得分', 'value': round(float(score.service_score), 2)},
-    ]
+        return JsonResponse({'year': year, 'data': [], 'is_demo': False, 'data_source': None})
     return JsonResponse({
         'year': year,
-        'data': data,
-        'is_demo': bool(score.is_demo),
-        'data_source': score.data_source,
-        'source_label': '演示数据' if score.is_demo else '原有记录',
+        'data': [
+            {'name': '科研得分', 'value': round(float(score.research_score), 2)},
+            {'name': '教学得分', 'value': round(float(score.teaching_score), 2)},
+            {'name': '服务得分', 'value': round(float(score.service_score), 2)},
+        ],
+        'is_demo': False,
+        'data_source': score.data_source or 'formal',
     })
 
 def teacher_projects_progress(request):
@@ -2715,6 +2379,7 @@ def _get_project_risk_info(project, today):
         return None
 
     return {
+        'project_id': project.id,
         'project_no': project.project_no or '—',
         'project_name': project.project_name,
         'end_date': end_date.strftime('%Y-%m-%d') if end_date else '—',
@@ -2782,6 +2447,7 @@ def admin_perf_bubble(request):
             avg_teaching = scores.aggregate(avg=Avg('teaching_score'))['avg'] or 0
             avg_compre = scores.aggregate(avg=Avg('comprehensive_score'))['avg'] or 0
             result.append({
+                'teacher_id': t.id,
                 'name': t.real_name,
                 'value': [round(float(avg_research), 1), round(float(avg_teaching), 1), round(float(avg_compre), 1)]
             })
@@ -2794,6 +2460,7 @@ def admin_perf_bubble(request):
         data = []
         for s in scores:
             data.append({
+                'teacher_id': s.teacher_id,
                 'name': s.teacher.real_name,
                 'value': [float(s.research_score), float(s.teaching_score), float(s.comprehensive_score)]
             })
@@ -2815,54 +2482,119 @@ def admin_rank(request):
 
 
 def admin_trend(request):
-    months = [f"{i}月" for i in range(1, 13)]
-    current_year = 2025
-    avg_score = TeacherScore.objects.filter(
-        year=current_year, is_demo=False
-    ).aggregate(avg=Avg('comprehensive_score'))['avg']
-    if avg_score is None:
-        avg_score = 75.0
-    else:
-        avg_score = float(avg_score)  # 转换为 float
-    scores = [round(avg_score + 5 * math.sin(i/2), 1) for i in range(12)]
-    return JsonResponse({'months': months, 'scores': scores})
-
+    """全院年度绩效趋势：只统计正式 TeacherScore。"""
+    rows = (
+        TeacherScore.objects.filter(is_demo=False)
+        .values('year')
+        .annotate(avg=Avg('comprehensive_score'))
+        .order_by('year')
+    )
+    years = [str(item['year']) for item in rows if item['avg'] is not None]
+    scores = [round(float(item['avg']), 2) for item in rows if item['avg'] is not None]
+    return JsonResponse({
+        'months': years,
+        'years': years,
+        'scores': scores,
+        'granularity': 'year',
+    })
 
 def admin_develop(request):
-    years = [2021, 2022, 2023, 2024, 2025]
-    scale = []
-    achievements = []
-    funds = []
-    for y in years:
-        proj_count = Project.objects.filter(start_date__year=y).count()
-        ach_count = Achievement.objects.filter(publish_year=y).count()
-        fund_total = FundDetail.objects.filter(year=y).aggregate(total=Sum('amount'))['total'] or 0
-        scale.append(proj_count * 2)          # 放大项目数视觉效果
-        achievements.append(ach_count)
-        funds.append(round(float(fund_total) / 10, 2))  # 经费缩放到与成果数量相近的量级
-    return JsonResponse({'years': years, 'scale': scale, 'achievements': achievements, 'funds': funds})
+    """全院发展轨迹：返回真实项目数、成果数和实际经费。"""
+    year_candidates = set(
+        y for y in Project.objects.values_list('start_date__year', flat=True) if y
+    )
+    year_candidates.update(
+        y for y in Achievement.objects.values_list('publish_year', flat=True) if y
+    )
+    year_candidates.update(
+        y for y in FundDetail.objects.values_list('year', flat=True) if y
+    )
+    years = sorted(year_candidates)[-5:] if year_candidates else get_recent_years(5)
+
+    project_counts = []
+    achievement_counts = []
+    fund_totals = []
+    for year in years:
+        project_counts.append(Project.objects.filter(start_date__year=year).count())
+        achievement_counts.append(Achievement.objects.filter(publish_year=year).count())
+        total = (
+            FundDetail.objects.filter(year=year)
+            .aggregate(total=Sum('amount'))['total']
+            or Decimal('0')
+        )
+        fund_totals.append(round(float(total), 2))
+
+    return JsonResponse({
+        'years': years,
+        'scale': project_counts,
+        'project_counts': project_counts,
+        'achievements': achievement_counts,
+        'funds': fund_totals,
+        'fund_unit': '万元',
+    })
 
 def admin_heat(request):
+    """教师科研表现热力图：直接使用正式科研得分，不估算晋升概率。"""
     year = int(request.GET.get('year', '2024'))
-    titles = ['教授', '副教授', '讲师', '助教']
-    # 取综合得分前10名教师
-    top_scores = TeacherScore.objects.filter(
-        year=year, is_demo=False
-    ).order_by('-comprehensive_score')[:10]
+    titles = ['教授', '副教授', '讲师', '助教', '其他']
+    scores = (
+        TeacherScore.objects.filter(year=year, is_demo=False)
+        .select_related('teacher')
+        .order_by('-research_score', 'teacher__real_name')
+    )
+
     data = []
     y_axis_labels = []
-    for idx, ts in enumerate(top_scores):
-        teacher = ts.teacher
-        comp_score = float(ts.comprehensive_score) if ts.comprehensive_score else 70.0
-        # 职称系数：教授0.9，副教授0.7，讲师0.5，助教0.3
-        title_factor = {'教授': 0.9, '副教授': 0.7, '讲师': 0.5, '助教': 0.3}.get(teacher.title, 0.3)
-        # 晋升概率 = 综合得分 * 职称系数 * 0.8 + 随机波动(0-10)
-        prob = comp_score * title_factor * 0.8 + random.uniform(0, 10)
-        prob = min(100, max(30, prob))  # 限制在30-100
-        title_idx = titles.index(teacher.title) if teacher.title in titles else 3
-        data.append([title_idx, idx, round(prob, 1)])
+    for idx, score in enumerate(scores):
+        teacher = score.teacher
+        title = teacher.title if teacher.title in titles[:-1] else '其他'
+        data.append([titles.index(title), idx, round(float(score.research_score), 1)])
         y_axis_labels.append(teacher.real_name)
-    return JsonResponse({'data': data, 'xAxis': titles, 'yAxis': y_axis_labels})
+
+    return JsonResponse({
+        'data': data,
+        'xAxis': titles,
+        'yAxis': y_axis_labels,
+        'metric': 'research_score',
+        'year': year,
+    })
+
+def admin_teacher_status(request):
+    """基于最新正式综合得分的教师绩效分层。"""
+    latest_year = (
+        TeacherScore.objects.filter(is_demo=False)
+        .aggregate(max_year=Max('year'))['max_year']
+    )
+    if latest_year is None:
+        return JsonResponse({'year': None, 'high': [], 'middle': [], 'low': [], 'total': 0})
+
+    scores = (
+        TeacherScore.objects.filter(year=latest_year, is_demo=False)
+        .select_related('teacher')
+        .order_by('-comprehensive_score', 'teacher__real_name')
+    )
+
+    high, middle, low = [], [], []
+    for score in scores:
+        item = {
+            'teacher_id': score.teacher_id,
+            'name': score.teacher.real_name,
+            'score': round(float(score.comprehensive_score), 1),
+        }
+        if item['score'] >= 85:
+            high.append(item)
+        elif item['score'] >= 60:
+            middle.append(item)
+        else:
+            low.append(item)
+
+    return JsonResponse({
+        'year': latest_year,
+        'high': high,
+        'middle': middle,
+        'low': low,
+        'total': len(high) + len(middle) + len(low),
+    })
 
 
 def admin_progress_gauge(request):
@@ -2927,782 +2659,389 @@ def admin_risk_projects(request):
         'check_date': today.strftime('%Y-%m-%d'),
     })
 
+def _filtered_dept_scope(dept, year_param):
+    projects = Project.objects.filter(dept=dept)
+    achievements = Achievement.objects.filter(dept=dept)
+    if year_param != 'all':
+        year = int(year_param)
+        projects = projects.filter(start_date__year=year)
+        achievements = achievements.filter(publish_year=year)
+    return projects, achievements
+
+
+def _keyword_counts(projects_qs, achievements_qs, mapping):
+    counts = []
+    for label, keywords in mapping:
+        q_project = Q()
+        q_achievement = Q()
+        for keyword in keywords:
+            q_project |= Q(project_name__icontains=keyword)
+            q_achievement |= Q(title__icontains=keyword)
+        counts.append(
+            projects_qs.filter(q_project).count()
+            + achievements_qs.filter(q_achievement).count()
+        )
+    return counts
+
+
+def _relative_activity(values):
+    if not values or max(values) <= 0:
+        return [0 for _ in values]
+    max_value = max(values)
+    return [round(v / max_value * 100, 1) for v in values]
+
+
+def _wordcloud_from_titles(projects_qs, achievements_qs, vocabulary, limit=30):
+    data = []
+    for word in vocabulary:
+        count = (
+            projects_qs.filter(project_name__icontains=word).count()
+            + achievements_qs.filter(title__icontains=word).count()
+        )
+        if count > 0:
+            data.append({'name': word, 'value': count})
+    data.sort(key=lambda item: (-item['value'], item['name']))
+    return data[:limit]
+
+
+def _growth_rate(current, previous):
+    if previous in (None, 0):
+        return None
+    return round((current - previous) / previous * 100, 1)
+
+
+
+def _dept_scope(dept, year_param):
+    projects = Project.objects.filter(dept=dept)
+    achievements = Achievement.objects.filter(dept=dept)
+    if year_param != 'all':
+        year = int(year_param)
+        projects = projects.filter(start_date__year=year)
+        achievements = achievements.filter(publish_year=year)
+    return projects, achievements
+
+def _activity_percent(values):
+    if not values or max(values) <= 0:
+        return [0 for _ in values]
+    mx=max(values)
+    return [round(v/mx*100,1) for v in values]
+
+def _growth(current, previous):
+    if not previous:
+        return None
+    return round((current-previous)/previous*100,1)
+
 def dept_science(request):
-    """科学社会主义系学科分析数据（支持年份筛选，2021-2025）"""
-    year_param = request.GET.get('year', 'all')
-    try:
-        dept = Dept.objects.get(dept_name='科学社会主义系')
-    except Dept.DoesNotExist:
-        return JsonResponse({'error': '科学社会主义系不存在'}, status=404)
+    year_param=request.GET.get('year','all')
+    try: dept=Dept.objects.get(dept_name='科学社会主义系')
+    except Dept.DoesNotExist: return JsonResponse({'error':'科学社会主义系不存在'},status=404)
+    projects=Project.objects.filter(dept=dept)
+    achievements=Achievement.objects.filter(dept=dept)
+    scoped_p,scoped_a=_dept_scope(dept,year_param)
+    funds=FundDetail.objects.filter(project__dept=dept)
+    teachers=User.objects.filter(dept=dept,role='teacher')
 
-    # 基础查询集
-    projects_qs = Project.objects.filter(dept=dept)
-    achievements_qs = Achievement.objects.filter(dept=dept)
-    fund_qs = FundDetail.objects.filter(project__dept=dept)
-    teacher_qs = User.objects.filter(dept=dept, role='teacher')
+    pie=list(scoped_a.values('achievement_type').annotate(value=Count('id')).values(name=F('achievement_type'),value=F('value')))
+    categories=['国家级','省部级','横向','校级']
+    values=[scoped_p.filter(project_type=x).count() for x in categories]
+    cloud=keyword_cloud(list(scoped_p)+list(scoped_a))
 
-    # ========== 顶部卡片（全局数据，不受年份影响） ==========
-    teacher_count = teacher_qs.count()
-    project_count = projects_qs.count()
-    total_fund = fund_qs.aggregate(total=Sum('amount'))['total'] or Decimal(0)
-    achievement_count = achievements_qs.count()
-    national_project_count = projects_qs.filter(project_type='国家级').count()
-    national_ratio = round(national_project_count / project_count * 100, 1) if project_count else 0
-    # 青年教师产出率
-    young_teacher_ids = teacher_qs.filter(title__in=['讲师', '助教']).values_list('id', flat=True)
-    young_achievements = achievements_qs.filter(author_id__in=young_teacher_ids).count()
-    young_output_rate = round(young_achievements / achievement_count * 100, 1) if achievement_count else 0
+    labels=['中国特色社会主义','国家治理与现代化','党的建设与政党治理','共同富裕与社会发展','马克思主义理论']
+    raw=direction_counts(list(scoped_p)+list(scoped_a),labels)
 
-    # ========== 饼图：成果类型占比（按年份筛选） ==========
-    if year_param == 'all':
-        type_counts = achievements_qs.values('achievement_type').annotate(count=Count('id'))
-    else:
-        year = int(year_param)
-        type_counts = achievements_qs.filter(publish_year=year).values('achievement_type').annotate(count=Count('id'))
-    pie_data = []
-    for item in type_counts:
-        if item['achievement_type']:  # 过滤掉空类型
-            pie_data.append({'name': item['achievement_type'], 'value': item['count']})
-    # 如果没有任何成果类型，填充演示数据
-    if not pie_data:
-        pie_data = [
-            {'name': '期刊论文', 'value': 8},
-            {'name': '学术著作', 'value': 3},
-            {'name': '研究报告', 'value': 2},
-        ]
+    years=list(range(2021,2026))
+    series=[]
+    for typ in ['期刊论文','学术著作','研究报告','决策咨询','获奖']:
+        series.append({'name':typ,'data':[achievements.filter(publish_year=y,achievement_type=typ).count() for y in years]})
 
-    # ========== 柱状图：课题级别分布（国家级/省部级/校级） ==========
-    bar_categories = ['国家级', '省部级', '校级']
-    if year_param == 'all':
-        level_counts = projects_qs.values('project_type').annotate(count=Count('id'))
-    else:
-        year = int(year_param)
-        level_counts = projects_qs.filter(start_date__year=year).values('project_type').annotate(count=Count('id'))
-    bar_values = [0, 0, 0]  # 对应国家级、省部级、校级
-    for item in level_counts:
-        if item['project_type'] == '国家级':
-            bar_values[0] = item['count']
-        elif item['project_type'] == '省部级':
-            bar_values[1] = item['count']
-        elif item['project_type'] == '校级':
-            bar_values[2] = item['count']
-    # 如果全为0，填充演示数据
-    if all(v == 0 for v in bar_values):
-        bar_values = [5, 3, 2]
-
-    # ========== 年度成果趋势折线图（2021-2025） ==========
-    years = list(range(2021, 2026))
-    series_map = {
-        '论文': [], '专著': [], '研究报告': [], '政策建议': [], '决策咨询': []
-    }
-    for y in years:
-        for atype in series_map.keys():
-            cnt = achievements_qs.filter(publish_year=y, achievement_type=atype).count()
-            series_map[atype].append(cnt)
-
-    # 为每个系列补充演示数据（避免全0）
-    demo_seq = [5, 8, 12, 15, 18]  # 演示数据递增
-    for atype in series_map:
-        if all(v == 0 for v in series_map[atype]):
-            series_map[atype] = demo_seq.copy()
-    # 确保所有系列长度一致
-    trend_series = [
-        {'name': '论文', 'data': series_map['论文']},
-        {'name': '专著', 'data': series_map['专著']},
-        {'name': '研究报告', 'data': series_map['研究报告']},
-        {'name': '政策建议', 'data': series_map['政策建议']},
-        {'name': '决策咨询', 'data': series_map['决策咨询']},
-    ]
-
-    # ========== 教师绩效气泡图 ==========
-    # 学科分析默认只使用原有绩效，教师画像演示数据不进入未标注的院系统计。
-    latest_year = TeacherScore.objects.filter(
-        teacher__dept=dept, is_demo=False
-    ).aggregate(max_year=Max('year'))['max_year'] or 2025
-    teacher_scores = TeacherScore.objects.filter(
-        teacher__dept=dept, year=latest_year, is_demo=False
-    ).select_related('teacher')
-    bubble_data = []
-    if teacher_scores.exists():
-        for ts in teacher_scores:
-            bubble_data.append({
-                'name': ts.teacher.real_name,
-                'value': [
-                    float(ts.research_score) if ts.research_score else 0,
-                    float(ts.teaching_score) if ts.teaching_score else 0,
-                    float(ts.comprehensive_score) if ts.comprehensive_score else 0
-                ]
-            })
-    else:
-        # 根据教师实际成果/项目估算
-        for teacher in teacher_qs:
-            ach_cnt = achievements_qs.filter(author=teacher).count()
-            proj_cnt = projects_qs.filter(leader=teacher).count()
-            research = min(100, 60 + ach_cnt * 3 + proj_cnt * 2)
-            teaching = min(100, 70 + random.randint(-10, 10))
-            comp = (research * 0.5 + teaching * 0.3 + 70 * 0.2)
-            bubble_data.append({
-                'name': teacher.real_name,
-                'value': [research, teaching, round(comp, 1)]
-            })
-
-    # ========== 重点理论成果表格 ==========
-    achievements_table = achievements_qs.select_related('author').order_by('-publish_year')[:10]
-    table_data = []
-    for idx, ach in enumerate(achievements_table, 1):
-        table_data.append({
-            '序号': idx,
-            '成果名称': ach.title,
-            '负责人': ach.author.real_name,
-            '类型': ach.achievement_type,
-            '年份': ach.publish_year
-        })
-
-    # ========== 国家级项目进度跟踪表格 ==========
-    national_projects = projects_qs.filter(project_type='国家级').select_related('leader')
-    project_table = []
-    for proj in national_projects:
-        project_table.append({
-            '项目名称': proj.project_name,
-            '负责人': proj.leader.real_name,
-            '级别': '国家级',
-            '进度': f"{proj.actual_progress}%",
-            '状态': proj.status
-        })
-
-    # ========== 词云数据（静态，可从成果标题提取） ==========
-    wordcloud_data = get_wordcloud_data()
+    latest=TeacherScore.objects.filter(teacher__dept=dept,is_demo=False).aggregate(v=Max('year'))['v']
+    bubbles=[]
+    if latest:
+        for s in TeacherScore.objects.filter(teacher__dept=dept,is_demo=False,year=latest).select_related('teacher'):
+            bubbles.append({'teacher_id':s.teacher_id,'name':s.teacher.real_name,'value':[float(s.research_score),float(s.teaching_score),float(s.comprehensive_score)]})
 
     return JsonResponse({
-        'stat_cards': {
-            'teacher_count': teacher_count,
-            'project_count': project_count,
-            'total_fund': round(float(total_fund), 2),
-            'achievement_count': achievement_count,
-            'national_ratio': national_ratio,
-            'young_output_rate': young_output_rate
-        },
-        'pie_data': pie_data,
-        'bar_categories': bar_categories,
-        'bar_values': bar_values,
-        'wordcloud_data': wordcloud_data,
-        'trend_series': trend_series,
-        'trend_years': years,
-        'bubble_data': bubble_data,
-        'achievements_table': table_data,
-        'projects_table': project_table
+      'stat_cards':{
+        'teacher_count':teachers.count(),'project_count':projects.count(),
+        'total_fund':round(float(funds.aggregate(v=Sum('amount'))['v'] or 0),2),
+        'achievement_count':achievements.count(),
+        'national_ratio':round(projects.filter(project_type='国家级').count()/projects.count()*100,1) if projects.count() else 0,
+        'young_output_rate':round(achievements.filter(author__title__in=['讲师','助教']).count()/achievements.count()*100,1) if achievements.count() else 0,
+      },
+      'pie_data':pie,'bar_categories':categories,'bar_values':values,
+      'wordcloud_data':cloud,'radar_labels':labels,'radar_data':_activity_percent(raw),
+      'trend_years':years,'trend_series':series,'bubble_data':bubbles,
+      'achievements_table':[{'序号':i,'成果名称':a.title,'负责人':a.author.real_name,'类型':a.achievement_type,'年份':a.publish_year} for i,a in enumerate(scoped_a.select_related('author').order_by('-publish_year','id')[:10],1)],
+      'projects_table':[{'项目名称':x.project_name,'负责人':x.leader.real_name,'级别':x.project_type,'进度':f'{x.actual_progress}%','状态':x.status} for x in scoped_p.select_related('leader').filter(project_type='国家级')[:15]],
     })
 
-def get_wordcloud_data():
-    return [
-        {'name': '马克思主义', 'value': 120}, {'name': '中国特色社会主义', 'value': 110},
-        {'name': '国家治理', 'value': 100}, {'name': '政党治理', 'value': 95},
-        {'name': '中国式现代化', 'value': 90}, {'name': '共同富裕', 'value': 85},
-        {'name': '全过程人民民主', 'value': 80}, {'name': '人类命运共同体', 'value': 75},
-        {'name': '党的建设', 'value': 70}, {'name': '国际共运', 'value': 65},
-        {'name': '社会主义现代化', 'value': 60}, {'name': '意识形态建设', 'value': 55},
-        {'name': '政治发展', 'value': 50}, {'name': '理论创新', 'value': 45},
-        {'name': '治理能力', 'value': 40}, {'name': '新时代思想', 'value': 38},
-        {'name': '文化自信', 'value': 35}, {'name': '制度优势', 'value': 32},
-        {'name': '中国道路', 'value': 30}, {'name': '社会主义民主', 'value': 28},
-        {'name': '群众路线', 'value': 26}, {'name': '全面从严治党', 'value': 25},
-        {'name': '人类文明新形态', 'value': 23}, {'name': '党的自我革命', 'value': 22},
-        {'name': '中国式民主', 'value': 20}, {'name': '国家治理现代化', 'value': 19},
-        {'name': '马克思主义中国化', 'value': 18}
-    ]
-
-
 def dept_political(request):
-    """政治学系学科分析数据（支持年份筛选，2021-2025）"""
-    year_param = request.GET.get('year', 'all')
-    try:
-        dept = Dept.objects.get(dept_name='政治学系')
-    except Dept.DoesNotExist:
-        return JsonResponse({'error': '政治学系不存在'}, status=404)
+    year_param=request.GET.get('year','all')
+    try: dept=Dept.objects.get(dept_name='政治学系')
+    except Dept.DoesNotExist: return JsonResponse({'error':'政治学系不存在'},status=404)
+    projects=Project.objects.filter(dept=dept); achievements=Achievement.objects.filter(dept=dept); funds=FundDetail.objects.filter(project__dept=dept)
+    scoped_p,scoped_a=_dept_scope(dept,year_param)
 
-    # 基础查询集
-    projects_qs = Project.objects.filter(dept=dept)
-    achievements_qs = Achievement.objects.filter(dept=dept)
-    fund_qs = FundDetail.objects.filter(project__dept=dept)
-    teacher_qs = User.objects.filter(dept=dept, role='teacher')
+    years=list(range(2021,2026))
+    fund_trend={'all':[],'national':[],'provincial':[],'school':[],'horizontal':[]}
+    for y in years:
+        vals={}
+        for typ,key in [('国家级','national'),('省部级','provincial'),('校级','school'),('横向','horizontal')]:
+            vals[key]=float(funds.filter(year=y,project__project_type=typ).aggregate(v=Sum('amount'))['v'] or 0)
+            fund_trend[key].append(round(vals[key],2))
+        fund_trend['all'].append(round(sum(vals.values()),2))
 
-    # ========== 顶部卡片（全局数据） ==========
-    teacher_count = teacher_qs.count()
-    project_count = projects_qs.count()
-    total_fund = fund_qs.aggregate(total=Sum('amount'))['total'] or Decimal(0)
-    achievement_count = achievements_qs.count()
-    high_level_count = projects_qs.filter(project_type__in=['国家级','省部级']).count()
-    high_level_ratio = round(high_level_count / project_count * 100, 1) if project_count else 0
-    year_2024 = achievements_qs.filter(publish_year=2024, level='CSSCI').count()
-    year_2023 = achievements_qs.filter(publish_year=2023, level='CSSCI').count()
-    csci_growth = round((year_2024 - year_2023) / year_2023 * 100, 1) if year_2023 else 0
+    ring=list(scoped_a.values('achievement_type').annotate(value=Count('id')).values(name=F('achievement_type'),value=F('value')))
+    level_rows=list(scoped_a.exclude(level='').values('level').annotate(count=Count('id')).order_by('-count','level'))
+    missing=scoped_a.filter(Q(level='')|Q(level__isnull=True)).count()
+    categories=[r['level'] for r in level_rows]; values=[r['count'] for r in level_rows]
+    if missing: categories.append('未填写'); values.append(missing)
 
-    # ========== 经费趋势 ==========
-    years = list(range(2021, 2026))
-    fund_by_type = {'all':[0]*5, 'national':[0]*5, 'provincial':[0]*5, 'school':[0]*5, 'horizontal':[0]*5}
-    for idx, y in enumerate(years):
-        for ptype, key in [('国家级','national'), ('省部级','provincial'), ('校级','school'), ('横向','horizontal')]:
-            total = fund_qs.filter(project__project_type=ptype, year=y).aggregate(total=Sum('amount'))['total'] or Decimal(0)
-            val = round(float(total), 2)
-            fund_by_type[key][idx] = val
-            fund_by_type['all'][idx] += val
+    labels=['政治思想与理论','比较政治与制度','政党政治','民主与治理','公共政策与智库']
+    raw=direction_counts(list(scoped_p)+list(scoped_a),labels)
 
-    # ========== 环形图 ==========
-    if year_param == 'all':
-        type_counts = achievements_qs.values('achievement_type').annotate(count=Count('id'))
-    else:
-        year = int(year_param)
-        type_counts = achievements_qs.filter(publish_year=year).values('achievement_type').annotate(count=Count('id'))
-    # 映射为前端期望的名称
-    name_map = {'期刊论文': '核心论文', '学术著作': '学术专著', '研究报告': '研究报告', '决策咨询': '智库咨询'}
-    count_map = {}
-    for item in type_counts:
-        display = name_map.get(item['achievement_type'], item['achievement_type'])
-        count_map[display] = item['count']
-    ring_data = []
-    for label in ['核心论文', '学术专著', '研究报告', '智库咨询']:
-        val = count_map.get(label, 0)
-        if val == 0:
-            val = 0.5   # 极小值占位
-        ring_data.append({'name': label, 'value': val})
-
-    # ========== 柱状图 ==========
-    bar_categories = ['国家级', '省部级', '校级']
-    if year_param == 'all':
-        bar_counts = [
-            achievements_qs.filter(level='国家级').count(),
-            achievements_qs.filter(level='省部级').count(),
-            achievements_qs.filter(level='校级').count()
-        ]
-    else:
-        year = int(year_param)
-        bar_counts = [
-            achievements_qs.filter(publish_year=year, level='国家级').count(),
-            achievements_qs.filter(publish_year=year, level='省部级').count(),
-            achievements_qs.filter(publish_year=year, level='校级').count()
-        ]
-    if sum(bar_counts) == 0:
-        # 根据年份设置演示数据
-        demo_data = {'2021':[18,25,15], '2022':[20,28,18], '2023':[22,30,20], '2024':[26,35,25], '2025':[28,38,28]}
-        year_str = year_param if year_param != 'all' else '2024'
-        bar_counts = demo_data.get(year_str, [26,35,25])
-
-    # ========== 雷达图 ==========
-    if year_param == 'all':
-        ach_avg = achievements_qs.count() / 5 if achievements_qs else 10
-        proj_avg = projects_qs.count() / 5 if projects_qs else 6
-        base = min(100, 60 + ach_avg + proj_avg)
-    else:
-        year = int(year_param)
-        ach_cnt = achievements_qs.filter(publish_year=year).count()
-        proj_cnt = projects_qs.filter(start_date__year=year).count()
-        base = min(100, 60 + ach_cnt//2 + proj_cnt//3)
-    radar_data = [min(100, base+5), min(100, base+8), min(100, base+3), max(50, base-2), min(100, base+10)]
-
-    # ========== 词云（静态） ==========
-    wordcloud_data = [
-        {'name': '比较政治', 'value': 120}, {'name': '政治思想史', 'value': 110},
-        {'name': '政党制度', 'value': 105}, {'name': '民主理论', 'value': 98},
-        {'name': '政治发展', 'value': 95}, {'name': '中外政体', 'value': 90},
-        {'name': '国家理论', 'value': 85}, {'name': '选举政治', 'value': 80},
-        {'name': '政治参与', 'value': 75}, {'name': '智库咨询', 'value': 70},
-        {'name': '现代国家', 'value': 65}, {'name': '政治文化', 'value': 62},
-        {'name': '地方治理', 'value': 60}, {'name': '民主政治', 'value': 58},
-        {'name': '政党政治', 'value': 55}, {'name': '政治改革', 'value': 52},
-        {'name': '政治体制', 'value': 50}, {'name': '治理现代化', 'value': 48},
-        {'name': '基层民主', 'value': 45}, {'name': '政治制度', 'value': 42},
-        {'name': '权力制衡', 'value': 40}, {'name': '政治结构', 'value': 38},
-        {'name': '国家建构', 'value': 35}, {'name': '公民社会', 'value': 32},
-        {'name': '治理理论', 'value': 30}, {'name': '制度设计', 'value': 28},
-        {'name': '政治秩序', 'value': 26}, {'name': '公共价值', 'value': 24},
-        {'name': '法治国家', 'value': 22}, {'name': '政治平等', 'value': 20},
-    ]
-
-    # ========== 成果表格 ==========
-    achievements_table = achievements_qs.select_related('author').order_by('-publish_year')[:10]
-    table_data = []
-    for idx, ach in enumerate(achievements_table, 1):
-        table_data.append({
-            '序号': idx,
-            '成果名称': ach.title,
-            '负责人': ach.author.real_name,
-            '成果类型': ach.achievement_type,
-            '年度': ach.publish_year
-        })
-    if not table_data:
-        demo_ach = [
-            ('比较政治制度理论研究', '陈教授', '学术专著', 2024),
-            ('西方政治思想史谱系探析', '林教授', '核心期刊论文', 2023),
-            ('政党政治与现代国家建构', '黄教授', '学术专著', 2024),
-            ('民主理论与政治发展路径', '马教授', 'CSSCI论文', 2022),
-            ('中外政体比较研究', '周教授', '研究报告', 2023),
-        ]
-        for idx, (title, author, atype, year) in enumerate(demo_ach, 1):
-            table_data.append({'序号': idx, '成果名称': title, '负责人': author, '成果类型': atype, '年度': year})
-
-    # ========== 项目进度表格 ==========
-    project_qs = projects_qs.filter(project_type__in=['省部级','横向'], status__in=['在研','立项']).select_related('leader')[:15]
-    project_table = []
-    for proj in project_qs:
-        project_table.append({
-            '项目名称': proj.project_name,
-            '负责人': proj.leader.real_name,
-            '项目类型': proj.project_type,
-            '进度': f"{proj.actual_progress}%",
-            '状态': proj.status
-        })
-    if not project_table:
-        demo_proj = [
-            ('地方智库决策咨询机制研究', '陈教授', '省部级', '90%', '进行中'),
-            ('区域治理与政治生态优化', '林教授', '横向课题', '100%', '已结题'),
-            ('比较政党制度国别研究', '黄教授', '省部级', '75%', '进行中'),
-            ('基层民主参与机制调研', '马教授', '智库委托', '65%', '进行中'),
-        ]
-        for name, leader, ptype, prog, status in demo_proj:
-            project_table.append({'项目名称': name, '负责人': leader, '项目类型': ptype, '进度': prog, '状态': status})
+    y24=achievements.filter(publish_year=2024,level='CSSCI').count()
+    y23=achievements.filter(publish_year=2023,level='CSSCI').count()
 
     return JsonResponse({
-        'stat_cards': {
-            'teacher_count': teacher_count,
-            'project_count': project_count,
-            'total_fund': round(float(total_fund), 2),
-            'achievement_count': achievement_count,
-            'high_level_ratio': high_level_ratio,
-            'csci_growth': csci_growth
-        },
-        'fund_trend': fund_by_type,
-        'fund_years': years,
-        'ring_data': ring_data,
-        'bar_categories': bar_categories,
-        'bar_values': bar_counts,
-        'radar_data': radar_data,
-        'wordcloud_data': wordcloud_data,
-        'achievements_table': table_data,
-        'projects_table': project_table
+      'stat_cards':{
+        'teacher_count':User.objects.filter(dept=dept,role='teacher').count(),
+        'project_count':projects.count(),'total_fund':round(float(funds.aggregate(v=Sum('amount'))['v'] or 0),2),
+        'achievement_count':achievements.count(),
+        'high_level_ratio':round(projects.filter(project_type__in=['国家级','省部级']).count()/projects.count()*100,1) if projects.count() else 0,
+        'csci_growth':_growth(y24,y23)
+      },
+      'fund_trend':fund_trend,'fund_years':years,'ring_data':ring,
+      'bar_categories':categories,'bar_values':values,'bar_title':'成果级别 / 收录分布',
+      'radar_labels':labels,'radar_data':_activity_percent(raw),
+      'wordcloud_data':keyword_cloud(list(scoped_p)+list(scoped_a)),
+      'achievements_table':[{'序号':i,'成果名称':a.title,'负责人':a.author.real_name,'成果类型':a.achievement_type,'年度':a.publish_year} for i,a in enumerate(scoped_a.select_related('author').order_by('-publish_year','id')[:10],1)],
+      'projects_table':[{'项目名称':x.project_name,'负责人':x.leader.real_name,'项目类型':x.project_type,'进度':f'{x.actual_progress}%','状态':x.status} for x in scoped_p.select_related('leader').filter(project_type__in=['省部级','横向'],status__in=['在研','立项'])[:15]],
     })
 
 def dept_international(request):
-    """国际政治系学科分析数据（支持年份筛选，2021-2025）"""
     year_param = request.GET.get('year', 'all')
     try:
         dept = Dept.objects.get(dept_name='国际政治系')
     except Dept.DoesNotExist:
         return JsonResponse({'error': '国际政治系不存在'}, status=404)
 
-    # 基础查询集
-    projects_qs = Project.objects.filter(dept=dept)
-    achievements_qs = Achievement.objects.filter(dept=dept)
-    fund_qs = FundDetail.objects.filter(project__dept=dept)
-    teacher_qs = User.objects.filter(dept=dept, role='teacher')
+    projects = Project.objects.filter(dept=dept)
+    achievements = Achievement.objects.filter(dept=dept)
+    funds = FundDetail.objects.filter(project__dept=dept)
+    scoped_p, scoped_a = _dept_scope(dept, year_param)
 
-    # ========== 顶部卡片（全局数据） ==========
-    # 国别研究覆盖国家数：从项目或成果中提取，这里用项目涉及的国家数量模拟（可从 achievement 的 level 或关键词提取）
-    country_coverage = 28   # 演示值，实际可从数据库统计
-    international_projects = projects_qs.filter(project_type='横向').count()  # 简化：横向作为国际合作
-    total_foreign_fund = fund_qs.filter(source_type__in=['横向课题','政府委托']).aggregate(total=Sum('amount'))['total'] or Decimal(0)
-    international_publications = achievements_qs.filter(is_international=True).count()
-    national_foreign_ratio = round(projects_qs.filter(project_type='国家级').count() / projects_qs.count() * 100, 1) if projects_qs.count() else 0
-    academic_exchange_growth = 18   # 演示值，实际可从参与国际会议等统计
-
-    # ========== 国内/涉外经费五年趋势 ==========
-    years = list(range(2021, 2026))
-    domestic_funds = []   # 国内经费（来源非横向/政府委托）
-    foreign_funds = []    # 涉外经费（来源为横向课题或政府委托）
-    for y in years:
-        dom = fund_qs.filter(~Q(source_type__in=['横向课题','政府委托']), year=y).aggregate(total=Sum('amount'))['total'] or Decimal(0)
-        fori = fund_qs.filter(source_type__in=['横向课题','政府委托'], year=y).aggregate(total=Sum('amount'))['total'] or Decimal(0)
-        domestic_funds.append(round(float(dom), 2))
-        foreign_funds.append(round(float(fori), 2))
-
-    # ========== 各大洲研究成果分布（横向柱状图） ==========
-    # 按大洲统计成果数量，可从成果标题或项目名称中匹配，这里用模拟数据，但支持年份筛选
-    continents = ['亚洲', '欧洲', '北美', '拉美', '非洲', '大洋洲']
-    if year_param == 'all':
-        # 真实统计逻辑：假设成果中有 region 字段，简化为模拟
-        continent_counts = [45, 32, 28, 16, 12, 8]
-    else:
-        year = int(year_param)
-        # 演示数据随年份变化
-        demo_map = {
-            2021: [30, 20, 18, 10, 8, 5],
-            2022: [35, 24, 22, 12, 9, 6],
-            2023: [40, 28, 25, 14, 10, 7],
-            2024: [43, 30, 27, 15, 11, 7],
-            2025: [45, 32, 28, 16, 12, 8]
-        }
-        continent_counts = demo_map.get(year, [45,32,28,16,12,8])
-
-    # ========== 国际学术成果类型占比（圆环图） ==========
-    if year_param == 'all':
-        type_counts = achievements_qs.filter(is_international=True).values('achievement_type').annotate(count=Count('id'))
-    else:
-        year = int(year_param)
-        type_counts = achievements_qs.filter(is_international=True, publish_year=year).values('achievement_type').annotate(count=Count('id'))
-    # 映射为前端期望的四种类型
-    type_map = {
-        '期刊论文': '国际期刊论文',
-        '学术著作': '外文专著',
-        '研究报告': '国别研究报告',
-        '决策咨询': '涉外智库咨询'
-    }
-    ring_data = []
-    for item in type_counts:
-        name = type_map.get(item['achievement_type'], item['achievement_type'])
-        ring_data.append({'name': name, 'value': item['count']})
-    # 若无数据，填充演示（随年份变化）
-    if not ring_data:
-        demo_ring = {
-            'all': [('国际期刊论文',32), ('外文专著',12), ('国别研究报告',18), ('涉外智库咨询',10)],
-            '2021': [('国际期刊论文',5), ('外文专著',2), ('国别研究报告',3), ('涉外智库咨询',1)],
-            '2022': [('国际期刊论文',7), ('外文专著',3), ('国别研究报告',4), ('涉外智库咨询',2)],
-            '2023': [('国际期刊论文',8), ('外文专著',3), ('国别研究报告',4), ('涉外智库咨询',2)],
-            '2024': [('国际期刊论文',9), ('外文专著',4), ('国别研究报告',4), ('涉外智库咨询',3)],
-            '2025': [('国际期刊论文',10), ('外文专著',4), ('国别研究报告',3), ('涉外智库咨询',2)]
-        }
-        key = year_param if year_param != 'all' else 'all'
-        ring_data = [{'name': n, 'value': v} for n, v in demo_ring.get(key, demo_ring['all'])]
-
-    # ========== 雷达图（五大国际研究领域综合实力） ==========
-    # 基于该系成果、项目等估算五个维度得分，支持年份筛选
-    if year_param == 'all':
-        # 取近5年平均
-        dimensions = ['地缘政治与区域格局', '大国关系与战略博弈', '全球治理与国际组织', '区域国别政治研究', '国际安全与防务战略']
-        base = min(100, 60 + achievements_qs.count()//10 + projects_qs.count()//5)
-        radar_values = [base+8, base+10, base+5, base+3, base+7]
-    else:
-        year = int(year_param)
-        # 根据当年成果数、项目数动态计算
-        ach_cnt = achievements_qs.filter(publish_year=year).count()
-        proj_cnt = projects_qs.filter(start_date__year=year).count()
-        base = min(100, 60 + ach_cnt//5 + proj_cnt//3)
-        radar_values = [base+8, base+10, base+5, base+3, base+7]
-    radar_data = [min(100, max(50, v)) for v in radar_values]
-
-    # ========== 词云数据（静态，可从成果标题提取） ==========
-    wordcloud_data = [
-        {'name': '地缘政治', 'value': 130}, {'name': '大国博弈', 'value': 110},
-        {'name': '全球治理', 'value': 100}, {'name': '区域国别', 'value': 90},
-        {'name': '国际秩序', 'value': 108}, {'name': '多边机制', 'value': 105},
-        {'name': '中美关系', 'value': 102}, {'name': '东亚格局', 'value': 100},
-        {'name': '一带一路', 'value': 98}, {'name': '国际安全', 'value': 95},
-        {'name': '全球化', 'value': 92}, {'name': '区域合作', 'value': 90},
-        {'name': '跨国治理', 'value': 88}, {'name': '战略竞争', 'value': 85},
-        {'name': '防务安全', 'value': 82}, {'name': '欧洲一体化', 'value': 80},
-        {'name': '中东局势', 'value': 78}, {'name': '东南亚格局', 'value': 75},
-        {'name': '国际组织', 'value': 72}, {'name': '战略格局', 'value': 70},
-        {'name': '地缘风险', 'value': 68}, {'name': '双边关系', 'value': 60},
-        {'name': '地缘经济', 'value': 58}, {'name': '能源格局', 'value': 55},
-        {'name': '海洋权益', 'value': 53}, {'name': '极地治理', 'value': 50},
-        {'name': '主权争端', 'value': 48}, {'name': '联盟体系', 'value': 45},
-        {'name': '国际规则', 'value': 38}, {'name': '价值外交', 'value': 35},
-        {'name': '制裁机制', 'value': 33}, {'name': '军备控制', 'value': 30},
-        {'name': '网络地缘', 'value': 28}, {'name': '气候外交', 'value': 25},
-        {'name': '粮食安全', 'value': 23}, {'name': '公共卫生治理', 'value': 20},
-        {'name': '东北亚安全', 'value': 18}, {'name': '南亚格局', 'value': 16},
-        {'name': '欧亚地缘', 'value': 15}, {'name': '跨大西洋关系', 'value': 14},
-        {'name': '南方国家', 'value': 12}, {'name': '中等强国', 'value': 10}
+    international_directions = [
+        '地缘政治与区域格局',
+        '大国关系与战略竞争',
+        '全球治理与国际组织',
+        '区域国别研究',
+        '国际安全',
     ]
 
-    # ========== 国别代表性研究成果表格 ==========
-    achievements_table = achievements_qs.filter(is_international=True).select_related('author').order_by('-publish_year')[:10]
-    table_data = []
-    for idx, ach in enumerate(achievements_table, 1):
-        table_data.append({
-            '序号': idx,
-            '成果名称': ach.title,
-            '负责人': ach.author.real_name,
-            '成果类型': ach.achievement_type,
-            '发布年份': ach.publish_year
-        })
-    if not table_data:
-        demo_ach = [
-            ('东亚地缘格局演变研究', '张教授', '外文专著', 2024),
-            ('中美战略博弈关系分析', '李教授', '国际期刊论文', 2023),
-            ('欧洲一体化治理机制研究', '王教授', '国别研究报告', 2024),
-            ('一带一路区域合作新格局', '刘教授', '涉外智库咨询', 2022),
-            ('中东地缘冲突与秩序重构', '陈教授', '国际期刊论文', 2023)
-        ]
-        for idx, (title, author, atype, year) in enumerate(demo_ach, 1):
-            table_data.append({
-                '序号': idx, '成果名称': title, '负责人': author,
-                '成果类型': atype, '发布年份': year
-            })
+    project_signal = (
+        (~Q(region__isnull=True) & ~Q(region='')) |
+        (~Q(country_or_region__isnull=True) & ~Q(country_or_region='')) |
+        Q(research_direction__in=international_directions) |
+        Q(project_name__icontains='国际') |
+        Q(project_name__icontains='国别') |
+        Q(project_name__icontains='全球') |
+        Q(project_name__icontains='中美') |
+        Q(project_name__icontains='地缘') |
+        Q(project_name__icontains='一带一路') |
+        Q(project_name__icontains='涉外') |
+        Q(project_name__icontains='海外') |
+        Q(project_name__icontains='区域')
+    )
 
-    # ========== 国际合作&涉外在研项目进度表格 ==========
-    # 筛选项目类型为'横向'或 project_type 包含 '国际' 字样，状态为在研或立项
-    project_qs = projects_qs.filter(Q(project_type='横向') | Q(project_name__icontains='国际'), status__in=['在研','立项']).select_related('leader')[:15]
-    project_table = []
-    for proj in project_qs:
-        project_table.append({
-            '项目名称': proj.project_name,
-            '负责人': proj.leader.real_name,
-            '项目类型': proj.project_type,
-            '进度': f"{proj.actual_progress}%",
-            '状态': proj.status
-        })
-    if not project_table:
-        demo_proj = [
-            ('中欧多边治理合作研究', '张教授', '国际合作课题', '85%', '进行中'),
-            ('东南亚地缘风险评估', '李教授', '涉外智库项目', '70%', '进行中'),
-            ('大国关系长期趋势研判', '王教授', '国家级涉外课题', '60%', '进行中'),
-            ('非洲区域发展合作调研', '刘教授', '国际交流项目', '90%', '进行中'),
-            ('全球气候治理机制研究', '陈教授', '省部级涉外课题', '100%', '已结题')
-        ]
-        for name, leader, ptype, prog, status in demo_proj:
-            project_table.append({
-                '项目名称': name, '负责人': leader,
-                '项目类型': ptype, '进度': prog, '状态': status
-            })
+    foreign_projects = projects.filter(project_signal).distinct()
+    active_foreign_projects = foreign_projects.filter(status__in=['在研', '立项'])
 
-    # 返回所有数据
+    achievement_signal = (
+        Q(is_international=True) |
+        (~Q(region__isnull=True) & ~Q(region='')) |
+        (~Q(country_or_region__isnull=True) & ~Q(country_or_region='')) |
+        Q(research_direction__in=international_directions)
+    )
+    foreign_achievements = achievements.filter(achievement_signal).distinct()
+
+    geo_tokens = set()
+    for row in list(projects.only('country_or_region', 'region')) + list(achievements.only('country_or_region', 'region')):
+        country = (row.country_or_region or '').strip()
+        region = (row.region or '').strip()
+        if country:
+            for token in re.split(r'[、,，;/；\s]+', country):
+                if token:
+                    geo_tokens.add(token)
+        elif region:
+            geo_tokens.add(region)
+
+    country_coverage = len(geo_tokens) if geo_tokens else None
+
+    foreign_project_ids = foreign_projects.values_list('id', flat=True)
+    total_foreign_fund = funds.filter(project_id__in=foreign_project_ids).aggregate(
+        total=Sum('amount')
+    )['total'] or Decimal(0)
+
+    national_foreign_ratio = (
+        round(
+            foreign_projects.filter(project_type='国家级').count()
+            / foreign_projects.count() * 100,
+            1
+        )
+        if foreign_projects.exists()
+        else 0
+    )
+
+    latest_year = projects.aggregate(max_year=Max('start_date__year'))['max_year']
+    foreign_growth = None
+    if latest_year:
+        current_count = foreign_projects.filter(start_date__year=latest_year).count()
+        previous_count = foreign_projects.filter(start_date__year=latest_year - 1).count()
+        foreign_growth = _growth(current_count, previous_count)
+
+    years = list(range(2021, 2026))
+    foreign_funds, domestic_funds = [], []
+    for year in years:
+        total = funds.filter(year=year).aggregate(total=Sum('amount'))['total'] or Decimal(0)
+        foreign = funds.filter(
+            year=year,
+            project_id__in=foreign_project_ids
+        ).aggregate(total=Sum('amount'))['total'] or Decimal(0)
+        foreign_funds.append(round(float(foreign), 2))
+        domestic_funds.append(round(float(total - foreign), 2))
+
+    direction_labels = international_directions
+    direction_values = direction_counts(
+        list(scoped_p) + list(scoped_a),
+        direction_labels
+    )
+
+    regions, region_values = geo_counts(list(scoped_p) + list(scoped_a))
+
+    ring_data = list(
+        scoped_a.filter(achievement_signal)
+        .values('achievement_type')
+        .annotate(value=Count('id'))
+        .values(name=F('achievement_type'), value=F('value'))
+        .order_by('-value', 'name')
+    )
+
+    radar_values = _activity_percent(direction_values)
+    wordcloud_data = keyword_cloud(list(scoped_p) + list(scoped_a))
+
+    achievement_rows = (
+        scoped_a.filter(achievement_signal)
+        .select_related('author')
+        .order_by('-publish_year', 'id')[:10]
+    )
+    achievements_table = [{
+        '序号': idx,
+        '成果名称': ach.title,
+        '负责人': ach.author.real_name,
+        '成果类型': ach.achievement_type,
+        '发布年份': ach.publish_year,
+    } for idx, ach in enumerate(achievement_rows, 1)]
+
+    project_rows = (
+        scoped_p.filter(project_signal)
+        .filter(status__in=['在研', '立项'])
+        .select_related('leader')
+        .order_by('-start_date', 'id')[:15]
+    )
+    projects_table = [{
+        '项目名称': proj.project_name,
+        '负责人': proj.leader.real_name,
+        '项目类型': proj.project_type,
+        '进度': f'{proj.actual_progress}%',
+        '状态': proj.status,
+    } for proj in project_rows]
+
     return JsonResponse({
         'stat_cards': {
             'country_coverage': country_coverage,
-            'international_projects': international_projects,
+            'international_projects': active_foreign_projects.count(),
             'total_foreign_fund': round(float(total_foreign_fund), 2),
-            'international_publications': international_publications,
+            'international_publications': foreign_achievements.count(),
             'national_foreign_ratio': national_foreign_ratio,
-            'academic_exchange_growth': academic_exchange_growth
+            'academic_exchange_growth': foreign_growth,
         },
         'fund_trend': {
             'years': years,
             'domestic': domestic_funds,
-            'foreign': foreign_funds
+            'foreign': foreign_funds,
         },
-        'continent_data': continent_counts,
-        'continents': continents,
+        'continents': direction_labels,
+        'continent_data': direction_values,
+        'continent_available': any(direction_values),
+        'region_labels': regions,
+        'region_values': region_values,
+        'identified_geo': sorted(geo_tokens),
         'ring_data': ring_data,
-        'radar_data': radar_data,
+        'radar_labels': direction_labels,
+        'radar_data': radar_values,
         'wordcloud_data': wordcloud_data,
-        'achievements_table': table_data,
-        'projects_table': project_table
+        'achievements_table': achievements_table,
+        'projects_table': projects_table,
     })
 
 def dept_public(request):
-    """公共管理系学科分析数据（支持年份筛选，2021-2025）"""
-    year_param = request.GET.get('year', 'all')
-    try:
-        dept = Dept.objects.get(dept_name='公共管理系')
-    except Dept.DoesNotExist:
-        return JsonResponse({'error': '公共管理系不存在'}, status=404)
+    year_param=request.GET.get('year','all')
+    try: dept=Dept.objects.get(dept_name='公共管理系')
+    except Dept.DoesNotExist: return JsonResponse({'error':'公共管理系不存在'},status=404)
+    projects=Project.objects.filter(dept=dept); achievements=Achievement.objects.filter(dept=dept); funds=FundDetail.objects.filter(project__dept=dept)
+    scoped_p,scoped_a=_dept_scope(dept,year_param)
 
-    # 基础查询集
-    projects_qs = Project.objects.filter(dept=dept)
-    achievements_qs = Achievement.objects.filter(dept=dept)
-    fund_qs = FundDetail.objects.filter(project__dept=dept)
-    teacher_qs = User.objects.filter(dept=dept, role='teacher')
+    years=list(range(2021,2026))
+    vertical=[round(float(funds.filter(year=y,project__project_type__in=['国家级','省部级']).aggregate(v=Sum('amount'))['v'] or 0),2) for y in years]
+    horizontal=[round(float(funds.filter(year=y,project__project_type='横向').aggregate(v=Sum('amount'))['v'] or 0),2) for y in years]
 
-    # ========== 顶部卡片（全局数据） ==========
-    gov_projects = projects_qs.filter(project_type='横向').count()  # 模拟政府合作项目
-    total_fund = fund_qs.aggregate(total=Sum('amount'))['total'] or Decimal(0)
-    core_achievements = achievements_qs.filter(level__in=['CSSCI','核心期刊']).count()
-    digital_gov_projects = projects_qs.filter(project_name__icontains='数字').count()
-    community_growth = 25   # 演示值，实际可计算近两年社区治理项目增长率
-    emergency_projects = projects_qs.filter(project_name__icontains='应急').count()
+    labels=['数字治理','公共政策','社区与基层治理','应急与风险治理','公共服务与社会保障','政府改革与行政管理']
+    raw=direction_counts(list(scoped_p)+list(scoped_a),labels)
 
-    # ========== 近五年科研经费走势（纵向/横向） ==========
-    years = list(range(2021, 2026))
-    vertical_funds = []   # 纵向课题经费（国家级、省部级）
-    horizontal_funds = [] # 横向课题经费
-    for y in years:
-        vert = fund_qs.filter(project__project_type__in=['国家级','省部级'], year=y).aggregate(total=Sum('amount'))['total'] or Decimal(0)
-        hori = fund_qs.filter(project__project_type='横向', year=y).aggregate(total=Sum('amount'))['total'] or Decimal(0)
-        vertical_funds.append(round(float(vert), 2))
-        horizontal_funds.append(round(float(hori), 2))
+    source_map=[('国家级课题','国家级'),('省部级课题','省部级'),('横向课题','横向'),('校级课题','校级')]
+    pie=[{'name':name,'value':scoped_p.filter(project_type=typ).count()} for name,typ in source_map]
+    pie=[x for x in pie if x['value']>0]
 
-    # ========== 各研究方向成果数量分布（条形图） ==========
-    directions = ['数字治理', '公共政策', '社区治理', '应急管理', '公共服务', '政府改革']
-    # 根据成果标题或关键词匹配研究方向（简化为模拟，可后续优化）
-    if year_param == 'all':
-        dir_counts = [28, 22, 20, 18, 15, 12]
+    latest=projects.aggregate(v=Max('start_date__year'))['v']
+    cg=None
+    if latest:
+        cg=_growth(projects.filter(start_date__year=latest,research_direction='社区与基层治理').count(),
+                   projects.filter(start_date__year=latest-1,research_direction='社区与基层治理').count())
+
+    result_years=years
+    journal=[achievements.filter(publish_year=y,achievement_type='期刊论文').count() for y in years]
+    mono=[achievements.filter(publish_year=y,achievement_type='学术著作').count() for y in years]
+    report=[achievements.filter(publish_year=y,achievement_type='研究报告').count() for y in years]
+
+    ranked=sorted(zip(labels,raw),key=lambda x:(-x[1],x[0]))
+    active=[x for x in ranked if x[1]>0]
+    if active:
+        summary=f'当前记录中，{active[0][0]}关联项目/成果最多（{active[0][1]}条）。'
+        weak=f'相对较少的方向为{active[-1][0]}（{active[-1][1]}条）。'
+        suggest='建议结合现有项目和成果结构，继续完善相对薄弱方向的课题与成果布局。'
     else:
-        year = int(year_param)
-        # 演示数据随年份变化
-        demo = {
-            2021: [15, 12, 10, 9, 7, 5],
-            2022: [18, 14, 12, 11, 9, 7],
-            2023: [22, 17, 15, 13, 11, 9],
-            2024: [25, 20, 18, 16, 13, 10],
-            2025: [28, 22, 20, 18, 15, 12]
-        }
-        dir_counts = demo.get(year, [28,22,20,18,15,12])
+        summary='当前筛选范围暂无可用于方向分析的记录。'; weak='暂无足够数据识别相对薄弱方向。'; suggest='建议完善项目与成果的研究方向和关键词信息。'
 
-    # ========== 科研项目来源占比（饼图） ==========
-    if year_param == 'all':
-        source_counts = {
-            '国家级课题': projects_qs.filter(project_type='国家级').count(),
-            '省部级课题': projects_qs.filter(project_type='省部级').count(),
-            '地方政府委托': projects_qs.filter(project_type='横向').count()
-        }
-    else:
-        year = int(year_param)
-        source_counts = {
-            '国家级课题': projects_qs.filter(project_type='国家级', start_date__year=year).count(),
-            '省部级课题': projects_qs.filter(project_type='省部级', start_date__year=year).count(),
-            '地方政府委托': projects_qs.filter(project_type='横向', start_date__year=year).count()
-        }
-    pie_data = [{'name': k, 'value': v} for k, v in source_counts.items() if v > 0]
-    if not pie_data:
-        pie_data = [{'name': '国家级课题', 'value': 5}, {'name': '省部级课题', 'value': 7}, {'name': '地方政府委托', 'value': 10}]
-
-    # ========== 雷达图（六大研究领域综合实力） ==========
-    # 基于该系成果、项目等估算，支持年份筛选
-    if year_param == 'all':
-        # 取平均值
-        ach_avg = achievements_qs.count() / 6 if achievements_qs else 15
-        proj_avg = projects_qs.count() / 6 if projects_qs else 10
-        base = min(100, 60 + ach_avg//2 + proj_avg//3)
-        radar_values = [base+5, base+8, base+10, base+3, base+2, base-2]
-    else:
-        year = int(year_param)
-        ach_cnt = achievements_qs.filter(publish_year=year).count()
-        proj_cnt = projects_qs.filter(start_date__year=year).count()
-        base = min(100, 60 + ach_cnt//5 + proj_cnt//4)
-        radar_values = [base+5, base+8, base+10, base+3, base+2, base-2]
-    radar_values = [min(100, max(50, v)) for v in radar_values]
-
-    # ========== 词云数据（静态） ==========
-    wordcloud_data = [
-        {'name': '数字政府', 'value': 140}, {'name': '公共政策', 'value': 135},
-        {'name': '社区治理', 'value': 130}, {'name': '应急管理', 'value': 128},
-        {'name': '公共服务', 'value': 125}, {'name': '基层治理', 'value': 122},
-        {'name': '智慧城市', 'value': 120}, {'name': '乡村振兴', 'value': 118},
-        {'name': '治理现代化', 'value': 115}, {'name': '政府改革', 'value': 112},
-        {'name': '绩效评估', 'value': 110}, {'name': '大数据治理', 'value': 108},
-        {'name': '公共部门', 'value': 105}, {'name': '服务型政府', 'value': 102},
-        {'name': '政策执行', 'value': 100}, {'name': '风险治理', 'value': 98},
-        {'name': '社会治理', 'value': 95}, {'name': '行政改革', 'value': 92},
-        {'name': '数字鸿沟', 'value': 90}, {'name': '公共管理', 'value': 88},
-        {'name': '地方政府', 'value': 85}, {'name': '公共财政', 'value': 82},
-        {'name': '治理能力', 'value': 80}, {'name': '公共安全', 'value': 78},
-        {'name': '网格化治理', 'value': 72}, {'name': '政务公开', 'value': 70},
-        {'name': '营商环境', 'value': 65}, {'name': '人工智能治理', 'value': 60}
-    ]
-
-    # ========== 近五年各类学术成果逐年产出对比（柱状图） ==========
-    result_years = [2021,2022,2023,2024,2025]
-    journal_counts = []   # 期刊论文
-    monograph_counts = [] # 专著
-    report_counts = []    # 研究报告
-    for y in result_years:
-        journal = achievements_qs.filter(publish_year=y, achievement_type='期刊论文').count()
-        monograph = achievements_qs.filter(publish_year=y, achievement_type='学术著作').count()
-        report = achievements_qs.filter(publish_year=y, achievement_type='研究报告').count()
-        journal_counts.append(journal)
-        monograph_counts.append(monograph)
-        report_counts.append(report)
-    # 如果全为0，填充演示数据
-    if sum(journal_counts) == 0:
-        journal_counts = [12,15,18,22,25]
-        monograph_counts = [2,3,4,5,6]
-        report_counts = [5,7,9,11,13]
-
-    # ========== 代表性学术成果表格 ==========
-    achievements_table = achievements_qs.select_related('author').order_by('-publish_year')[:10]
-    table_data = []
-    for idx, ach in enumerate(achievements_table, 1):
-        table_data.append({
-            '序号': idx,
-            '成果名称': ach.title,
-            '负责人': ach.author.real_name,
-            '成果类型': ach.achievement_type,
-            '发布年份': ach.publish_year
-        })
-    if not table_data:
-        demo_ach = [
-            ('数字政府建设中的治理效能研究', '王教授', '核心期刊论文', 2024),
-            ('社区网格化治理模式创新研究', '李教授', '研究报告', 2023),
-            ('突发公共卫生事件应急管理机制', '张教授', 'CSSCI论文', 2024),
-            ('地方政府债务风险治理研究', '刘教授', '专著', 2022),
-            ('大数据时代公共政策评估方法', '赵教授', '核心期刊论文', 2023),
-            ('基层治理中的数字鸿沟问题探析', '陈教授', '研究报告', 2024),
-            ('乡村振兴战略中的公共服务供给', '吴教授', 'CSSCI论文', 2022),
-            ('智慧城市背景下的城市治理转型', '郑教授', '专著', 2023),
-            ('公共政策执行偏差的成因与对策', '周教授', '核心期刊论文', 2024),
-            ('公共部门人力资源管理改革研究', '马教授', '研究报告', 2023)
-        ]
-        for idx, (title, author, atype, year) in enumerate(demo_ach, 1):
-            table_data.append({
-                '序号': idx, '成果名称': title, '负责人': author,
-                '成果类型': atype, '发布年份': year
-            })
-
-    # ========== 政府合作&在研项目进度表格 ==========
-    # 筛选横向项目或名称含“政府”的项目
-    project_qs = projects_qs.filter(Q(project_type='横向') | Q(project_name__icontains='政府'), status__in=['在研','立项']).select_related('leader')[:15]
-    project_table = []
-    for proj in project_qs:
-        project_table.append({
-            '项目名称': proj.project_name,
-            '负责人': proj.leader.real_name,
-            '项目类型': proj.project_type,
-            '进度': f"{proj.actual_progress}%",
-            '状态': proj.status
-        })
-    if not project_table:
-        demo_proj = [
-            ('某市数字政务平台优化研究', '王教授', '地方政府合作项目', '90%', '进行中'),
-            ('社区治理现代化路径研究', '李教授', '省部级课题', '75%', '进行中'),
-            ('应急管理体系建设评估', '张教授', '横向委托项目', '100%', '已结题'),
-            ('公共服务均等化政策评估', '刘教授', '国家级课题', '60%', '进行中'),
-            ('地方政府营商环境优化研究', '赵教授', '地方政府合作项目', '85%', '进行中'),
-            ('智慧城市治理模式创新研究', '陈教授', '省部级课题', '50%', '进行中'),
-            ('乡村振兴公共服务供给研究', '吴教授', '横向委托项目', '100%', '已结题')
-        ]
-        for name, leader, ptype, prog, status in demo_proj:
-            project_table.append({
-                '项目名称': name, '负责人': leader,
-                '项目类型': ptype, '进度': prog, '状态': status
-            })
-
-    # ========== 智能分析文本（根据年份动态生成） ==========
-    analysis_texts = {
-        'all': ('数字治理、社区治理两大方向表现突出，实力领先。', '政府改革方向得分相对较低，需重点补强。', '可围绕数字治理与社区治理打造特色交叉研究方向。'),
-        '2021': ('整体实力中等偏上，社区治理方向优势初显。', '数字治理与政府改革方向得分偏低。', '建议加大数字治理方向的课题申报力度。'),
-        '2022': ('社区治理方向成果快速增长，成为新优势。', '公共政策与应急管理方向进展缓慢。', '可依托社区治理成果拓展基层治理交叉研究。'),
-        '2023': ('数字治理与社区治理双方向同步发力，优势互补。', '政府改革方向得分提升不明显。', '建议加强政府改革方向的团队建设与课题布局。'),
-        '2024': ('数字治理方向进入快速发展期，成果数量大幅提升。', '公共服务方向增长乏力，需关注政策导向。', '可结合数字治理优势拓展智慧公共服务研究。'),
-        '2025': ('数字治理、社区治理、应急管理三大方向全面领先。', '政府改革方向仍为短板，与其他方向差距拉大。', '建议组建跨学科团队，补齐政府改革方向短板。')
-    }
-    year_key = year_param if year_param in analysis_texts else 'all'
-    summary, weak, suggest = analysis_texts[year_key]
-
-    # 返回所有数据
     return JsonResponse({
-        'stat_cards': {
-            'gov_projects': gov_projects,
-            'total_fund': round(float(total_fund), 2),
-            'core_achievements': core_achievements,
-            'digital_gov_projects': digital_gov_projects,
-            'community_growth': community_growth,
-            'emergency_projects': emergency_projects
-        },
-        'fund_trend': {
-            'years': years,
-            'vertical': vertical_funds,
-            'horizontal': horizontal_funds
-        },
-        'directions': directions,
-        'dir_counts': dir_counts,
-        'pie_data': pie_data,
-        'radar_values': radar_values,
-        'wordcloud_data': wordcloud_data,
-        'result_years': result_years,
-        'journal_counts': journal_counts,
-        'monograph_counts': monograph_counts,
-        'report_counts': report_counts,
-        'achievements_table': table_data,
-        'projects_table': project_table,
-        'analysis': {
-            'summary': summary,
-            'weak': weak,
-            'suggest': suggest
-        }
+      'stat_cards':{
+        'gov_projects':projects.filter(project_type='横向').count(),
+        'horizontal_projects':projects.filter(project_type='横向').count(),
+        'total_fund':round(float(funds.aggregate(v=Sum('amount'))['v'] or 0),2),
+        'core_achievements':achievements.filter(level__in=['CSSCI','核心期刊']).count(),
+        'digital_gov_projects':projects.filter(research_direction='数字治理').count(),
+        'community_growth':cg,
+        'emergency_projects':projects.filter(research_direction='应急与风险治理').count(),
+      },
+      'fund_trend':{'years':years,'vertical':vertical,'horizontal':horizontal},
+      'directions':labels,'dir_counts':raw,'pie_data':pie,'radar_values':_activity_percent(raw),
+      'wordcloud_data':keyword_cloud(list(scoped_p)+list(scoped_a)),
+      'result_years':result_years,'journal_counts':journal,'monograph_counts':mono,'report_counts':report,
+      'achievements_table':[{'序号':i,'成果名称':a.title,'负责人':a.author.real_name,'成果类型':a.achievement_type,'发布年份':a.publish_year} for i,a in enumerate(scoped_a.select_related('author').order_by('-publish_year','id')[:10],1)],
+      'projects_table':[{'项目名称':x.project_name,'负责人':x.leader.real_name,'项目类型':x.project_type,'进度':f'{x.actual_progress}%','状态':x.status} for x in scoped_p.select_related('leader').filter(Q(project_type='横向')|Q(project_name__icontains='政府'),status__in=['在研','立项'])[:15]],
+      'analysis':{'summary':summary,'weak':weak,'suggest':suggest},
     })
 
-# ==================================================
-# 科研经费明细台账 API（复用现有 FundDetail / Project 模型）
-# ==================================================
 def fund_project_options(request):
     """返回经费登记表可关联的项目选项。"""
     if request.method != 'GET':
@@ -3950,4 +3289,798 @@ def search(request):
         'projects': project_list,
         'achievements': achievement_list,
         'teachers': teacher_list
+    })
+
+
+# ==================================================
+# 科研首页工作台 2.0
+# 全局科研查询 + 待办 / 风险提醒
+# ==================================================
+
+def workbench_options(request):
+    project_subjects = set(
+        Project.objects.exclude(subject__isnull=True).exclude(subject__exact='')
+        .values_list('subject', flat=True)
+    )
+    achievement_subjects = set(
+        Achievement.objects.exclude(subject__isnull=True).exclude(subject__exact='')
+        .values_list('subject', flat=True)
+    )
+    teachers = list(
+        User.objects.filter(role='teacher').select_related('dept').order_by('real_name')
+        .values('id', 'real_name', 'title', 'dept__dept_name')
+    )
+    return JsonResponse({
+        'years': sorted(get_available_years(), reverse=True),
+        'subjects': sorted(project_subjects | achievement_subjects),
+        'teachers': teachers,
+        'statuses': [{'value': v, 'label': l} for v, l in Project.STATUS_CHOICES],
+    })
+
+
+def _workbench_int(value, field_name):
+    if value in (None, ''):
+        return None
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        raise ValueError(f'{field_name}格式无效')
+    if parsed <= 0:
+        raise ValueError(f'{field_name}格式无效')
+    return parsed
+
+
+def workbench_overview(request):
+    keyword = str(request.GET.get('keyword', '')).strip()
+    subject = str(request.GET.get('subject', '')).strip()
+    status = str(request.GET.get('status', '')).strip()
+
+    try:
+        year = _workbench_int(request.GET.get('year'), '年份')
+        teacher_id = _workbench_int(request.GET.get('teacher_id'), '教师编号')
+    except ValueError as exc:
+        return JsonResponse({'error': str(exc)}, status=400)
+
+    if status and status not in {value for value, _ in Project.STATUS_CHOICES}:
+        return JsonResponse({'error': '项目状态不在允许范围内'}, status=400)
+
+    projects = Project.objects.select_related('leader', 'dept').all()
+    achievements = Achievement.objects.select_related('author', 'dept').all()
+
+    if keyword:
+        projects = projects.filter(
+            Q(project_name__icontains=keyword) |
+            Q(project_no__icontains=keyword) |
+            Q(leader__real_name__icontains=keyword) |
+            Q(subject__icontains=keyword) |
+            Q(dept__dept_name__icontains=keyword)
+        )
+        achievements = achievements.filter(
+            Q(title__icontains=keyword) |
+            Q(author__real_name__icontains=keyword) |
+            Q(subject__icontains=keyword) |
+            Q(dept__dept_name__icontains=keyword)
+        )
+
+    if year:
+        projects = projects.filter(start_date__year=year)
+        achievements = achievements.filter(publish_year=year)
+    if subject:
+        projects = projects.filter(subject=subject)
+        achievements = achievements.filter(subject=subject)
+    if teacher_id:
+        projects = projects.filter(leader_id=teacher_id)
+        achievements = achievements.filter(author_id=teacher_id)
+    if status:
+        projects = projects.filter(status=status)
+
+    projects = projects.order_by('-start_date', '-id')
+    achievements = achievements.order_by('-publish_year', '-id')
+
+    teacher_ids = set(projects.values_list('leader_id', flat=True)) | set(
+        achievements.values_list('author_id', flat=True)
+    )
+    teachers = (
+        User.objects.filter(role='teacher', id__in=teacher_ids)
+        .select_related('dept')
+        .annotate(
+            project_count=Count('projects', distinct=True),
+            achievement_count=Count('achievements', distinct=True),
+        )
+        .order_by('real_name')
+    )
+
+    fund_qs = FundDetail.objects.filter(project__in=projects)
+    if year:
+        fund_qs = fund_qs.filter(year=year)
+    fund_total = fund_qs.aggregate(total=Sum('amount'))['total'] or Decimal('0')
+
+    project_rows = list(projects.values(
+        'id', 'project_no', 'project_name', 'leader__real_name',
+        'dept__dept_name', 'project_type', 'subject', 'status',
+        'start_date', 'end_date', 'actual_progress'
+    )[:8])
+    for row in project_rows:
+        row['start_date'] = row['start_date'].isoformat() if row['start_date'] else None
+        row['end_date'] = row['end_date'].isoformat() if row['end_date'] else None
+        row['url'] = f"/project-detail/?id={row['id']}"
+
+    achievement_rows = list(achievements.values(
+        'id', 'title', 'author__real_name', 'dept__dept_name',
+        'achievement_type', 'level', 'publish_year', 'subject'
+    )[:8])
+    for row in achievement_rows:
+        row['url'] = f"/achievement-detail/?id={row['id']}"
+
+    teacher_rows = [{
+        'id': t.id,
+        'real_name': t.real_name,
+        'title': t.title,
+        'dept': t.dept.dept_name if t.dept else '',
+        'project_count': t.project_count,
+        'achievement_count': t.achievement_count,
+        'url': f"/analysis/teacher/?teacher_id={t.id}",
+    } for t in teachers[:8]]
+
+    today = date.today()
+    due_soon_end = today + timedelta(days=90)
+    unfinished = projects.exclude(status='结题')
+    overdue_qs = unfinished.filter(end_date__lt=today)
+    due_soon_qs = unfinished.filter(end_date__gte=today, end_date__lte=due_soon_end)
+    missing_subject_qs = projects.filter(Q(subject__isnull=True) | Q(subject__exact=''))
+    existing_warning_qs = (
+        RiskWarning.objects.filter(is_resolved=False, project__in=projects)
+        .select_related('project', 'project__leader')
+        .order_by('-warning_date', '-id')
+    )
+
+    todo_items = []
+    for warning in existing_warning_qs[:6]:
+        todo_items.append({
+            'kind': 'risk_warning', 'level': warning.risk_level,
+            'title': warning.reason,
+            'detail': f"{warning.project.project_name} · {warning.project.leader.real_name}",
+            'project_id': warning.project_id,
+            'url': f"/project-detail/?id={warning.project_id}",
+            'date': warning.warning_date.isoformat(),
+            'source': '已有风险记录',
+        })
+
+    for project in overdue_qs[:6]:
+        todo_items.append({
+            'kind': 'overdue', 'level': '高',
+            'title': '项目已到期但尚未结题',
+            'detail': f"{project.project_name} · {project.leader.real_name} · 已逾期 {(today - project.end_date).days} 天",
+            'project_id': project.id, 'url': f"/project-detail/?id={project.id}",
+            'date': project.end_date.isoformat(), 'source': '系统规则',
+        })
+
+    for project in due_soon_qs[:6]:
+        todo_items.append({
+            'kind': 'due_soon', 'level': '中',
+            'title': '项目将在 90 天内到期',
+            'detail': f"{project.project_name} · {project.leader.real_name} · 剩余 {(project.end_date - today).days} 天",
+            'project_id': project.id, 'url': f"/project-detail/?id={project.id}",
+            'date': project.end_date.isoformat(), 'source': '系统规则',
+        })
+
+    for project in missing_subject_qs[:6]:
+        todo_items.append({
+            'kind': 'missing_subject', 'level': '低',
+            'title': '项目缺少学科分类',
+            'detail': f"{project.project_name} · {project.leader.real_name}",
+            'project_id': project.id, 'url': f"/project-detail/?id={project.id}",
+            'date': None, 'source': '数据完整性检查',
+        })
+
+    level_rank = {'高': 0, '中': 1, '低': 2}
+    todo_items.sort(key=lambda item: (level_rank.get(item['level'], 9), item['date'] or '9999-12-31'))
+
+    return JsonResponse({
+        'filters': {
+            'keyword': keyword, 'year': year, 'subject': subject,
+            'teacher_id': teacher_id, 'status': status,
+        },
+        'summary': {
+            'project_count': projects.count(),
+            'achievement_count': achievements.count(),
+            'teacher_count': teachers.count(),
+            'fund_total': round(float(fund_total), 2),
+        },
+        'results': {
+            'projects': project_rows,
+            'achievements': achievement_rows,
+            'teachers': teacher_rows,
+        },
+        'todo': {
+            'items': todo_items[:10],
+            'counts': {
+                'existing_warning': existing_warning_qs.count(),
+                'overdue': overdue_qs.count(),
+                'due_soon': due_soon_qs.count(),
+                'missing_subject': missing_subject_qs.count(),
+            },
+            'rule_note': '自动提醒仅基于现有字段进行规则判断；不代表审批结论或项目绩效评价。',
+        },
+    })
+
+
+# ==================================================
+# 科研综合查询结果页
+# ==================================================
+
+def research_query_page(request):
+    return render(request, '科研综合查询.html')
+
+
+def workbench_search_api(request):
+    keyword = str(request.GET.get('keyword', '')).strip()
+    subject = str(request.GET.get('subject', '')).strip()
+    status = str(request.GET.get('status', '')).strip()
+    result_type = str(request.GET.get('type', 'project')).strip()
+
+    try:
+        year = _workbench_int(request.GET.get('year'), '年份')
+        teacher_id = _workbench_int(request.GET.get('teacher_id'), '教师编号')
+        page = max(1, int(request.GET.get('page', 1)))
+        page_size = min(50, max(5, int(request.GET.get('page_size', 10))))
+    except (ValueError, TypeError):
+        return JsonResponse({'error': '查询参数格式无效'}, status=400)
+
+    if result_type not in {'project', 'achievement', 'teacher'}:
+        return JsonResponse({'error': '结果类型无效'}, status=400)
+
+    if status and status not in {value for value, _ in Project.STATUS_CHOICES}:
+        return JsonResponse({'error': '项目状态不在允许范围内'}, status=400)
+
+    projects = Project.objects.select_related('leader', 'dept').all()
+    achievements = Achievement.objects.select_related('author', 'dept').all()
+
+    if keyword:
+        projects = projects.filter(
+            Q(project_name__icontains=keyword) |
+            Q(project_no__icontains=keyword) |
+            Q(leader__real_name__icontains=keyword) |
+            Q(subject__icontains=keyword) |
+            Q(dept__dept_name__icontains=keyword)
+        )
+        achievements = achievements.filter(
+            Q(title__icontains=keyword) |
+            Q(author__real_name__icontains=keyword) |
+            Q(subject__icontains=keyword) |
+            Q(dept__dept_name__icontains=keyword)
+        )
+
+    if year:
+        projects = projects.filter(start_date__year=year)
+        achievements = achievements.filter(publish_year=year)
+    if subject:
+        projects = projects.filter(subject=subject)
+        achievements = achievements.filter(subject=subject)
+    if teacher_id:
+        projects = projects.filter(leader_id=teacher_id)
+        achievements = achievements.filter(author_id=teacher_id)
+    if status:
+        projects = projects.filter(status=status)
+
+    projects = projects.order_by('-start_date', '-id')
+    achievements = achievements.order_by('-publish_year', '-id')
+
+    teacher_ids = set(projects.values_list('leader_id', flat=True)) | set(
+        achievements.values_list('author_id', flat=True)
+    )
+    teachers = (
+        User.objects.filter(role='teacher', id__in=teacher_ids)
+        .select_related('dept')
+        .annotate(
+            project_count=Count('projects', distinct=True),
+            achievement_count=Count('achievements', distinct=True),
+        )
+        .order_by('real_name')
+    )
+
+    fund_qs = FundDetail.objects.filter(project__in=projects)
+    if year:
+        fund_qs = fund_qs.filter(year=year)
+    fund_total = fund_qs.aggregate(total=Sum('amount'))['total'] or Decimal('0')
+
+    counts = {
+        'project': projects.count(),
+        'achievement': achievements.count(),
+        'teacher': teachers.count(),
+    }
+
+    source = projects if result_type == 'project' else achievements if result_type == 'achievement' else teachers
+    total = counts[result_type]
+    total_pages = max(1, math.ceil(total / page_size)) if total else 1
+    page = min(page, total_pages)
+    start = (page - 1) * page_size
+    end = start + page_size
+
+    rows = []
+    if result_type == 'project':
+        for item in source[start:end]:
+            rows.append({
+                'id': item.id,
+                'project_no': item.project_no,
+                'project_name': item.project_name,
+                'leader': item.leader.real_name,
+                'dept': item.dept.dept_name if item.dept else '',
+                'project_type': item.project_type,
+                'subject': item.subject or '',
+                'status': item.status,
+                'start_date': item.start_date.isoformat() if item.start_date else '',
+                'end_date': item.end_date.isoformat() if item.end_date else '',
+                'actual_progress': item.actual_progress,
+                'url': f'/project-detail/?id={item.id}',
+            })
+    elif result_type == 'achievement':
+        for item in source[start:end]:
+            rows.append({
+                'id': item.id,
+                'title': item.title,
+                'author': item.author.real_name,
+                'dept': item.dept.dept_name if item.dept else '',
+                'achievement_type': item.achievement_type,
+                'level': item.level or '',
+                'publish_year': item.publish_year,
+                'subject': item.subject or '',
+                'citation_count': item.citation_count,
+                'url': f'/achievement-detail/?id={item.id}',
+            })
+    else:
+        for item in source[start:end]:
+            rows.append({
+                'id': item.id,
+                'real_name': item.real_name,
+                'title': item.title or '',
+                'dept': item.dept.dept_name if item.dept else '',
+                'project_count': item.project_count,
+                'achievement_count': item.achievement_count,
+                'url': f'/analysis/teacher/?teacher_id={item.id}',
+            })
+
+    return JsonResponse({
+        'filters': {
+            'keyword': keyword,
+            'year': year,
+            'subject': subject,
+            'teacher_id': teacher_id,
+            'status': status,
+            'type': result_type,
+        },
+        'summary': {
+            'project_count': counts['project'],
+            'achievement_count': counts['achievement'],
+            'teacher_count': counts['teacher'],
+            'fund_total': round(float(fund_total), 2),
+        },
+        'counts': counts,
+        'pagination': {
+            'page': page,
+            'page_size': page_size,
+            'total': total,
+            'total_pages': total_pages,
+        },
+        'rows': rows,
+    })
+
+
+# ==================================================
+# 项目综合详情页
+# ==================================================
+
+def project_overview_page(request):
+    return render(request, '项目综合详情.html')
+
+
+def project_overview_api(request):
+    raw_id = str(request.GET.get('id', '')).strip()
+    try:
+        project_id = int(raw_id)
+        if project_id <= 0:
+            raise ValueError
+    except (TypeError, ValueError):
+        return JsonResponse({'error': '项目编号参数无效'}, status=400)
+
+    try:
+        project = (
+            Project.objects
+            .select_related('leader', 'leader__dept', 'dept')
+            .get(pk=project_id)
+        )
+    except Project.DoesNotExist:
+        return JsonResponse({'error': '未找到该项目'}, status=404)
+
+    funds = list(
+        FundDetail.objects
+        .filter(project=project)
+        .order_by('year', 'id')
+        .values('id', 'year', 'source_type', 'usage_type', 'amount')
+    )
+    budgets = list(
+        FundBudget.objects
+        .filter(project=project)
+        .order_by('year', 'id')
+        .values('id', 'year', 'budget_amount', 'is_demo', 'data_source')
+    )
+    warnings = list(
+        RiskWarning.objects
+        .filter(project=project)
+        .order_by('-warning_date', '-id')
+        .values(
+            'id', 'warning_date', 'risk_level',
+            'reason', 'suggested_action', 'is_resolved'
+        )
+    )
+    cooperations = list(
+        Cooperation.objects
+        .filter(project=project, is_demo=False)
+        .order_by('-coop_count', 'id')
+        .values('id', 'source', 'target', 'coop_count')
+    )
+
+    fund_total = sum((item['amount'] or Decimal('0')) for item in funds)
+    budget_total = sum((item['budget_amount'] or Decimal('0')) for item in budgets)
+    formal_budget_total = sum(
+        (item['budget_amount'] or Decimal('0'))
+        for item in budgets if not item['is_demo']
+    )
+    demo_budget_total = sum(
+        (item['budget_amount'] or Decimal('0'))
+        for item in budgets if item['is_demo']
+    )
+
+    fund_by_year = {}
+    for item in funds:
+        year = int(item['year'])
+        fund_by_year[year] = fund_by_year.get(year, Decimal('0')) + (item['amount'] or Decimal('0'))
+
+    budget_by_year = {}
+    for item in budgets:
+        year = int(item['year'])
+        budget_by_year[year] = budget_by_year.get(year, Decimal('0')) + (item['budget_amount'] or Decimal('0'))
+
+    years = sorted(set(fund_by_year) | set(budget_by_year))
+    fund_trend = [
+        {
+            'year': year,
+            'fund': round(float(fund_by_year.get(year, Decimal('0'))), 2),
+            'budget': round(float(budget_by_year.get(year, Decimal('0'))), 2),
+        }
+        for year in years
+    ]
+
+    leader_metrics = teacher_research_metrics(project.leader)
+    leader_project_count = leader_metrics['project_count']
+    leader_achievement_count = leader_metrics['achievements_count']
+
+    active_warning_count = sum(1 for item in warnings if not item['is_resolved'])
+    high_warning_count = sum(
+        1 for item in warnings
+        if not item['is_resolved'] and item['risk_level'] == '高'
+    )
+
+    today = date.today()
+    if project.status == '结题':
+        deadline_state = '已结题'
+        deadline_days = None
+    else:
+        delta = (project.end_date - today).days
+        deadline_days = delta
+        if delta < 0:
+            deadline_state = '已逾期'
+        elif delta <= 90:
+            deadline_state = '90天内到期'
+        else:
+            deadline_state = '正常'
+
+    for item in funds:
+        item['amount'] = round(float(item['amount'] or 0), 2)
+
+    for item in budgets:
+        item['budget_amount'] = round(float(item['budget_amount'] or 0), 2)
+
+    for item in warnings:
+        item['warning_date'] = item['warning_date'].isoformat() if item['warning_date'] else None
+
+    return JsonResponse({
+        'project': {
+            'id': project.id,
+            'project_no': project.project_no,
+            'project_name': project.project_name,
+            'project_type': project.project_type,
+            'subject': project.subject or '',
+            'status': project.status,
+            'fund_amount': round(float(project.fund_amount or 0), 2),
+            'start_date': project.start_date.isoformat(),
+            'end_date': project.end_date.isoformat(),
+            'actual_progress': project.actual_progress,
+            'dept': project.dept.dept_name if project.dept else '',
+            'deadline_state': deadline_state,
+            'deadline_days': deadline_days,
+        },
+        'leader': {
+            'id': project.leader.id,
+            'real_name': project.leader.real_name,
+            'title': project.leader.title or '',
+            'dept': project.leader.dept.dept_name if project.leader.dept else '',
+            'project_count': leader_project_count,
+            'achievement_count': leader_achievement_count,
+            'profile_url': f'/analysis/teacher/?teacher_id={project.leader.id}',
+        },
+        'fund': {
+            'project_fund_amount': round(float(project.fund_amount or 0), 2),
+            'detail_total': round(float(fund_total), 2),
+            'budget_total': round(float(budget_total), 2) if budget_total else None,
+            'formal_budget_total': round(float(formal_budget_total), 2),
+            'demo_budget_total': round(float(demo_budget_total), 2),
+            'details': funds,
+            'budgets': budgets,
+            'trend': fund_trend,
+        },
+        'risk': {
+            'active_count': active_warning_count,
+            'high_count': high_warning_count,
+            'warnings': warnings,
+        },
+        'cooperation': {
+            'count': len(cooperations),
+            'items': cooperations[:20],
+        },
+        'relation_note': (
+            '当前数据模型未建立 Achievement 与 Project 的直接外键关系，'
+            '因此本页不将任何成果直接标记为“本项目成果”。'
+        ),
+    })
+
+# ==================================================
+# 成果综合详情页
+# ==================================================
+def achievement_overview_page(request):
+    return render(request, '成果综合详情.html')
+
+
+# ==================================================
+# 科研综合查询 2.0
+# ==================================================
+
+def research_query_options_v2(request):
+    years = sorted(get_available_years(), reverse=True)
+    depts = list(
+        Dept.objects.values_list('dept_name', flat=True)
+        .distinct().order_by('dept_name')
+    )
+    subjects = sorted(set(
+        list(Project.objects.exclude(subject__isnull=True).exclude(subject='').values_list('subject', flat=True))
+        + list(Achievement.objects.exclude(subject__isnull=True).exclude(subject='').values_list('subject', flat=True))
+    ))
+    teachers = list(
+        User.objects.filter(role='teacher')
+        .select_related('dept')
+        .order_by('dept__dept_name', 'real_name')
+        .values('id', 'real_name', 'title', 'dept__dept_name')
+    )
+    achievement_levels = list(
+        Achievement.objects.exclude(level__isnull=True).exclude(level='')
+        .values_list('level', flat=True).distinct().order_by('level')
+    )
+    return JsonResponse({
+        'years': years,
+        'depts': depts,
+        'subjects': subjects,
+        'teachers': teachers,
+        'project_statuses': [{'value': v, 'label': l} for v, l in Project.STATUS_CHOICES],
+        'project_types': [{'value': v, 'label': l} for v, l in Project.TYPE_CHOICES],
+        'fund_sources': [{'value': v, 'label': l} for v, l in FundDetail.SOURCE_CHOICES],
+        'achievement_types': [{'value': v, 'label': l} for v, l in Achievement.TYPE_CHOICES],
+        'achievement_levels': achievement_levels,
+        'international_options': [
+            {'value': 'true', 'label': '国际发表'},
+            {'value': 'false', 'label': '非国际发表'},
+        ],
+    })
+
+
+def research_query_search_v2(request):
+    keyword = str(request.GET.get('keyword', '')).strip()
+    dept = str(request.GET.get('dept', '')).strip()
+    subject = str(request.GET.get('subject', '')).strip()
+    status = str(request.GET.get('status', '')).strip()
+    project_type = str(request.GET.get('project_type', '')).strip()
+    fund_source = str(request.GET.get('fund_source', '')).strip()
+    achievement_type = str(request.GET.get('achievement_type', '')).strip()
+    achievement_level = str(request.GET.get('achievement_level', '')).strip()
+    international = str(request.GET.get('international', '')).strip().lower()
+    result_type = str(request.GET.get('type', 'project')).strip()
+
+    try:
+        year = _workbench_int(request.GET.get('year'), '年份')
+        fund_year = _workbench_int(request.GET.get('fund_year'), '经费年份')
+        teacher_id = _workbench_int(request.GET.get('teacher_id'), '教师编号')
+        page = max(1, int(request.GET.get('page', 1)))
+        page_size = min(50, max(5, int(request.GET.get('page_size', 10))))
+    except (ValueError, TypeError):
+        return JsonResponse({'error': '查询参数格式无效'}, status=400)
+
+    if result_type not in {'project', 'achievement', 'teacher'}:
+        return JsonResponse({'error': '结果类型无效'}, status=400)
+    if status and status not in {v for v, _ in Project.STATUS_CHOICES}:
+        return JsonResponse({'error': '项目状态无效'}, status=400)
+    if project_type and project_type not in {v for v, _ in Project.TYPE_CHOICES}:
+        return JsonResponse({'error': '项目类型无效'}, status=400)
+    if fund_source and fund_source not in {v for v, _ in FundDetail.SOURCE_CHOICES}:
+        return JsonResponse({'error': '经费来源无效'}, status=400)
+    if achievement_type and achievement_type not in {v for v, _ in Achievement.TYPE_CHOICES}:
+        return JsonResponse({'error': '成果类型无效'}, status=400)
+    if international not in {'', 'true', 'false'}:
+        return JsonResponse({'error': '国际发表筛选值无效'}, status=400)
+
+    projects = Project.objects.select_related('leader', 'dept').all()
+    achievements = Achievement.objects.select_related('author', 'dept').all()
+
+    # 通用条件
+    if keyword:
+        projects = projects.filter(
+            Q(project_name__icontains=keyword)
+            | Q(project_no__icontains=keyword)
+            | Q(leader__real_name__icontains=keyword)
+            | Q(subject__icontains=keyword)
+            | Q(dept__dept_name__icontains=keyword)
+        )
+        achievements = achievements.filter(
+            Q(title__icontains=keyword)
+            | Q(author__real_name__icontains=keyword)
+            | Q(subject__icontains=keyword)
+            | Q(dept__dept_name__icontains=keyword)
+        )
+
+    if dept:
+        projects = projects.filter(dept__dept_name=dept)
+        achievements = achievements.filter(dept__dept_name=dept)
+    if subject:
+        projects = projects.filter(subject=subject)
+        achievements = achievements.filter(subject=subject)
+    if year:
+        projects = projects.filter(start_date__year=year)
+        achievements = achievements.filter(publish_year=year)
+    if teacher_id:
+        projects = projects.filter(leader_id=teacher_id)
+        achievements = achievements.filter(author_id=teacher_id)
+
+    # 项目专属条件
+    if status:
+        projects = projects.filter(status=status)
+    if project_type:
+        projects = projects.filter(project_type=project_type)
+    if fund_source:
+        projects = projects.filter(funds__source_type=fund_source)
+    if fund_year:
+        projects = projects.filter(funds__year=fund_year)
+
+    # 成果专属条件
+    if achievement_type:
+        achievements = achievements.filter(achievement_type=achievement_type)
+    if achievement_level:
+        achievements = achievements.filter(level=achievement_level)
+    if international == 'true':
+        achievements = achievements.filter(is_international=True)
+    elif international == 'false':
+        achievements = achievements.filter(is_international=False)
+
+    projects = projects.distinct().order_by('-start_date', '-id')
+    achievements = achievements.distinct().order_by('-publish_year', '-id')
+
+    # 涉及教师：以当前筛选后的项目负责人 + 成果作者为准。
+    # 关键词可以命中项目/成果名称，因此不能再要求教师姓名本身也包含关键词。
+    related_teacher_ids = set(projects.values_list('leader_id', flat=True))
+    related_teacher_ids |= set(achievements.values_list('author_id', flat=True))
+
+    teachers = (
+        User.objects.filter(role='teacher', id__in=related_teacher_ids)
+        .select_related('dept')
+        .annotate(
+            project_count=Count('projects', distinct=True),
+            achievement_count=Count('achievements', distinct=True),
+        )
+        .order_by('dept__dept_name', 'real_name', 'id')
+    )
+
+    # 当用户明确指定教师时，结果只保留该教师。
+    if teacher_id:
+        teachers = teachers.filter(id=teacher_id)
+
+    # 关联经费基于当前项目集合；如指定经费年份，则按该年份汇总。
+    fund_qs = FundDetail.objects.filter(project__in=projects)
+    if fund_year:
+        fund_qs = fund_qs.filter(year=fund_year)
+    fund_total = fund_qs.aggregate(total=Sum('amount'))['total'] or Decimal('0')
+
+    counts = {
+        'project': projects.count(),
+        'achievement': achievements.count(),
+        'teacher': teachers.count(),
+    }
+
+    source = projects if result_type == 'project' else achievements if result_type == 'achievement' else teachers
+    total = counts[result_type]
+    total_pages = max(1, math.ceil(total / page_size)) if total else 1
+    page = min(page, total_pages)
+    start = (page - 1) * page_size
+    end = start + page_size
+
+    rows = []
+    if result_type == 'project':
+        for item in source[start:end]:
+            rows.append({
+                'id': item.id,
+                'project_no': item.project_no,
+                'project_name': item.project_name,
+                'leader': item.leader.real_name,
+                'dept': item.dept.dept_name if item.dept else '',
+                'project_type': item.project_type,
+                'subject': item.subject or '',
+                'status': item.status,
+                'start_date': item.start_date.isoformat() if item.start_date else '',
+                'end_date': item.end_date.isoformat() if item.end_date else '',
+                'actual_progress': item.actual_progress,
+                'url': f'/project-detail/?id={item.id}',
+            })
+    elif result_type == 'achievement':
+        for item in source[start:end]:
+            rows.append({
+                'id': item.id,
+                'title': item.title,
+                'author': item.author.real_name,
+                'dept': item.dept.dept_name if item.dept else '',
+                'achievement_type': item.achievement_type,
+                'level': item.level or '',
+                'publish_year': item.publish_year,
+                'subject': item.subject or '',
+                'citation_count': item.citation_count,
+                'is_international': bool(item.is_international),
+                'url': f'/achievement-detail/?id={item.id}',
+            })
+    else:
+        for item in source[start:end]:
+            rows.append({
+                'id': item.id,
+                'real_name': item.real_name,
+                'title': item.title or '',
+                'dept': item.dept.dept_name if item.dept else '',
+                'project_count': item.project_count,
+                'achievement_count': item.achievement_count,
+                'url': f'/analysis/teacher/?teacher_id={item.id}',
+            })
+
+    return JsonResponse({
+        'filters': {
+            'keyword': keyword,
+            'year': year,
+            'fund_year': fund_year,
+            'dept': dept,
+            'subject': subject,
+            'teacher_id': teacher_id,
+            'status': status,
+            'project_type': project_type,
+            'fund_source': fund_source,
+            'achievement_type': achievement_type,
+            'achievement_level': achievement_level,
+            'international': international,
+            'type': result_type,
+        },
+        'summary': {
+            'project_count': counts['project'],
+            'achievement_count': counts['achievement'],
+            'teacher_count': counts['teacher'],
+            'fund_total': round(float(fund_total), 2),
+        },
+        'counts': counts,
+        'pagination': {
+            'page': page,
+            'page_size': page_size,
+            'total': total,
+            'total_pages': total_pages,
+        },
+        'rows': rows,
     })

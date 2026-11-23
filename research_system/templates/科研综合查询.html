@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>科研综合查询 2.0 - 政治学与公共管理学院</title>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/css/research-platform-theme.css?v=20261122-v2">
+<link rel="stylesheet" href="/static/css/research-final-polish-v4.css?v=20261123-v4">
+<link rel="stylesheet" href="/static/css/research-query-v2.css?v=20261123-q2">
+    <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
+</head>
+<body>
+<div class="top-nav">
+  <div class="logo-box">
+    <img src="https://img.icons8.com/fluency/96/ffffff/university.png" alt="logo">
+    <div class="title-text">政治学与公共管理学院</div>
+  </div>
+  <div class="search-box"><input class="search-input" value="科研综合查询 2.0" disabled></div>
+  <div class="user-info">
+    <img src="https://img.icons8.com/fluency/96/ffffff/user-male-circle.png" alt="用户">
+    <div><button id="btnAdmin">管理员</button><button id="btnTeacher">教师</button></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="sidebar">
+    <div class="menu-item" onclick="location.href='/'"><i class="fa fa-dashboard"></i> 科研总览</div>
+    <div class="menu-item active"><i class="fa fa-search"></i> 综合查询</div>
+    <div class="menu-item" onclick="location.href='/project/'"><i class="fa fa-folder-open"></i> 科研项目</div>
+    <div class="menu-item" onclick="location.href='/fund/'"><i class="fa fa-money"></i> 科研经费</div>
+    <div class="menu-item" onclick="location.href='/achievement/'"><i class="fa fa-trophy"></i> 科研成果</div>
+    <div class="menu-item" onclick="goToSmartAnalysis()"><i class="fa fa-lightbulb-o"></i> 智能分析</div>
+    <div class="menu-item" onclick="toggleSubmenu(this)"><i class="fa fa-book"></i> 学科分析<i class="fa fa-angle-down" style="margin-left:auto;"></i></div>
+    <div class="submenu">
+      <div class="menu-item" onclick="location.href='/dept/science/'"><i class="fa fa-angle-right"></i> 科学社会主义系</div>
+      <div class="menu-item" onclick="location.href='/dept/political/'"><i class="fa fa-angle-right"></i> 政治学系</div>
+      <div class="menu-item" onclick="location.href='/dept/international/'"><i class="fa fa-angle-right"></i> 国际政治系</div>
+      <div class="menu-item" onclick="location.href='/dept/public/'"><i class="fa fa-angle-right"></i> 公共管理系</div>
+    </div>
+  </div>
+
+  <main class="content research-query-v2-page">
+    <div class="rq-head">
+      <div>
+        <div class="page-title"><i class="fa fa-search"></i> 科研综合查询 2.0</div>
+        <div class="rq-subtitle">统一承接总览、智能分析和学科分析的下钻查询；查询负责“找对象”，详情页负责“看对象”，管理页负责“改数据”。</div>
+      </div>
+      <a class="rq-back" href="/"><i class="fa fa-angle-left"></i> 返回科研总览</a>
+    </div>
+
+    <section class="rq-filter-card">
+      <div class="rq-type-switch">
+        <span>查询对象</span>
+        <button data-type="project" class="active">项目</button>
+        <button data-type="achievement">成果</button>
+        <button data-type="teacher">教师</button>
+      </div>
+
+      <div class="rq-common-grid">
+        <input id="rqKeyword" type="search" placeholder="名称 / 编号 / 教师关键词">
+        <select id="rqYear"><option value="">全部年份</option></select>
+        <select id="rqDept"><option value="">全部系别</option></select>
+        <select id="rqSubject"><option value="">全部学科</option></select>
+        <select id="rqTeacher"><option value="">全部教师</option></select>
+      </div>
+
+      <div id="rqProjectFilters" class="rq-domain-grid">
+        <select id="rqProjectType"><option value="">全部项目类型</option></select>
+        <select id="rqStatus"><option value="">全部项目状态</option></select>
+        <select id="rqFundSource"><option value="">全部经费来源</option></select>
+      </div>
+
+      <div id="rqAchievementFilters" class="rq-domain-grid" hidden>
+        <select id="rqAchievementType"><option value="">全部成果类型</option></select>
+        <select id="rqAchievementLevel"><option value="">全部成果级别</option></select>
+        <select id="rqInternational"><option value="">全部发表范围</option></select>
+      </div>
+
+      <div id="rqDrilldownHint" class="rq-drilldown-hint" hidden></div>
+
+      <div class="rq-actions">
+        <button id="rqSubmit" class="rq-primary"><i class="fa fa-search"></i> 查询</button>
+        <button id="rqReset" class="rq-secondary">重置</button>
+      </div>
+    </section>
+
+    <section class="rq-summary-grid">
+      <div class="rq-summary-card"><span>匹配项目</span><strong id="rqSummaryProject">—</strong></div>
+      <div class="rq-summary-card"><span>匹配成果</span><strong id="rqSummaryAchievement">—</strong></div>
+      <div class="rq-summary-card"><span>涉及教师</span><strong id="rqSummaryTeacher">—</strong></div>
+      <div class="rq-summary-card"><span>关联经费（万元）</span><strong id="rqSummaryFund">—</strong></div>
+    </section>
+
+    <section class="rq-result-card">
+      <div class="rq-result-head">
+        <div>
+          <h2 id="rqResultTitle">项目查询结果</h2>
+          <div id="rqConditionText">正在加载…</div>
+        </div>
+        <span id="rqTotalText"></span>
+      </div>
+      <div class="rq-table-wrap">
+        <table class="rq-table"><thead id="rqTableHead"></thead><tbody id="rqTableBody"></tbody></table>
+      </div>
+      <div class="rq-pagination">
+        <button id="rqPrev">上一页</button>
+        <span id="rqPageText">第 1 / 1 页</span>
+        <button id="rqNext">下一页</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="/static/js/research-query-v2.js?v=20261123-q2"></script>
+    <script src="/static/js/research-ui-cleanup-v1.js?v=20261123-clean2"></script>
+    <script src="/static/js/research-detail-navigation-v1.js?v=20261123-v1"></script>
+</body>
+</html>
