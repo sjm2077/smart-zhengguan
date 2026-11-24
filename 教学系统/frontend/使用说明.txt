@@ -1,0 +1,90 @@
+智慧教学平台｜智能分析与预警中心（初版完整实施包）
+===========================================
+
+一、本次新增功能
+- 新增 /ai-warning 智能分析与预警页面；与科研主题兼容。
+- 实际教务数据问答：课程、教学班、考试、已发布成绩的汇总。
+- DeepSeek API：仅 Django 后端请求；模型解释聚合事实，不执行数据库写入。
+- 站内跳转：页面路径严格白名单，不允许模型任意给出外部链接。
+- 确定性规则预警：缺任课教师、考试地点缺失、同场地时段冲突。
+- 预警核查：人工同步检测结果、设置责任人、处理中、已解决、已排除；持久保存数据库。
+- 已发布成绩汇总：仅作描述性统计。正式学业预警规则尚未核验，暂不生成学生预警。
+
+二、不会更改的内容
+课程、教师、学生、考试、成绩、教学分析及已有教学预警的原有业务页面、API、统计规则全部保留。
+不新增 Django App。不把假数据填进新页面。不导入虚构预警。
+
+三、文件结构（将本 ZIP 的文件夹内容解压到 frontend 根目录）
+src/views/ai/AIWarningCenter.vue       [新增：Vue 智能分析与预警页面]
+backend/teaching/ai_models.py           [新增：预警记录模型]
+backend/teaching/ai_checks.py           [新增：只读业务规则]
+backend/teaching/ai_views.py            [新增：DeepSeek、问答、核查 API]
+backend/teaching/ai_urls.py             [新增：智能分析 API 子路由]
+install_ai.py                            [最小接入：只补四处路由/模型注册代码，自动备份]
+DeepSeek后端环境变量.example.txt       [密钥设置说明]
+使用说明.txt
+
+四、在 Windows PowerShell 中安装（仅首次）
+1. 先备份本地教学系统工程；停止正在运行的前后端服务。
+2. 将 ZIP 解压到：D:\Personal\Desktop\教学系统\frontend
+   确认新增的 AIWarningCenter.vue 实际位于 frontend\src\views\ai\ 下。
+3. 进入前端目录并执行：
+
+   cd "D:\Personal\Desktop\教学系统\frontend"
+   python .\install_ai.py
+
+   脚本只给现有四个文件加入必要的导入及路由，并先自动备份：
+   src/router/index.ts
+   src/layout/MainLayout.vue
+   backend/teaching/models.py
+   backend/teaching/urls.py
+
+4. 预警处理记录需要真正落库，因此必须生成并执行迁移：
+
+   cd .\backend
+   python manage.py makemigrations teaching
+   python manage.py migrate
+
+5. 初次试用无需 DeepSeek 密钥；想启用真实 AI 后，在 *运行 Django 的同一 PowerShell 会话* 中设置：
+
+   $env:DEEPSEEK_API_KEY="你的真实 DeepSeek API Key"
+   $env:DEEPSEEK_MODEL="deepseek-flash"
+
+   将密钥保存在后端环境变量或部署环境密钥管理中，不要提交 Git，不要放到 Vite .env。
+   官方接口：https://api-docs.deepseek.com/api/create-chat-completion/
+
+6. 启动后端后，另开 PowerShell 启动前端：
+
+   cd "D:\Personal\Desktop\教学系统\frontend"
+   npm run type-check
+   npm run build
+   npm run dev
+
+7. 用管理员/教务管理员账号登录，左侧“智能分析预警”，地址：/ai-warning
+   先刷新数据；点击“将检测结果加入核查台账”以后才会真正生成待核查记录。
+
+五、验证建议
+- 不配置 DEEPSEEK_API_KEY 时，页面应明确写出“尚未配置”，仍可回答本学期统计及打开页面。
+- 配置有效密钥后，问“本学期考试安排有哪些待核查问题”，回答应注明教务统计依据。
+- 输入“打开课程管理”，应出现受控的站内导航链接，不由 DeepSeek 执行跳转。
+- 如果本学期没有正式学期档案或成绩记录，显示空状态，不显示模拟统计。
+- 同一考试场地和时间有真实重叠时生成待核查预览；点击同步写库；人工修改状态后刷新仍应保留。
+- 不允许普通教师/学生访问智能分析与预警的后端接口。
+
+六、重要实现边界
+- 本项目当前未提供你本地最新 backend/teaching/models.py、urls.py 和 src/router/index.ts
+  的完整副本，所以没有直接覆盖它们。接入工具会检查原文件结构，未匹配则报错并中止，避免修改错文件。
+- 数据和学期采用2026—2027学年第一学期的已核验范围；无法关联的不推断。
+- 第18、19周只作为排考参考教学周，不能当成学校已公布全部统一考试安排。
+- 不将成绩平均分视为 GPA，也不自定正式预警阈值；“已发布成绩记录”可能包含不同考核类型，需结合正式成绩协议确定后才能算课程不及格率。
+- 当前 DeepSeek 只处理聚合统计；不会把学号、手机号、个人课程成绩或学生档案发送给 AI。
+- 规则扫描最多返回160条；异常数量过大或数据字段改变时需扩展分页/边界机制。
+- 这是一套可运行的首版整合实现，但尚未在你的真实 Django 数据库及 DeepSeek Key 上端到端联调。
+- 与大平台的跨子系统跳转另需在父平台注册路由和权限，不在这次直接改动其他成员源码。
+
+七、回滚
+- 前端删除新增 src/views/ai/AIWarningCenter.vue，恢复脚本生成的 MainLayout.vue 和 router/index.ts 备份。
+- 后端恢复 models.py、urls.py 的对应 .before_ai_*.bak 备份，AI 接口停止使用。
+- 预警记录数据库表不会因恢复源码被自动删除；如需彻底清理请由数据库管理员执行受控迁移。
+
+如安装中出现错误，不要把整个项目压缩重建；提供 python install_ai.py、makemigrations 和 npm run type-check 的具体报错即可做小范围兼容修复。

@@ -1,0 +1,252 @@
+/*
+ * 智慧政管 · 教学子系统视觉统一层
+ * 参考：smart-zhengguan/research_system/static/css/research-platform-theme.css
+ *       smart-zhengguan/smartzhengguan/src/App.vue
+ * 范围：仅在教学 MainLayout 的 .main-layout 内生效。
+ * 只涉及视觉：不隐藏业务元素、不修改数据、路由、权限或交互。
+ * 不覆盖图表 canvas / ECharts 配置与业务状态颜色。
+ */
+.main-layout {
+  --zg-brand: #0a2463;
+  --zg-link: #165dff;
+  --zg-primary: #409eff;
+  --zg-chart: #2f6bff;
+  --zg-surface: #ffffff;
+  --zg-text: #333333;
+  --zg-text-strong: #1d2939;
+  --zg-text-secondary: #667085;
+  --zg-text-muted: #86909c;
+  --zg-line: #f0f0f0;
+  --zg-grid: #e5e7eb;
+  --zg-hover: #f7f8fa;
+  --zg-row-hover: #f0f5ff;
+  --zg-radius: 8px;
+  --zg-gap: 16px;
+  --zg-card-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+  /* 兼容原教学子页面已有设计变量，无需逐页改动 */
+  --bg-page: #fff;
+  --bg-card: #fff;
+  --bg-sidebar: #0a2463;
+  --border-color: #f0f0f0;
+  --text-title: #1d2939;
+  --text-secondary: #667085;
+  --text-muted: #86909c;
+  --sidebar-width: 200px;
+  --topbar-height: 68px;
+  color-scheme: light;
+  background: #fff;
+  color: var(--zg-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+}
+
+/* 1. 公共骨架：沿用原有结构、侧栏折叠和路由。 */
+.main-layout .sidebar {
+  background: var(--zg-brand);
+  border-right: 0;
+  box-shadow: none;
+}
+.main-layout .sidebar-brand {
+  border-bottom: 1px solid rgba(255, 255, 255, .10);
+  padding-inline: 18px;
+}
+.main-layout .brand-logo {
+  border-radius: 8px;
+  background: rgba(64, 158, 255, .16);
+}
+.main-layout .sidebar .nav-item {
+  min-height: 46px;
+  gap: 8px;
+  padding-block: 0;
+  color: rgba(255, 255, 255, .75);
+  font-size: 15px;
+  font-weight: 500;
+}
+.main-layout .sidebar .nav-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, .08);
+}
+.main-layout .sidebar .nav-item.active,
+.main-layout .sidebar .nav-item--parent.active {
+  color: #fff;
+  background: rgba(255, 255, 255, .15);
+}
+.main-layout .sidebar .nav-item.active::before {
+  top: 0;
+  transform: none;
+  height: 100%;
+  width: 3px;
+  background: var(--zg-primary);
+  border-radius: 0;
+}
+.main-layout .sidebar .nav-icon { width: 18px; height: 18px; }
+.main-layout .sidebar .nav-item--sub { font-size: 14px; }
+.main-layout .sidebar .nav-sub-dot { background: rgba(255, 255, 255, .3); }
+.main-layout .sidebar .nav-item--sub.active .nav-sub-dot { background: var(--zg-primary); }
+.main-layout .sidebar-footer { border-top-color: rgba(255, 255, 255, .12); }
+.main-layout .sidebar-collapse-btn { color: rgba(255, 255, 255, .65); }
+.main-layout .sidebar-collapse-btn:hover { color: #fff; background: rgba(255, 255, 255, .08); }
+.main-layout .topbar {
+  background: var(--zg-brand);
+  padding-inline: 20px;
+  border-bottom: 0;
+  box-shadow: none;
+}
+.main-layout .brand-name-cn { font-size: 18px; font-weight: 600; letter-spacing: 0; }
+.main-layout .brand-name-en { color: rgba(255, 255, 255, .7); }
+.main-layout .topbar-toggle,
+.main-layout .topbar-search {
+  border-color: rgba(255, 255, 255, .12);
+}
+.main-layout .topbar-search:focus-within {
+  border-color: rgba(255, 255, 255, .45);
+  box-shadow: 0 0 0 2px rgba(64, 158, 255, .2);
+}
+.main-layout .page-content {
+  min-width: 0;
+  padding: 16px;
+  background: var(--zg-surface);
+  color: var(--zg-text);
+}
+.main-layout .main-area { min-width: 0; }
+
+/* 2. 仅匹配已存在的教学页面根节点，不更改其内容结构。 */
+.main-layout .page-content :is(
+  .dashboard, .course-hub, .faculty-hub, .student-hub,
+  .exam-hub, .grade-hub, .analysis-hub
+) {
+  min-width: 0;
+  background: #fff;
+  color: var(--zg-text);
+}
+.main-layout .page-content :is(
+  .course-hub, .faculty-hub, .student-hub, .exam-hub,
+  .grade-hub, .analysis-hub
+) { gap: 16px; }
+.main-layout .page-content .dashboard { padding: 0; }
+.main-layout .page-content .exam-hub { padding: 0; --blue: var(--zg-brand); --border: var(--zg-line); }
+
+/* 3. 页面标题、说明、操作工具栏。 */
+.main-layout .page-content .hub-topbar { gap: 16px; }
+.main-layout .page-content .hub-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--zg-text-strong);
+  letter-spacing: 0;
+}
+.main-layout .page-content .hub-subtitle { font-size: 13px; color: var(--zg-text-muted); line-height: 1.6; }
+.main-layout .page-content .hub-actions { gap: 8px; flex-wrap: wrap; }
+.main-layout .page-content :is(.hub-panel-title, .hub-section-title, .hub-chart-title) {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--zg-text-strong);
+}
+.main-layout .page-content .hub-panel-header { gap: 8px; }
+
+/* 4. 常规统计卡与业务卡片：白底、浅边框、轻分组。 */
+.main-layout .page-content :is(
+  .hub-panel, .hub-stat-card, .kpi-card, .academic-chart-card,
+  .section-card, .chart-card, .info-card
+) {
+  min-width: 0;
+  background: #fff;
+  border-color: var(--zg-line);
+  border-radius: var(--zg-radius);
+  box-shadow: none;
+}
+.main-layout .page-content :is(.hub-panel, .academic-chart-card) { padding: 20px; }
+.main-layout .page-content .hub-stat-card { padding: 20px; gap: 12px; }
+.main-layout .page-content :is(.hub-stat-label, .kpi-label) { font-size: 14px; color: var(--zg-text-secondary); }
+.main-layout .page-content :is(.hub-stat-num, .kpi-number) {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--zg-text-strong);
+}
+.main-layout .page-content :is(.hub-stat-sub, .kpi-change) { font-size: 12px; }
+.main-layout .page-content .hub-stat-icon { border-radius: 12px; }
+.main-layout .page-content :is(.hub-panel, .hub-stat-card, .kpi-card):hover {
+  transform: none;
+  box-shadow: var(--zg-card-shadow);
+}
+/* 图表容器留白和 ECharts 本身高度由原页定义，不强行重绘数据系列。 */
+.main-layout .page-content :is(.hub-chart-wrap, .chart-holder, .academic-chart) { min-width: 0; }
+
+/* 5. 表格仅统一文字和基本线条；不改变宽度、列顺序、表单事件。 */
+.main-layout .page-content table { color: var(--zg-text); }
+.main-layout .page-content table thead th {
+  background: #f8fafc;
+  color: var(--zg-text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom-color: var(--zg-grid);
+}
+.main-layout .page-content table tbody td {
+  color: var(--zg-text);
+  border-bottom-color: var(--zg-line);
+}
+.main-layout .page-content table tbody tr:hover > td { background: var(--zg-row-hover); }
+.main-layout .page-content .el-table {
+  --el-table-border-color: var(--zg-line);
+  --el-table-header-bg-color: #f8fafc;
+  --el-table-row-hover-bg-color: var(--zg-row-hover);
+}
+
+/* 6. 按钮、筛选、输入：控制高度，保留原来所有绑定和禁用状态。 */
+.main-layout .page-content .btn-primary {
+  background: var(--zg-brand);
+  border-color: var(--zg-brand);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.main-layout .page-content .btn-primary:not(:disabled):hover {
+  background: #133981;
+  border-color: #133981;
+}
+.main-layout .page-content .btn-outline {
+  background: #fff;
+  border-color: var(--zg-grid);
+  border-radius: 8px;
+  color: var(--zg-brand);
+  font-size: 13px;
+}
+.main-layout .page-content .btn-outline:not(:disabled):hover {
+  color: var(--zg-link);
+  border-color: var(--zg-link);
+  background: #f8faff;
+}
+.main-layout .page-content :is(
+  input[type='text'], input[type='search'], input[type='number'], input[type='date'],
+  select, textarea
+):focus-visible {
+  outline-color: var(--zg-primary);
+  outline-offset: 1px;
+}
+.main-layout .page-content :is(a, button):focus-visible {
+  outline: 2px solid var(--zg-primary);
+  outline-offset: 2px;
+}
+
+/* 7. 保留内容和筛选功能的前提下处理窄屏。 */
+@media (max-width: 1440px) {
+  .main-layout .page-content .hub-stat-card { padding: 16px; }
+}
+@media (max-width: 1200px) {
+  .main-layout { --topbar-height: 62px; }
+  .main-layout .topbar { padding-inline: 16px; }
+  .main-layout .page-content { padding: 12px; }
+  /* 侧栏仅在用户主动点击折叠按钮时收起，避免纯CSS隐藏子菜单造成业务不可达。 */
+}
+@media (max-width: 900px) {
+  .main-layout { --topbar-height: 56px; }
+  .main-layout .brand-name-cn { font-size: 15px; }
+  .main-layout .topbar-search { max-width: min(220px, 30vw); }
+  .main-layout .topbar-search .search-input { width: 100%; min-width: 0; }
+}
+@media (max-width: 768px) {
+  .main-layout .page-content { padding: 10px; }
+  .main-layout .page-content .hub-panel { padding: 16px; }
+  .main-layout .page-content :is(.hub-stat-card, .kpi-card) { padding: 14px; }
+  .main-layout .page-content .hub-topbar { gap: 12px; }
+}

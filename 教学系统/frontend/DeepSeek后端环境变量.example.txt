@@ -1,0 +1,9 @@
+# 配置在 Django 服务进程的环境变量中，绝不写进 Vue 或前端 .env 文件。
+# PowerShell 示例（仅当前 PowerShell 会话有效）：
+# $env:DEEPSEEK_API_KEY = "你在 DeepSeek 平台申请的API密钥"
+# $env:DEEPSEEK_MODEL = "deepseek-flash"
+# python manage.py runserver
+
+# 不配置 DEEPSEEK_API_KEY 时：基础数据问答、页面跳转和规则预警仍可运行，
+# 页面会明确显示“DeepSeek 尚未配置”；不会伪称已调用模型。
+# 当前 DeepSeek 官方模型名称与接口请参照 https://api-docs.deepseek.com/api/create-chat-completion/
