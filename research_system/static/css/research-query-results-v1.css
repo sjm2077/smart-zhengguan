@@ -1,0 +1,39 @@
+﻿.query-page{padding-top:16px!important}
+.query-page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+.query-page-header .page-title{margin-bottom:4px!important}
+.query-page-subtitle{color:#667085;font-size:13px;line-height:1.5}
+.query-back-link{display:inline-flex;align-items:center;gap:5px;color:#165DFF;text-decoration:none;font-size:13px;white-space:nowrap}
+.query-filter-card,.query-result-card,.query-summary-card{background:#fff;border:1px solid #F0F0F0;border-radius:8px}
+.query-filter-card{padding:14px 16px;margin-bottom:16px}
+.query-filter-grid{display:grid;grid-template-columns:minmax(220px,1.35fr) repeat(4,minmax(130px,.8fr)) auto;gap:10px;align-items:center}
+.query-filter-grid input,.query-filter-grid select{width:100%;height:36px!important;min-height:36px!important;padding:0 10px;color:#333!important;background:#fff!important;border:1px solid #D0D5DD!important;border-radius:6px!important}
+.query-filter-actions{display:flex;gap:8px}
+.query-primary-btn,.query-secondary-btn{height:36px;padding:0 14px;border-radius:6px;cursor:pointer;white-space:nowrap}
+.query-primary-btn{color:#fff;background:#0A2463;border:1px solid #0A2463}
+.query-secondary-btn{color:#344054;background:#fff;border:1px solid #D0D5DD}
+.query-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.query-summary-card{padding:14px 16px}
+.query-summary-label{color:#667085;font-size:13px}
+.query-summary-value{margin-top:5px;color:#1D2939;font-size:24px;line-height:1.2;font-weight:700}
+.query-result-card{padding:0 16px 16px}
+.query-tabs{display:flex;gap:22px;border-bottom:1px solid #F0F0F0}
+.query-tab{position:relative;min-height:48px;padding:0 2px;color:#667085;background:transparent;border:0;cursor:pointer;font-size:14px}
+.query-tab.active{color:#165DFF;font-weight:600}
+.query-tab.active::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#165DFF}
+.query-tab span{display:inline-block;min-width:20px;margin-left:4px;padding:1px 6px;color:#667085;background:#F2F4F7;border-radius:10px;font-size:11px}
+.query-tab.active span{color:#165DFF;background:#EEF4FF}
+.query-result-meta{display:flex;justify-content:space-between;gap:12px;padding:12px 0;color:#667085;font-size:12px}
+.query-table-wrap{width:100%;overflow-x:auto;border:1px solid #E5E7EB}
+.query-table{width:100%;min-width:900px;border-collapse:collapse}
+.query-table th{height:42px;padding:8px 10px!important;color:#344054!important;background:#F8FAFC!important;border-bottom:1px solid #E5E7EB!important;font-size:13px!important;font-weight:600;text-align:left;white-space:nowrap}
+.query-table td{padding:10px!important;color:#344054!important;background:#fff!important;border-bottom:1px solid #F0F0F0!important;font-size:13px!important;vertical-align:middle}
+.query-table tbody tr:hover td{background:#F7F9FC!important}
+.query-main-cell{max-width:320px}.query-main-title{color:#1D2939;font-weight:500;line-height:1.45}.query-main-sub{margin-top:3px;color:#86909C;font-size:12px}
+.query-status{display:inline-block;padding:2px 7px;border-radius:4px;color:#165DFF;background:#EEF4FF;font-size:12px}
+.query-detail-link{color:#165DFF;text-decoration:none;font-size:13px}.query-empty{padding:36px!important;color:#98A2B3!important;text-align:center!important}
+.query-pagination{display:flex;justify-content:flex-end;align-items:center;gap:10px;padding-top:14px;color:#667085;font-size:12px}
+.query-pagination button{height:32px;padding:0 12px;color:#344054;background:#fff;border:1px solid #D0D5DD;border-radius:6px;cursor:pointer}
+.query-pagination button:disabled{color:#98A2B3;background:#F8FAFC;cursor:not-allowed}
+@media(max-width:1400px){.query-filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.query-filter-actions{grid-column:span 3}}
+@media(max-width:1000px){.query-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.query-page-header{flex-direction:column}.query-filter-grid,.query-summary-grid{grid-template-columns:1fr}.query-filter-actions{grid-column:auto}}

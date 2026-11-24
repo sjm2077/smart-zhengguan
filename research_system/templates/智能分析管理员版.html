@@ -647,8 +647,11 @@
     <link rel="stylesheet" href="/static/css/research-platform-theme.css?v=20261122-v2">
     <script src="/static/js/research-chart-theme-v2.js?v=20261122-v2"></script>
     <link rel="stylesheet" href="/static/css/research-final-polish-v4.css?v=20261123-v4">
+    <link rel="stylesheet" href="/static/css/research-navigation-unify-v1.css?v=20261123-nav1">
+    <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
+    <link rel="stylesheet" href="/static/css/research-admin-layout-fix-v3.css?v=20261123-v3">
 </head>
-<body>
+<body class="analysis-admin-compact">
 
     <!-- 遮罩层 -->
     <div class="overlay" id="overlay"></div>
@@ -676,6 +679,10 @@
     <div class="menu-item" onclick="location.href='/'">
         <i class="fa fa-dashboard"></i> 科研总览
     </div>
+            <div class="menu-item" onclick="location.href='/research-query/'">
+                <i class="fa fa-search"></i> 综合查询
+            </div>
+
     <div class="menu-item" onclick="location.href='/project/'">
         <i class="fa fa-folder-open"></i> 科研项目
     </div>
@@ -750,15 +757,17 @@
                 <div id="scoreRank" class="chart-full"></div>
             </div>
 
+            
             <div class="grid-box-new">
                 <div class="grid-box-new-top">
                     <div class="card">
                         <div class="card-title">
-                            <i class="fa fa-thermometer-three-quarters"></i> 教师晋升概率热力图
-                            <span style="font-size:12px; font-weight:normal; margin-left:18px; color:#666;">颜色越深=晋升概率越高</span>
+                            <i class="fa fa-thermometer-three-quarters"></i> 教师科研表现热力图
+                            <span style="font-size:12px; font-weight:normal; margin-left:18px; color:#666;">颜色越深=科研得分越高</span>
                         </div>
                         <div class="filter-bar">
                             <select class="filter-select" id="heatYear" onchange="refreshHeatChart()">
+                                <option value="2025">2025年度</option>
                                 <option value="2024">2024年度</option>
                                 <option value="2023">2023年度</option>
                                 <option value="2022">2022年度</option>
@@ -783,24 +792,16 @@
             </div>
 
             <div class="card">
-                <div class="card-title"><i class="fa fa-exclamation-circle"></i> 教师发展状态综合分析</div>
-                <div class="grid-box-2">
+                <div class="card-title"><i class="fa fa-exclamation-circle"></i> 教师科研绩效分层</div>
+                <div class="grid-box-2" id="teacherStatusGrid">
                     <div class="warn-card bg-green">
                         <i class="fa fa-check-circle"></i>
-                        <div><strong>优秀稳定（8人）</strong><br>张教授、李教授、王教授、刘教授、赵教授、孙教授、周教授、吴教授<br>特征：综合得分≥85，连续3年稳定增长</div>
-                    </div>
-                    <div class="warn-card bg-yellow">
-                        <i class="fa fa-eye"></i>
-                        <div><strong>需关注（5人）</strong><br>郑老师、钱老师、冯老师、陈老师、褚老师<br>特征：综合得分60-85，增长趋势放缓</div>
-                    </div>
-                    <div class="warn-card bg-red">
-                        <i class="fa fa-exclamation-triangle"></i>
-                        <div><strong>需帮扶（3人）</strong><br>卫老师、蒋老师、沈老师<br>特征：综合得分＜60，连续2年下滑</div>
+                        <div>正在加载正式绩效数据…</div>
                     </div>
                 </div>
             </div>
 
-            <div class="card">
+<div class="card">
                 <div class="card-title"><i class="fa fa-pie-chart"></i> 学科资源分析</div>
                 <div class="resource-filter-bar">
                     <label style="font-weight: bold; color: var(--main-blue);">数据年份：</label>
@@ -938,44 +939,10 @@ function closeMapPopup() {
 }
 
 function renderGISMap() {
-    if (!gisMap) {
-        console.error('gisMap 未初始化');
-        return;
-    }
-    // 使用 ECharts 地图内置的省份简称
-    const mapSeriesData = [
-        { name: '北京', value: 4, labsCount: 3, platformsCount: 1 },
-        { name: '上海', value: 2, labsCount: 2, platformsCount: 0 },
-        { name: '山东', value: 6, labsCount: 5, platformsCount: 1 },
-        { name: '江苏', value: 1, labsCount: 1, platformsCount: 0 },
-        { name: '浙江', value: 1, labsCount: 0, platformsCount: 1 },
-        { name: '广东', value: 1, labsCount: 0, platformsCount: 1 },
-        { name: '四川', value: 1, labsCount: 0, platformsCount: 1 }
-    ];
-    gisMap.setOption({
-        backgroundColor: '#fff',
-        tooltip: { trigger: 'item', formatter: params => {
-            const cityData = mapSeriesData.find(item => item.name === params.name);
-            return cityData ? `${params.name}<br>科研平台总数量：${cityData.value}个<br>实验室：${cityData.labsCount}个<br>科研平台：${cityData.platformsCount}个` : `${params.name}<br>暂无平台数据`;
-        } },
-        geo: { map: 'china', roam: true, zoom: 1.2, label: { show: true, fontSize: 12, color: '#333' }, itemStyle: { areaColor: '#e8f4f8', borderColor: '#409EFF', borderWidth: 1 }, emphasis: { itemStyle: { areaColor: '#b3d9e8' } } },
-        series: [{ name: '科研平台数量', type: 'map', geoIndex: 0, data: mapSeriesData, label: { show: true }, emphasis: { label: { color: '#0A2343' }, itemStyle: { areaColor: '#409EFF' } } }]
-    });
-    gisMap.off('click');
-    gisMap.on('click', params => {
-        let cityKey = params.name;
-        // 将简称映射到 mapData 中的全称
-        const mapFull = { '北京':'北京市', '上海':'上海市', '山东':'山东省', '江苏':'江苏省', '浙江':'浙江省', '广东':'广东省', '四川':'四川省' };
-        cityKey = mapFull[cityKey] || cityKey;
-        if (mapData[cityKey]) {
-            openMapPopup(cityKey);
-        } else {
-            document.getElementById('popupTitle').innerText = `${params.name}科研平台详情`;
-            document.getElementById('popupContent').innerHTML = '<div style="text-align:center; color:#666;">暂无实验室/科研平台数据</div>';
-            document.getElementById('mapPopup').style.display = 'block';
-            overlay.style.display = 'block';
-        }
-    });
+    if (!gisMap) return;
+    gisMap.clear();
+    const card = document.getElementById('gisMap')?.closest('.card');
+    if (card) card.classList.add('admin-platform-card-hidden');
 }
 
     // ==================== API 调用函数 ====================
@@ -989,6 +956,7 @@ function renderGISMap() {
         '#009688', '#FF5722', '#8BC34A', '#E91E63', '#00BCD4'
     ];
     const chartData = data.data.map((d, idx) => ({
+        teacher_id: d.teacher_id || null,
         name: d.name,
         value: d.value,
         itemStyle: { color: colorPalette[idx % colorPalette.length] }
@@ -1007,6 +975,11 @@ function renderGISMap() {
                 label: { show: true, position: 'top', formatter: '{b}' }
             }],
             grid: { left: '12%', right: '10%', top: '10%', bottom: '20%' }
+        });
+        perfBubble.off('click');
+        perfBubble.on('click', params => {
+            const teacherId = params && params.data ? params.data.teacher_id : null;
+            if (teacherId) window.location.href = `/analysis/teacher/?teacher_id=${encodeURIComponent(teacherId)}`;
         });
     }
 
@@ -1032,39 +1005,53 @@ function renderGISMap() {
         const res = await fetch(`/api/admin/heat?year=${year}`);
         const data = await res.json();
         promoteHeat.setOption({
-            tooltip: { trigger: 'item' },
+            tooltip: {
+                trigger: 'item',
+                formatter: params => `${data.yAxis[params.value[1]]}<br>职称：${data.xAxis[params.value[0]]}<br>科研得分：${params.value[2]}`
+            },
             xAxis: { type: 'category', data: data.xAxis },
             yAxis: { type: 'category', data: data.yAxis },
-            visualMap: { min: 0, max: 100, inRange: { color: ['#F0F8FF','#E0F7FA','#B2EBF2','#80DEEA','#4DD0E1','#26C6DA'] } },
-            series: [{ type: 'heatmap', data: data.data }]
-        });
+            visualMap: {
+                min: 0, max: 100,
+                inRange: { color: ['#F0F8FF','#B2EBF2','#4DD0E1','#409EFF','#1F4F9A'] }
+            },
+            series: [{ name: '科研得分', type: 'heatmap', data: data.data }]
+        }, true);
     }
 
     async function renderTrendCharts() {
-        // 绩效趋势（按月）
         const trendRes = await fetch('/api/admin/trend');
         const trendData = await trendRes.json();
         scoreTrend.setOption({
             tooltip: { trigger: 'axis' },
-            legend: { data: ['全院平均得分'] },
-            xAxis: { data: trendData.months },
-            yAxis: { type: 'value', min: 60, max: 90 },
-            series: [{ name: '全院平均得分', type: 'line', smooth: true, data: trendData.scores, itemStyle: { color: '#409EFF' } }]
-        });
-        // 发展轨迹
+            legend: { data: ['全院平均综合得分'] },
+            xAxis: { type: 'category', data: trendData.years || trendData.months || [] },
+            yAxis: { type: 'value', min: 0, max: 100, name: '得分' },
+            series: [{
+                name: '全院平均综合得分',
+                type: 'line',
+                smooth: false,
+                data: trendData.scores || [],
+                itemStyle: { color: '#409EFF' }
+            }]
+        }, true);
+
         const devRes = await fetch('/api/admin/develop');
         const devData = await devRes.json();
         developLine.setOption({
             tooltip: { trigger: 'axis' },
-            legend: { data: ['科研规模', '成果数量', '经费总额'] },
-            xAxis: { data: devData.years },
-            yAxis: { type: 'value' },
+            legend: { data: ['项目数量', '成果数量', '实际经费'] },
+            xAxis: { type: 'category', data: devData.years || [] },
+            yAxis: [
+                { type: 'value', name: '项目/成果（项）' },
+                { type: 'value', name: '经费（万元）' }
+            ],
             series: [
-                { name: '科研规模', type: 'line', data: devData.scale, itemStyle: { color: '#409EFF' } },
-                { name: '成果数量', type: 'line', data: devData.achievements, itemStyle: { color: '#67C23A' } },
-                { name: '经费总额', type: 'line', data: devData.funds, itemStyle: { color: '#E6A23C' } }
+                { name: '项目数量', type: 'line', yAxisIndex: 0, data: devData.project_counts || devData.scale || [], itemStyle: { color: '#409EFF' } },
+                { name: '成果数量', type: 'line', yAxisIndex: 0, data: devData.achievements || [], itemStyle: { color: '#67C23A' } },
+                { name: '实际经费', type: 'line', yAxisIndex: 1, data: devData.funds || [], itemStyle: { color: '#E6A23C' } }
             ]
-        });
+        }, true);
     }
 
     async function refreshAllResourceCharts() {
@@ -1145,7 +1132,7 @@ function renderGISMap() {
                 return `<tr class="${riskClass}">
                     <td>${escapeRiskText(p.project_no)}</td>
                     <td>${escapeRiskText(p.leader)}</td>
-                    <td>${escapeRiskText(p.project_name)}</td>
+                    <td>${p.project_id ? `<a class="entity-detail-link" href="/project-detail/?id=${Number(p.project_id)}">${escapeRiskText(p.project_name)}</a>` : escapeRiskText(p.project_name)}</td>
                     <td>${escapeRiskText(p.end_date)}</td>
                     <td>${escapeRiskText(p.status)}</td>
                     <td>${Number.isFinite(Number(p.progress)) ? Number(p.progress) : 0}%</td>
@@ -1161,87 +1148,89 @@ function renderGISMap() {
     }
 
 
-    async function generateAnalysisReport() {
-    const yearSelect = document.getElementById('scoreYear');
-    const year = yearSelect.value === 'all' ? '近5年平均' : yearSelect.value + '年度';
-    const yearParam = yearSelect.value === 'all' ? 'all' : yearSelect.value;
-
-    // 显示报告区域并提示加载中
-    document.getElementById('analysisReport').style.display = 'block';
-    document.getElementById('reportYear').innerText = year;
-    document.getElementById('reportContent').innerHTML = '正在生成分析报告，请稍候...';
-
-    try {
-        // 并发请求所需数据
-        const [rankRes, trendRes, developRes, perfRes] = await Promise.all([
-            fetch(`/api/admin/rank?year=${yearParam === 'all' ? '2024' : yearParam}`),
-            fetch('/api/admin/trend'),
-            fetch('/api/admin/develop'),
-            fetch(`/api/admin/perf-bubble?year=${yearParam}`)
-        ]);
-
-        const rankData = await rankRes.json();
-        const trendData = await trendRes.json();
-        const developData = await developRes.json();
-        const perfData = await perfRes.json();
-
-        // 计算全院平均综合得分
-        let avgScore = 0;
-        if (perfData.data && perfData.data.length > 0) {
-            const total = perfData.data.reduce((sum, item) => sum + item.value[2], 0);
-            avgScore = (total / perfData.data.length).toFixed(1);
+    async function loadTeacherStatus() {
+        const grid = document.getElementById('teacherStatusGrid');
+        if (!grid) return;
+        try {
+            const res = await fetch('/api/admin/teacher-status');
+            const data = await res.json();
+            const renderNames = rows => rows.length
+                ? rows.map(item => `${item.name}（${item.score}）`).join('、')
+                : '暂无';
+            grid.innerHTML = `
+                <div class="warn-card bg-green">
+                    <i class="fa fa-check-circle"></i>
+                    <div><strong>高绩效（${data.high.length}人）</strong><br>${renderNames(data.high)}<br>口径：最新正式综合得分 ≥ 85</div>
+                </div>
+                <div class="warn-card bg-yellow">
+                    <i class="fa fa-eye"></i>
+                    <div><strong>中等绩效（${data.middle.length}人）</strong><br>${renderNames(data.middle)}<br>口径：最新正式综合得分 60–84.9</div>
+                </div>
+                <div class="warn-card bg-red">
+                    <i class="fa fa-exclamation-triangle"></i>
+                    <div><strong>需关注（${data.low.length}人）</strong><br>${renderNames(data.low)}<br>口径：最新正式综合得分 &lt; 60</div>
+                </div>`;
+        } catch (error) {
+            console.error('加载教师绩效分层失败', error);
+            grid.innerHTML = '<div class="warn-card bg-yellow"><div>暂无可用的正式绩效数据</div></div>';
         }
-
-        // 找出得分最高的前三名教师
-        const topTeachers = perfData.data.sort((a,b) => b.value[2] - a.value[2]).slice(0,3);
-        const topNames = topTeachers.map(t => t.name).join('、');
-
-        // 找出科研/教学得分最低的教师（短板）
-        const weakResearch = perfData.data.sort((a,b) => a.value[0] - b.value[0])[0];
-        const weakTeaching = perfData.data.sort((a,b) => a.value[1] - b.value[1])[0];
-
-        // 获取资源数据以找出短板学科（需要额外请求）
-        let weakSubject = '';
-        try {
-            const resourceRes = await fetch(`/api/admin/resource?year=${yearParam === 'all' ? '2024' : yearParam}`);
-            const resourceData = await resourceRes.json();
-            if (resourceData.subjects && resourceData.input && resourceData.output) {
-                const ratios = resourceData.input.map((inp, idx) => inp ? resourceData.output[idx] / inp : 0);
-                const minRatioIdx = ratios.indexOf(Math.min(...ratios));
-                weakSubject = resourceData.subjects[minRatioIdx] || '';
-            }
-        } catch(e) { console.warn('获取资源数据失败', e); }
-
-        // 计算经费和成果增长率（从发展轨迹）
-        const lastYear = developData.years[developData.years.length - 1];
-        const firstYear = developData.years[0];
-        const fundGrowth = ((developData.funds[developData.funds.length-1] - developData.funds[0]) / developData.funds[0] * 100).toFixed(1);
-        const achGrowth = ((developData.achievements[developData.achievements.length-1] - developData.achievements[0]) / developData.achievements[0] * 100).toFixed(1);
-
-        // 获取全院整体进度
-        let progressGaugeValue = 78; // 默认值
-        try {
-            const gaugeRes = await fetch('/api/admin/progress-gauge');
-            const gaugeData = await gaugeRes.json();
-            progressGaugeValue = gaugeData.value;
-        } catch(e) {}
-
-        // 生成报告内容
-        const reportText = `
-1. 整体绩效：全院教师综合得分均值为 ${avgScore} 分，其中 ${topNames} 表现突出，综合得分均超过85分；
-2. 短板分析：${weakSubject ? weakSubject + '学科' : '部分学科'}资源投入产出比较低，需优化资源配置；科研能力相对较弱的教师为 ${weakResearch?.name || ''}，教学质量有待提升的教师为 ${weakTeaching?.name || ''}；
-3. 发展建议：对得分低于60分的教师制定一对一帮扶计划，重点提升科研项目申报和成果转化能力；同时关注 ${weakSubject} 学科的资源分配；
-4. 进度预警：当前全院科研整体进度 ${progressGaugeValue}%，需重点关注进度低于50%的风险项目，督促负责人加快进度。
-近五年经费总额增长 ${fundGrowth}%，成果数量增长 ${achGrowth}%，整体发展态势良好。
-        `.trim();
-
-        document.getElementById('reportContent').innerText = reportText;
-
-    } catch (error) {
-        console.error('生成报告失败', error);
-        document.getElementById('reportContent').innerHTML = '报告生成失败，请稍后重试。';
     }
-}
+
+    async function generateAnalysisReport() {
+        const yearSelect = document.getElementById('scoreYear');
+        const yearParam = yearSelect.value === 'all' ? 'all' : yearSelect.value;
+        const yearLabel = yearParam === 'all' ? '近5年正式数据' : `${yearParam}年度`;
+
+        document.getElementById('analysisReport').style.display = 'block';
+        document.getElementById('reportYear').innerText = yearLabel;
+        document.getElementById('reportContent').innerHTML = '正在生成分析报告，请稍候...';
+
+        try {
+            const [developRes, perfRes, gaugeRes, riskRes] = await Promise.all([
+                fetch('/api/admin/develop'),
+                fetch(`/api/admin/perf-bubble?year=${yearParam}`),
+                fetch('/api/admin/progress-gauge'),
+                fetch('/api/admin/risk-projects')
+            ]);
+
+            const developData = await developRes.json();
+            const perfData = await perfRes.json();
+            const gaugeData = await gaugeRes.json();
+            const riskData = await riskRes.json();
+
+            const perfRows = Array.isArray(perfData.data) ? perfData.data : [];
+            const avgScore = perfRows.length
+                ? (perfRows.reduce((sum,item)=>sum+Number(item.value?.[2]||0),0)/perfRows.length).toFixed(1)
+                : null;
+
+            const sorted = [...perfRows].sort((a,b)=>Number(b.value?.[2]||0)-Number(a.value?.[2]||0));
+            const topNames = sorted.slice(0,3).map(item=>`${item.name}（${Number(item.value?.[2]||0).toFixed(1)}）`).join('、');
+
+            const years = Array.isArray(developData.years) ? developData.years : [];
+            const funds = Array.isArray(developData.funds) ? developData.funds : [];
+            const achievements = Array.isArray(developData.achievements) ? developData.achievements : [];
+
+            const calcGrowth = values => {
+                if (values.length < 2 || Number(values[0]) === 0) return null;
+                return ((Number(values[values.length-1])-Number(values[0]))/Number(values[0])*100).toFixed(1);
+            };
+
+            const fundGrowth = calcGrowth(funds);
+            const achGrowth = calcGrowth(achievements);
+
+            const lines = [];
+            lines.push(`1. 绩效概况：${avgScore === null ? '当前筛选范围暂无正式绩效评分记录。' : `正式绩效记录的平均综合得分为 ${avgScore} 分${topNames ? `；得分较高的教师包括 ${topNames}` : ''}。`}`);
+            lines.push(`2. 项目进度：当前在研/立项项目平均进度为 ${Number(gaugeData.value || 0).toFixed(1)}%；当前识别风险项目 ${Number(riskData.total || 0)} 个，其中高风险 ${Number(riskData.high_risk_count || 0)} 个。`);
+            lines.push(`3. 发展变化：${years.length ? `统计区间为 ${years[0]}–${years[years.length-1]} 年。` : '暂无可用年度序列。'}${fundGrowth === null ? ' 经费增长率暂无可比基期。' : ` 实际经费变化率 ${fundGrowth}%。`}${achGrowth === null ? ' 成果增长率暂无可比基期。' : ` 成果数量变化率 ${achGrowth}%。`}`);
+            lines.push('4. 数据口径：以上结论仅基于当前系统中的正式科研业务记录。');
+
+            document.getElementById('reportContent').innerText = lines.join('\n');
+        } catch (error) {
+            console.error('生成报告失败', error);
+            document.getElementById('reportContent').innerHTML = '报告生成失败，请稍后重试。';
+        }
+    }
+
     // 地图数据（静态）
     // 页面初始化
         // 页面初始化
@@ -1273,6 +1262,7 @@ window.onload = function() {
             refreshAllResourceCharts(),
             renderProgressGauge(),
             loadRiskProjects(),
+            loadTeacherStatus(),
             renderGISMap()
         ]).then(results => {
             results.forEach((result, idx) => {
@@ -1288,6 +1278,7 @@ window.onload = function() {
 
 </script>
 <script src="/static/js/search.js"></script>
+    <script src="/static/js/research-ui-cleanup-v1.js?v=20261123-clean2"></script>
 </body>
 </html>
 

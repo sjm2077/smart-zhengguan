@@ -1,0 +1,81 @@
+﻿
+/* 管理员智能分析页面结构与尺寸收口 v3 */
+.analysis-admin-compact .content {
+    min-width: 0;
+}
+
+.analysis-admin-compact .card {
+    overflow: hidden;
+}
+
+.analysis-admin-compact .chart-full {
+    height: 360px !important;
+    min-height: 360px !important;
+}
+
+.analysis-admin-compact .chart-half {
+    height: 340px !important;
+    min-height: 340px !important;
+}
+
+.analysis-admin-compact .chart-quarter {
+    height: 300px !important;
+    min-height: 300px !important;
+}
+
+.analysis-admin-compact .grid-box-new,
+.analysis-admin-compact .grid-box-new-bottom,
+.analysis-admin-compact .grid-box-2 {
+    min-width: 0;
+}
+
+.analysis-admin-compact .grid-box-new-bottom {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+}
+
+.analysis-admin-compact .grid-box-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+}
+
+.analysis-admin-compact #teacherStatusGrid {
+    grid-template-columns: 1fr !important;
+}
+
+.analysis-admin-compact #teacherStatusGrid .warn-card {
+    margin-bottom: 0;
+}
+
+.analysis-admin-compact .resource-filter-bar {
+    margin-bottom: 18px;
+}
+
+.analysis-admin-compact #resourcePie,
+.analysis-admin-compact #resourceBar {
+    height: 330px !important;
+    min-height: 330px !important;
+}
+
+.analysis-admin-compact #adminRiskTable {
+    min-width: 1180px;
+}
+
+.analysis-admin-compact .admin-platform-card-hidden {
+    display: none !important;
+}
+
+@media (max-width: 1400px) {
+    .analysis-admin-compact .grid-box-new-bottom,
+    .analysis-admin-compact .grid-box-2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    .analysis-admin-compact .chart-half,
+    .analysis-admin-compact .chart-quarter,
+    .analysis-admin-compact #resourcePie,
+    .analysis-admin-compact #resourceBar {
+        height: 320px !important;
+        min-height: 320px !important;
+    }
+}

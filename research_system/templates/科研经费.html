@@ -408,10 +408,32 @@
         .fund-btn-secondary { height:38px; padding:0 18px; border:1px solid #dcdfe6; background:#fff; border-radius:6px; cursor:pointer; color:#606266; }
         @media (max-width:760px) { .fund-form { grid-template-columns:1fr; } .fund-form-field.full,.fund-modal-actions { grid-column:1; } .fund-ledger-head { align-items:flex-start; } .fund-ledger-tools input { min-width:180px; } }
 
+    
+        /* 科研经费页核心业务图：双栏展示，避免删减分析图后留下大面积空白 */
+        .fund-core-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: stretch;
+        }
+
+        .fund-core-grid .card {
+            min-width: 0;
+        }
+
+        .fund-core-grid .chart {
+            height: 340px !important;
+        }
+
+        @media (max-width: 1100px) {
+            .fund-core-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
     <link rel="stylesheet" href="/static/css/research-platform-theme.css?v=20261122-v2">
     <script src="/static/js/research-chart-theme-v2.js?v=20261122-v2"></script>
     <link rel="stylesheet" href="/static/css/research-final-polish-v4.css?v=20261123-v4">
+    <link rel="stylesheet" href="/static/css/research-navigation-unify-v1.css?v=20261123-nav1">
+    <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
 </head>
 <body>
 
@@ -438,6 +460,10 @@
     <div class="menu-item" onclick="location.href='/'">
         <i class="fa fa-dashboard"></i> 科研总览
     </div>
+            <div class="menu-item" onclick="location.href='/research-query/'">
+                <i class="fa fa-search"></i> 综合查询
+            </div>
+
     <div class="menu-item" onclick="location.href='/project/'">
         <i class="fa fa-folder-open"></i> 科研项目
     </div>
@@ -517,25 +543,14 @@
                 <button class="btn btn-success" onclick="exportTable()"><i class="fa fa-download"></i> 导出数据</button>
             </div>
 
-            <div class="grid">
+            <div class="grid fund-core-grid">
                 <div class="card">
-                    <div class="card-title"><i class="fa fa-exchange"></i> 经费来源流向（来源→学科→个人）</div>
-                    <div id="sankeyChart" class="chart"></div>
-                </div>
-                <div class="card">
-                    <div class="card-title"><i class="fa fa-dashboard"></i> 年度预算执行仪表盘</div>
+                    <div class="card-title"><i class="fa fa-dashboard"></i> 年度预算执行情况</div>
                     <div id="gaugeChart" class="chart"></div>
                 </div>
-            </div>
-
-            <div class="grid">
                 <div class="card">
                     <div class="card-title"><i class="fa fa-bar-chart"></i> 近三年经费支出对比</div>
                     <div id="barChart" class="chart"></div>
-                </div>
-                <div class="card">
-                    <div class="card-title"><i class="fa fa-pie-chart"></i> 各学科经费分配占比</div>
-                    <div id="ringChart" class="chart"></div>
                 </div>
             </div>
 
@@ -543,7 +558,7 @@
             <!-- 项目级科研经费明细台账：使用现有 FundDetail / Project 数据 -->
             <div class="card fund-ledger-card">
                 <div class="fund-ledger-head">
-                    <div class="card-title" style="margin:0"><i class="fa fa-list-alt"></i> 科研经费明细台账</div>
+                    <div class="card-title" style="margin:0"><i class="fa fa-list-alt"></i> 经费明细台账</div>
                     <div class="fund-ledger-tools">
                         <input id="fundLedgerKeyword" type="search" placeholder="搜索项目名称、负责人或经费来源" aria-label="搜索经费明细">
                         <button class="btn" type="button" onclick="loadFundLedger(1)"><i class="fa fa-search"></i> 查询</button>
@@ -652,18 +667,14 @@
         // ==============================================
         // 经费页面图表与数据加载
         // ==============================================
-        let sankeyChart, gaugeChart, barChart, ringChart;
+        let gaugeChart, barChart;
 
         function initCharts() {
-            sankeyChart = echarts.init(document.getElementById('sankeyChart'));
             gaugeChart = echarts.init(document.getElementById('gaugeChart'));
             barChart = echarts.init(document.getElementById('barChart'));
-            ringChart = echarts.init(document.getElementById('ringChart'));
             window.addEventListener('resize', () => {
-                sankeyChart.resize();
                 gaugeChart.resize();
                 barChart.resize();
-                ringChart.resize();
             });
         }
         
@@ -835,7 +846,7 @@
                                 : 'trend trend-down';
                         } else {
                             trend2.innerHTML =
-                                '<i class="fa fa-minus"></i> 上年度暂无可比预算';
+                                '<i class="fa fa-minus"></i> 上年度暂无正式预算';
 
                             trend2.className = 'trend';
                         }
@@ -843,7 +854,7 @@
                         executionValue.innerText = '--';
 
                         trend2.innerHTML =
-                            '<i class="fa fa-info-circle"></i> 暂无年度预算数据';
+                            '<i class="fa fa-info-circle"></i> 暂无正式预算数据';
 
                         trend2.className = 'trend';
                     }
@@ -879,7 +890,7 @@
                         surplusValue.innerText = '--';
 
                         trend3.innerHTML =
-                            '<i class="fa fa-info-circle"></i> 暂无年度预算数据';
+                            '<i class="fa fa-info-circle"></i> 暂无正式预算数据';
 
                         trend3.className = 'trend';
                     }
@@ -911,80 +922,29 @@
                     );
                 });
 
-            // 2. 桑基图
-            fetch(`/api/fund/sankey?year=${year}&subject=${subject}`)
-                .then(res => res.json())
-                .then(data => {
-                    sankeyChart.setOption({
-                        tooltip: { trigger: 'item', formatter: '{b}: {c}万元' },
-                        series: [{
-                            type: 'sankey',
-                            layout: 'vertical',
-                            data: data.nodes,
-                            links: data.links,
-                            lineStyle: { color: 'gradient', curveness: 0.5 }
-                        }]
-                    });
-                })
-                .catch(err => console.error('加载桑基图失败', err));
-
-            
                         // 3. 年度预算执行仪表盘
             fetch(`/api/fund/gauge?year=${year}&subject=${subject}`)
                 .then(res => res.json())
                 .then(data => {
                     if (!data.budget_available) {
-                        gaugeChart.setOption(
-                            {
-                                tooltip: {
-                                    formatter:
-                                        '当前年度暂无预算数据'
+                        gaugeChart.clear();
+                        gaugeChart.setOption({
+                            title: {
+                                text: '暂无正式预算数据',
+                                subtext: '当前年度尚未录入正式预算',
+                                left: 'center',
+                                top: '42%',
+                                textStyle: {
+                                    color: '#606266',
+                                    fontSize: 20,
+                                    fontWeight: 600
                                 },
-                                series: [{
-                                    name: '预算执行',
-                                    type: 'gauge',
-                                    radius: '75%',
-                                    pointer: {
-                                        show: false
-                                    },
-                                    progress: {
-                                        show: false
-                                    },
-                                    detail: {
-                                        formatter: '--',
-                                        fontSize: 28,
-                                        color: '#909399'
-                                    },
-                                    title: {
-                                        fontSize: 16,
-                                        color: '#909399'
-                                    },
-                                    data: [{
-                                        value: 0,
-                                        name: '暂无预算'
-                                    }],
-                                    axisLine: {
-                                        lineStyle: {
-                                            width: 15,
-                                            color: [
-                                                [1, '#E4E7ED']
-                                            ]
-                                        }
-                                    },
-                                    axisTick: {
-                                        show: false
-                                    },
-                                    splitLine: {
-                                        show: false
-                                    },
-                                    axisLabel: {
-                                        show: false
-                                    }
-                                }]
-                            },
-                            true
-                        );
-
+                                subtextStyle: {
+                                    color: '#909399',
+                                    fontSize: 13
+                                }
+                            }
+                        }, true);
                         return;
                     }
 
@@ -1062,62 +1022,6 @@
                 })
                 .catch(err => console.error('加载柱状图失败', err));
 
-            // 5. 环形图（各学科经费分配）
-            fetch(`/api/fund/dept-ring?year=${year}`)
-                .then(res => res.json())
-                .then(data => {
-                    ringChart.setOption({
-                        tooltip: { trigger: 'item', formatter: '{b}: {c}万元 ({d}%)' },
-                        legend: {
-                            orient: 'horizontal',
-                            bottom: '5%',
-                            left: 'center',
-                            itemGap: 20,
-                            textStyle: { fontSize: 14, color: '#333' },
-                            formatter: name => name
-                        },
-                        // 为每个学科固定指定颜色，避免类别数量或后端排序导致颜色重复。
-                        color: ['#4682B4', '#70AD47', '#E6A23C', '#909399', '#E96B70', '#9B59B6'],
-                        series: [{
-                            name: '经费分配',
-                            type: 'pie',
-                            radius: ['40%', '70%'],
-                            center: ['50%', '40%'],
-                            data: (Array.isArray(data.data) ? data.data : []).map((item, index) => {
-                                const departmentName = String(item.name || '').trim();
-                                const departmentColors = {
-                                    '社会保障': '#4682B4',
-                                    '政治学理论': '#70AD47',
-                                    '行政管理': '#E6A23C',
-                                    '公共政策': '#909399',
-                                    '国际关系': '#E96B70',
-                                    '公共管理': '#9B59B6'
-                                };
-                                const fallbackColors = ['#4682B4', '#70AD47', '#E6A23C', '#909399', '#E96B70', '#9B59B6'];
-                                return {
-                                    ...item,
-                                    itemStyle: {
-                                        ...(item.itemStyle || {}),
-                                        color: departmentColors[departmentName] || fallbackColors[index % fallbackColors.length]
-                                    }
-                                };
-                            }),
-                            label: {
-                                show: true,
-                                position: 'outside',
-                                // 右侧可用空间较窄时，将“政治学理论”换行显示，避免标签被截断。
-                                formatter: function (params) {
-                                    return params.name === '政治学理论' ? '政治学\n理论' : params.name;
-                                },
-                                overflow: 'break',
-                                fontSize: 14
-                            },
-                            labelLine: { length: 15, length2: 10 },
-                            itemStyle: { borderWidth: 2, borderColor: '#fff' }
-                        }]
-                    });
-                })
-                .catch(err => console.error('加载环形图失败', err));
         }
 
         // 查询前同步当前年份的真实学科选项，再刷新图表。
@@ -1247,7 +1151,7 @@
                 } else {
                     body.innerHTML = rows.map(item => `<tr>
                         <td>${escapeFundHtml(item.year)}</td>
-                        <td title="${escapeFundHtml(item.project_name)}">${escapeFundHtml(item.project_name)}</td>
+                        <td title="${escapeFundHtml(item.project_name)}"><a class="entity-detail-link" href="/project-detail/?id=${Number(item.project_id)}">${escapeFundHtml(item.project_name)}</a></td>
                         <td>${escapeFundHtml(item.leader_name || '未指定')}</td>
                         <td>${escapeFundHtml(item.subject || '未分类')}</td>
                         <td>${escapeFundHtml(item.source_type)}</td>
@@ -1391,6 +1295,7 @@
 
     </script>
 <script src="/static/js/search.js"></script>
+    <script src="/static/js/research-ui-cleanup-v1.js?v=20261123-clean2"></script>
 </body>
 </html>
 

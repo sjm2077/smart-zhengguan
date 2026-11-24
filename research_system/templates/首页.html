@@ -596,6 +596,13 @@
     <link rel="stylesheet" href="/static/css/research-platform-theme.css?v=20261122-v2">
     <script src="/static/js/research-chart-theme-v2.js?v=20261122-v2"></script>
     <link rel="stylesheet" href="/static/css/research-final-polish-v4.css?v=20261123-v4">
+    <link rel="stylesheet" href="/static/css/research-workbench-v1.css?v=20261123-wb1">
+    <script src="/static/js/research-workbench-v1.js?v=20261123-wb1" defer></script>
+    <link rel="stylesheet" href="/static/css/research-workbench-layout-v2.css?v=20261123-wb2">
+    <link rel="stylesheet" href="/static/css/research-home-icon-fix-v1.css?v=20261123-icon1">
+    <script src="/static/js/research-home-icon-fix-v1.js?v=20261123-icon1" defer></script>
+    <link rel="stylesheet" href="/static/css/research-home-mini-trend-v2.css?v=20261123-mini2">
+    <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
 </head>
 <body>
 
@@ -665,6 +672,8 @@
                 </div>
             </div>
 
+
+
             <div class="grid-container">
                 <div class="data-card">
                     <div class="data-label"><i class="fa fa-folder-open"></i> 在研项目总数</div>
@@ -709,6 +718,49 @@
                     <div class="value">—</div>
                 </div>
             </div>
+
+<section class="research-workbench" id="researchWorkbench">
+                <div class="workbench-query-card">
+                    <div class="workbench-query-head">
+                        <div>
+                            <div class="workbench-title">科研查询与待办</div>
+                            <div class="workbench-subtitle">在科研总览基础上进一步筛选、定位记录，并集中查看需要关注的科研事项。</div>
+                        </div>
+                        <div class="workbench-meta" id="workbenchMeta">正在加载筛选项…</div>
+                    </div>
+                    <div class="workbench-filters">
+                        <input id="wbKeyword" type="search" placeholder="项目 / 成果 / 教师 / 项目编号">
+                        <select id="wbYear"><option value="">全部年份</option></select>
+                        <select id="wbSubject"><option value="">全部学科</option></select>
+                        <select id="wbTeacher"><option value="">全部教师</option></select>
+                        <select id="wbStatus"><option value="">全部项目状态</option></select>
+                        <div class="workbench-actions">
+                            <button class="workbench-query-btn" id="wbQueryBtn" type="button"><i class="fa fa-search"></i> 查询汇总</button>
+                            <button class="workbench-reset-btn" id="wbResetBtn" type="button">重置</button>
+                        </div>
+                    </div>
+                    <div class="workbench-summary" id="workbenchSummary" hidden>
+                        <div class="workbench-summary-item"><div class="workbench-summary-label">匹配项目</div><div class="workbench-summary-value" id="wbProjectCount">—</div></div>
+                        <div class="workbench-summary-item"><div class="workbench-summary-label">匹配成果</div><div class="workbench-summary-value" id="wbAchievementCount">—</div></div>
+                        <div class="workbench-summary-item"><div class="workbench-summary-label">涉及教师</div><div class="workbench-summary-value" id="wbTeacherCount">—</div></div>
+                        <div class="workbench-summary-item"><div class="workbench-summary-label">关联经费（万元）</div><div class="workbench-summary-value" id="wbFundTotal">—</div></div>
+                    </div>
+                </div>
+                <div class="workbench-grid">
+                    <div class="workbench-result-card">
+                        <div class="workbench-panel-head"><div><div class="workbench-title">综合查询结果</div><div class="workbench-meta" id="wbResultMeta">默认展示全院最新匹配结果</div></div><a id="wbViewAll" href="/research-query/" style="margin-left:auto;color:#165DFF;text-decoration:none;font-size:13px;">查看全部结果 <i class="fa fa-angle-right"></i></a></div>
+                        <div class="workbench-result-groups" id="wbResultGroups"><div class="workbench-loading">正在加载科研数据…</div></div>
+                    </div>
+                    <div class="workbench-todo-card">
+                        <div class="workbench-panel-head">
+                            <div><div class="workbench-title">科研待办与风险提醒</div><div class="workbench-meta" id="wbTodoMeta">正在检查…</div></div>
+                            <span class="workbench-badge" id="wbTodoBadge">—</span>
+                        </div>
+                        <div class="workbench-todo-list" id="wbTodoList"><div class="workbench-loading">正在加载提醒…</div></div>
+                        <div class="workbench-rule-note" id="wbRuleNote"></div>
+                    </div>
+                </div>
+            </section>
 
             <div class="grid-2-1">
                 <div class="card">
@@ -919,16 +971,98 @@
     }
 
     function renderMiniTrends(data) {
-        const projCounts = data.trendProjectCount.values;
-        const fundTotals = data.trendFundTotal.values;
-        const achCounts = data.trendAchievement.values;
+        const configs = [
+            {
+                id: 'mini-chart1',
+                values: (data.trendProjectCount && data.trendProjectCount.values) || [],
+                color: '#2F6BFF',
+                area: 'rgba(47,107,255,0.10)'
+            },
+            {
+                id: 'mini-chart2',
+                values: (data.trendFundTotal && data.trendFundTotal.values) || [],
+                color: '#D4A017',
+                area: 'rgba(212,160,23,0.10)'
+            },
+            {
+                id: 'mini-chart3',
+                values: (data.trendAchievement && data.trendAchievement.values) || [],
+                color: '#52C41A',
+                area: 'rgba(82,196,26,0.10)'
+            }
+        ];
 
-        const mini1 = echarts.init(document.getElementById('mini-chart1'));
-        mini1.setOption({ xAxis: { show: false }, yAxis: { show: false }, series: [{ type: 'line', data: projCounts, smooth: true, lineStyle: { color: '#0A2343' }, areaStyle: { color: 'rgba(64,158,255,0.1)' } }] });
-        const mini2 = echarts.init(document.getElementById('mini-chart2'));
-        mini2.setOption({ xAxis: { show: false }, yAxis: { show: false }, series: [{ type: 'line', data: fundTotals, smooth: true, lineStyle: { color: '#D4AF37' }, areaStyle: { color: 'rgba(212,175,55,0.1)' } }] });
-        const mini3 = echarts.init(document.getElementById('mini-chart3'));
-        mini3.setOption({ xAxis: { show: false }, yAxis: { show: false }, series: [{ type: 'line', data: achCounts, smooth: true, lineStyle: { color: '#67C23A' }, areaStyle: { color: 'rgba(103,194,58,0.1)' } }] });
+        configs.forEach(cfg => {
+            const el = document.getElementById(cfg.id);
+            if (!el) return;
+
+            let chart = echarts.getInstanceByDom(el);
+            if (!chart) chart = echarts.init(el);
+
+            const raw = Array.isArray(cfg.values)
+                ? cfg.values.map(v => Number(v) || 0)
+                : [];
+
+            const values = raw.length ? raw : [0, 0, 0, 0, 0];
+            const minValue = Math.min(...values);
+            const maxValue = Math.max(...values);
+            const range = maxValue - minValue;
+
+            const padding = range > 0
+                ? Math.max(range * 0.22, 1)
+                : Math.max(Math.abs(maxValue) * 0.10, 1);
+
+            chart.setOption({
+                animation: false,
+                backgroundColor: 'transparent',
+                grid: {
+                    left: 4,
+                    right: 4,
+                    top: 7,
+                    bottom: 5,
+                    containLabel: false
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    show: false,
+                    data: values.map((_, index) => index)
+                },
+                yAxis: {
+                    type: 'value',
+                    show: false,
+                    min: minValue - padding,
+                    max: maxValue + padding,
+                    scale: true
+                },
+                tooltip: { show: false },
+                series: [{
+                    type: 'line',
+                    data: values,
+                    smooth: 0.28,
+                    symbol: 'none',
+                    showSymbol: false,
+                    silent: true,
+                    clip: true,
+                    lineStyle: {
+                        width: 2.5,
+                        color: cfg.color,
+                        cap: 'round',
+                        join: 'round'
+                    },
+                    itemStyle: {
+                        color: cfg.color
+                    },
+                    areaStyle: {
+                        color: cfg.area,
+                        opacity: 1
+                    },
+                    emphasis: { disabled: true }
+                }]
+            }, true);
+
+            chart.resize();
+        });
     }
 
     function renderMainChart(trend) {
@@ -1071,6 +1205,7 @@
             });
     };
 </script>
+    <script src="/static/js/research-ui-cleanup-v1.js?v=20261123-clean2"></script>
 </body>
 </html>
 

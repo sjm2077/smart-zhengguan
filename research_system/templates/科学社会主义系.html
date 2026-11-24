@@ -580,8 +580,13 @@ body {
     <script src="/static/js/research-chart-theme-v2.js?v=20261122-v2"></script>
     <link rel="stylesheet" href="/static/css/research-department-theme-v3.css?v=20261123-v3">
     <link rel="stylesheet" href="/static/css/research-final-polish-v4.css?v=20261123-v4">
+    <link rel="stylesheet" href="/static/css/research-navigation-unify-v1.css?v=20261123-nav1">
+    <link rel="stylesheet" href="/static/css/research-dept-drilldown-v1.css?v=20261123-dd1">
+    <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
+    <link rel="stylesheet" href="/static/css/research-dept-viz-v2.css?v=20261123-v2">
+    <script src="/static/js/research-dept-demo-data-v1.js?v=20261124-demo1"></script>
 </head>
-<body>
+<body class="dept-viz-v2">
 
     <div class="top-nav">
     <div class="logo-box"><img src="https://img.icons8.com/fluency/96/ffffff/university.png" alt="logo"><div class="title-text">政治学与公共管理学院</div></div>
@@ -600,6 +605,10 @@ body {
 <div class="container">
     <div class="sidebar">
         <div class="menu-item" onclick="location.href='/'"><i class="fa fa-dashboard"></i> 科研总览</div>
+            <div class="menu-item" onclick="location.href='/research-query/'">
+                <i class="fa fa-search"></i> 综合查询
+            </div>
+
         <div class="menu-item" onclick="location.href='/project/'"><i class="fa fa-folder-open"></i> 科研项目</div>
         <div class="menu-item" onclick="location.href='/fund/'"><i class="fa fa-money"></i> 科研经费</div>
         <div class="menu-item" onclick="location.href='/achievement/'"><i class="fa fa-trophy"></i> 科研成果</div>
@@ -662,6 +671,7 @@ body {
     </div>
 </div>
 
+<script src="/static/js/research-dept-viz-v2.js?v=20261123-v2"></script>
 <script>
     let currentRole = localStorage.getItem('userRole') || 'admin';
     function switchRole(role) {
@@ -700,25 +710,13 @@ body {
             document.getElementById('youngOutput').innerText = '+' + data.stat_cards.young_output_rate + '%';
 
             // 饼图
-            pieType.setOption({
-                tooltip: { trigger: 'item' },
-                legend: { bottom: 0, left: 'center', data: data.pie_data.map(d => d.name) },
-                series: [{ type: 'pie', radius: ['40%','70%'], label: { formatter: '{b}' }, data: data.pie_data, color: ['#409EFF','#D4AF37','#67C23A','#13C2C2','#F56C6C'] }]
-            });
+            ResearchDeptViz.pie(pieType, data.pie_data, '当前筛选范围暂无成果类型数据');
 
             // 柱状图
-            barLevel.setOption({
-                tooltip: { trigger: 'axis' },
-                grid: { left: '10%', right: '10%', bottom: '15%' },
-                xAxis: { type: 'category', data: data.bar_categories },
-                yAxis: { type: 'value' },
-                series: [{ type: 'bar', data: data.bar_values.map((val,i) => ({ value: val, itemStyle: { color: ['#409EFF','#D4AF37','#67C23A'][i] } })) }]
-            });
+            ResearchDeptViz.bar(barLevel, data.bar_categories, data.bar_values, {emptyText:'当前筛选范围暂无项目级别数据'});
 
             // 词云
-            wordcloud.setOption({
-                series: [{ type: 'wordCloud', shape: 'circle', gridSize: 10, sizeRange: [15,45], rotationRange: [-20,20], left:0, top:0, width:'100%', height:'100%', data: data.wordcloud_data, textStyle: { color: () => ['#409EFF','#D4AF37','#67C23A','#13C2C2','#F56C6C','#9254DE','#FF7875'][Math.floor(Math.random()*7)] } }]
-            });
+            ResearchDeptViz.wordCloud(wordcloud, data.wordcloud_data, '当前筛选范围暂无可提取研究主题');
 
             // 折线图
             lineTrend.clear();
@@ -736,15 +734,27 @@ body {
                 grid: { left: '10%', right: '10%', top: '10%', bottom: '10%' },
                 xAxis: { name: '科研能力', type: 'value', min: 50, max: 100 },
                 yAxis: { name: '教学质量', type: 'value', min: 50, max: 100 },
-                series: [{ type: 'scatter', symbolSize: val => val[2]/1.8, data: data.bubble_data.map((item,idx) => ({ name: item.name, value: item.value, itemStyle: { color: ['#409EFF','#D4AF37','#67C23A','#13C2C2','#F56C6C','#9254DE','#FF7875'][idx%7] } })) }]
+                series: [{ type: 'scatter', symbolSize: val => val[2]/1.8, data: data.bubble_data.map((item,idx) => ({ teacher_id: item.teacher_id || null, name: item.name, value: item.value, itemStyle: { color: ['#409EFF','#D4AF37','#67C23A','#13C2C2','#F56C6C','#9254DE','#FF7875'][idx%7] } })) }]
+            });
+
+            bubbleTeacher.off('click');
+            bubbleTeacher.on('click', params => {
+                const teacherId = params && params.data ? params.data.teacher_id : null;
+                if (teacherId) window.location.href = `/analysis/teacher/?teacher_id=${encodeURIComponent(teacherId)}`;
             });
 
             // 重点理论成果表格
             const achievementsBody = document.getElementById('achievementsTableBody');
             if (achievementsBody) {
                 achievementsBody.innerHTML = '';
+                if (!data.achievements_table.length) achievementsBody.innerHTML = '<tr><td colspan="5">暂无数据</td></tr>';
                 data.achievements_table.forEach(row => {
                     const tr = document.createElement('tr');
+                    if (row.id) {
+                        tr.classList.add('entity-row-link');
+                        tr.title = '查看成果详情';
+                        tr.addEventListener('click', () => { window.location.href = `/achievement-detail/?id=${encodeURIComponent(row.id)}`; });
+                    }
                     tr.innerHTML = `<td>${row.序号}</td><td>${row.成果名称}</td><td>${row.负责人}</td><td>${row.类型}</td><td>${row.年份}</td>`;
                     achievementsBody.appendChild(tr);
                 });
@@ -754,8 +764,14 @@ body {
             const projectsBody = document.getElementById('projectsTableBody');
             if (projectsBody) {
                 projectsBody.innerHTML = '';
+                if (!data.projects_table.length) projectsBody.innerHTML = '<tr><td colspan="5">暂无数据</td></tr>';
                 data.projects_table.forEach(proj => {
                     const tr = document.createElement('tr');
+                    if (proj.id) {
+                        tr.classList.add('entity-row-link');
+                        tr.title = '查看项目综合详情';
+                        tr.addEventListener('click', () => { window.location.href = `/project-detail/?id=${encodeURIComponent(proj.id)}`; });
+                    }
                     tr.innerHTML = `<td>${proj.项目名称}</td><td>${proj.负责人}</td><td>${proj.级别}</td><td>${proj.进度}</td><td>${proj.状态}</td>`;
                     projectsBody.appendChild(tr);
                 });
@@ -785,6 +801,8 @@ body {
     };
 </script>
 <script src="/static/js/search.js"></script>
+    <script src="/static/js/research-dept-drilldown-v1.js?v=20261123-dd1"></script>
+    <script src="/static/js/research-ui-cleanup-v1.js?v=20261123-clean2"></script>
 </body>
 </html>
 

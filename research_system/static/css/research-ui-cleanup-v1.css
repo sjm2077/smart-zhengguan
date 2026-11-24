@@ -1,0 +1,5 @@
+﻿/* 正式页面不展示开发/内部提示 */
+.drilldown-badge,
+.teacher-direct-label{
+  display:none!important;
+}

@@ -1,0 +1,33 @@
+﻿html,body{width:100%;min-height:100%}
+body{margin:0!important}
+.top-nav{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:1000!important;display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;height:68px!important;padding:0 20px!important;background:#0A2463!important}
+.top-nav .logo-box{display:flex!important;align-items:center!important;gap:12px!important;min-width:260px!important;flex:0 0 auto!important}
+.top-nav .logo-box img{display:block!important;width:42px!important;height:42px!important;object-fit:contain!important}
+.top-nav .logo-box .title-text{white-space:nowrap!important;line-height:1!important}
+.top-nav .search-box{display:flex!important;align-items:center!important;justify-content:flex-end!important;flex:1 1 auto!important;max-width:460px!important;margin-left:auto!important;margin-right:16px!important}
+.top-nav .search-box .search-input{display:block!important;width:100%!important;max-width:360px!important;margin:0!important}
+.top-nav .user-info{display:flex!important;align-items:center!important;gap:10px!important;flex:0 0 auto!important;margin:0!important}
+.top-nav .user-info img{display:block!important;flex:0 0 auto!important}
+.top-nav .user-info>div{display:flex!important;align-items:center!important;gap:8px!important}
+.container{display:block!important;width:100%!important;min-height:calc(100vh - 68px)!important;margin:68px 0 0!important;padding:0!important}
+.sidebar{position:fixed!important;top:68px!important;left:0!important;bottom:0!important;z-index:900!important;width:200px!important;height:auto!important;overflow-y:auto!important}
+.sidebar .submenu{display:none}
+.sidebar .submenu.open{display:block!important}
+.content.query-page{display:block!important;width:calc(100% - 200px)!important;max-width:none!important;min-height:calc(100vh - 68px)!important;margin:0 0 0 200px!important;padding:16px!important;background:#fff!important}
+.query-page-header{margin-top:0!important}
+@media(max-width:1200px){
+.top-nav{height:62px!important}
+.container{margin-top:62px!important}
+.sidebar{top:62px!important;width:72px!important}
+.content.query-page{width:calc(100% - 72px)!important;margin-left:72px!important}
+.sidebar .menu-item{justify-content:center!important;padding-left:0!important;padding-right:0!important;font-size:0!important}
+.sidebar .menu-item i{font-size:18px!important}
+.sidebar .submenu{display:none!important}
+}
+@media(max-width:900px){
+.top-nav{height:56px!important}
+.container{margin-top:56px!important}
+.sidebar{top:56px!important}
+.top-nav .search-box{display:none!important}
+.top-nav .logo-box{min-width:0!important}
+}

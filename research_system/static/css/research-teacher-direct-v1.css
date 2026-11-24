@@ -1,0 +1,5 @@
+﻿.teacher-direct-toolbar{display:none;align-items:center;justify-content:flex-end;gap:12px;margin:-10px 0 14px;padding:10px 12px;border:1px solid #E5E7EB;border-radius:7px;background:#F8FAFC}
+.teacher-direct-toolbar .teacher-direct-label{color:#667085;font-size:12px}
+.teacher-direct-toolbar button{height:32px;padding:0 11px;border:1px solid #D0D5DD;border-radius:6px;background:#fff;color:#344054;cursor:pointer}
+body.teacher-direct-mode .teacher-directory-card{display:none!important}
+body.teacher-direct-mode .teacher-direct-toolbar{display:flex!important}

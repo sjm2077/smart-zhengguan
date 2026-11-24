@@ -1,0 +1,18 @@
+﻿.entity-detail-link{
+    color:#165DFF!important;
+    text-decoration:none!important;
+    font-weight:500;
+}
+.entity-detail-link:hover{
+    text-decoration:underline!important;
+}
+.entity-row-link{
+    cursor:pointer;
+}
+.entity-row-link:hover td{
+    background:#F4F8FF!important;
+}
+.entity-open-project-btn:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}

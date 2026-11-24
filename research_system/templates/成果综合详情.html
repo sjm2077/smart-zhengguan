@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成果综合详情 - 政治学与公共管理学院</title>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/css/research-platform-theme.css?v=20261122-v2">
+<link rel="stylesheet" href="/static/css/research-final-polish-v4.css?v=20261123-v4">
+<link rel="stylesheet" href="/static/css/research-achievement-overview-v1.css?v=20261123-ad1">
+    <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
+</head>
+<body>
+<div class="top-nav">
+  <div class="logo-box">
+    <img src="https://img.icons8.com/fluency/96/ffffff/university.png" alt="logo">
+    <div class="title-text">政治学与公共管理学院</div>
+  </div>
+  <div class="search-box"><input type="text" class="search-input" placeholder="成果综合详情" disabled></div>
+  <div class="user-info">
+    <img src="https://img.icons8.com/fluency/96/ffffff/user-male-circle.png" alt="用户">
+    <div><button id="btnAdmin">管理员</button><button id="btnTeacher">教师</button></div>
+  </div>
+</div>
+<div class="container">
+  <div class="sidebar">
+    <div class="menu-item" onclick="location.href='/'"><i class="fa fa-dashboard"></i> 科研总览</div>
+    <div class="menu-item" onclick="location.href='/research-query/'"><i class="fa fa-search"></i> 综合查询</div>
+    <div class="menu-item" onclick="location.href='/project/'"><i class="fa fa-folder-open"></i> 科研项目</div>
+    <div class="menu-item" onclick="location.href='/fund/'"><i class="fa fa-money"></i> 科研经费</div>
+    <div class="menu-item active" onclick="location.href='/achievement/'"><i class="fa fa-trophy"></i> 科研成果</div>
+    <div class="menu-item" onclick="goToSmartAnalysis()"><i class="fa fa-lightbulb-o"></i> 智能分析</div>
+    <div class="menu-item" onclick="toggleSubmenu(this)"><i class="fa fa-book"></i> 学科分析<i class="fa fa-angle-down" style="margin-left:auto;"></i></div>
+    <div class="submenu">
+      <div class="menu-item" onclick="location.href='/dept/science/'"><i class="fa fa-angle-right"></i> 科学社会主义系</div>
+      <div class="menu-item" onclick="location.href='/dept/political/'"><i class="fa fa-angle-right"></i> 政治学系</div>
+      <div class="menu-item" onclick="location.href='/dept/international/'"><i class="fa fa-angle-right"></i> 国际政治系</div>
+      <div class="menu-item" onclick="location.href='/dept/public/'"><i class="fa fa-angle-right"></i> 公共管理系</div>
+    </div>
+  </div>
+  <main class="content achievement-overview-page">
+    <div class="achievement-overview-head">
+      <div>
+        <div class="page-title"><i class="fa fa-trophy"></i> 成果综合详情</div>
+        <div class="achievement-breadcrumb"><a href="/research-query/">综合查询</a><i class="fa fa-angle-right"></i><span id="achievementBreadcrumbName">成果详情</span></div>
+      </div>
+      <div class="achievement-head-actions">
+        <a href="javascript:history.back()" class="secondary-link"><i class="fa fa-angle-left"></i> 返回上一页</a>
+        <a href="/achievement/" class="secondary-link">进入成果管理</a>
+      </div>
+    </div>
+    <section class="achievement-hero-card">
+      <div class="achievement-hero-main">
+        <div class="achievement-kicker" id="achievementMetaTop">—</div>
+        <h1 id="achievementTitle">正在加载成果…</h1>
+        <div class="achievement-tags">
+          <span id="achievementType">—</span>
+          <span id="achievementLevel">—</span>
+          <span id="achievementSubject">—</span>
+          <span id="achievementInternational">—</span>
+        </div>
+      </div>
+      <div class="achievement-citation-box"><span>被引次数</span><strong id="achievementCitation">—</strong></div>
+    </section>
+    <div class="achievement-two-col">
+      <section class="achievement-card">
+        <div class="achievement-card-head"><h2><i class="fa fa-info-circle"></i> 成果信息</h2></div>
+        <div class="achievement-info-grid" id="achievementInfoGrid"></div>
+      </section>
+      <section class="achievement-card">
+        <div class="achievement-card-head"><h2><i class="fa fa-user"></i> 成果作者</h2></div>
+        <div class="author-panel">
+          <div class="author-avatar"><i class="fa fa-user"></i></div>
+          <div>
+            <h3 id="achievementAuthor">—</h3>
+            <p id="achievementAuthorDept">—</p>
+            <a id="achievementAuthorProfile" class="primary-text-link" href="#">查看教师科研画像 <i class="fa fa-angle-right"></i></a>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+  </main>
+</div>
+<script src="/static/js/research-achievement-overview-v1.js?v=20261123-ad1"></script>
+    <script src="/static/js/research-ui-cleanup-v1.js?v=20261123-clean2"></script>
+    <script src="/static/js/research-detail-navigation-v1.js?v=20261123-v1"></script>
+</body>
+</html>

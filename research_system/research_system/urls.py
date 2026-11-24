@@ -1,4 +1,4 @@
-"""
+﻿"""
 URL configuration for research_system project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -29,8 +29,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('', views.index, name='index'),
+    path('research-query/', views.research_query_page, name='research_query_page'),
+    path('project-detail/', views.project_overview_page, name='project_overview_page'),
     path('project/', views.project_page, name='project_page'),
     path('fund/', views.fund_page,name='fund_page'),
+    path('achievement-detail/', views.achievement_overview_page, name='achievement_overview_page'),
     path('achievement/', views.achievement_page, name='achievement_page'),
     path('analysis/teacher/', views.teacher_analysis_page, name='teacher_analysis'),
     path('analysis/admin/', views.admin_analysis_page, name='admin_analysis'),
