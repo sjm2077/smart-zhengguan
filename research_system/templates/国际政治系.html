@@ -602,6 +602,7 @@ body {
     <link rel="stylesheet" href="/static/css/research-dept-drilldown-v1.css?v=20261123-dd1">
     <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
     <link rel="stylesheet" href="/static/css/research-dept-viz-v2.css?v=20261123-v2">
+    <script src="/static/js/research-dept-demo-data-v1.js?v=20261124-demo1"></script>
 </head>
 <body class="dept-viz-v2">
     <div class="top-nav">
@@ -669,7 +670,7 @@ body {
 
             <!-- 顶部统计卡片（添加id） -->
             <div class="grid-three">
-                <div class="stat-card"><div class="icon"><i class="fa fa-map-o"></i></div><div class="num" id="countryCoverage">--</div><div class="label">已识别国别/地区数</div></div>
+                <div class="stat-card"><div class="icon"><i class="fa fa-map-o"></i></div><div class="num" id="countryCoverage">--</div><div class="label">已识别国别/地区数</div><div style="font-size:12px;color:#909399;margin-top:4px;">国别/地区标注待完善</div></div>
                 <div class="stat-card"><div class="icon"><i class="fa fa-handshake-o"></i></div><div class="num" id="internationalProjects">--</div><div class="label">在研涉外研究项目</div></div>
                 <div class="stat-card"><div class="icon"><i class="fa fa-rmb"></i></div><div class="num" id="foreignFund">--</div><div class="label">涉外项目经费(万元)</div></div>
                 <div class="stat-card"><div class="icon"><i class="fa fa-file-text-o"></i></div><div class="num" id="internationalPubs">--</div><div class="label">国际/涉外成果总量</div></div>
@@ -781,13 +782,13 @@ body {
                 });
 
                 // 国际研究方向分布（横向柱状图）
-                ResearchDeptViz.bar(horizontalBarChart, data.continents, data.continent_data, {horizontal:true, emptyText:'当前筛选范围暂无可识别的国际研究方向数据'});
+                ResearchDeptViz.barWithFrame(horizontalBarChart, data.continents, data.continent_data, {horizontal:true, emptyText:'当前筛选范围暂无可识别的国际研究方向数据'});
 
                 // 国际学术成果类型占比（圆环图）
                 ResearchDeptViz.pie(ringDonutChart, data.ring_data, '当前筛选范围暂无国际成果结构数据');
 
                 // 雷达图
-                ResearchDeptViz.radar(radarChart, data.radar_labels || ['地缘政治与区域格局','大国关系与战略竞争','全球治理与国际组织','区域国别研究','国际安全'], data.radar_data, '当前筛选范围暂无研究方向数据');
+                ResearchDeptViz.radarWithFrame(radarChart, data.radar_labels || ['地缘政治与区域格局','大国关系与战略竞争','全球治理与国际组织','区域国别研究','国际安全'], data.radar_data, '当前筛选范围暂无研究方向数据');
 
                 // 词云图
                 ResearchDeptViz.wordCloud(wordCloudChart, data.wordcloud_data, '当前筛选范围暂无可提取研究主题');

@@ -613,6 +613,7 @@ body {
     <link rel="stylesheet" href="/static/css/research-dept-drilldown-v1.css?v=20261123-dd1">
     <link rel="stylesheet" href="/static/css/research-ui-cleanup-v1.css?v=20261123-clean2">
     <link rel="stylesheet" href="/static/css/research-dept-viz-v2.css?v=20261123-v2">
+    <script src="/static/js/research-dept-demo-data-v1.js?v=20261124-demo1"></script>
 </head>
 <body class="dept-viz-v2">
 
@@ -829,7 +830,7 @@ body {
 
                 ResearchDeptViz.bar(sourceBarChart, data.bar_categories, data.bar_values, {emptyText:'当前筛选范围暂无成果级别数据'});
 
-                ResearchDeptViz.radar(radarChart, data.radar_labels || ['政治思想与理论','比较政治与制度','政党政治','民主与治理','公共政策与智库'], data.radar_data, '当前筛选范围暂无研究方向数据');
+                ResearchDeptViz.radarWithFrame(radarChart, data.radar_labels || ['政治思想与理论','比较政治与制度','政党政治','民主与治理','公共政策与智库'], data.radar_data, '当前筛选范围暂无研究方向数据');
 
                 ResearchDeptViz.wordCloud(wordCloudChart, data.wordcloud_data, '当前筛选范围暂无可提取研究主题');
 

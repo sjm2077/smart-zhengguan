@@ -75,5 +75,52 @@
     },true);
   }
 
-  window.ResearchDeptViz={empty,wordCloud,bar,pie,radar,hasPositive};
+
+  function barWithFrame(chart,categories,values,opts){
+    opts=opts||{};
+    if(hasPositive(values)){ bar(chart,categories,values,opts); return; }
+    chart.clear();
+    const labels=Array.isArray(categories)?categories:[];
+    const horizontal=!!opts.horizontal;
+    chart.setOption({
+      animation:false,
+      grid:{left:horizontal?125:54,right:34,top:30,bottom:horizontal?28:55,containLabel:true},
+      xAxis:horizontal
+        ? {type:'value',min:0,max:5,axisLabel:{show:false},axisTick:{show:false},splitLine:{lineStyle:{color:'#edf1f6',type:'dashed'}}}
+        : {type:'category',data:labels,axisLabel:{color:'#8793a5',interval:0,rotate:labels.length>5?18:0},axisLine:{lineStyle:{color:'#dfe5ee'}}},
+      yAxis:horizontal
+        ? {type:'category',data:labels,axisLabel:{color:'#8793a5',interval:0},axisLine:{show:false}}
+        : {type:'value',min:0,max:5,axisLabel:{show:false},axisTick:{show:false},splitLine:{lineStyle:{color:'#edf1f6',type:'dashed'}}},
+      series:[],
+      graphic:[
+        {type:'text',left:'center',top:'43%',style:{text:'图表结构已就绪',fill:'#64748b',fontSize:17,fontWeight:600}},
+        {type:'text',left:'center',top:'53%',style:{text:'真实统计数据待补充',fill:'#9aa5b5',fontSize:13}}
+      ]
+    },true);
+  }
+
+  function radarWithFrame(chart,indicators,values,message){
+    if(hasPositive(values)){ radar(chart,indicators,values,message); return; }
+    const names=Array.isArray(indicators)?indicators:[];
+    chart.clear();
+    chart.setOption({
+      animation:false,
+      radar:{
+        indicator:names.map(n=>({name:n,max:100})),
+        radius:'62%',
+        splitNumber:4,
+        axisName:{color:'#718096',fontSize:12},
+        axisLine:{lineStyle:{color:'#dfe6ef'}},
+        splitLine:{lineStyle:{color:'#e8edf4'}},
+        splitArea:{areaStyle:{color:['rgba(64,158,255,.025)','rgba(64,158,255,.055)']}}
+      },
+      series:[],
+      graphic:[
+        {type:'text',left:'center',top:'43%',style:{text:'活跃度评价模型已就绪',fill:'#64748b',fontSize:17,fontWeight:600}},
+        {type:'text',left:'center',top:'51%',style:{text:'待补充研究方向标注后生成真实评价',fill:'#9aa5b5',fontSize:13}}
+      ]
+    },true);
+  }
+
+  window.ResearchDeptViz={empty,wordCloud,bar,pie,radar,barWithFrame,radarWithFrame,hasPositive};
 })();

@@ -1,4 +1,4 @@
-﻿from decimal import Decimal, InvalidOperation
+from decimal import Decimal, InvalidOperation
 from datetime import date, timedelta
 import json
 import csv
@@ -2866,7 +2866,7 @@ def dept_international(request):
     foreign_achievements = achievements.filter(achievement_signal).distinct()
 
     geo_tokens = set()
-    for row in list(projects.only('country_or_region', 'region')) + list(achievements.only('country_or_region', 'region')):
+    for row in list(scoped_p.only('country_or_region', 'region')) + list(scoped_a.only('country_or_region', 'region')):
         country = (row.country_or_region or '').strip()
         region = (row.region or '').strip()
         if country:
@@ -2998,6 +2998,7 @@ def dept_public(request):
 
     labels=['数字治理','公共政策','社区与基层治理','应急与风险治理','公共服务与社会保障','政府改革与行政管理']
     raw=direction_counts(list(scoped_p)+list(scoped_a),labels)
+    achievement_raw=direction_counts(list(scoped_a),labels)
 
     source_map=[('国家级课题','国家级'),('省部级课题','省部级'),('横向课题','横向'),('校级课题','校级')]
     pie=[{'name':name,'value':scoped_p.filter(project_type=typ).count()} for name,typ in source_map]
@@ -3034,7 +3035,7 @@ def dept_public(request):
         'emergency_projects':projects.filter(research_direction='应急与风险治理').count(),
       },
       'fund_trend':{'years':years,'vertical':vertical,'horizontal':horizontal},
-      'directions':labels,'dir_counts':raw,'pie_data':pie,'radar_values':_activity_percent(raw),
+      'directions':labels,'dir_counts':achievement_raw,'pie_data':pie,'radar_values':_activity_percent(raw),
       'wordcloud_data':keyword_cloud(list(scoped_p)+list(scoped_a)),
       'result_years':result_years,'journal_counts':journal,'monograph_counts':mono,'report_counts':report,
       'achievements_table':[{'序号':i,'成果名称':a.title,'负责人':a.author.real_name,'成果类型':a.achievement_type,'发布年份':a.publish_year} for i,a in enumerate(scoped_a.select_related('author').order_by('-publish_year','id')[:10],1)],
